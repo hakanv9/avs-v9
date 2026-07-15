@@ -3,7 +3,6 @@ const slides = document.querySelectorAll('.slide');
 let currentSlide = 0;
 
 function nextSlide() {
-    // Sadece resim varsa çalışsın (hata vermemesi için güvenlik kontrolü)
     if(slides.length > 0) {
         slides[currentSlide].classList.remove('active');
         currentSlide = (currentSlide + 1) % slides.length;
@@ -21,13 +20,11 @@ hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("active");
 });
 
-// Mobilde menüden bir linke tıklayınca menüyü otomatik kapat
 document.querySelectorAll(".nav-links a").forEach(n => n.addEventListener("click", () => {
     hamburger.classList.remove("active");
     navLinks.classList.remove("active");
 }));
 
-// 3. AŞAĞI KAYDIRMA ANİMASYONLARI
 const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -46,7 +43,6 @@ document.querySelectorAll('.scroll-anim').forEach((el) => {
     observer.observe(el);
 });
 
-// 4. İLETİŞİM BUTONU - GÜVENLİK DOĞRULAMASI
 const contactButton = document.getElementById('contactButton');
 const verificationModal = document.getElementById('verificationModal');
 const verifyButton = document.getElementById('verifyButton');
