@@ -1,31 +1,46 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[V9] Proje sunum sitem [AVS]</title>
-    
+
+    <title>AVS — V9 Proje sunum sitemiz |</title>
+    <meta name="description" content="AVS&amp;V9 — Modern mobil uygulamalar ve yazılım sitemiz.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://avs-v9.vercel.app/">
     <link rel="icon" type="image/png" href="resimler/site-ikonu.png">
 
-    <meta property="og:title" content="| V9 | AVS | V9 |">
-    <meta property="og:description" content="Modern mobil uygulamalar ve yazılım projelerim.">
-    <meta property="og:image" content="resimler/arkaplan.png">
-    <meta property="og:url" content="https://senin-siten.vercel.app">
+    <link rel="preload" as="image" href="resimler/arkaplan.png" fetchpriority="high">
+    <link rel="preload" as="image" href="resimler/anasayfa-hosgeldin-resmi1.jpg" fetchpriority="low">
+
+    <meta property="og:title" content="AVS — Mobil Uygulama Geliştirici Portfolyosu | V9">
+    <meta property="og:description" content="AVS&amp;V9 — Modern mobil uygulamalar ve yazılım projelerim.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://avs-v9.vercel.app/resimler/arkaplan.png">
+    <meta property="og:url" content="https://avs-v9.vercel.app/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
 
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Ana gezinti">
         <div class="logo"> AVS&V9 </div>
-        
-        <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
 
-        <ul class="nav-links">
+        <button class="hamburger" type="button" aria-label="Menüyü aç/kapat" aria-expanded="false"
+            aria-controls="nav-links">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
             <li><a href="#anasayfa">Ana Sayfa</a></li>
             <li><a href="#projeler">Projelerim</a></li>
             <li><a href="#hakkinda">Hakkında</a></li>
@@ -45,62 +60,148 @@
             <div class="hero-text scroll-anim">
                 <div class="info-panel hero-panel">
                     <h1>HOŞGELDİN YOLCU</h1>
-                    <p>Basit ama etkili yazılımlar, kullanıcı dostu deneyimler ve modern çözümlerle yolculuğumuza devam ediyorum.</p>
+                    <p>Basit ama etkili yazılımlar, kullanıcı dostu deneyimler ve modern çözümlerle yolculuğumuza devam
+                        ediyoruz.</p>
                 </div>
+            </div>
+            <div class="scroll-indicator" aria-hidden="true">
+                <span>Aşağı Kaydır</span>
+                <div class="arrow-down"></div>
             </div>
         </section>
 
         <section id="projeler" class="section fullscreen snap-page">
             <h2 class="section-title scroll-anim">Projelerim</h2>
-            <p class="section-intro scroll-anim info-panel">Kullanıcı deneyimini ön planda tutan, sade tasarımlı ve işlevsel çözümler geliştirmeye odaklanıyorum.</p>
-            
-            <div class="grid-container">
-                <div class="card scroll-anim">
-                    <img src="resimler/projeler-resmi1.jpg" alt="KURYE" class="card-img">
-                    <div class="card-content">
+            <div class="project-intro-box scroll-anim">
+                <p>Kullanıcı deneyimini ön planda tutan, sade tasarımlı ve işlevsel çözümler geliştirmeye odaklanıyorum.</p>
+            </div>
+
+            <div class="bento-grid">
+
+                <!-- BÜYÜK KART — sol sütun -->
+                <div class="bento-card bento-large scroll-anim">
+                    <div class="bento-img-wrap">
+                        <img src="resimler/projeler-resmi1.jpg" alt="V9 Kurye Uygulaması" loading="lazy">
+                        <div class="bento-overlay"></div>
+                    </div>
+                    <div class="bento-body">
+                        <div class="bento-tags">
+                            <span class="tag">📦 Kurye</span>
+                            <span class="tag">📱 Mobil</span>
+                            <span class="tag tag-inactive">📴 Yayından kaldırılmış</span>
+                            <span class="tag tag-soon">⏸️ Geliştirme Durdurulmuş</span>
+                        </div>
                         <h3>V9 Kurye Uygulaması</h3>
-                        <ul>
-                            <li>Basit ama etkili kurye akışı.</li>
-                            <li>Sipariş takibi ve yönetim desteği.</li>
-                            <li>Anlık iletişim ve kolay kullanım.</li>
-                        </ul>
+                        <p>Gerçek zamanlı harita takibi, akıllı rota yönetimi ve anlık bildirimler ile kuryelerin
+                            teslimat süreçlerini uçtan uca yöneten mobil uygulama.</p>
+                        <p>📍 Gerçek Zamanlı Harita Takibi: Kuryenin anlık hareketlerini saniye saniye harita üzerinden
+                            izleme imkânı.</p>
+                        <p>🗺️ Dinamik Konum İşaretleme: Harita üzerinden anlık teslimat noktası pinleme ve navigasyona
+                            geçiş.</p>
+                        <p>🚀 Akıllı Rota Yönetimi: Zaman kaybını önleyen optimize edilmiş rota hesaplamaları.</p>
+                        <p>🔔 Anlık Bildirimler: Yola çıkış, yaklaşma ve teslim durumlarında eş zamanlı bildirim.
+                        </p>
+                        <!-- Ekran görüntüleri galerisini açan buton -->
+                        <button class="gallery-open-btn" data-gallery="kurye">📸 Ekran Görüntüleri</button>
+                        <div class="gallery-data" id="gallery-kurye" hidden>
+                            <img src="resimler/kurye (1).png" alt="Kurye Uygulaması - Ekran 1">
+                            <img src="resimler/kurye (2).png" alt="Kurye Uygulaması - Ekran 2">
+                            <img src="resimler/kurye (3).png" alt="Kurye Uygulaması - Ekran 3">
+                            <img src="resimler/kurye (4).png" alt="Kurye Uygulaması - Ekran 4">
+                        </div>
                     </div>
                 </div>
 
-                <div class="card scroll-anim coming-soon">
-                    <img src="resimler/projeler-resmi2.jpg" alt="Yakında" class="card-img">
-                    <div class="card-content">
-                        <h3>V9 Grup Konum Paylaşımı Uygulaması</h3>
-                        <ul>
-                            <li>Etkinlik ve grup süreçleri için konum paylaşımı.</li>
-                            <li>Grup yönetimi ve canlı takip imkânı.</li>
-                            <li>Harita tabanlı düzen ve net navigasyon.</li>
-                        </ul>
+                <!-- KÜÇÜK KART — sağ üst -->
+                <div class="bento-card bento-small scroll-anim">
+                    <div class="bento-img-wrap">
+                        <img src="resimler/projeler-resmi2.jpg" alt="Grup Konum Paylaşımı" loading="lazy">
+                        <div class="bento-overlay"></div>
+                    </div>
+                    <div class="bento-body">
+                        <div class="bento-tags">
+                            <span class="tag">🗺️ Harita</span>
+                            <span class="tag tag-soon">⏸️ Geliştirme Durdurulmuş</span>
+                        </div>
+                        <h3>V9 Grup Konum Paylaşımı</h3>
+                        <p>Anlık çoklu konum takibi ve akıllı toplanma noktası hesaplamasıyla grubun her üyesini
+                            haritada eş zamanlı gösteren mobil uygulama. v1.0</p>
+                        <p>👥 Dinamik Grup Yönetimi: Saniyeler içinde etkinlik odası kurma ve davet bağlantısı ile
+                            katılım.</p>
+                        <p>📍 Gerçek Zamanlı Çoklu Takip: Tüm üyelerin anlık konumları gecikmesiz haritada.</p>
+                        <p>🔋 Optimize Performans: Arka planda pili sömürmeyen verimli konum güncelleme algoritması.</p>
+                        <p>🎯 Akıllı Toplanma Noktaları: Herkesin buluşma noktasına mesafesini hesapla ve rota oluştur.
+                        </p>
+                        <button class="gallery-open-btn" data-gallery="grup-v1">📸 Ekran Görüntüleri</button>
+                        <div class="gallery-data" id="gallery-grup-v1" hidden>
+                            <img src="resimler/bny (1).png" alt="Grup Konum V1 - Ekran 1">
+                            <img src="resimler/bny (2).png" alt="Grup Konum V1 - Ekran 2">
+                            <img src="resimler/bny (3).png" alt="Grup Konum V1 - Ekran 3">
+                            <img src="resimler/bny (4).png" alt="Grup Konum V1 - Ekran 4">
+                            <img src="resimler/bny (5).png" alt="Grup Konum V1 - Ekran 5">
+                            <img src="resimler/bny (6).png" alt="Grup Konum V1 - Ekran 6">
+                        </div>
                     </div>
                 </div>
 
-                <div class="card scroll-anim coming-soon">
-                    <img src="resimler/projeler-resmi3.jpg" alt="Yakında" class="card-img">
-                    <div class="card-content">
-                        <h3>V9 Çok Amaçlı Grup Konum Paylaşımı V2</h3>
-                        <ul>
-                            <li>Gelişmiş canlı konum takibi.</li>
-                            <li>Daha güçlü grup yönetimi ve etkileşimi.</li>
-                            <li>Sohbet ve iletişim alanı ile daha zengin deneyim.</li>
-                        </ul>
-                        <p class="card-note">Bu proje, sonraki sürümlerde daha da güçlendirilecek.</p>
+                <!-- KÜÇÜK KART — sağ alt -->
+                <div class="bento-card bento-small scroll-anim">
+                    <div class="bento-img-wrap">
+                        <img src="resimler/projeler-resmi3.jpg" alt="Konum Paylaşımı V2" loading="lazy">
+                        <div class="bento-overlay"></div>
+                    </div>
+                    <div class="bento-body">
+                        <div class="bento-tags">
+                            <span class="tag">💬 Sohbet</span>
+                            <span class="tag">📍 Konum</span>
+                            <span class="tag tag-wip">⏳ Geliştirme Aşamasında</span>
+                        </div>
+                        <h3>V9 Grup Konum Paylaşımı V2</h3>
+                        <p>Entegre grup sohbeti, low-latency GPS senkronizasyonu ve ölçeklenebilir mimariye sahip konum
+                            paylaşım uygulamasının gelişmiş sürümü. v2.0</p>
+                        <p>🚀 Gelişmiş Canlı Takip: Low-latency pürüzsüz GPS senkronizasyonu.</p>
+                        <p>⚙️ Güçlü Grup Yönetimi: Yönetici yetkileri, katılımcı sınırlandırma, dinamik oda ayarları.
+                        </p>
+                        <p>💬 Entegre Sohbet: Konum takibi yaparken uygulamadan çıkmadan gerçek zamanlı mesajlaşma.</p>
+                        <p>🔄 Ölçeklenebilir Mimari: Rota optimizasyonu gibi yeni özellikler için modüler yapı.</p>
+                        <button class="gallery-open-btn" data-gallery="grup-v2">📸 Ekran Görüntüleri</button>
+                        <div class="gallery-data" id="gallery-grup-v2" hidden>
+                            <img src="resimler/bny (1).png" alt="Grup Konum V2 - Ekran 1">
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
         <section id="hakkinda" class="section fullscreen snap-page">
             <div class="about-content scroll-anim">
                 <h2 class="section-title">Hakkında</h2>
-                <p class="section-intro">Geliştirdiğim projeler, teknik beceri ve kullanıcı odaklı düşünme yaklaşımının birleşiminden doğuyor.</p>
+                <div class="about-intro-box">
+                    <p>Geliştirdiğim projeler, teknik beceri ve kullanıcı odaklı düşünme yaklaşımının
+                        birleşiminden doğuyor.</p>
+                </div>
                 <div class="about-oval-box">
-                    <p>Bu yolculuk, kişisel gelişim ve teknolojiye duyulan merakla başladı; bugünse daha büyük hedeflere hizmet eden güçlü ve sürdürülebilir projelere dönüştü. Sektördeki deneyimlerim, farklı iş kollarından gelen bakış açıları ve sürekli öğrenme isteğim, ortaya koyduğum çözümlerin temelini oluşturuyor.</p>
-                    <p>Amacım, karmaşık görünen fikirleri sade, hızlı ve etkili dijital deneyimlere dönüştürmek. Her proje, kullanıcıyla kurulan bağı güçlendiren ve gerçek bir ihtiyaçtan beslenen bir yaklaşım üzerine inşa ediliyor.</p>
+                    <p>Bu yolculuk, kişisel gelişim ve teknolojiye duyulan merakla başladı; bugünse daha büyük hedeflere
+                        hizmet eden güçlü ve sürdürülebilir projelere dönüştü. Sektördeki deneyimlerim, farklı iş
+                        kollarından gelen bakış açıları ve sürekli öğrenme isteğim, ortaya koyduğum çözümlerin temelini
+                        oluşturuyor.</p>
+                    <p>Amacım, karmaşık görünen fikirleri sade, hızlı ve etkili dijital deneyimlere dönüştürmek. Her
+                        proje, kullanıcıyla kurulan bağı güçlendiren ve gerçek bir ihtiyaçtan beslenen bir yaklaşım
+                        üzerine inşa ediliyor.</p>
+                </div>
+
+                <!-- Beceriler & Bilgi Alanları -->
+                <div class="skills-box">
+                    <h3 class="skills-box-title">💻 Beceriler & Bilgi Alanları</h3>
+                    <div class="skills-chips">
+                        <div class="skill-chip"><span>🛠️</span> C/C++/C#</div>
+                        <div class="skill-chip"><span>☕</span> Java</div>
+                        <div class="skill-chip"><span>🐍</span> Python</div>
+                        <div class="skill-chip"><span>📱</span> Android Studio</div>
+                        <div class="skill-chip"><span>🎨</span> Adobe Creative Suite</div>
+                        <div class="skill-chip"><span>🖥️</span> PC Donanım Bilgisi</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -108,37 +209,62 @@
         <section id="iletisim" class="section fullscreen snap-page">
             <div class="contact-box scroll-anim">
                 <h2 class="section-title">İletişim</h2>
-                <p class="section-intro">Projeler, fikirler ya da iş birlikleri hakkında konuşmak isterseniz aşağıdan iletişime geçebilirsiniz.</p>
-                <p>Görüşlerinizi paylaşmanız yeterli.</p>
+                <p class="section-intro">Projeler, fikirler ya da iş birlikleri hakkında konuşmak isterseniz mesaj
+                    bırakın.</p>
+
                 <div class="contact-illustration" aria-hidden="true">
-                    <svg viewBox="0 0 64 64" role="img" aria-label="İletişim ikonu">
-                        <path d="M8 16h48c2.2 0 4 1.8 4 4v24c0 2.2-1.8 4-4 4H8c-2.2 0-4-1.8-4-4V20c0-2.2 1.8-4 4-4Zm0 4 24 16 24-16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M60 20 32 38 4 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                        <path
+                            d="M8 16h48c2.2 0 4 1.8 4 4v24c0 2.2-1.8 4-4 4H8c-2.2 0-4-1.8-4-4V20c0-2.2 1.8-4 4-4Zm0 4 24 16 24-16"
+                            fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M60 20 32 38 4 20" fill="none" stroke="currentColor" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
+
+                <!-- Görsel doğrulamalı form alanları -->
+                <div class="contact-form">
+                    <div class="form-field" id="nameField">
+                        <label for="contactName">Adınız</label>
+                        <input type="text" id="contactName" placeholder="Adınızı girin" autocomplete="name">
+                        <span class="field-hint" id="nameHint"></span>
+                    </div>
+                    <div class="form-field" id="emailField">
+                        <label for="contactEmail">E-posta Adresiniz</label>
+                        <input type="email" id="contactEmail" placeholder="ornek@email.com" autocomplete="email">
+                        <span class="field-hint" id="emailHint"></span>
+                    </div>
+                    <div class="form-field" id="messageField">
+                        <label for="contactMessage">Mesajınız</label>
+                        <textarea id="contactMessage" placeholder="Merhaba, ..." rows="3" autocomplete="off"></textarea>
+                        <span class="field-hint" id="messageHint"></span>
+                    </div>
+                </div>
+
                 <button type="button" class="oval-btn" id="contactButton">E-posta Gönder</button>
                 <div class="contact-status" id="contactStatus" role="status" aria-live="polite"></div>
             </div>
 
-            <div class="verification-modal" id="verificationModal" aria-hidden="true">
+
+            <div class="verification-modal" id="verificationModal" aria-hidden="true" inert>
                 <div class="verification-card" role="dialog" aria-modal="true" aria-labelledby="verificationTitle">
                     <h3 id="verificationTitle">Güvenlik doğrulaması</h3>
                     <p id="verificationIntro">Bir doğrulama işlemi yapın.</p>
 
-                    <div class="challenge-panel" id="sliderChallenge">
-                        <div class="captcha-stage">
-                            <div class="slider-track" id="captchaTrack">
-                                <div class="slider-fill" id="captchaFill"></div>
-                                <button type="button" class="slider-thumb" id="captchaThumb" aria-label="Kaydırıcı"></button>
-                            </div>
-                            <div class="slider-labels">
-                                <span>Başla</span>
-                                <span>Güvenli bölge</span>
+                    <div class="challenge-panel" id="mathChallenge">
+                        <div class="math-stage">
+                            <div class="math-question-display" id="mathQuestion" aria-live="polite">Yükleniyor...</div>
+                            <div class="math-input-row">
+                                <input type="number" id="mathAnswer" class="math-input" placeholder="?"
+                                    autocomplete="off" inputmode="numeric" min="0" max="999"
+                                    aria-label="Matematik cevabı">
+                                <span class="math-icon" id="mathCheckIcon" aria-live="polite"></span>
                             </div>
                         </div>
                     </div>
 
-                    <p class="captcha-status" id="captchaStatus">Bir doğrulama işlemi seçildi.</p>
+                    <p class="captcha-status" id="captchaStatus">Aşağıdaki soruyu cevaplayın.</p>
                     <div class="verification-actions">
                         <button type="button" class="verify-btn" id="verifyButton">Devam Et</button>
                         <button type="button" class="cancel-btn" id="cancelButton">İptal</button>
@@ -149,6 +275,22 @@
 
     </main>
 
+    <!-- Galeri Popup -->
+    <div class="pgallery-overlay" id="pgalleryOverlay" aria-hidden="true" inert role="dialog" aria-modal="true"
+        aria-label="Ekran görüntüleri">
+        <div class="pgallery-box">
+            <button class="pgallery-close" id="pgalleryClose" aria-label="Kapat">✕</button>
+            <div class="pgallery-title" id="pgalleryTitle">Ekran Görüntüleri</div>
+            <div class="pgallery-track" id="pgalleryTrack"></div>
+            <div class="pgallery-nav">
+                <button class="pgallery-arrow" id="pgalleryPrev" aria-label="Önceki">&#8592;</button>
+                <span class="pgallery-counter" id="pgalleryCounter">1 / 1</span>
+                <button class="pgallery-arrow" id="pgalleryNext" aria-label="Sonraki">&#8594;</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>
