@@ -972,9 +972,10 @@ body {
         flex-direction: column;
     }
 
-    /* 2. PROJE KART RESİMLERİNİ MOBİLDE YATAYDA TAM YAYMA */
+    /* 2. PROJE KART RESİMLERİNİ MOBİLDE YATAYDA TAM YAYMA (TÜM KARTLAR İÇİN) */
     .bento-img-wrap,
-    .bento-large .bento-img-wrap {
+    .bento-large .bento-img-wrap,
+    .bento-small .bento-img-wrap {
         width: 100%;
         height: 200px;
         flex-shrink: 0;
