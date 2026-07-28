@@ -22,10 +22,22 @@
 }
 
 /* === SCROLLBAR === */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-color); }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
 
 /* === RESET === */
 * {
@@ -119,10 +131,14 @@ body {
 }
 
 .nav-links a:hover,
-.nav-links a.active { color: var(--accent-color); }
+.nav-links a.active {
+    color: var(--accent-color);
+}
 
 .nav-links a:hover::after,
-.nav-links a.active::after { width: 100%; }
+.nav-links a.active::after {
+    width: 100%;
+}
 
 /* === HAMBURGER === */
 .hamburger {
@@ -231,9 +247,22 @@ body {
 }
 
 @keyframes scrollBounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
-    40% { transform: translateY(6px) rotate(45deg); }
-    60% { transform: translateY(3px) rotate(45deg); }
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0) rotate(45deg);
+    }
+
+    40% {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    60% {
+        transform: translateY(3px) rotate(45deg);
+    }
 }
 
 /* === SLIDER === */
@@ -259,7 +288,9 @@ body {
     transition: opacity 1s ease-in-out;
 }
 
-.slide.active { opacity: 1; }
+.slide.active {
+    opacity: 1;
+}
 
 /* === BENTO GRID === */
 .bento-grid {
@@ -313,8 +344,13 @@ body {
     background: var(--surface-color);
 }
 
-.bento-large .bento-img-wrap { width: 280px; }
-.bento-small .bento-img-wrap { width: 220px; }
+.bento-large .bento-img-wrap {
+    width: 280px;
+}
+
+.bento-small .bento-img-wrap {
+    width: 220px;
+}
 
 .bento-img-wrap img {
     width: auto;
@@ -327,7 +363,9 @@ body {
     transition: transform 0.45s ease;
 }
 
-.bento-card:hover .bento-img-wrap img { transform: scale(1.06); }
+.bento-card:hover .bento-img-wrap img {
+    transform: scale(1.06);
+}
 
 /* Resimden yazıya geçiş */
 .bento-overlay {
@@ -350,7 +388,9 @@ body {
     background: var(--surface-color);
 }
 
-.bento-large .bento-body { padding: 22px 28px; }
+.bento-large .bento-body {
+    padding: 22px 28px;
+}
 
 .bento-body h3 {
     font-size: 1rem;
@@ -359,7 +399,9 @@ body {
     line-height: 1.35;
 }
 
-.bento-large .bento-body h3 { font-size: 1.2rem; }
+.bento-large .bento-body h3 {
+    font-size: 1.2rem;
+}
 
 .bento-body p {
     font-size: 0.83rem;
@@ -471,7 +513,10 @@ body {
     border-color: var(--accent-color);
 }
 
-.skill-chip span { font-size: 1rem; line-height: 1; }
+.skill-chip span {
+    font-size: 1rem;
+    line-height: 1;
+}
 
 /* Projeler & Hakkında intro balonu */
 .project-intro-box,
@@ -569,7 +614,9 @@ body {
     margin: 0 auto;
 }
 
-.form-field { text-align: left; }
+.form-field {
+    text-align: left;
+}
 
 .form-field label {
     display: block;
@@ -666,8 +713,13 @@ body {
     transition: color 0.3s ease;
 }
 
-.form-field.valid .field-hint { color: var(--color-success); }
-.form-field.invalid .field-hint { color: var(--color-error); }
+.form-field.valid .field-hint {
+    color: var(--color-success);
+}
+
+.form-field.invalid .field-hint {
+    color: var(--color-error);
+}
 
 .contact-status {
     margin-top: 14px;
@@ -689,7 +741,9 @@ body {
     z-index: 2000;
 }
 
-.verification-modal.active { display: flex; }
+.verification-modal.active {
+    display: flex;
+}
 
 .verification-card {
     background: var(--surface-color);
@@ -701,10 +755,17 @@ body {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
 }
 
-.verification-card h3 { margin-bottom: 10px; }
+.verification-card h3 {
+    margin-bottom: 10px;
+}
 
-.challenge-panel { margin: 16px 0 8px; }
-.challenge-panel.hidden { display: none; }
+.challenge-panel {
+    margin: 16px 0 8px;
+}
+
+.challenge-panel.hidden {
+    display: none;
+}
 
 /* Matematik captcha */
 .math-stage {
@@ -774,9 +835,19 @@ body {
 }
 
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25%       { transform: translateX(-5px); }
-    75%       { transform: translateX(5px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
 }
 
 .captcha-status {
@@ -804,8 +875,15 @@ body {
     font-size: 0.9rem;
 }
 
-.verify-btn { background: var(--accent-color); color: #121212; }
-.cancel-btn { background: #444; color: var(--text-primary); }
+.verify-btn {
+    background: var(--accent-color);
+    color: #121212;
+}
+
+.cancel-btn {
+    background: #444;
+    color: var(--text-primary);
+}
 
 /* === SCROLL ANİMASYON === */
 .scroll-anim {
@@ -821,23 +899,50 @@ body {
 
 /* === MOBİL === */
 @media (max-width: 768px) {
-    html { scroll-snap-type: y proximity; }
+    html {
+        scroll-snap-type: y proximity;
+    }
 
-    .fullscreen { padding: 85px 14px 24px 14px; }
+    .fullscreen {
+        padding: 85px 14px 24px 14px;
+    }
 
     .about-oval-box,
-    .contact-box { padding: 24px 16px; }
+    .contact-box {
+        padding: 24px 16px;
+    }
 
     .project-intro-box,
-    .about-intro-box { padding: 14px 16px; margin-bottom: 14px; }
+    .about-intro-box {
+        padding: 14px 16px;
+        margin-bottom: 14px;
+    }
 
-    .about-oval-box p { font-size: 0.95rem; line-height: 1.6; }
+    .about-oval-box p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
 
-    .hamburger { display: block; }
+    .hamburger {
+        display: block;
+    }
 
-    .hamburger.active .bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* 1. SLIDER RESİMLERİNİ MOBİLDE SIGDIRMA (KIRPILMAYI ÖNLER) */
+    .slide {
+        object-fit: contain;
+    }
 
     .nav-links {
         position: fixed;
@@ -854,26 +959,34 @@ body {
         padding: 20px 0;
     }
 
-    .nav-links.active { left: 0; }
+    .nav-links.active {
+        left: 0;
+    }
 
-    .bento-grid { max-width: 100%; gap: 12px; }
+    .bento-grid {
+        max-width: 100%;
+        gap: 12px;
+    }
 
-    .bento-card { flex-direction: column; }
+    .bento-card {
+        flex-direction: column;
+    }
 
+    /* 2. PROJE KART RESİMLERİNİ MOBİLDE YATAYDA TAM YAYMA */
     .bento-img-wrap,
     .bento-large .bento-img-wrap {
         width: 100%;
-        height: 190px;
+        height: 200px;
         flex-shrink: 0;
-        padding: 8px;
+        padding: 0;
     }
 
     .bento-img-wrap img {
-        width: auto;
-        height: auto;
+        width: 100%;
+        height: 100%;
         max-width: 100%;
         max-height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         object-position: center;
     }
 
@@ -949,7 +1062,9 @@ body {
 }
 
 /* Gizli veri tutucu */
-.gallery-data { display: none; }
+.gallery-data {
+    display: none;
+}
 
 /* === GALERİ POPUP === */
 .pgallery-overlay {
@@ -970,8 +1085,13 @@ body {
 }
 
 @keyframes pgFadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .pgallery-box {
@@ -990,8 +1110,15 @@ body {
 }
 
 @keyframes pgSlideUp {
-    from { transform: translateY(30px) scale(0.96); opacity: 0; }
-    to   { transform: translateY(0) scale(1);       opacity: 1; }
+    from {
+        transform: translateY(30px) scale(0.96);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
 }
 
 .pgallery-close {
@@ -1046,8 +1173,15 @@ body {
 }
 
 @keyframes pgImgIn {
-    from { opacity: 0; transform: scale(0.97); }
-    to   { opacity: 1; transform: scale(1);    }
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .pgallery-nav {
@@ -1094,9 +1228,19 @@ body {
 
 /* === BAŞARI ANİMASYONU === */
 @keyframes successPop {
-    0%   { transform: scale(0.7); opacity: 0; }
-    60%  { transform: scale(1.1); }
-    100% { transform: scale(1);   opacity: 1; }
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .success-msg {
