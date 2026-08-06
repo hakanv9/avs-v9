@@ -268,6 +268,53 @@
           }
         ]
       }
+    },
+    {
+      "id": "https://avs-v9.vercel.app/",
+      "slug": "https://avs-v9.vercel.app/",
+      "name": "SİTE",
+      "nameEN": "SİTE",
+      "shortDesc": "Sitemiz her gün güncelleniyor",
+      "shortDescEN": "Sitemiz her gün güncelleniyor",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [
+        "site"
+      ],
+      "status": "development",
+      "order": 4,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "resimler/uygulama_logo.png",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "Sitemiz her gün güncelleniyor"
+        ],
+        "descriptionEN": [
+          "Sitemiz her gün güncelleniyor"
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": [
+          {
+            "id": "cl-1786027181191-967c1",
+            "version": "v0.01",
+            "date": "2026-03-15",
+            "type": "major",
+            "notes": [
+              "Site yapım aşaması",
+              "Site altyapı çalışmaları başlatıldı.",
+              "Site için gerekli kaynaklar ve araştırmalar yapılıyor."
+            ]
+          }
+        ]
+      }
     }
   ],
   "faq": [
