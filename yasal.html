@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasal Bilgiler — Gizlilik & Koşullar | AVS&V9</title>
+    <meta name="description" content="AVS&V9 Gizlilik Politikası ve Kullanım Koşulları.">
+    <link rel="icon" type="image/png" href="resimler/site-ikonu.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body class="subpage-body">
+
+    <nav class="navbar" aria-label="Ana gezinti">
+        <a class="logo" href="index.html">AVS&V9</a>
+
+        <button class="hamburger" type="button" aria-label="Menüyü aç/kapat" aria-expanded="false"
+            aria-controls="nav-links-yasal">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links-yasal">
+            <li><a href="index.html#anasayfa" data-i18n="nav.home">Ana Sayfa</a></li>
+            <li><a href="index.html#projeler" data-i18n="nav.projects">Projelerim</a></li>
+            <li><a href="index.html#sosyal-medya" data-i18n="nav.social">Sosyal Medya</a></li>
+            <li><a href="index.html#hakkinda" data-i18n="nav.about">Hakkında</a></li>
+            <li><a href="index.html#iletisim" data-i18n="nav.contact">İletişim</a></li>
+            <li><a href="sss.html" data-i18n="nav.faq">SSS</a></li>
+            <li><a href="yasal.html" class="active" data-i18n="nav.legal">Yasal</a></li>
+        </ul>
+
+        <div class="nav-controls">
+            <button class="nav-ctrl-btn" id="themeToggle" aria-label="Temayı değiştir">
+                <span id="themeIcon">🌙</span>
+            </button>
+            <button class="nav-ctrl-btn" id="langToggle" aria-label="Dili değiştir">
+                <span>🌐</span><span id="langLabel">TR</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="subpage-main">
+
+        <div class="subpage-hero">
+            <h1 data-i18n="legal.page.title">Yasal Bilgiler</h1>
+            <p data-i18n="legal.page.sub">Gizlilik Politikamız ve Kullanım Koşullarımız.</p>
+        </div>
+
+        <!-- Sekmeler -->
+        <div class="legal-tabs" role="tablist">
+            <button class="legal-tab-btn active" data-tab="panel-privacy" role="tab" aria-selected="true"
+                aria-controls="panel-privacy" data-i18n="legal.tab.privacy">
+                🔒 Gizlilik Politikası
+            </button>
+            <button class="legal-tab-btn" data-tab="panel-terms" role="tab" aria-selected="false"
+                aria-controls="panel-terms" data-i18n="legal.tab.terms">
+                📄 Kullanım Koşulları
+            </button>
+        </div>
+
+        <!-- ========================
+             GİZLİLİK POLİTİKASI
+             ======================== -->
+        <div class="legal-panel active" id="panel-privacy" role="tabpanel">
+            <h2>🔒 Gizlilik Politikası</h2>
+            <span class="legal-date">Son güncelleme: 5 Ağustos 2026</span>
+
+            <div class="legal-section">
+                <h3>1. Genel Bakış</h3>
+                <p>
+                    AVS&amp;V9 ("biz", "geliştirici") olarak kullanıcılarımızın gizliliğine büyük önem veriyoruz.
+                    Bu Gizlilik Politikası, V9 Kurye Uygulaması ve V9 Grup Konum Paylaşımı dahil tüm
+                    AVS&amp;V9 uygulamaları ("Uygulama") için geçerlidir. Bu politikayı düzenli olarak gözden
+                    geçirmenizi öneririz; önemli değişikliklerde kullanıcılarımızı önceden bilgilendireceğiz.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>2. Topladığımız Bilgiler</h3>
+                <p>Uygulamalarımız yalnızca işlevsellik için gerekli olan asgari veriyi kullanır:</p>
+                <ul>
+                    <li><strong>Konum Verisi:</strong> Gerçek zamanlı GPS konumunuz, yalnızca aktif bir oturum
+                        sırasında ve yalnızca aynı grup/oturumdaki diğer katılımcılara iletilir. Konum verisi
+                        sunucularımızda kalıcı olarak saklanmaz.</li>
+                    <li><strong>Oturum Verisi:</strong> Grup oturumu için kullanılan anonim oda kimliği (Room ID)
+                        ve kullanıcının seçtiği takma ad. Bu bilgiler oturum sona erdiğinde silinir.</li>
+                    <li><strong>Teknik Veriler:</strong> Uygulama kararlılığını artırmak amacıyla anonim çökme
+                        raporları (crash reports) toplanabilir. Bu raporlar kişisel kimlik bilgisi içermez.</li>
+                </ul>
+            </div>
+
+            <div class="legal-section">
+                <h3>3. Toplamadığımız Bilgiler</h3>
+                <ul>
+                    <li>Ad, soyad, e-posta adresi veya telefon numarası</li>
+                    <li>Ödeme bilgileri veya finansal veriler</li>
+                    <li>Cihaz üzerindeki diğer uygulama listesi veya dosya içeriği</li>
+                    <li>Kalıcı konum geçmişi veya hareket örüntüsü</li>
+                    <li>Reklam kimliği (Advertising ID)</li>
+                </ul>
+            </div>
+
+            <div class="legal-section">
+                <h3>4. Verilerin Kullanımı</h3>
+                <p>Topladığımız sınırlı veriler yalnızca şu amaçlarla kullanılır:</p>
+                <ul>
+                    <li>Uygulamanın temel işlevlerini (konum paylaşımı, rota takibi) sağlamak</li>
+                    <li>Uygulama performansını ve kararlılığını iyileştirmek</li>
+                    <li>Kullanıcı destek taleplerine yanıt vermek</li>
+                </ul>
+                <p>Verileriniz reklam, pazarlama veya profil oluşturma amacıyla kesinlikle kullanılmaz.</p>
+            </div>
+
+            <div class="legal-section">
+                <h3>5. Üçüncü Taraflarla Paylaşım</h3>
+                <p>
+                    Konum veriniz ve oturum veriniz hiçbir üçüncü taraf reklam ağı, veri simsarı veya analitik
+                    platformuyla paylaşılmaz. Uygulama, harita görüntüleme için <strong>Google Maps Platform</strong>
+                    API'sini kullanabilir; bu durumda Google'ın kendi gizlilik politikası geçerlidir
+                    (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener"
+                        style="color: var(--accent-color);">policies.google.com/privacy</a>).
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>6. Veri Güvenliği</h3>
+                <p>
+                    Oturum içi konum verisi HTTPS/TLS şifreli bağlantı üzerinden iletilir. Sunucu
+                    altyapısı olarak Google Firebase veya eşdeğer güvenilir bir bulut platformu
+                    kullanılmaktadır. Bununla birlikte, internet üzerinden yapılan hiçbir iletimin
+                    %100 güvenli olduğunu garanti edemeyiz.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>7. Çocukların Gizliliği</h3>
+                <p>
+                    Uygulamalarımız 13 yaşın altındaki bireylere yönelik değildir ve bu kişilerden
+                    bilerek veri toplanmaz. 13 yaşın altında bir çocuğun kişisel verisinin toplandığına
+                    inanıyorsanız lütfen bizimle iletişime geçin.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>8. Haklarınız (KVKK / GDPR)</h3>
+                <p>Geçerli gizlilik mevzuatı kapsamında aşağıdaki haklara sahipsiniz:</p>
+                <ul>
+                    <li>Hakkınızda işlenen verilere erişim talep etme</li>
+                    <li>Yanlış verilerin düzeltilmesini isteme</li>
+                    <li>Verilerinizin silinmesini talep etme ("unutulma hakkı")</li>
+                    <li>Veri işlemeye itiraz etme</li>
+                </ul>
+                <p>
+                    Uygulamalar kalıcı hesap sistemi kullanmadığından silinecek kalıcı veri
+                    genellikle bulunmamaktadır. Herhangi bir taleple birlikte
+                    <a href="index.html#iletisim" style="color: var(--accent-color);">iletişim sayfamız</a>
+                    üzerinden bize ulaşabilirsiniz.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>9. Politika Değişiklikleri</h3>
+                <p>
+                    Bu politika gerektiğinde güncellenebilir. Değişiklikler bu sayfada yayımlanır ve
+                    "Son güncelleme" tarihi revize edilir. Önemli değişiklikler için uygulama içi
+                    bildirim gönderilecektir.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>10. İletişim</h3>
+                <p>
+                    Gizlilik politikamıza ilişkin soru ve talepleriniz için:
+                    <a href="index.html#iletisim" style="color: var(--accent-color);">İletişim Sayfası</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- ========================
+             KULLANIM KOŞULLARI
+             ======================== -->
+        <div class="legal-panel" id="panel-terms" role="tabpanel">
+            <h2>📄 Kullanım Koşulları</h2>
+            <span class="legal-date">Son güncelleme: 5 Ağustos 2026</span>
+
+            <div class="legal-section">
+                <h3>1. Kabul</h3>
+                <p>
+                    AVS&amp;V9 uygulamalarını indirerek veya kullanarak bu Kullanım Koşullarını
+                    kabul etmiş sayılırsınız. Bu koşulları kabul etmiyorsanız lütfen uygulamayı
+                    kullanmayın ve cihazınızdan kaldırın.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>2. Lisans</h3>
+                <p>
+                    AVS&amp;V9, size uygulamayı kişisel, ticari olmayan amaçlarla kullanmanız için
+                    sınırlı, münhasır olmayan, devredilemez bir lisans vermektedir. Bu lisans kapsamında:
+                </p>
+                <ul>
+                    <li>Uygulamayı kopyalamanız, değiştirmeniz, dağıtmanız veya satmanız yasaktır.</li>
+                    <li>Kaynak kodu tersine mühendislik yoluyla çözümlemeye çalışmanız yasaktır.</li>
+                    <li>Uygulamayı yalnızca Google Play üzerinden edinmeniz gerekmektedir.</li>
+                </ul>
+            </div>
+
+            <div class="legal-section">
+                <h3>3. Kullanıcı Yükümlülükleri</h3>
+                <p>Uygulamayı kullanırken:</p>
+                <ul>
+                    <li>Geçerli tüm yerel, ulusal ve uluslararası yasalara uymayı kabul edersiniz.</li>
+                    <li>Diğer kullanıcıların konumlarını izinsiz takip etmek veya kötüye kullanmak
+                        amacıyla uygulamayı kullanamazsınız.</li>
+                    <li>Uygulamanın normal işleyişini bozacak, saldırı veya istismar girişiminde
+                        bulunamazsınız.</li>
+                    <li>Grup oturumlarını başkalarına zarar vermek amacıyla kullanamazsınız.</li>
+                </ul>
+            </div>
+
+            <div class="legal-section">
+                <h3>4. Sorumluluk Reddi</h3>
+                <p>
+                    Uygulamalar "olduğu gibi" (as-is) sunulmaktadır. AVS&amp;V9, aşağıdakiler dahil
+                    ancak bunlarla sınırlı olmaksızın herhangi bir garantide bulunmaz:
+                </p>
+                <ul>
+                    <li>GPS doğruluğunun her koşulda yeterli olacağı</li>
+                    <li>Uygulamanın kesintisiz veya hatasız çalışacağı</li>
+                    <li>Konum verilerinin navigasyon veya acil durum amacıyla kullanılabileceği</li>
+                </ul>
+                <p>
+                    Uygulamanın kullanımından doğan doğrudan veya dolaylı zararlardan AVS&amp;V9
+                    sorumlu tutulamaz. Uygulama, acil durum veya güvenlik açısından kritik senaryolarda
+                    birincil araç olarak kullanılamaz.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>5. Hizmet Kesintileri</h3>
+                <p>
+                    AVS&amp;V9, bakım, teknik sorunlar veya geliştirici kararıyla uygulamayı
+                    geçici veya kalıcı olarak yayından kaldırma hakkını saklı tutar. Yayından
+                    kaldırma veya büyük değişiklikler için kullanıcılara makul süre öncesinde
+                    bildirim yapılacaktır.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>6. Üçüncü Taraf Hizmetler</h3>
+                <p>
+                    Uygulama, Google Maps gibi üçüncü taraf hizmetleri kullanabilir. Bu hizmetlerin
+                    kendi kullanım koşulları ve gizlilik politikaları geçerlidir. AVS&amp;V9, üçüncü
+                    taraf hizmetlerin içeriğinden veya gizlilik uygulamalarından sorumlu değildir.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>7. Fikri Mülkiyet</h3>
+                <p>
+                    Uygulama, logolar, tasarım ve kaynak kodu dahil tüm içerik AVS&amp;V9'un fikri
+                    mülkiyetidir ve telif hukuku kapsamında korunmaktadır. Önceden yazılı izin
+                    alınmadan hiçbir içerik çoğaltılamaz veya dağıtılamaz.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>8. Koşulların Değiştirilmesi</h3>
+                <p>
+                    AVS&amp;V9, bu koşulları dilediği zaman güncelleme hakkını saklı tutar.
+                    Güncellenmiş koşullar bu sayfada yayımlanır. Uygulamayı kullanmaya devam
+                    etmeniz, güncel koşulları kabul ettiğiniz anlamına gelir.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>9. Geçerli Hukuk</h3>
+                <p>
+                    Bu koşullar Türkiye Cumhuriyeti hukukuna tabidir. Anlaşmazlıklarda Türkiye
+                    mahkemeleri yetkilidir.
+                </p>
+            </div>
+
+            <div class="pd-content-card faq-cta-card">
+                <h3 class="faq-cta-title">10. İletişim &amp; Haklar</h3>
+                <p class="faq-cta-sub">
+                    Kullanım koşullarına veya veri gizliliğinize ilişkin soru ve talepleriniz için bana ulaşabilirsiniz.
+                </p>
+                <a href="index.html#iletisim" class="oval-btn pd-cta-btn">
+                    Doğrudan İletişime Geçin →
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">AVS&amp;V9</div>
+            <nav class="footer-links" aria-label="Alt gezinti">
+                <a href="sss.html" data-i18n="nav.faq">SSS</a>
+                <a href="yasal.html" data-i18n="nav.legal">Yasal Bilgiler</a>
+                <a href="index.html#iletisim" data-i18n="nav.contact">İletişim</a>
+            </nav>
+            <div class="footer-social" aria-label="Sosyal Medya Bağlantıları">
+                <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" aria-label="TikTok" class="footer-social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="footer-social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" aria-label="X" class="footer-social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" aria-label="Google Play Store" class="footer-social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.28.16.6.24.93.24.4 0 .8-.1 1.15-.32l12.24-7.06-2.85-2.85-11.47 9.99zm-1.18-21.9v20.28c0 .5.15.95.42 1.31l.08.09 11.35-11.35v-.27L2.42.35l-.08.09C2.07.8 2 1.24 2 1.72v.14zM20.9 10.1l-2.46-1.42-3.21 3.21 3.21 3.21 2.48-1.43c.71-.41.71-1.16-.02-1.57zM4.11.56L16.35 7.62 13.5 10.47 2.03 1.48C2.3.93 2.7.56 3.18.32c.28-.16.6-.24.93-.24.4 0 .8.1 1.15.32l-.15.16z"/></svg>
+                </a>
+            </div>
+            <p class="footer-copy" data-i18n="footer.copy">© 2026 AVS&amp;V9 — Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Çerez Banner -->
+    <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Çerez bildirimi">
+        <div class="cookie-inner">
+            <p class="cookie-text" data-i18n="cookie.text">
+                🍪 Bu site, deneyiminizi iyileştirmek için yerel tercih verileri (tema, dil) saklar.
+            </p>
+            <div class="cookie-actions">
+                <button class="cookie-btn cookie-accept" id="cookieAccept" data-i18n="cookie.accept">Kabul Et</button>
+                <a href="yasal.html" class="cookie-btn cookie-settings" data-i18n="cookie.more">Daha Fazla</a>
+            </div>
+        </div>
+</body>
+
+</html>

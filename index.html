@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AVS — V9 Proje sunum sitemiz |</title>
-    <meta name="description" content="AVS&amp;V9 — Modern mobil uygulamalar ve yazılım sitemiz.">
+    <title>AVS — V9 Proje Sunum Sitesi</title>
+    <meta name="description" content="AVS&V9 — Modern mobil uygulamalar ve yazılım projelerimiz.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://avs-v9.vercel.app/">
     <link rel="icon" type="image/png" href="resimler/site-ikonu.png">
@@ -15,7 +15,7 @@
     <link rel="preload" as="image" href="resimler/anasayfa-hosgeldin-resmi1.jpg" fetchpriority="low">
 
     <meta property="og:title" content="AVS — Mobil Uygulama Geliştirici Portfolyosu | V9">
-    <meta property="og:description" content="AVS&amp;V9 — Modern mobil uygulamalar ve yazılım projelerim.">
+    <meta property="og:description" content="AVS&V9 — Modern mobil uygulamalar ve yazılım projelerim.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://avs-v9.vercel.app/resimler/arkaplan.png">
     <meta property="og:url" content="https://avs-v9.vercel.app/">
@@ -26,6 +26,7 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
 
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -41,45 +42,59 @@
         </button>
 
         <ul class="nav-links" id="nav-links">
-            <li><a href="#anasayfa">Ana Sayfa</a></li>
-            <li><a href="#projeler">Projelerim</a></li>
-            <li><a href="#hakkinda">Hakkında</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
+            <li><a href="#anasayfa" data-i18n="nav.home">Ana Sayfa</a></li>
+            <li><a href="#projeler" data-i18n="nav.projects">Projelerim</a></li>
+            <li><a href="#sosyal-medya" data-i18n="nav.social">Sosyal Medya</a></li>
+            <li><a href="#hakkinda" data-i18n="nav.about">Hakkında</a></li>
+            <li><a href="#iletisim" data-i18n="nav.contact">İletişim</a></li>
+            <li><a href="sss.html" data-i18n="nav.faq">SSS</a></li>
+            <li><a href="yasal.html" data-i18n="nav.legal">Yasal</a></li>
         </ul>
+
+        <div class="nav-controls">
+            <button class="nav-ctrl-btn" id="themeToggle" aria-label="Temayı değiştir" title="Tema Değiştir">
+                <span id="themeIcon">🌙</span>
+            </button>
+            <button class="nav-ctrl-btn" id="langToggle" aria-label="Dili değiştir" title="Change Language">
+                <span>🌐</span><span id="langLabel">TR</span>
+            </button>
+        </div>
     </nav>
 
     <main class="snap-container">
 
         <section id="anasayfa" class="section fullscreen snap-page">
             <div class="slider-container">
-                <img src="resimler/anasayfa-hosgeldin-resmi1.jpg" class="slide active" alt="Hoşgeldin 1">
-                <img src="resimler/anasayfa-hosgeldin-resmi2.jpg" class="slide" alt="Hoşgeldin 2">
-                <img src="resimler/anasayfa-hosgeldin-resmi3.jpg" class="slide" alt="Hoşgeldin 3">
-                <img src="resimler/anasayfa-hosgeldin-resmi4.jpg" class="slide" alt="Hoşgeldin 4">
+                <img src="resimler/anasayfa-hosgeldin-resmi1.jpg" class="slide active" alt="Hoşgeldin 1"
+                    fetchpriority="high">
+                <img src="resimler/anasayfa-hosgeldin-resmi2.jpg" class="slide" alt="Hoşgeldin 2" loading="lazy">
+                <img src="resimler/anasayfa-hosgeldin-resmi3.jpg" class="slide" alt="Hoşgeldin 3" loading="lazy">
+                <img src="resimler/anasayfa-hosgeldin-resmi4.jpg" class="slide" alt="Hoşgeldin 4" loading="lazy">
             </div>
             <div class="hero-text scroll-anim">
                 <div class="info-panel hero-panel">
-                    <h1>HOŞGELDİN YOLCU</h1>
-                    <p>Basit ama etkili yazılımlar, kullanıcı dostu deneyimler ve modern çözümlerle yolculuğumuza devam
-                        ediyoruz.</p>
+                    <h1 data-i18n="hero.title">HOŞGELDİN YOLCU</h1>
+                    <p data-i18n="hero.subtitle">Basit ama etkili yazılımlar, kullanıcı dostu deneyimler ve modern
+                        çözümlerle yolculuğumuza devam ediyoruz.</p>
                 </div>
             </div>
             <div class="scroll-indicator" aria-hidden="true">
-                <span>Aşağı Kaydır</span>
+                <span data-i18n="hero.scroll">Aşağı Kaydır</span>
                 <div class="arrow-down"></div>
             </div>
         </section>
 
         <section id="projeler" class="section fullscreen snap-page">
-            <h2 class="section-title scroll-anim">Projelerim</h2>
+            <h2 class="section-title scroll-anim" data-i18n="projects.title">Projelerim</h2>
             <div class="project-intro-box scroll-anim">
-                <p>Kullanıcı deneyimini ön planda tutan, sade tasarımlı ve işlevsel çözümler geliştirmeye odaklanıyorum.</p>
+                <p data-i18n="projects.intro">Kullanıcı deneyimini ön planda tutan, sade tasarımlı ve işlevsel çözümler
+                    geliştirmeye odaklanıyorum.</p>
             </div>
 
             <div class="bento-grid">
 
                 <!-- BÜYÜK KART — sol sütun -->
-                <div class="bento-card bento-large scroll-anim">
+                <div class="bento-card bento-large scroll-anim" data-href="proje-detay.html?p=kurye" tabindex="0" role="link" aria-label="V9 Kurye Uygulaması Detayları">
                     <div class="bento-img-wrap">
                         <img src="resimler/projeler-resmi1.jpg" alt="V9 Kurye Uygulaması" loading="lazy">
                         <div class="bento-overlay"></div>
@@ -94,26 +109,15 @@
                         <h3>V9 Kurye Uygulaması</h3>
                         <p>Gerçek zamanlı harita takibi, akıllı rota yönetimi ve anlık bildirimler ile kuryelerin
                             teslimat süreçlerini uçtan uca yöneten mobil uygulama.</p>
-                        <p>📍 Gerçek Zamanlı Harita Takibi: Kuryenin anlık hareketlerini saniye saniye harita üzerinden
-                            izleme imkânı.</p>
-                        <p>🗺️ Dinamik Konum İşaretleme: Harita üzerinden anlık teslimat noktası pinleme ve navigasyona
-                            geçiş.</p>
-                        <p>🚀 Akıllı Rota Yönetimi: Zaman kaybını önleyen optimize edilmiş rota hesaplamaları.</p>
-                        <p>🔔 Anlık Bildirimler: Yola çıkış, yaklaşma ve teslim durumlarında eş zamanlı bildirim.
-                        </p>
-                        <!-- Ekran görüntüleri galerisini açan buton -->
-                        <button class="gallery-open-btn" data-gallery="kurye">📸 Ekran Görüntüleri</button>
-                        <div class="gallery-data" id="gallery-kurye" hidden>
-                            <img src="resimler/kurye (1).png" alt="Kurye Uygulaması - Ekran 1">
-                            <img src="resimler/kurye (2).png" alt="Kurye Uygulaması - Ekran 2">
-                            <img src="resimler/kurye (3).png" alt="Kurye Uygulaması - Ekran 3">
-                            <img src="resimler/kurye (4).png" alt="Kurye Uygulaması - Ekran 4">
+                        <div class="bento-actions">
+                            <a href="proje-detay.html?p=kurye" class="bento-detail-btn" data-i18n="card.details">🔍
+                                Detayları İncele</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- KÜÇÜK KART — sağ üst -->
-                <div class="bento-card bento-small scroll-anim">
+                <div class="bento-card bento-small scroll-anim" data-href="proje-detay.html?p=grup-v1" tabindex="0" role="link" aria-label="V9 Grup Konum Paylaşımı Detayları">
                     <div class="bento-img-wrap">
                         <img src="resimler/projeler-resmi2.jpg" alt="Grup Konum Paylaşımı" loading="lazy">
                         <div class="bento-overlay"></div>
@@ -124,28 +128,17 @@
                             <span class="tag tag-soon">⏸️ Geliştirme Durdurulmuş</span>
                         </div>
                         <h3>V9 Grup Konum Paylaşımı</h3>
-                        <p>Anlık çoklu konum takibi ve akıllı toplanma noktası hesaplamasıyla grubun her üyesini
-                            haritada eş zamanlı gösteren mobil uygulama. v1.0</p>
-                        <p>👥 Dinamik Grup Yönetimi: Saniyeler içinde etkinlik odası kurma ve davet bağlantısı ile
-                            katılım.</p>
-                        <p>📍 Gerçek Zamanlı Çoklu Takip: Tüm üyelerin anlık konumları gecikmesiz haritada.</p>
-                        <p>🔋 Optimize Performans: Arka planda pili sömürmeyen verimli konum güncelleme algoritması.</p>
-                        <p>🎯 Akıllı Toplanma Noktaları: Herkesin buluşma noktasına mesafesini hesapla ve rota oluştur.
-                        </p>
-                        <button class="gallery-open-btn" data-gallery="grup-v1">📸 Ekran Görüntüleri</button>
-                        <div class="gallery-data" id="gallery-grup-v1" hidden>
-                            <img src="resimler/bny (1).png" alt="Grup Konum V1 - Ekran 1">
-                            <img src="resimler/bny (2).png" alt="Grup Konum V1 - Ekran 2">
-                            <img src="resimler/bny (3).png" alt="Grup Konum V1 - Ekran 3">
-                            <img src="resimler/bny (4).png" alt="Grup Konum V1 - Ekran 4">
-                            <img src="resimler/bny (5).png" alt="Grup Konum V1 - Ekran 5">
-                            <img src="resimler/bny (6).png" alt="Grup Konum V1 - Ekran 6">
+                        <p>Anlık çoklu konum takibi ile grubun her üyesini haritada eş zamanlı gösteren mobil uygulama.
+                            v1.0</p>
+                        <div class="bento-actions">
+                            <a href="proje-detay.html?p=grup-v1" class="bento-detail-btn" data-i18n="card.details">🔍
+                                Detayları İncele</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- KÜÇÜK KART — sağ alt -->
-                <div class="bento-card bento-small scroll-anim">
+                <div class="bento-card bento-small scroll-anim" data-href="proje-detay.html?p=grup-v2" tabindex="0" role="link" aria-label="V9 Grup Konum Paylaşımı V2 Detayları">
                     <div class="bento-img-wrap">
                         <img src="resimler/projeler-resmi3.jpg" alt="Konum Paylaşımı V2" loading="lazy">
                         <div class="bento-overlay"></div>
@@ -157,16 +150,10 @@
                             <span class="tag tag-wip">⏳ Geliştirme Aşamasında</span>
                         </div>
                         <h3>V9 Grup Konum Paylaşımı V2</h3>
-                        <p>Entegre grup sohbeti, low-latency GPS senkronizasyonu ve ölçeklenebilir mimariye sahip konum
-                            paylaşım uygulamasının gelişmiş sürümü. v2.0</p>
-                        <p>🚀 Gelişmiş Canlı Takip: Low-latency pürüzsüz GPS senkronizasyonu.</p>
-                        <p>⚙️ Güçlü Grup Yönetimi: Yönetici yetkileri, katılımcı sınırlandırma, dinamik oda ayarları.
-                        </p>
-                        <p>💬 Entegre Sohbet: Konum takibi yaparken uygulamadan çıkmadan gerçek zamanlı mesajlaşma.</p>
-                        <p>🔄 Ölçeklenebilir Mimari: Rota optimizasyonu gibi yeni özellikler için modüler yapı.</p>
-                        <button class="gallery-open-btn" data-gallery="grup-v2">📸 Ekran Görüntüleri</button>
-                        <div class="gallery-data" id="gallery-grup-v2" hidden>
-                            <img src="resimler/bny (1).png" alt="Grup Konum V2 - Ekran 1">
+                        <p>Entegre sohbet, low-latency GPS ve ölçeklenebilir mimariye sahip gelişmiş sürüm. v2.0</p>
+                        <div class="bento-actions">
+                            <a href="proje-detay.html?p=grup-v2" class="bento-detail-btn" data-i18n="card.details">🔍
+                                Detayları İncele</a>
                         </div>
                     </div>
                 </div>
@@ -174,26 +161,187 @@
             </div>
         </section>
 
+        <!-- ===== SOSYAL MEDYA & ÖNE ÇIKANLAR ===== -->
+        <section id="sosyal-medya" class="section fullscreen snap-page">
+            <h2 class="section-title scroll-anim" data-i18n="social.title">Sosyal Medya</h2>
+            <div class="project-intro-box sm-intro-box scroll-anim">
+                <p data-i18n="social.intro">Güncel paylaşımlar, uygulama duyuruları ve geliştirme sürecinden kareler.
+                </p>
+            </div>
+
+            <!-- Öne Çıkanlar Slider -->
+            <div class="sm-slider-wrapper scroll-anim">
+                <div class="sm-slider" id="smSlider">
+
+                    <!-- KART 1 -->
+                    <div class="sm-slide">
+                        <div class="sm-slide-img-wrap">
+                            <img src="resimler/sosyalmedya_post1.png" alt="Sosyal Medya Post 1" loading="lazy">
+                        </div>
+                        <div class="sm-slide-body">
+                            <div class="sm-platform-badge sm-badge-instagram">
+                                <svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg>
+                                Instagram
+                            </div>
+                            <h3 class="sm-slide-title" data-i18n="social.slide1.title">🚀 V9 Kurye — Geliştirme Süreci
+                            </h3>
+                            <p class="sm-slide-desc" data-i18n="social.slide1.desc">Gerçek zamanlı harita
+                                entegrasyonunun sahne arkasına dair özel kareler ve teknik ayrıntılar.</p>
+                            <a href="#" class="sm-slide-btn" data-i18n="social.viewpost" target="_blank" rel="noopener">
+                                Gönderiyi İncele ↗
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- KART 2 -->
+                    <div class="sm-slide">
+                        <div class="sm-slide-img-wrap">
+                            <img src="resimler/sosyalmedya_post2.png" alt="Sosyal Medya Post 2" loading="lazy">
+                        </div>
+                        <div class="sm-slide-body">
+                            <div class="sm-platform-badge sm-badge-youtube">
+                                <svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                </svg>
+                                YouTube
+                            </div>
+                            <h3 class="sm-slide-title" data-i18n="social.slide2.title">📍 Grup Konum V2 — Tanıtım
+                                Videosu</h3>
+                            <p class="sm-slide-desc" data-i18n="social.slide2.desc">Low-latency GPS senkronizasyonu ve
+                                entegre sohbet özelliklerini gösteren tam tanıtım videosu.</p>
+                            <a href="#" class="sm-slide-btn" data-i18n="social.viewpost" target="_blank" rel="noopener">
+                                Gönderiyi İncele ↗
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- KART 3 -->
+                    <div class="sm-slide">
+                        <div class="sm-slide-img-wrap">
+                            <img src="resimler/sosyalmedya_post3.png" alt="Sosyal Medya Post 3" loading="lazy">
+                        </div>
+                        <div class="sm-slide-body">
+                            <div class="sm-platform-badge sm-badge-tiktok">
+                                <svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                                </svg>
+                                TikTok
+                            </div>
+                            <h3 class="sm-slide-title" data-i18n="social.slide3.title">⚡ Yeni Güncelleme — Canlı Demo
+                            </h3>
+                            <p class="sm-slide-desc" data-i18n="social.slide3.desc">Son güncellemeyle gelen yeni
+                                özelliklerin kısa ve eğlenceli tanıtım videosu.</p>
+                            <a href="#" class="sm-slide-btn" data-i18n="social.viewpost" target="_blank" rel="noopener">
+                                Gönderiyi İncele ↗
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Ok Tuşları -->
+                <button class="sm-arrow sm-arrow-prev" id="smPrev" aria-label="Önceki">&#8592;</button>
+                <button class="sm-arrow sm-arrow-next" id="smNext" aria-label="Sonraki">&#8594;</button>
+
+                <!-- Pagination Dots -->
+                <div class="sm-dots" id="smDots" role="tablist" aria-label="Slayt seçimi">
+                    <button class="sm-dot active" data-idx="0" role="tab" aria-selected="true"
+                        aria-label="Slayt 1"></button>
+                    <button class="sm-dot" data-idx="1" role="tab" aria-selected="false" aria-label="Slayt 2"></button>
+                    <button class="sm-dot" data-idx="2" role="tab" aria-selected="false" aria-label="Slayt 3"></button>
+                </div>
+            </div>
+
+            <!-- Sosyal Medya Bağlantı Kartları -->
+            <div class="sm-grid scroll-anim">
+
+                <a href="#" class="sm-card sm-card-instagram" target="_blank" rel="noopener" aria-label="Instagram">
+                    <div class="sm-card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </div>
+                    <span class="sm-card-name">Instagram</span>
+                    <span class="sm-card-handle" data-i18n="social.follow">Takip Et</span>
+                </a>
+
+                <a href="#" class="sm-card sm-card-tiktok" target="_blank" rel="noopener" aria-label="TikTok">
+                    <div class="sm-card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                        </svg>
+                    </div>
+                    <span class="sm-card-name">TikTok</span>
+                    <span class="sm-card-handle" data-i18n="social.follow">Takip Et</span>
+                </a>
+
+                <a href="#" class="sm-card sm-card-youtube" target="_blank" rel="noopener" aria-label="YouTube">
+                    <div class="sm-card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                    </div>
+                    <span class="sm-card-name">YouTube</span>
+                    <span class="sm-card-handle" data-i18n="social.subscribe">Abone Ol</span>
+                </a>
+
+                <a href="#" class="sm-card sm-card-x" target="_blank" rel="noopener" aria-label="X">
+                    <div class="sm-card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                    </div>
+                    <span class="sm-card-name">X</span>
+                    <span class="sm-card-handle" data-i18n="social.follow">Takip Et</span>
+                </a>
+
+                <a href="#" class="sm-card sm-card-playstore" target="_blank" rel="noopener"
+                    aria-label="Google Play Store">
+                    <div class="sm-card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M3.18 23.76c.28.16.6.24.93.24.4 0 .8-.1 1.15-.32l12.24-7.06-2.85-2.85-11.47 9.99zm-1.18-21.9v20.28c0 .5.15.95.42 1.31l.08.09 11.35-11.35v-.27L2.42.35l-.08.09C2.07.8 2 1.24 2 1.72v.14zM20.9 10.1l-2.46-1.42-3.21 3.21 3.21 3.21 2.48-1.43c.71-.41.71-1.16-.02-1.57zM4.11.56L16.35 7.62 13.5 10.47 2.03 1.48C2.3.93 2.7.56 3.18.32c.28-.16.6-.24.93-.24.4 0 .8.1 1.15.32l-.15.16z" />
+                        </svg>
+                    </div>
+                    <span class="sm-card-name">Play Store</span>
+                    <span class="sm-card-handle" data-i18n="social.getapp">Uygulamayı İndir</span>
+                </a>
+
+            </div>
+        </section>
+        <!-- ===== /SOSYAL MEDYA ===== -->
+
         <section id="hakkinda" class="section fullscreen snap-page">
             <div class="about-content scroll-anim">
-                <h2 class="section-title">Hakkında</h2>
+                <h2 class="section-title" data-i18n="about.title">Hakkında</h2>
                 <div class="about-intro-box">
-                    <p>Geliştirdiğim projeler, teknik beceri ve kullanıcı odaklı düşünme yaklaşımının
-                        birleşiminden doğuyor.</p>
+                    <p data-i18n="about.intro">Geliştirdiğim projeler, teknik beceri ve kullanıcı odaklı düşünme
+                        yaklaşımının birleşiminden doğuyor.</p>
                 </div>
                 <div class="about-oval-box">
-                    <p>Bu yolculuk, kişisel gelişim ve teknolojiye duyulan merakla başladı; bugünse daha büyük hedeflere
+                    <p data-i18n="about.body1">Bu yolculuk, kişisel gelişim ve teknolojiye duyulan merakla başladı;
+                        bugünse daha büyük hedeflere
                         hizmet eden güçlü ve sürdürülebilir projelere dönüştü. Sektördeki deneyimlerim, farklı iş
                         kollarından gelen bakış açıları ve sürekli öğrenme isteğim, ortaya koyduğum çözümlerin temelini
                         oluşturuyor.</p>
-                    <p>Amacım, karmaşık görünen fikirleri sade, hızlı ve etkili dijital deneyimlere dönüştürmek. Her
+                    <p data-i18n="about.body2">Amacım, karmaşık görünen fikirleri sade, hızlı ve etkili dijital
+                        deneyimlere dönüştürmek. Her
                         proje, kullanıcıyla kurulan bağı güçlendiren ve gerçek bir ihtiyaçtan beslenen bir yaklaşım
                         üzerine inşa ediliyor.</p>
                 </div>
 
                 <!-- Beceriler & Bilgi Alanları -->
                 <div class="skills-box">
-                    <h3 class="skills-box-title">💻 Beceriler & Bilgi Alanları</h3>
+                    <h3 class="skills-box-title" data-i18n="about.skills">💻 Beceriler &amp; Bilgi Alanları</h3>
                     <div class="skills-chips">
                         <div class="skill-chip"><span>🛠️</span> C/C++/C#</div>
                         <div class="skill-chip"><span>☕</span> Java</div>
@@ -208,9 +356,9 @@
 
         <section id="iletisim" class="section fullscreen snap-page">
             <div class="contact-box scroll-anim">
-                <h2 class="section-title">İletişim</h2>
-                <p class="section-intro">Projeler, fikirler ya da iş birlikleri hakkında konuşmak isterseniz mesaj
-                    bırakın.</p>
+                <h2 class="section-title" data-i18n="contact.title">İletişim</h2>
+                <p class="section-intro" data-i18n="contact.intro">Projeler, fikirler ya da iş birlikleri hakkında
+                    konuşmak isterseniz mesaj bırakın.</p>
 
                 <div class="contact-illustration" aria-hidden="true">
                     <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
@@ -226,31 +374,31 @@
                 <!-- Görsel doğrulamalı form alanları -->
                 <div class="contact-form">
                     <div class="form-field" id="nameField">
-                        <label for="contactName">Adınız</label>
+                        <label for="contactName" data-i18n="contact.name">Adınız</label>
                         <input type="text" id="contactName" placeholder="Adınızı girin" autocomplete="name">
                         <span class="field-hint" id="nameHint"></span>
                     </div>
                     <div class="form-field" id="emailField">
-                        <label for="contactEmail">E-posta Adresiniz</label>
+                        <label for="contactEmail" data-i18n="contact.email">E-posta Adresiniz</label>
                         <input type="email" id="contactEmail" placeholder="ornek@email.com" autocomplete="email">
                         <span class="field-hint" id="emailHint"></span>
                     </div>
                     <div class="form-field" id="messageField">
-                        <label for="contactMessage">Mesajınız</label>
+                        <label for="contactMessage" data-i18n="contact.message">Mesajınız</label>
                         <textarea id="contactMessage" placeholder="Merhaba, ..." rows="3" autocomplete="off"></textarea>
                         <span class="field-hint" id="messageHint"></span>
                     </div>
                 </div>
 
-                <button type="button" class="oval-btn" id="contactButton">E-posta Gönder</button>
+                <button type="button" class="oval-btn" id="contactButton" data-i18n="contact.send">E-posta
+                    Gönder</button>
                 <div class="contact-status" id="contactStatus" role="status" aria-live="polite"></div>
             </div>
 
-
             <div class="verification-modal" id="verificationModal" aria-hidden="true" inert>
                 <div class="verification-card" role="dialog" aria-modal="true" aria-labelledby="verificationTitle">
-                    <h3 id="verificationTitle">Güvenlik doğrulaması</h3>
-                    <p id="verificationIntro">Bir doğrulama işlemi yapın.</p>
+                    <h3 id="verificationTitle" data-i18n="captcha.title">Güvenlik doğrulaması</h3>
+                    <p id="verificationIntro" data-i18n="captcha.intro">Bir doğrulama işlemi yapın.</p>
 
                     <div class="challenge-panel" id="mathChallenge">
                         <div class="math-stage">
@@ -264,10 +412,13 @@
                         </div>
                     </div>
 
-                    <p class="captcha-status" id="captchaStatus">Aşağıdaki soruyu cevaplayın.</p>
+                    <p class="captcha-status" id="captchaStatus" data-i18n="captcha.hint">Aşağıdaki soruyu cevaplayın.
+                    </p>
                     <div class="verification-actions">
-                        <button type="button" class="verify-btn" id="verifyButton">Devam Et</button>
-                        <button type="button" class="cancel-btn" id="cancelButton">İptal</button>
+                        <button type="button" class="verify-btn" id="verifyButton" data-i18n="captcha.continue">Devam
+                            Et</button>
+                        <button type="button" class="cancel-btn" id="cancelButton"
+                            data-i18n="captcha.cancel">İptal</button>
                     </div>
                 </div>
             </div>
@@ -275,22 +426,50 @@
 
     </main>
 
-    <!-- Galeri Popup -->
-    <div class="pgallery-overlay" id="pgalleryOverlay" aria-hidden="true" inert role="dialog" aria-modal="true"
-        aria-label="Ekran görüntüleri">
-        <div class="pgallery-box">
-            <button class="pgallery-close" id="pgalleryClose" aria-label="Kapat">✕</button>
-            <div class="pgallery-title" id="pgalleryTitle">Ekran Görüntüleri</div>
-            <div class="pgallery-track" id="pgalleryTrack"></div>
-            <div class="pgallery-nav">
-                <button class="pgallery-arrow" id="pgalleryPrev" aria-label="Önceki">&#8592;</button>
-                <span class="pgallery-counter" id="pgalleryCounter">1 / 1</span>
-                <button class="pgallery-arrow" id="pgalleryNext" aria-label="Sonraki">&#8594;</button>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">AVS&amp;V9</div>
+            <nav class="footer-links" aria-label="Alt gezinti">
+                <a href="sss.html" data-i18n="nav.faq">SSS</a>
+                <a href="yasal.html" data-i18n="nav.legal">Yasal Bilgiler</a>
+                <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
+            </nav>
+            <div class="footer-social" aria-label="Sosyal Medya Bağlantıları">
+                <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" aria-label="TikTok" class="footer-social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="footer-social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" aria-label="X" class="footer-social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" aria-label="Google Play Store" class="footer-social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.28.16.6.24.93.24.4 0 .8-.1 1.15-.32l12.24-7.06-2.85-2.85-11.47 9.99zm-1.18-21.9v20.28c0 .5.15.95.42 1.31l.08.09 11.35-11.35v-.27L2.42.35l-.08.09C2.07.8 2 1.24 2 1.72v.14zM20.9 10.1l-2.46-1.42-3.21 3.21 3.21 3.21 2.48-1.43c.71-.41.71-1.16-.02-1.57zM4.11.56L16.35 7.62 13.5 10.47 2.03 1.48C2.3.93 2.7.56 3.18.32c.28-.16.6-.24.93-.24.4 0 .8.1 1.15.32l-.15.16z"/></svg>
+                </a>
+            </div>
+            <p class="footer-copy" data-i18n="footer.copy">© 2026 AVS&amp;V9 — Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Çerez Banner -->
+    <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Çerez bildirimi">
+        <div class="cookie-inner">
+            <p class="cookie-text" data-i18n="cookie.text">
+                🍪 Bu site, deneyiminizi iyileştirmek için yerel tercih verileri (tema, dil) saklar.
+                Hiçbir kişisel veri üçüncü taraflarla paylaşılmaz.
+            </p>
+            <div class="cookie-actions">
+                <button class="cookie-btn cookie-accept" id="cookieAccept" data-i18n="cookie.accept">Kabul Et</button>
+                <a href="yasal.html" class="cookie-btn cookie-settings" data-i18n="cookie.more">Daha Fazla</a>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
 </body>
 
 </html>

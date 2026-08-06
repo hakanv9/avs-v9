@@ -1,0 +1,1053 @@
+/* ============================================================
+   ADMIN PANEL CSS — AVS&V9
+   Kırmızı vurgu, glassmorphism, oval kart tasarımı
+   ============================================================ */
+
+/* --- Admin CSS Değişkenleri (Kırmızı Tema Override) --- */
+[data-admin-page] {
+    --admin-accent:       #ff4757;
+    --admin-accent-dim:   rgba(255, 71, 87, 0.15);
+    --admin-accent-glow:  rgba(255, 71, 87, 0.35);
+    --admin-accent-dark:  #c0392b;
+    --admin-success:      #2ecc71;
+    --admin-warning:      #f39c12;
+    --admin-info:         #3498db;
+    --admin-danger:       #e74c3c;
+    --admin-border:       rgba(255, 71, 87, 0.22);
+    --admin-card-bg:      rgba(255, 71, 87, 0.06);
+    --admin-radius:       20px;
+    --admin-radius-sm:    12px;
+    --admin-shadow:       0 8px 32px rgba(255, 71, 87, 0.12);
+    --admin-transition:   all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== GİRİŞ EKRANI ========== */
+.admin-login-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.admin-login-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--glass-bg, rgba(30,30,45,0.7));
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+    padding: 44px 40px;
+    box-shadow: var(--admin-shadow), 0 0 60px rgba(255,71,87,0.08);
+    text-align: center;
+    animation: adminCardIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes adminCardIn {
+    from { opacity: 0; transform: translateY(32px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.admin-login-logo {
+    font-size: 2.8rem;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 0 16px var(--admin-accent-glow));
+}
+
+.admin-login-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--admin-accent);
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+}
+
+.admin-login-sub {
+    font-size: 0.82rem;
+    color: var(--text-secondary, #8892a4);
+    margin: 0 0 32px;
+}
+
+.admin-field {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.admin-field label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary, #8892a4);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 7px;
+}
+
+.admin-field input {
+    width: 100%;
+    background: rgba(255, 71, 87, 0.05);
+    border: 1.5px solid var(--admin-border);
+    border-radius: var(--admin-radius-sm);
+    color: var(--text-primary, #e8eaf0);
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 12px 16px;
+    outline: none;
+    transition: var(--admin-transition);
+    box-sizing: border-box;
+}
+
+.admin-field input:focus {
+    border-color: var(--admin-accent);
+    background: var(--admin-accent-dim);
+    box-shadow: 0 0 0 3px var(--admin-accent-glow);
+}
+
+.admin-field input::placeholder { color: rgba(200,200,220,0.35); }
+
+.admin-login-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--admin-accent), var(--admin-accent-dark));
+    color: #fff;
+    border: none;
+    border-radius: var(--admin-radius-sm);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 14px;
+    cursor: pointer;
+    transition: var(--admin-transition);
+    margin-top: 8px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 20px rgba(255,71,87,0.35);
+}
+
+.admin-login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(255,71,87,0.5);
+}
+
+.admin-login-btn:active { transform: translateY(0); }
+
+.admin-login-error {
+    margin-top: 14px;
+    padding: 10px 16px;
+    background: rgba(231, 76, 60, 0.12);
+    border: 1px solid rgba(231,76,60,0.35);
+    border-radius: 10px;
+    color: #e74c3c;
+    font-size: 0.82rem;
+    display: none;
+    animation: shake 0.35s ease;
+}
+
+.admin-login-error.visible { display: block; }
+
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+/* ========== ADMIN NAVBAR ========== */
+.admin-navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    height: 64px;
+    background: rgba(18, 10, 12, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--admin-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    box-shadow: 0 2px 20px rgba(255,71,87,0.1);
+}
+
+.admin-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-nav-logo {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--admin-accent);
+    letter-spacing: -0.02em;
+}
+
+.admin-nav-badge {
+    background: var(--admin-accent-dim);
+    border: 1px solid var(--admin-border);
+    color: var(--admin-accent);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.admin-nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-nav-btn {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-secondary, #8892a4);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    padding: 7px 13px;
+    cursor: pointer;
+    transition: var(--admin-transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.admin-nav-btn:hover {
+    background: rgba(255,255,255,0.08);
+    color: var(--text-primary, #e8eaf0);
+}
+
+.admin-logout-btn {
+    background: rgba(255, 71, 87, 0.1);
+    border-color: var(--admin-border);
+    color: var(--admin-accent);
+}
+
+.admin-logout-btn:hover {
+    background: var(--admin-accent);
+    color: #fff;
+    border-color: var(--admin-accent);
+}
+
+/* ========== ADMIN SAYFA LAYOUT ========== */
+.admin-page {
+    padding-top: 80px;
+    min-height: 100vh;
+}
+
+.admin-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+}
+
+.admin-page-header {
+    padding: 32px 0 24px;
+    text-align: center;
+}
+
+.admin-page-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--admin-accent);
+    margin: 0 0 6px;
+    letter-spacing: -0.03em;
+}
+
+.admin-page-sub {
+    font-size: 0.88rem;
+    color: var(--text-secondary, #8892a4);
+    margin: 0;
+}
+
+/* ========== TAB MENÜ ========== */
+.admin-tabs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+}
+
+.admin-tab-btn {
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    color: var(--text-secondary, #8892a4);
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 11px 26px;
+    cursor: pointer;
+    transition: var(--admin-transition);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.admin-tab-btn:hover {
+    background: var(--admin-accent-dim);
+    border-color: var(--admin-border);
+    color: var(--admin-accent);
+}
+
+.admin-tab-btn.active {
+    background: linear-gradient(135deg, var(--admin-accent), var(--admin-accent-dark));
+    border-color: var(--admin-accent);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(255,71,87,0.35);
+}
+
+.admin-tab-content { display: none; }
+.admin-tab-content.active {
+    display: block;
+    animation: fadeInUp 0.3s ease both;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== ADMIN KARTLAR (OVAL GLASSMORPHISM) ========== */
+.admin-card {
+    background: var(--admin-card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+    padding: 28px;
+    margin-bottom: 20px;
+    transition: var(--admin-transition);
+    box-shadow: var(--admin-shadow);
+}
+
+.admin-card:hover { border-color: rgba(255,71,87,0.4); }
+
+.admin-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.admin-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary, #e8eaf0);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.admin-card-title span { color: var(--admin-accent); }
+
+/* ========== SLIDER RESİM YÖNETİMİ ========== */
+.slider-img-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.slider-img-item {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1.5px solid var(--admin-border);
+    aspect-ratio: 16/9;
+    background: rgba(0,0,0,0.2);
+    transition: var(--admin-transition);
+}
+
+.slider-img-item:hover { border-color: var(--admin-accent); }
+
+.slider-img-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slider-img-item .img-order-badge {
+    position: absolute;
+    top: 8px; left: 8px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+}
+
+.slider-img-item .img-delete-btn {
+    position: absolute;
+    top: 6px; right: 6px;
+    width: 28px; height: 28px;
+    background: rgba(231,76,60,0.85);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--admin-transition);
+    opacity: 0;
+}
+
+.slider-img-item:hover .img-delete-btn { opacity: 1; }
+.slider-img-item .img-delete-btn:hover { background: #c0392b; transform: scale(1.1); }
+
+/* ========== UPLOAD ALANI ========== */
+.admin-upload-area {
+    border: 2px dashed var(--admin-border);
+    border-radius: var(--admin-radius-sm);
+    padding: 32px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--admin-transition);
+    background: rgba(255,71,87,0.03);
+}
+
+.admin-upload-area:hover,
+.admin-upload-area.dragover {
+    border-color: var(--admin-accent);
+    background: var(--admin-accent-dim);
+}
+
+.admin-upload-area .upload-icon { font-size: 2.4rem; margin-bottom: 8px; }
+.admin-upload-area .upload-text { font-size: 0.88rem; color: var(--text-secondary, #8892a4); }
+.admin-upload-area .upload-text strong { color: var(--admin-accent); }
+.admin-upload-area input[type="file"] { display: none; }
+
+/* ========== PROJE KARTLARI (Admin Liste) ========== */
+.admin-project-list { display: flex; flex-direction: column; gap: 14px; }
+
+.admin-project-item {
+    background: rgba(255,71,87,0.04);
+    border: 1.5px solid var(--admin-border);
+    border-radius: 16px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: var(--admin-transition);
+}
+
+.admin-project-item:hover { border-color: rgba(255,71,87,0.4); }
+
+.admin-project-thumb {
+    width: 72px; height: 48px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--admin-border);
+}
+
+.admin-project-info { flex: 1; min-width: 0; }
+
+.admin-project-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-primary, #e8eaf0);
+    margin: 0 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-status-select {
+    background: rgba(0,0,0,0.25);
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    color: var(--text-primary, #e8eaf0);
+    font-family: inherit;
+    font-size: 0.78rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    outline: none;
+    transition: var(--admin-transition);
+}
+
+.admin-status-select:focus { border-color: var(--admin-accent); }
+
+.admin-project-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+/* ========== BUTONLAR ========== */
+.admin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--admin-accent-dim);
+    border: 1.5px solid var(--admin-border);
+    border-radius: 10px;
+    color: var(--admin-accent);
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: var(--admin-transition);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.admin-btn:hover {
+    background: var(--admin-accent);
+    color: #fff;
+    border-color: var(--admin-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(255,71,87,0.3);
+}
+
+.admin-btn-danger {
+    background: rgba(231,76,60,0.1);
+    border-color: rgba(231,76,60,0.3);
+    color: #e74c3c;
+}
+
+.admin-btn-danger:hover {
+    background: #e74c3c;
+    border-color: #e74c3c;
+    color: #fff;
+}
+
+.admin-btn-success {
+    background: rgba(46,204,113,0.1);
+    border-color: rgba(46,204,113,0.3);
+    color: #2ecc71;
+}
+
+.admin-btn-success:hover {
+    background: #2ecc71;
+    border-color: #2ecc71;
+    color: #fff;
+}
+
+.admin-btn-primary {
+    background: linear-gradient(135deg, var(--admin-accent), var(--admin-accent-dark));
+    border-color: var(--admin-accent);
+    color: #fff;
+    box-shadow: 0 3px 14px rgba(255,71,87,0.3);
+}
+
+.admin-btn-primary:hover {
+    box-shadow: 0 6px 22px rgba(255,71,87,0.5);
+    transform: translateY(-2px);
+}
+
+.admin-btn-sm { padding: 6px 12px; font-size: 0.76rem; }
+.admin-btn-lg { padding: 13px 28px; font-size: 0.95rem; }
+
+/* ========== FORM ALANLARI ========== */
+.admin-form-group {
+    margin-bottom: 18px;
+}
+
+.admin-form-group label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary, #8892a4);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 7px;
+}
+
+.admin-form-group input,
+.admin-form-group textarea,
+.admin-form-group select {
+    width: 100%;
+    background: rgba(255,71,87,0.04);
+    border: 1.5px solid var(--admin-border);
+    border-radius: var(--admin-radius-sm);
+    color: var(--text-primary, #e8eaf0);
+    font-family: inherit;
+    font-size: 0.88rem;
+    padding: 11px 16px;
+    outline: none;
+    transition: var(--admin-transition);
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.admin-form-group input:focus,
+.admin-form-group textarea:focus,
+.admin-form-group select:focus {
+    border-color: var(--admin-accent);
+    background: var(--admin-accent-dim);
+    box-shadow: 0 0 0 3px rgba(255,71,87,0.15);
+}
+
+.admin-form-group textarea { min-height: 90px; }
+
+.admin-form-group select option { background: #1a1a2e; }
+
+/* ========== TOGGLE SWITCH ========== */
+.admin-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,71,87,0.1);
+}
+
+.admin-toggle-row:last-child { border-bottom: none; }
+
+.admin-toggle-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary, #e8eaf0);
+}
+
+.admin-toggle-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary, #8892a4);
+    margin-top: 2px;
+}
+
+.admin-toggle {
+    position: relative;
+    width: 48px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.admin-toggle input { display: none; }
+
+.admin-toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--admin-transition);
+    border: 1.5px solid rgba(255,255,255,0.1);
+}
+
+.admin-toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    left: 3px; top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    transition: var(--admin-transition);
+}
+
+.admin-toggle input:checked + .admin-toggle-slider {
+    background: var(--admin-accent);
+    border-color: var(--admin-accent);
+}
+
+.admin-toggle input:checked + .admin-toggle-slider::before {
+    transform: translateY(-50%) translateX(22px);
+    background: #fff;
+}
+
+/* ========== SÜRÜM GEÇMİŞİ ========== */
+.changelog-list { display: flex; flex-direction: column; gap: 12px; }
+
+.changelog-item {
+    background: rgba(255,71,87,0.04);
+    border: 1.5px solid var(--admin-border);
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: var(--admin-transition);
+}
+
+.changelog-item:hover { border-color: rgba(255,71,87,0.35); }
+
+.changelog-version-badge {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.changelog-version-badge.major {
+    background: rgba(255,71,87,0.2);
+    color: var(--admin-accent);
+    border: 1px solid var(--admin-border);
+}
+
+.changelog-version-badge.minor {
+    background: rgba(52,152,219,0.2);
+    color: #3498db;
+    border: 1px solid rgba(52,152,219,0.3);
+}
+
+.changelog-version-badge.fix {
+    background: rgba(46,204,113,0.15);
+    color: #2ecc71;
+    border: 1px solid rgba(46,204,113,0.3);
+}
+
+.changelog-info { flex: 1; }
+.changelog-date {
+    font-size: 0.72rem;
+    color: var(--text-secondary, #8892a4);
+    margin-bottom: 5px;
+}
+
+.changelog-notes { margin: 0; padding: 0 0 0 16px; }
+.changelog-notes li {
+    font-size: 0.83rem;
+    color: var(--text-primary, #e8eaf0);
+    margin-bottom: 3px;
+}
+
+.changelog-actions { display: flex; gap: 7px; flex-shrink: 0; }
+
+/* ========== SSS YÖNETİMİ ========== */
+.faq-admin-category {
+    border: 1.5px solid var(--admin-border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.faq-admin-cat-header {
+    background: rgba(255,71,87,0.06);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.faq-admin-cat-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--admin-accent);
+    flex: 1;
+}
+
+.faq-admin-items { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+
+.faq-admin-item {
+    background: rgba(0,0,0,0.12);
+    border: 1px solid rgba(255,71,87,0.1);
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+
+.faq-admin-item-q {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary, #e8eaf0);
+    margin-bottom: 4px;
+}
+
+.faq-admin-item-a {
+    font-size: 0.78rem;
+    color: var(--text-secondary, #8892a4);
+    line-height: 1.5;
+}
+
+.faq-admin-item-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* ========== YASAL METİN EDİTÖRÜ ========== */
+.legal-admin-section {
+    border: 1.5px solid var(--admin-border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.legal-admin-header {
+    background: rgba(255,71,87,0.06);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.legal-admin-heading-text {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--admin-accent);
+    flex: 1;
+}
+
+.legal-admin-body { padding: 16px; }
+
+/* ========== KAYDET BANNER ========== */
+.admin-save-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 900;
+    background: rgba(18,10,12,0.92);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid var(--admin-border);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    flex-wrap: wrap;
+}
+
+.admin-save-bar.visible { transform: translateY(0); }
+
+.admin-save-bar-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #8892a4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-save-bar-text::before {
+    content: '●';
+    color: var(--admin-accent);
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.admin-save-actions { display: flex; gap: 10px; }
+
+/* ========== YÜKLEME OVERLAY ========== */
+.admin-loading {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.admin-loading.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.admin-loading-spinner {
+    width: 44px; height: 44px;
+    border: 3px solid var(--admin-border);
+    border-top-color: var(--admin-accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.admin-loading-text {
+    font-size: 0.88rem;
+    color: var(--text-primary, #e8eaf0);
+    font-weight: 600;
+}
+
+/* ========== TOAST MESAJLARI ========== */
+.admin-toast-wrap {
+    position: fixed;
+    bottom: 84px; right: 24px;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.admin-toast {
+    background: rgba(30,30,45,0.95);
+    backdrop-filter: blur(16px);
+    border-radius: 12px;
+    padding: 13px 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+    transform: translateX(120%);
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    pointer-events: all;
+    min-width: 240px;
+    max-width: 340px;
+    border-left: 3px solid var(--admin-accent);
+}
+
+.admin-toast.show { transform: translateX(0); }
+.admin-toast.success { border-left-color: #2ecc71; }
+.admin-toast.error   { border-left-color: #e74c3c; }
+.admin-toast.info    { border-left-color: #3498db; }
+
+/* ========== PROJE SEÇİCİ (Detay menüsü için) ========== */
+.admin-project-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.admin-proj-sel-card {
+    background: rgba(255,71,87,0.04);
+    border: 1.5px solid var(--admin-border);
+    border-radius: 16px;
+    padding: 16px;
+    cursor: pointer;
+    transition: var(--admin-transition);
+    text-align: center;
+}
+
+.admin-proj-sel-card:hover,
+.admin-proj-sel-card.selected {
+    border-color: var(--admin-accent);
+    background: var(--admin-accent-dim);
+}
+
+.admin-proj-sel-card.selected {
+    box-shadow: 0 0 0 2px var(--admin-accent);
+}
+
+.admin-proj-sel-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.admin-proj-sel-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary, #e8eaf0);
+}
+
+/* ========== EKRAN RESİMLERİ SLIDER YÖNETİMİ ========== */
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.screenshot-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid var(--admin-border);
+    aspect-ratio: 9/16;
+    background: rgba(0,0,0,0.3);
+    transition: var(--admin-transition);
+}
+
+.screenshot-item:hover { border-color: var(--admin-accent); }
+
+.screenshot-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.screenshot-item .ss-del-btn {
+    position: absolute;
+    top: 5px; right: 5px;
+    width: 26px; height: 26px;
+    background: rgba(231,76,60,0.9);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--admin-transition);
+}
+
+.screenshot-item:hover .ss-del-btn { opacity: 1; }
+
+/* ========== YASAL TARIH ALANI ========== */
+.legal-date-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    background: rgba(255,71,87,0.04);
+    border: 1px solid var(--admin-border);
+    border-radius: 12px;
+    flex-wrap: wrap;
+}
+
+.legal-date-row label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary, #8892a4);
+    white-space: nowrap;
+}
+
+.legal-date-row input[type="date"] {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    color: var(--text-primary, #e8eaf0);
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 7px 12px;
+    outline: none;
+    cursor: pointer;
+    color-scheme: dark;
+}
+
+.legal-date-row input[type="date"]:focus {
+    border-color: var(--admin-accent);
+    box-shadow: 0 0 0 2px rgba(255,71,87,0.2);
+}
+
+/* ========== MOBİL RESPONSIVE ========== */
+@media (max-width: 640px) {
+    .admin-navbar { padding: 0 16px; }
+    .admin-nav-badge { display: none; }
+    .admin-container { padding: 0 16px 80px; }
+    .admin-card { padding: 20px 18px; }
+    .admin-tabs { gap: 7px; }
+    .admin-tab-btn { padding: 9px 18px; font-size: 0.82rem; }
+    .admin-project-item { flex-wrap: wrap; }
+    .admin-project-thumb { width: 100%; height: 80px; }
+    .admin-save-bar { padding: 12px 16px; }
+    .slider-img-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    .admin-project-selector { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 420px) {
+    .admin-login-card { padding: 32px 22px; }
+    .admin-page-title { font-size: 1.5rem; }
+    .admin-tabs { flex-direction: column; }
+    .admin-tab-btn { justify-content: center; }
+}
