@@ -32,6 +32,12 @@
       "src": "resimler/anasayfa-hosgeldin-resmi4.jpg",
       "alt": "Hoşgeldin 4",
       "order": 4
+    },
+    {
+      "id": "slide-1786026849688-el2am",
+      "src": "resimler/hero-1786026846259-vrother.png",
+      "alt": "vrother",
+      "order": 5
     }
   ],
   "projects": [
