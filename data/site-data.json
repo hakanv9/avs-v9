@@ -1,0 +1,359 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-06",
+    "repo": {
+      "owner": "hakanv9",
+      "repo": "v9testsite1",
+      "branch": "main"
+    }
+  },
+  "heroSlider": [
+    {
+      "id": "slide-1",
+      "src": "resimler/anasayfa-hosgeldin-resmi1.jpg",
+      "alt": "Hoşgeldin 1",
+      "order": 1
+    },
+    {
+      "id": "slide-2",
+      "src": "resimler/anasayfa-hosgeldin-resmi2.jpg",
+      "alt": "Hoşgeldin 2",
+      "order": 2
+    },
+    {
+      "id": "slide-3",
+      "src": "resimler/anasayfa-hosgeldin-resmi3.jpg",
+      "alt": "Hoşgeldin 3",
+      "order": 3
+    },
+    {
+      "id": "slide-4",
+      "src": "resimler/anasayfa-hosgeldin-resmi4.jpg",
+      "alt": "Hoşgeldin 4",
+      "order": 4
+    }
+  ],
+  "projects": [
+    {
+      "id": "kurye",
+      "slug": "kurye",
+      "name": "V9 Kurye Uygulaması",
+      "nameEN": "V9 Courier App",
+      "shortDesc": "Gerçek zamanlı harita takibi, akıllı rota yönetimi ve anlık bildirimler ile kuryelerin teslimat süreçlerini uçtan uca yöneten mobil uygulama.",
+      "shortDescEN": "A mobile app that manages courier delivery processes end-to-end with real-time map tracking, smart route management and instant notifications.",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [
+        "📦 Kurye",
+        "📱 Mobil"
+      ],
+      "status": "discontinued",
+      "order": 1,
+      "visible": true,
+      "detail": {
+        "isAndroid": true,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "resimler/uygulama_logo.png",
+        "downloads": "5B+",
+        "rating": "4.5 ★",
+        "ageRating": "3+",
+        "appSize": "~18 MB",
+        "minAndroid": "Android 8.0 (Oreo) / API 26",
+        "description": [
+          "V9 Kurye Uygulaması, teslimat süreçlerini uçtan uca yöneten bir mobil çözümdür.",
+          "Gerçek zamanlı GPS takibi ile kuryenin tüm hareketleri anlık olarak izlenebilir. Dinamik rota optimizasyonu, teslimat süresini ve yakıt tüketimini önemli ölçüde azaltır.",
+          "📍 Gerçek Zamanlı Harita Takibi | 🗺️ Dinamik Rota | 🔔 Anlık Bildirimler | 🚀 Akıllı Teslimat"
+        ],
+        "descriptionEN": [
+          "V9 Courier App is a mobile solution that manages delivery processes end-to-end.",
+          "With real-time GPS tracking, all courier movements can be monitored instantly. Dynamic route optimization significantly reduces delivery time and fuel consumption.",
+          "📍 Real-Time Map Tracking | 🗺️ Dynamic Route | 🔔 Instant Notifications | 🚀 Smart Delivery"
+        ],
+        "permissions": [
+          "📍 Konum (Ön plan & Arka plan)",
+          "🔔 Bildirimler",
+          "📶 İnternet Erişimi",
+          "⚡ Arka Plan Servisi",
+          "📷 Kamera (teslimat fotoğrafı)"
+        ],
+        "screenshots": [
+          "resimler/uygulama_ekran1.png",
+          "resimler/uygulama_ekran2.png"
+        ],
+        "changelog": [
+          {
+            "id": "cl-kurye-1",
+            "version": "v1.2.0",
+            "date": "2024-11-15",
+            "type": "major",
+            "notes": [
+              "Gerçek zamanlı harita motoru yenilendi",
+              "Rota optimizasyon algoritması güncellendi",
+              "Kritik hata düzeltmeleri"
+            ]
+          },
+          {
+            "id": "cl-kurye-2",
+            "version": "v1.1.0",
+            "date": "2024-08-01",
+            "type": "minor",
+            "notes": [
+              "Bildirim sistemi iyileştirildi",
+              "Arayüz güncellemeleri",
+              "Performans iyileştirmeleri"
+            ]
+          },
+          {
+            "id": "cl-kurye-3",
+            "version": "v1.0.0",
+            "date": "2024-05-10",
+            "type": "major",
+            "notes": [
+              "İlk sürüm yayınlandı",
+              "Temel harita ve takip özellikleri",
+              "Anlık bildirim altyapısı"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "grup-v1",
+      "slug": "grup-v1",
+      "name": "V9 Grup Konum Paylaşımı",
+      "nameEN": "V9 Group Location Sharing",
+      "shortDesc": "Anlık çoklu konum takibi ile grubun her üyesini haritada eş zamanlı gösteren mobil uygulama. v1.0",
+      "shortDescEN": "A mobile app that shows all group members on the map simultaneously with real-time multi-location tracking. v1.0",
+      "thumbnail": "resimler/projeler-resmi2.jpg",
+      "tags": [
+        "🗺️ Harita"
+      ],
+      "status": "paused",
+      "order": 2,
+      "visible": true,
+      "detail": {
+        "isAndroid": true,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "resimler/uygulama_logo.png",
+        "downloads": "10B+",
+        "rating": "4.8 ★",
+        "ageRating": "3+",
+        "appSize": "~12 MB",
+        "minAndroid": "Android 8.0 (Oreo) / API 26",
+        "description": [
+          "V9 Grup Konum Paylaşımı (v1.0), bir grup içindeki tüm üyelerin konumunu aynı anda haritada göstermeye yarayan mobil bir uygulamadır.",
+          "Saniyeler içinde oda oluşturun, davet bağlantısı paylaşın ve grubunuzun tüm üyelerini anlık olarak haritada izleyin. Akıllı toplanma noktası hesaplaması ile herkese en yakın buluşma noktası belirlenir.",
+          "👥 Dinamik Grup Yönetimi | 📍 Gerçek Zamanlı Çoklu Takip | 🔋 Optimize Pil Kullanımı | 🎯 Akıllı Toplanma Noktaları"
+        ],
+        "descriptionEN": [
+          "V9 Group Location Sharing (v1.0) is a mobile application that shows the location of all members in a group on the map simultaneously.",
+          "Create a room in seconds, share the invitation link, and track all members of your group on the map in real time. The smart gathering point calculation determines the closest meeting point for everyone.",
+          "👥 Dynamic Group Management | 📍 Real-Time Multi-Tracking | 🔋 Optimized Battery Usage | 🎯 Smart Gathering Points"
+        ],
+        "permissions": [
+          "📍 Konum (Ön plan & Arka plan)",
+          "🔔 Bildirimler",
+          "📶 İnternet Erişimi",
+          "⚡ Arka Plan Servisi"
+        ],
+        "screenshots": [
+          "resimler/uygulama_ekran1.png",
+          "resimler/uygulama_ekran2.png"
+        ],
+        "changelog": [
+          {
+            "id": "cl-grv1-1",
+            "version": "v1.0.3",
+            "date": "2025-02-20",
+            "type": "fix",
+            "notes": [
+              "GPS senkronizasyon hatası düzeltildi",
+              "Pil tüketimi optimize edildi"
+            ]
+          },
+          {
+            "id": "cl-grv1-2",
+            "version": "v1.0.2",
+            "date": "2025-01-10",
+            "type": "minor",
+            "notes": [
+              "Harita motoru güncellendi",
+              "Arayüz iyileştirmeleri"
+            ]
+          },
+          {
+            "id": "cl-grv1-3",
+            "version": "v1.0.0",
+            "date": "2024-12-01",
+            "type": "major",
+            "notes": [
+              "İlk sürüm yayınlandı",
+              "Çoklu kullanıcı konum takibi",
+              "Oda sistemi ve davet bağlantısı"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "grup-v2",
+      "slug": "grup-v2",
+      "name": "V9 Grup Konum V2",
+      "nameEN": "V9 Group Location V2",
+      "shortDesc": "Entegre sohbet, low-latency GPS ve ölçeklenebilir mimariye sahip gelişmiş sürüm. v2.0",
+      "shortDescEN": "Advanced version with integrated chat, low-latency GPS and scalable architecture. v2.0",
+      "thumbnail": "resimler/projeler-resmi3.jpg",
+      "tags": [
+        "💬 Sohbet",
+        "📍 Konum"
+      ],
+      "status": "development",
+      "order": 3,
+      "visible": true,
+      "detail": {
+        "isAndroid": true,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "resimler/uygulama_logo.png",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "~15 MB",
+        "minAndroid": "Android 8.0 (Oreo) / API 26",
+        "description": [
+          "V9 Grup Konum Paylaşımı V2, birinci sürümün üzerine inşa edilmiş, entegre sohbet özelliği ve low-latency GPS senkronizasyonu ile donatılmış gelişmiş bir sürümdür.",
+          "Yönetici yetkileri, oda kapasite ayarları ve gerçek zamanlı mesajlaşma ile grup yönetimi tamamen yeniden tasarlandı. Modüler mimari sayesinde gelecekteki özellikler kolayca entegre edilebilir.",
+          "🚀 Low-latency GPS | 💬 Entegre Sohbet | ⚙️ Yönetici Paneli | 🔄 Ölçeklenebilir Mimari"
+        ],
+        "descriptionEN": [
+          "V9 Group Location Sharing V2 is an advanced version built on top of the first version, equipped with integrated chat and low-latency GPS synchronization.",
+          "Group management has been completely redesigned with administrator permissions, room capacity settings, and real-time messaging. The modular architecture allows future features to be easily integrated.",
+          "🚀 Low-latency GPS | 💬 Integrated Chat | ⚙️ Admin Panel | 🔄 Scalable Architecture"
+        ],
+        "permissions": [
+          "📍 Konum (Ön plan & Arka plan)",
+          "🔔 Bildirimler",
+          "📶 İnternet Erişimi",
+          "⚡ Arka Plan Servisi",
+          "💬 İnternet Mesajlaşma"
+        ],
+        "screenshots": [
+          "resimler/uygulama_ekran1.png",
+          "resimler/uygulama_ekran2.png"
+        ],
+        "changelog": [
+          {
+            "id": "cl-grv2-1",
+            "version": "v2.0.1-beta",
+            "date": "2026-07-15",
+            "type": "minor",
+            "notes": [
+              "Sohbet modülü beta testleri",
+              "GPS gecikme iyileştirmeleri",
+              "Arayüz güncellemeleri"
+            ]
+          },
+          {
+            "id": "cl-grv2-2",
+            "version": "v2.0.0-alpha",
+            "date": "2026-05-01",
+            "type": "major",
+            "notes": [
+              "V2 mimarisi oluşturuldu",
+              "Entegre sohbet altyapısı",
+              "Low-latency GPS motoru"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "faq": [
+    {
+      "id": "faq-cat-1",
+      "category": "📍 Konum & Uygulama İzinleri",
+      "items": [
+        {
+          "id": "faq-1-1",
+          "question": "Uygulama neden konum iznine ihtiyaç duyuyor?",
+          "answer": "Uygulamalarımız (V9 Kurye ve Grup Konum Paylaşımı), temel işlevlerini yerine getirebilmek için cihazınızın GPS konumuna erişim ister. Konum verisi yalnızca aktif oturum süresince kullanılır ve üçüncü taraflarla paylaşılmaz."
+        },
+        {
+          "id": "faq-1-2",
+          "question": "Arka plan konum izni neden gerekli?",
+          "answer": "Grup konum paylaşımı özelliği, uygulamanın arka planda çalışması sırasında da konumunuzu grubunuzla paylaşabilmek için arka plan konum iznine ihtiyaç duyar. Bu izni vermek isteğe bağlıdır."
+        }
+      ]
+    },
+    {
+      "id": "faq-cat-2",
+      "category": "🔐 Veri Güvenliği",
+      "items": [
+        {
+          "id": "faq-2-1",
+          "question": "Verilerim güvende mi?",
+          "answer": "Evet. Tüm iletişimler şifreli (HTTPS/TLS) bağlantı üzerinden gerçekleşir. Konum verileri yalnızca aktif oturum süresince saklanır, oturum sona erdiğinde sunuculardan silinir."
+        },
+        {
+          "id": "faq-2-2",
+          "question": "Kişisel verilerimi kimlerle paylaşıyorsunuz?",
+          "answer": "Kişisel verileriniz hiçbir üçüncü tarafla paylaşılmaz, satılmaz veya kiralanmaz. Detaylar için Gizlilik Politikamızı inceleyebilirsiniz."
+        }
+      ]
+    }
+  ],
+  "legal": {
+    "privacy": {
+      "lastUpdated": "2026-08-06",
+      "content": [
+        {
+          "id": "prv-1",
+          "heading": "1. Toplanan Veriler",
+          "text": "Uygulamalarımız yalnızca hizmetin işleyişi için zorunlu olan verileri toplar: konum bilgisi (yalnızca aktif oturum sırasında), uygulama hata raporları ve anonim kullanım istatistikleri."
+        },
+        {
+          "id": "prv-2",
+          "heading": "2. Veri Kullanımı",
+          "text": "Toplanan veriler yalnızca hizmetin sağlanması amacıyla kullanılır. Veriler hiçbir üçüncü tarafla paylaşılmaz, satılmaz veya kiralanmaz."
+        },
+        {
+          "id": "prv-3",
+          "heading": "3. Veri Güvenliği",
+          "text": "Tüm veri iletişimi HTTPS/TLS şifreleme protokolü üzerinden gerçekleştirilir. Konum verileri oturum sona erdiğinde otomatik olarak silinir."
+        },
+        {
+          "id": "prv-4",
+          "heading": "4. İletişim",
+          "text": "Gizlilik politikamız hakkında sorularınız için hakangureli090@gmail.com adresine ulaşabilirsiniz."
+        }
+      ]
+    },
+    "terms": {
+      "lastUpdated": "2026-08-06",
+      "content": [
+        {
+          "id": "trm-1",
+          "heading": "1. Kabul Koşulları",
+          "text": "Bu uygulamayı kullanarak aşağıdaki kullanım koşullarını kabul etmiş sayılırsınız. Kabul etmiyorsanız uygulamayı kullanmayınız."
+        },
+        {
+          "id": "trm-2",
+          "heading": "2. Hizmetin Kullanımı",
+          "text": "Uygulama yalnızca yasal amaçlar için kullanılabilir. Konum verilerinin izinsiz takip, zarar verme veya yasadışı faaliyetler için kullanılması kesinlikle yasaktır."
+        },
+        {
+          "id": "trm-3",
+          "heading": "3. Sorumluluk Sınırlaması",
+          "text": "AVS&V9, uygulamanın kullanımından doğabilecek dolaylı zararlardan sorumlu tutulamaz. Hizmet 'olduğu gibi' sunulmaktadır."
+        },
+        {
+          "id": "trm-4",
+          "heading": "4. Değişiklikler",
+          "text": "Bu koşullar önceden haber verilmeksizin değiştirilebilir. Güncel koşullar daima bu sayfada yayınlanacaktır."
+        }
+      ]
+    }
+  }
+}
