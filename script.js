@@ -1,3 +1,670 @@
+// --- EMBEDDED FALLBACK DATA (CORS / file:// PROTOKOLÜ ÇEVRİMDIŞI ÇALIŞMA GARANTİSİ) ---
+window.EMBEDDED_SITE_DATA = {
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-06",
+    "repo": {
+      "owner": "hakanv9",
+      "repo": "v9testsite1",
+      "branch": "main"
+    }
+  },
+  "heroSlider": [
+    {
+      "id": "slide-1",
+      "src": "resimler/anasayfa-hosgeldin-resmi1.jpg",
+      "alt": "Hoşgeldin 1",
+      "order": 1
+    },
+    {
+      "id": "slide-2",
+      "src": "resimler/anasayfa-hosgeldin-resmi2.jpg",
+      "alt": "Hoşgeldin 2",
+      "order": 2
+    },
+    {
+      "id": "slide-3",
+      "src": "resimler/anasayfa-hosgeldin-resmi3.jpg",
+      "alt": "Hoşgeldin 3",
+      "order": 3
+    },
+    {
+      "id": "slide-4",
+      "src": "resimler/anasayfa-hosgeldin-resmi4.jpg",
+      "alt": "Hoşgeldin 4",
+      "order": 4
+    }
+  ],
+  "projects": [
+    {
+      "id": "kurye",
+      "slug": "kurye",
+      "name": "V9 Kurye Uygulaması",
+      "nameEN": "V9 Courier App",
+      "shortDesc": "Gerçek zamanlı harita takibi, akıllı rota yönetimi ve anlık bildirimler ile kuryelerin teslimat süreçlerini uçtan uca yöneten mobil uygulama.",
+      "shortDescEN": "A mobile app that manages courier delivery processes end-to-end with real-time map tracking, smart route management and instant notifications.",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [
+        "📦 Kurye",
+        "📱 Mobil"
+      ],
+      "status": "discontinued",
+      "order": 1,
+      "visible": true,
+      "detail": {
+        "isAndroid": true,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "resimler/uygulama_logo.png",
+        "downloads": "5B+",
+        "rating": "4.5 ★",
+        "ageRating": "3+",
+        "appSize": "~18 MB",
+        "minAndroid": "Android 8.0 (Oreo) / API 26",
+        "description": [
+          "V9 Kurye Uygulaması, teslimat süreçlerini uçtan uca yöneten bir mobil çözümdür.",
+          "Gerçek zamanlı GPS takibi ile kuryenin tüm hareketleri anlık olarak izlenebilir. Dinamik rota optimizasyonu, teslimat süresini ve yakıt tüketimini önemli ölçüde azaltır.",
+          "📍 Gerçek Zamanlı Harita Takibi | 🗺️ Dinamik Rota | 🔔 Anlık Bildirimler | 🚀 Akıllı Teslimat"
+        ],
+        "descriptionEN": [
+          "V9 Courier App is a mobile solution that manages delivery processes end-to-end.",
+          "With real-time GPS tracking, all courier movements can be monitored instantly. Dynamic route optimization significantly reduces delivery time and fuel consumption.",
+          "📍 Real-Time Map Tracking | 🗺️ Dynamic Route | 🔔 Instant Notifications | 🚀 Smart Delivery"
+        ],
+        "permissions": [
+          "📍 Konum (Ön plan & Arka plan)",
+          "🔔 Bildirimler",
+          "📶 İnternet Erişimi",
+          "⚡ Arka Plan Servisi",
+          "📷 Kamera (teslimat fotoğrafı)"
+        ],
+        "screenshots": [
+          "resimler/uygulama_ekran1.png",
+          "resimler/uygulama_ekran2.png"
+        ],
+        "changelog": [
+          {
+            "id": "cl-kurye-1",
+            "version": "v1.2.0",
+            "date": "2024-11-15",
+            "type": "major",
+            "notes": [
+              "Gerçek zamanlı harita motoru yenilendi",
+              "Rota optimizasyon algoritması güncellendi",
+              "Kritik hata düzeltmeleri"
+            ]
+          },
+          {
+            "id": "cl-kurye-2",
+            "version": "v1.1.0",
+            "date": "2024-08-01",
+            "type": "minor",
+            "notes": [
+              "Bildirim sistemi iyileştirildi",
+              "Arayüz güncellemeleri",
+              "Performans iyileştirmeleri"
+            ]
+          },
+          {
+            "id": "cl-kurye-3",
+            "version": "v1.0.0",
+            "date": "2024-05-10",
+            "type": "major",
+            "notes": [
+              "İlk sürüm yayınlandı",
+              "Temel harita ve takip özellikleri",
+              "Anlık bildirim altyapısı"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "grup-v1",
+      "slug": "grup-v1",
+      "name": "V9 Grup Konum Paylaşımı",
+      "nameEN": "V9 Group Location Sharing",
+      "shortDesc": "Anlık çoklu konum takibi ile grubun her üyesini haritada eş zamanlı gösteren mobil uygulama. v1.0",
+      "shortDescEN": "A mobile app that shows all group members on the map simultaneously with real-time multi-location tracking. v1.0",
+      "thumbnail": "resimler/projeler-resmi2.jpg",
+      "tags": [
+        "🗺️ Harita"
+      ],
+      "status": "paused",
+      "order": 2,
+      "visible": true,
+      "detail": {
+        "isAndroid": true,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "resimler/uygulama_logo.png",
+        "downloads": "10B+",
+        "rating": "4.8 ★",
+        "ageRating": "3+",
+        "appSize": "~12 MB",
+        "minAndroid": "Android 8.0 (Oreo) / API 26",
+        "description": [
+          "V9 Grup Konum Paylaşımı (v1.0), bir grup içindeki tüm üyelerin konumunu aynı anda haritada göstermeye yarayan mobil bir uygulamadır.",
+          "Saniyeler içinde oda oluşturun, davet bağlantısı paylaşın ve grubunuzun tüm üyelerini anlık olarak haritada izleyin. Akıllı toplanma noktası hesaplaması ile herkese en yakın buluşma noktası belirlenir.",
+          "👥 Dinamik Grup Yönetimi | 📍 Gerçek Zamanlı Çoklu Takip | 🔋 Optimize Pil Kullanımı | 🎯 Akıllı Toplanma Noktaları"
+        ],
+        "descriptionEN": [
+          "V9 Group Location Sharing (v1.0) is a mobile application that shows the location of all members in a group on the map simultaneously.",
+          "Create a room in seconds, share the invitation link, and track all members of your group on the map in real time. The smart gathering point calculation determines the closest meeting point for everyone.",
+          "👥 Dynamic Group Management | 📍 Real-Time Multi-Tracking | 🔋 Optimized Battery Usage | 🎯 Smart Gathering Points"
+        ],
+        "permissions": [
+          "📍 Konum (Ön plan & Arka plan)",
+          "🔔 Bildirimler",
+          "📶 İnternet Erişimi",
+          "⚡ Arka Plan Servisi"
+        ],
+        "screenshots": [
+          "resimler/uygulama_ekran1.png",
+          "resimler/uygulama_ekran2.png"
+        ],
+        "changelog": [
+          {
+            "id": "cl-grv1-1",
+            "version": "v1.0.3",
+            "date": "2025-02-20",
+            "type": "fix",
+            "notes": [
+              "GPS senkronizasyon hatası düzeltildi",
+              "Pil tüketimi optimize edildi"
+            ]
+          },
+          {
+            "id": "cl-grv1-2",
+            "version": "v1.0.2",
+            "date": "2025-01-10",
+            "type": "minor",
+            "notes": [
+              "Harita motoru güncellendi",
+              "Arayüz iyileştirmeleri"
+            ]
+          },
+          {
+            "id": "cl-grv1-3",
+            "version": "v1.0.0",
+            "date": "2024-12-01",
+            "type": "major",
+            "notes": [
+              "İlk sürüm yayınlandı",
+              "Çoklu kullanıcı konum takibi",
+              "Oda sistemi ve davet bağlantısı"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "grup-v2",
+      "slug": "grup-v2",
+      "name": "V9 Grup Konum V2",
+      "nameEN": "V9 Group Location V2",
+      "shortDesc": "Entegre sohbet, low-latency GPS ve ölçeklenebilir mimariye sahip gelişmiş sürüm. v2.0",
+      "shortDescEN": "Advanced version with integrated chat, low-latency GPS and scalable architecture. v2.0",
+      "thumbnail": "resimler/projeler-resmi3.jpg",
+      "tags": [
+        "💬 Sohbet",
+        "📍 Konum"
+      ],
+      "status": "development",
+      "statuses": [
+        "development",
+        "live"
+      ],
+      "order": 3,
+      "visible": true,
+      "detail": {
+        "isAndroid": true,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "resimler/uygulama_logo.png",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "~15 MB",
+        "minAndroid": "Android 8.0 (Oreo) / API 26",
+        "description": [
+          "V9 Grup Konum Paylaşımı V2, birinci sürümün üzerine inşa edilmiş, entegre sohbet özelliği ve low-latency GPS senkronizasyonu ile donatılmış gelişmiş bir sürümdür.",
+          "Yönetici yetkileri, oda kapasite ayağırlığıarı ve gerçek zamanlı mesajlaşma ile grup yönetimi tamamen yeniden tasağırlığıandı. Modüler mimari sayesinde gelecekteki özellikler kolayca entegre edilebilir.",
+          "🚀 Low-latency GPS | 💬 Entegre Sohbet | ⚙️ Yönetici Paneli | 🔄 Ölçeklenebilir Mimari"
+        ],
+        "descriptionEN": [
+          "V9 Group Location Sharing V2 is an advanced version built on top of the first version, equipped with integrated chat and low-latency GPS synchronization.",
+          "Group management has been completely redesigned with administrator permissions, room capacity settings, and real-time messaging. The modular architecture allows future features to be easily integrated.",
+          "🚀 Low-latency GPS | 💬 Integrated Chat | ⚙️ Admin Panel | 🔄 Scalable Architecture"
+        ],
+        "permissions": [
+          "📍 Konum (Ön plan & Arka plan)",
+          "🔔 Bildirimler",
+          "📶 İnternet Erişimi",
+          "⚡ Arka Plan Servisi",
+          "💬 İnternet Mesajlaşma"
+        ],
+        "screenshots": [
+          "resimler/uygulama_ekran1.png",
+          "resimler/uygulama_ekran2.png"
+        ],
+        "changelog": [
+          {
+            "id": "cl-grv2-1",
+            "version": "v2.0.1-beta",
+            "date": "2026-07-15",
+            "type": "minor",
+            "notes": [
+              "Sohbet modülü beta testleri",
+              "GPS gecikme iyileştirmeleri",
+              "Arayüz güncellemeleri"
+            ]
+          },
+          {
+            "id": "cl-grv2-2",
+            "version": "v2.0.0-alpha",
+            "date": "2026-05-01",
+            "type": "major",
+            "notes": [
+              "V2 mimarisi oluşturuldu",
+              "Entegre sohbet altyapısı",
+              "Low-latency GPS motoru"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "faq": [
+    {
+      "id": "faq-cat-1",
+      "category": "🌐 Genel & Portfolyo Hakkında",
+      "categoryEN": "🌐 General & Portfolio",
+      "questions": [
+        {
+          "id": "faq-q-1-1",
+          "q": "Bu sitenin amacı ve vizyonu nedir?",
+          "qEN": "What is the purpose and vision of this site?",
+          "a": "Bu site; Android, iOS, Web ve masaüstü platformları için geliştirdiğim mobil uygulamaları, teknik projelerimi ve yazılım çalışmalarımı sergilediğim kişisel geliştirici portfolyomdur. Amacım, kullanıcı odaklı, yüksek performanslı ve modern dijital çözümler sunmaktır.",
+          "aEN": "This site is my personal developer portfolio where I showcase mobile applications, technical projects, and software work developed for Android, iOS, Web, and desktop platforms. My goal is to deliver user-centric, high-performance, and modern digital solutions."
+        },
+        {
+          "id": "faq-q-1-2",
+          "q": "'Site' adlı proje ve sürüm geçmişi nedir?",
+          "qEN": "What is the 'Site' project and its version history?",
+          "a": "Bu web sitesinin kendisi de aktif olarak geliştirdiğim bağımsız bir projedir. Sitede yapılan performans optimize çalışmaları, yeni UI/UX tasarımları, hata düzeltmeleri ve altyapı güncellemeleri 'Site' adıyla projeler listesinde yayınlanmakta ve sürüm detayları şeffafça sunulmaktadır.",
+          "aEN": "This website itself is an independent project that I actively develop. Performance optimizations, new UI/UX designs, bug fixes, and infrastructure updates made to the site are published under the project named 'Site' in the projects list, with transparent version details."
+        },
+        {
+          "id": "faq-q-1-3",
+          "q": "Sitede hangi tür projeler yer alıyor?",
+          "qEN": "What types of projects are hosted on the site?",
+          "a": "Portfolyoda gerçek zamanlı GPS takip kurye uygulamaları, grup konum paylaşım sistemleri, kişisel web projeleri, açık kaynaklı araçlar, API entegrasyonları ve hobi amaçlı yazılım denemeleri yer almaktadır.",
+          "aEN": "The portfolio features real-time GPS tracking courier apps, group location sharing systems, personal web projects, open-source tools, API integrations, and hobby software experiments."
+        },
+        {
+          "id": "faq-q-1-4",
+          "q": "Projelerinizle ilgili geri bildirimde bulunabilir miyim?",
+          "qEN": "Can I provide feedback regarding your projects?",
+          "a": "Kesinlikle! Her projenin detay sayfasında yer alan 'Hata Bildirimi' veya 'Özellik İsteği' butonlarını kullanarak ya da genel iletişim formumuz aracılığıyla görüş ve önerilerinizi iletebilirsiniz.",
+          "aEN": "Absolutely! You can share your feedback and suggestions using the 'Bug Report' or 'Feature Request' buttons on each project's details page, or via our general contact form."
+        }
+      ]
+    },
+    {
+      "id": "faq-cat-2",
+      "category": "📱 Mobil & Android/iOS Uygulamaları",
+      "categoryEN": "📱 Mobile & Android/iOS Applications",
+      "questions": [
+        {
+          "id": "faq-q-2-1",
+          "q": "Mobil uygulamalarınız hangi izinlere ihtiyaç duyuyor?",
+          "qEN": "What permissions do your mobile apps require?",
+          "a": "V9 Kurye ve Grup Konum Paylaşımı gibi harita tabanlı uygulamalarımız; temel canlı konum takibi fonksiyonu için Konum (Ön plan ve Arka plan), anlık bilgilendirmeler için Bildirim ve veri senkronizasyonu için İnternet izni istemektedir. Gerekli olmayan hiçbir ekstra izin talep edilmez.",
+          "aEN": "Our map-based applications, such as V9 Courier and Group Location Sharing, request Location (Foreground and Background) for core live tracking, Notification for instant alerts, and Internet permission for data sync. No unnecessary extra permissions are ever requested."
+        },
+        {
+          "id": "faq-q-2-2",
+          "q": "Arka plan konum izni pil ömrünü olumsuz etkiler mi?",
+          "qEN": "Does background location permission negatively affect battery life?",
+          "a": "Uygulamalarımız akıllı GPS dinleme algoritmaları ve low-latency konum senkronizasyon motorları ile geliştirilmiştir. Hareket halinde olunmadığında GPS güncellemeleri yavaşlatılır. Ayrıca grup veya kurye oturumu kapatıldığında arka plan izni tamamen durdurulur.",
+          "aEN": "Our applications are built with smart GPS listening algorithms and low-latency location synchronization engines. GPS updates slow down when idle. Additionally, background tracking stops completely when a group or courier session is closed."
+        },
+        {
+          "id": "faq-q-2-3",
+          "q": "Uygulamalarınızı Google Play Store üzerinden indirebilir miyim?",
+          "qEN": "Can I download your applications from the Google Play Store?",
+          "a": "Aktif yayındaki uygulamalarımızın Google Play Store indirme bağlantıları doğrudan detay sayfalarında mevcuttur. Test aşamasında veya yayın öncesi (WIP) durumdaki projeler için APK indirme veya kapalı test katılım bağlantıları sağlanmaktadır.",
+          "aEN": "Download links for apps actively live on the Google Play Store are available directly on their detail pages. For projects in testing or work-in-progress (WIP) status, direct APK downloads or closed test participation links are provided."
+        },
+        {
+          "id": "faq-q-2-4",
+          "q": "Uygulama izinlerini dilediğim zaman iptal edebilir miyim?",
+          "qEN": "Can I revoke application permissions at any time?",
+          "a": "Evet, dilediğiniz an cihazınızın Android veya iOS Ayağırlığıar > Uygulamalar bölümüne giderek uygulamalarımıza verdiğiniz konum, bildirim veya diğer izinleri kısıtlayabilir ya da tamamen kapatabilirsiniz.",
+          "aEN": "Yes, at any time you can go to your device's Android or iOS Settings > Applications menu to restrict or completely turn off location, notification, or other permissions granted to our apps."
+        }
+      ]
+    },
+    {
+      "id": "faq-cat-3",
+      "category": "📝 Sürümler, Güncellemeler ve Açık Kaynak",
+      "categoryEN": "📝 Releases, Updates & Open Source",
+      "questions": [
+        {
+          "id": "faq-q-3-1",
+          "q": "Projelerin sürüm geçmişini nasıl takip edebilirim?",
+          "qEN": "How can I track the release history of projects?",
+          "a": "Proje listesinden ilgili projenin 'Detayları İncele' butonuna tıklayarak açılan özel detay sayfasında projenin tüm sürüm geçmişini (Changelog), yayın tarihlerini, eklenen yeni özellikleri ve düzeltilen hataları inceleyebilirsiniz.",
+          "aEN": "Clicking the 'View Details' button for any project in the project list takes you to its dedicated detail page, where you can inspect the full release history (Changelog), release dates, newly added features, and bug fixes."
+        },
+        {
+          "id": "faq-q-3-2",
+          "q": "Projelerinizin kaynak kodları açık kaynaklı mı?",
+          "qEN": "Are your project source codes open source?",
+          "a": "Bazı projelerimiz ve geliştirme araçlarımız açık kaynak kodlu olarak GitHub üzerinde paylaşılmaktadır. İlgili projenin detay sayfasında açık kaynak kod bağlantısı yer alıyorsa projeyi inceleyebilir ve katkıda bulunabilirsiniz.",
+          "aEN": "Some of our projects and developer tools are shared as open source on GitHub. If an open-source repository link is present on the project's detail page, you can examine the code and contribute."
+        }
+      ]
+    },
+    {
+      "id": "faq-cat-4",
+      "category": "🔒 Veri Gizliliği & Güvenlik",
+      "categoryEN": "🔒 Data Privacy & Security",
+      "questions": [
+        {
+          "id": "faq-q-4-1",
+          "q": "Konum veya kişisel verilerim sunucularınızda saklanıyor mu?",
+          "qEN": "Are my location or personal data stored on your servers?",
+          "a": "Canlı konum takibi gerektiren uygulamalarımızda veriler yalnızca aktif oturum süresince şifreli kanallar (SSL/TLS) üzerinden anlık eşitleme için kullanılır. Oturum sonlandırıldığında konum verisi sunuculardan kalıcı olarak temizlenir.",
+          "aEN": "In applications requiring live location tracking, data is used only for real-time synchronization over encrypted channels (SSL/TLS) during an active session. Once the session ends, location data is permanently purged from servers."
+        },
+        {
+          "id": "faq-q-4-2",
+          "q": "Verilerim üçüncü taraflağırlığıa paylaşılıyor mu?",
+          "qEN": "Is my data shared with third parties?",
+          "a": "Kesinlikle hayır. Verileriniz hiçbir ticari amaçla satılmaz, reklam ağlarına aktarılmaz veya yetkisiz üçüncü taraflağırlığıa paylaşılmaz. Detaylı bilgi için Yasal Bilgiler sayfamızı ziyaret edebilirsiniz.",
+          "aEN": "Strictly no. Your data is never sold for commercial purposes, transferred to ad networks, or shared with unauthorized third parties. For detailed information, please visit our Legal Information page."
+        }
+      ]
+    }
+  ],
+  "legal": {
+    "privacy": {
+      "lastUpdated": "7 Ağustos 2026",
+      "content": [
+        {
+          "id": "privacy-sec-1",
+          "heading": "1. Veri Sorumlusu ve Kapsam",
+          "headingEN": "1. Data Controller and Scope",
+          "text": "Bu Gizlilik Politikasıı, AVS&V9 bünyesinde geliştirilen ve yayınlanan tüm web siteleri, mobil uygulamalar (Android & iOS platformları) ve bağımsız dijital projeler için geçerlidir. Geliştirici olarak temel ilkemiz, kullanıcılarımızın kişisel verilerinin gizliliğini korumak, şeffaflık sağlamak ve uluslararası veri güvenliği standartlarına tam uyum göstermektir.",
+          "textEN": "This Privacy Policy applies to all websites, mobile applications (Android & iOS platforms), and independent digital projects developed and published under AVS&V9. As a developer, our core principle is to protect the privacy of user data, ensure transparency, and comply fully with international data security standards."
+        },
+        {
+          "id": "privacy-sec-2",
+          "heading": "2. Toplanan Veriler ve Kullanım Amaçları",
+          "headingEN": "2. Collected Data and Purposes of Use",
+          "text": "Uygulamalarımızın ve web sitemizin sunduğu hizmet türüne bağlı olarak yalnızca işlevsellik için zorunlu olan minimum seviyede veri işlenmektedir:<br>• <b>Konum Verisi (GPS):</b> V9 Kurye ve Grup Konum uygulamalarımızda harita üzeri canlı takip, rota çizimi ve grup üyelerinin anlık yerini göstermek amacıyla Ön Plan (Foreground) ve Arka Plan (Background) konum verisi işlenir.<br>• <b>Cihaz ve Bağlantı Bilgileri:</b> İşletim sistemi sürümü, cihaz modeli ve ağ durumu, uygulama stabilitesini artırmak ve teknik uyumsuzlukları çözmek amacıyla anonim olarak değerlendirilebilir.<br>• <b>Destek ve İletişim Verileri:</b> Sitedeki iletişim formu üzerinden tarafımıza ilettiğiniz ad, e-posta adresi ve mesaj metinleri yalnızca destek talebinizi yanıtlamak amacıyla kullanılır.",
+          "textEN": "Depending on the services offered by our applications and website, only the minimum data required for functionality is processed:<br>• <b>Location Data (GPS):</b> Foreground and Background location data is processed in map-based apps like V9 Courier and Group Location Sharing to show real-time positions, route drawing, and group tracking.<br>• <b>Device & Network Info:</b> OS version, device model, and network state may be anonymously evaluated to improve application stability and resolve technical bugs.<br>• <b>Support Data:</b> Name, email address, and message contents submitted via the contact form are used exclusively to respond to your inquiry."
+        },
+        {
+          "id": "privacy-sec-3",
+          "heading": "3. Üçüncü Taraf Hizmetler ve Google Gizlilik Politikasıı",
+          "headingEN": "3. Third-Party Services & Google Privacy Policy",
+          "text": "Projelerimiz; Google Play Hizmetleri (Google Play Services), Firebase (Crashlytics ve Performans İzleme) ile harita servislerini (Google Maps / Mapbox) kullanabilir. Bu entegrasyonlar, servis sağlayıcıların kendi gizlilik standartlarına tabidir. Google hizmetlerinin verileri nasıl topladığı ve işlediği hakkında daha fazla bilgi edinmek için resmi <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"legal-link\">Google Gizlilik Politikasıı (Google Privacy Policy)</a> sayfasını ziyaret edebilirsiniz.",
+          "textEN": "Our projects may utilize Google Play Services, Firebase (Crashlytics & Performance Monitoring), and mapping APIs (Google Maps / Mapbox). These integrations are subject to their respective providers' privacy policies. To learn more about how Google handles user data, please visit the official <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"legal-link\">Google Privacy Policy</a> page."
+        },
+        {
+          "id": "privacy-sec-4",
+          "heading": "4. Veri Saklama ve Güvenlik Önlemleri",
+          "headingEN": "4. Data Retention and Security Measures",
+          "text": "Canlı konum takibi esnasında işlenen GPS verileri sunucularımızda kalıcı olarak depolanmaz; yalnızca aktif oturum süresince anlık harita senkronizasyonu için işlenir ve oturum kapatıldığında bellekten temizlenir. Tüm veri iletimleri uçtan uca SSL/TLS şifreleme protokolleri ile güvence altına alınmıştır.",
+          "textEN": "GPS data processed during live tracking is not permanently stored on our servers; it is processed strictly for real-time map sync during active sessions and purged upon session termination. All data transmissions are secured using end-to-end SSL/TLS encryption protocols."
+        },
+        {
+          "id": "privacy-sec-5",
+          "heading": "5. Çocukların Gizliliği (Children's Privacy)",
+          "headingEN": "5. Children's Privacy",
+          "text": "Uygulamalarımız ve web sitemiz 13 yaşın altındaki çocuklardan bilerek kişisel veri toplamamaktadır. 13 yaşından küçük bir bireyin kişisel veri paylaştığını tespit etmemiz durumunda bu veriler derhal sunucularımızdan silinecektir.",
+          "textEN": "Our apps and website do not knowingly collect personal data from children under the age of 13. If we discover that a child under 13 has provided personal data, such information will be promptly purged from our systems."
+        },
+        {
+          "id": "privacy-sec-6",
+          "heading": "6. Haklarınız ve İletişim",
+          "headingEN": "6. Rights and Contact",
+          "text": "Kişisel verilerinize erişme, verilerinizin düzeltilmesini veya tamamen silinmesini talep etme hakkına sahipsiniz. Gizlilikpolitikamız veya kişisel verilerinizle ilgili tüm soru, talep ve bildirimleriniz için sayfanın altındaki iletişim butonunu kullanarak bize ulaşabilirsiniz.",
+          "textEN": "You have the right to access, rectify, or request the deletion of your personal data. For any questions, requests, or notifications regarding our privacy policy or personal data, you can reach out via the contact button at the bottom of the page."
+        }
+      ]
+    },
+    "terms": {
+      "lastUpdated": "7 Ağustos 2026",
+      "content": [
+        {
+          "id": "terms-sec-1",
+          "heading": "1. Hizmet Şartları ve Kabul",
+          "headingEN": "1. Terms of Service and Acceptance",
+          "text": "Bu web sitesini veya AVS&V9 tarafından geliştirilen mobil uygulamaları kullanarak bu Kullanım Koşullarını kabul etmiş sayılırsınız. Şartları kabul etmiyorsanız lütfen uygulamaları ve siteyi kullanmayınız.",
+          "textEN": "By using this website or mobile applications developed by AVS&V9, you agree to be bound by these Terms of Use. If you do not accept these terms, please refrain from using the applications and website."
+        },
+        {
+          "id": "terms-sec-2",
+          "heading": "2. Fikri Mülkiyet Hakları",
+          "headingEN": "2. Intellectual Property Rights",
+          "text": "Bu sitede ve uygulamalarda yer alan tüm yazılımlar, tasarım ögeleri, logolar, grafikler, metinler ve kod yapıları AVS&V9'a aittir. Açık kaynak lisansı (MIT, Apache vb.) açıkça belirtilmemiş içerikler izinsiz kopyalanamaz, çoğaltılamaz veya ticari amaçla kullanılamaz.",
+          "textEN": "All software, design elements, logos, graphics, texts, and code architectures on this site and within apps belong to AVS&V9. Unless explicitly licensed under an open-source framework (e.g. MIT, Apache), content may not be copied, reproduced, or commercially exploited without authorization."
+        },
+        {
+          "id": "terms-sec-3",
+          "heading": "3. Kullanım Kuralları ve Yükümlülükler",
+          "headingEN": "3. Rules of Conduct & User Obligations",
+          "text": "Kullanıcılar uygulamaları yasalara, genel ahlak kurallarına ve amacına uygun olarak kullanacağını taahhüt eder. Uygulamalar üzerinde tersine mühendislik (reverse engineering) yapmak, sistem güvenliğini ihlal etmeye çalışmak veya sunucu altyapısına aşırı yük bindirecek zarağırlığıı girişimlerde bulunmak kesinlikle yasaktır.",
+          "textEN": "Users agree to utilize applications in compliance with laws, ethics, and intended functionality. Attempting reverse engineering, security breaches, or malicious actions that overload server infrastructure is strictly prohibited."
+        },
+        {
+          "id": "terms-sec-4",
+          "heading": "4. Sorumluluk Sınırlaması",
+          "headingEN": "4. Limitation of Liability",
+          "text": "Hizmetlerimiz ve uygulamalarımız 'olduğu gibi' (AS IS) esasıyla sunulmaktadır. Uygulamaların her cihazda kesintisiz veya tamamen hatasız çalışacağı garanti edilmez. İnternet bağlantı kesintileri, cihaz uyumsuzlukları veya üçüncü taraf servis aksamalarından doğabilecek dolaylı zarağırlığıardan AVS&V9 sorumlu tutulamaz.",
+          "textEN": "Our services and applications are provided on an 'AS IS' basis. We do not guarantee uninterrupted or error-free operation on every device. AVS&V9 cannot be held liable for indirect damages arising from network disconnections, device incompatibilities, or third-party service outages."
+        },
+        {
+          "id": "terms-sec-5",
+          "heading": "5. Koşullarda Değişiklik Hakları",
+          "headingEN": "5. Right to Modify Terms",
+          "text": "AVS&V9, bu kullanım şartlarını ve yasal politikaları dilediği zaman güncelleme hakkını saklı tutar. Güncellenen maddeler sitede yayınlandığı andan itibaren yürürlüğe girer.",
+          "textEN": "AVS&V9 reserves the right to modify these terms and legal policies at any time. Modified terms take effect immediately upon being published on the site."
+        }
+      ]
+    }
+  },
+  "socialFeed": {
+    "lastUpdated": "2026-08-06 19:30",
+    "posts": [
+      {
+        "id": "soc-yt-1",
+        "platform": "youtube",
+        "platformName": "YouTube",
+        "author": "AVS&V9 Official",
+        "title": "📍 Grup Konum V2 — Tanıtım Videosu",
+        "description": "Low-latency GPS senkronizasyonu ve entegre sohbet özelliklerini gösteren detaylı tanıtım videosu.",
+        "thumbnail": "resimler/sosyalmedya_post2.png",
+        "postUrl": "https://youtube.com",
+        "date": "2026-08-05",
+        "badgeColor": "#FF0000"
+      },
+      {
+        "id": "soc-ig-1",
+        "platform": "instagram",
+        "platformName": "Instagram",
+        "author": "@avsv9_dev",
+        "title": "🚀 V9 Kurye — Geliştirme Süreci",
+        "description": "Gerçek zamanlı harita entegrasyonunun sahne arkasına dair özel kareler ve teknik ayrıntılar.",
+        "thumbnail": "resimler/sosyalmedya_post1.png",
+        "postUrl": "https://instagram.com",
+        "date": "2026-08-04",
+        "badgeColor": "#E1306C"
+      },
+      {
+        "id": "soc-tt-1",
+        "platform": "tiktok",
+        "platformName": "TikTok",
+        "author": "@avsv9_official",
+        "title": "⚡ Yeni Güncelleme — Canlı Demo",
+        "description": "Son güncellemeyle gelen yeni özelliklerin kısa ve eğlenceli tanıtım videosu.",
+        "thumbnail": "resimler/sosyalmedya_post3.png",
+        "postUrl": "https://tiktok.com",
+        "date": "2026-08-03",
+        "badgeColor": "#00f2fe"
+      },
+      {
+        "id": "soc-x-1",
+        "platform": "x",
+        "platformName": "X (Twitter)",
+        "author": "@avsv9_dev",
+        "title": "📣 V9 Harita Motoru Sürüm Notları",
+        "description": "Yeni rota optimizasyon algoritması ve bellek iyileştirmeleri hakkında teknik güncellemeler yayınlandı.",
+        "thumbnail": "resimler/sosyalmedya_post1.png",
+        "postUrl": "https://x.com",
+        "date": "2026-08-02",
+        "badgeColor": "#1DA1F2"
+      }
+    ]
+  }
+};
+window.EMBEDDED_TRANSLATIONS = {
+  "tr": {
+    "nav.home": "Ana Sayfa",
+    "nav.projects": "Projelerim",
+    "nav.about": "Hakkında",
+    "nav.contact": "İletişim",
+    "nav.faq": "SSS",
+    "nav.legal": "Yasal",
+    "hero.title": "HOŞGELDİN YOLCU",
+    "hero.subtitle": "Basit ama etkili yazılımlar, kullanıcı dostu deneyimler ve modern çözümlerle yolculuğumuza devam ediyoruz.",
+    "hero.scroll": "Aşağı Kaydır",
+    "projects.title": "Projelerim",
+    "projects.intro": "Kullanıcı deneyimini ön planda tutan, sade tasarımlı ve işlevsel çözümler geliştirmeye odaklanıyorum.",
+    "about.title": "Hakkında",
+    "about.intro": "Projelerim, teknik beceri ve kullanıcı odaklı düşünce yapısının birleşimiyle ortaya çıkıyor.",
+    "about.body1": "Teknolojiye duyduğum merak ve kişisel gelişim amacıyla başlayan bu yolculuk, bugün daha büyük hedeflere hizmet eden, sürdürülebilir ve güçlü projelere dönüştü. Sektör deneyimim, farklı bakış açılarım ve sürekli öğrenme tutkum, geliştirdiğim her çözümün temelini oluşturuyor.",
+    "about.body2": "Amacım, karmaşık görünen fikirleri basit, hızlı ve etkili dijital deneyimlere dönüştürmek. Her proje, kullanıcıyla olan bağı güçlendiren ve gerçek bir ihtiyaca çözüm sunan bir yaklaşımla inşa ediliyor.",
+    "about.skills": "💻 Beceriler & Uzmanlık Alanları",
+    "contact.title": "İletişim",
+    "contact.intro": "Projeler, fikirler veya işbirlikleri hakkında konuşmak isterseniz, bir mesaj bırakın.",
+    "contact.name": "Adınız",
+    "contact.email": "E-posta Adresiniz",
+    "contact.message": "Mesajınız",
+    "contact.send": "Mail Gönder",
+    "detail.about": "📋 Uygulama Hakkında",
+    "detail.requirements": "📱 Sistem Gereksinimleri",
+    "detail.permissions": "🔐 Gerekli İzinler",
+    "detail.changelog": "📝 Sürüm Geçmişi",
+    "detail.getapp": "Google Play'den İndir",
+    "detail.downloads": "İndirme",
+    "detail.rating": "Puan",
+    "detail.agerating": "Yaş",
+    "detail.minandroid": "Minimum Android",
+    "detail.connection": "Bağlantı",
+    "detail.connval": "İnternet bağlantısı gerekli (Wi-Fi / Mobil veri)",
+    "detail.size": "Boyut",
+    "detail.perm.location": "Konum (Ön plan & Arka plan)",
+    "detail.perm.notif": "Bildirimler",
+    "detail.perm.net": "İnternet Erişimi",
+    "detail.perm.bg": "Arka Plan Servisi",
+    "detail.contactdev": "Geliştirici İletişim",
+    "detail.subj.bug": "🐛 Hata Bildirimi",
+    "detail.subj.feature": "💡 Özellik İsteği",
+    "detail.subj.question": "❓ Soru",
+    "detail.subj.other": "💬 Diğer",
+    "detail.cta": "Farklı bir sorunuz mu var?",
+    "detail.ctabtn": "Doğrudan İletişime Geçin →",
+    "social.title": "Sosyal Medya",
+    "social.intro": "Güncel paylaşımlar, uygulama duyuruları ve geliştirme sürecinden kareler.",
+    "social.slide1.title": "🚀 V9 Kurye — Geliştirme Süreci",
+    "social.slide1.desc": "Gerçek zamanlı harita entegrasyonunun sahne arkasına dair özel kareler ve teknik ayrıntılar.",
+    "social.slide2.title": "📍 Grup Konum V2 — Tanıtım Videosu",
+    "social.slide2.desc": "Low-latency GPS senkronizasyonu ve entegre sohbet özelliklerini gösteren tam tanıtım videosu.",
+    "social.slide3.title": "⚡ Yeni Güncelleme — Canlı Demo",
+    "social.slide3.desc": "Son güncellemeyle gelen yeni özelliklerin kısa ve eğlenceli tanıtım videosu.",
+    "social.viewpost": "Gönderiyi İncele ↗",
+    "social.follow": "Takip Et",
+    "social.subscribe": "Abone Ol",
+    "social.getapp": "Uygulamayı İndir",
+    "faq.page.title": "Sıkça Sorulan Sorular",
+    "faq.page.sub": "Uygulamalar hakkında merak edilen tüm sorular burada.",
+    "legal.page.title": "Yasal Bilgiler",
+    "legal.page.sub": "Gizlilik Politikamız ve Kullanım Koşullarımız.",
+    "legal.tab.privacy": "Gizlilik Politikasıı",
+    "legal.tab.terms": "Kullanım Koşulları"
+  },
+  "en": {
+    "nav.home": "Home",
+    "nav.projects": "Projects",
+    "nav.about": "About",
+    "nav.contact": "Contact",
+    "nav.faq": "FAQ",
+    "nav.legal": "Legal",
+    "hero.title": "WELCOME, TRAVELLER",
+    "hero.subtitle": "Simple yet powerful software, user-friendly experiences, and modern solutions — our journey continues.",
+    "hero.scroll": "Scroll Down",
+    "projects.title": "My Projects",
+    "projects.intro": "Focused on developing clean, functional solutions that put user experience first.",
+    "about.title": "About",
+    "about.intro": "My projects are born from the combination of technical skill and a user-centred mindset.",
+    "about.body1": "This journey began with a curiosity for technology and personal growth; today it has evolved into powerful, sustainable projects that serve greater goals. My industry experience, diverse perspectives, and constant drive to learn form the foundation of every solution I build.",
+    "about.body2": "My goal is to transform seemingly complex ideas into simple, fast, and effective digital experiences. Every project is built on an approach that strengthens the bond with the user and is rooted in a real need.",
+    "about.skills": "💻 Skills & Knowledge Areas",
+    "contact.title": "Contact",
+    "contact.intro": "If you would like to talk about projects, ideas, or collaborations, leave a message.",
+    "contact.name": "Your Name",
+    "contact.email": "Your Email Address",
+    "contact.message": "Your Message",
+    "contact.send": "Send Email",
+    "detail.about": "📋 About the App",
+    "detail.requirements": "📱 System Requirements",
+    "detail.permissions": "🔐 Required Permissions",
+    "detail.changelog": "📝 Release History",
+    "detail.getapp": "Get it on Google Play",
+    "detail.downloads": "Downloads",
+    "detail.rating": "Rating",
+    "detail.agerating": "Age",
+    "detail.minandroid": "Minimum Android",
+    "detail.connection": "Connection",
+    "detail.connval": "Internet connection required (Wi-Fi / Mobile data)",
+    "detail.size": "Size",
+    "detail.perm.location": "Location (Foreground & Background)",
+    "detail.perm.notif": "Notifications",
+    "detail.perm.net": "Internet Access",
+    "detail.perm.bg": "Background Service",
+    "detail.contactdev": "Developer Contact",
+    "detail.subj.bug": "🐛 Bug Report",
+    "detail.subj.feature": "💡 Feature Request",
+    "detail.subj.question": "❓ Question",
+    "detail.subj.other": "💬 Other",
+    "detail.cta": "Have a different question?",
+    "detail.ctabtn": "Contact Directly →",
+    "social.title": "Social Media",
+    "social.intro": "Latest posts, app announcements, and behind-the-scenes of the development process.",
+    "social.slide1.title": "🚀 V9 Courier — Development Process",
+    "social.slide1.desc": "Exclusive behind-the-scenes shots and technical details of real-time map integration.",
+    "social.slide2.title": "📍 Group Location V2 — Promo Video",
+    "social.slide2.desc": "Full promotional video showcasing low-latency GPS synchronization and integrated chat features.",
+    "social.slide3.title": "⚡ New Update — Live Demo",
+    "social.slide3.desc": "A short and fun promo video of the new features coming with the latest update.",
+    "social.viewpost": "View Post ↗",
+    "social.follow": "Follow",
+    "social.subscribe": "Subscribe",
+    "social.getapp": "Download App",
+    "faq.page.title": "Frequently Asked Questions",
+    "faq.page.sub": "All your questions about the applications are here.",
+    "legal.page.title": "Legal Information",
+    "legal.page.sub": "Our Privacy Policy and Terms of Use.",
+    "legal.tab.privacy": "Privacy Policy",
+    "legal.tab.terms": "Terms of Use"
+  }
+};
+
 // =============================================
 // === AVS&V9 ANA SCRIPT (STABİL & HATASIZ) ===
 // =============================================
