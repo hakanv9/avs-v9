@@ -312,20 +312,36 @@
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "",
-        "downloads": "-",
-        "rating": "-",
+        "downloads": "500B+",
+        "rating": "4.5 ★",
         "ageRating": "3+",
         "appSize": "-",
-        "minAndroid": "-",
+        "minAndroid": "Android 8.0 (Oreo) / API 26",
         "description": [
           "Sitemiz güncelleme geçmişi ve dahası."
         ],
         "descriptionEN": [
           "Sitemiz güncelleme geçmişi ve dahası."
         ],
-        "permissions": [],
+        "permissions": [
+          "📍 Konum (Ön plan & Arka plan)",
+          "🔔 Bildirimler",
+          "📶 İnternet Erişimi",
+          "⚡ Arka Plan Servisi",
+          "📷 Kamera (teslimat fotoğrafı)"
+        ],
         "screenshots": [],
-        "changelog": []
+        "changelog": [
+          {
+            "id": "cl-1786127067505-uuojf",
+            "version": "v0.01",
+            "date": "2026-08-07",
+            "type": "initial",
+            "notes": [
+              "test sürümü"
+            ]
+          }
+        ]
       }
     }
   ],
