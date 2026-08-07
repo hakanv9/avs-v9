@@ -297,6 +297,11 @@
           "id": "faq-1-2",
           "question": "Arka plan konum izni neden gerekli?",
           "answer": "Grup konum paylaşımı özelliği, uygulamanın arka planda çalışması sırasında da konumunuzu grubunuzla paylaşabilmek için arka plan konum iznine ihtiyaç duyar. Bu izni vermek isteğe bağlıdır."
+        },
+        {
+          "id": "faq-1786119956505-8p8nt",
+          "question": "test",
+          "answer": "test123\n2313"
         }
       ]
     },
