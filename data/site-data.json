@@ -291,7 +291,7 @@
         {
           "id": "faq-1-1",
           "question": "Uygulama neden konum iznine ihtiyaç duyuyor?",
-          "answer": "Uygulamalarımız (V9 Kurye ve Grup Konum Paylaşımı), temel işlevlerini yerine getirebilmek için cihazınızın GPS konumuna erişim ister. Konum verisi yalnızca aktif oturum süresince kullanılır ve üçüncü taraflarla paylaşılmaz."
+          "answer": "Uygulamalarımız (V9 Kurye ve Grup Konum Paylaşımı), temel işlevlerini yerine getirebilmek için cihazınızın GPS konumuna erişim ister. Konum verisi yalnızca aktif oturum süresince kullanılır ve üçüncü taraflarla paylaşılmaz.\ntest98989898"
         },
         {
           "id": "faq-1-2",
