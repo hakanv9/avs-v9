@@ -116,7 +116,11 @@
             ]
           }
         ]
-      }
+      },
+      "statuses": [
+        "discontinued",
+        "special"
+      ]
     },
     {
       "id": "grup-v1",
@@ -195,7 +199,11 @@
             ]
           }
         ]
-      }
+      },
+      "statuses": [
+        "paused",
+        "rnd"
+      ]
     },
     {
       "id": "grup-v2",
@@ -212,7 +220,7 @@
       "status": "development",
       "statuses": [
         "development",
-        "live"
+        "waiting"
       ],
       "order": 3,
       "visible": true,
