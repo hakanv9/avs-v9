@@ -86,7 +86,6 @@ select:focus-visible {
 }
 
 html {
-    overflow-x: hidden;
 }
 
 body {
@@ -1293,7 +1292,6 @@ body.modal-open {
 
 /* === MOBİL === */
 @media (max-width: 768px) {
-    html { scroll-snap-type: y proximity; }
 
     .fullscreen { padding: 85px 14px 24px 14px; }
 
@@ -3348,15 +3346,14 @@ body.modal-open {
 * {
     -webkit-tap-highlight-color: transparent;
 }
-body {
-    overscroll-behavior-y: none;
-}
 /* === PROJELER LİSTESİ (OVAL TASARIM) === */
 .projects-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
     width: 100%;
+    max-width: var(--card-max-width);
+    margin: 0 auto;
 }
 .project-oval-box {
     display: flex;

@@ -291,32 +291,10 @@ function initDynamicFaq(data) {
         <a href="index.html#iletisim" class="oval-btn pd-cta-btn">Doğrudan İletişime Geçin →</a>`;
     main.appendChild(cta);
 
-    // Yeni SSS toggle'larını başlat
-    initFaqToggles();
+
 }
 
-function initFaqToggles() {
-    document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.removeEventListener('click', faqToggleHandler);
-        btn.addEventListener('click', faqToggleHandler);
-    });
-}
 
-function faqToggleHandler() {
-    const item = this.parentElement;
-    if (!item) return;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(openItem => {
-        openItem.classList.remove('open');
-        const ans = openItem.querySelector('.faq-answer');
-        if (ans) ans.style.maxHeight = '0';
-    });
-    if (!isOpen) {
-        item.classList.add('open');
-        const answer = item.querySelector('.faq-answer');
-        if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
-    }
-}
 
 function initDynamicLegal(data) {
     const legal = data.legal;
@@ -965,7 +943,7 @@ function initProjectDetail(proj) {
             });
 
             if (lbClose) lbClose.addEventListener('click', closeLightbox);
-            if (lbModal) {
+
             const pdSlides = Array.from(pdAppSlider.querySelectorAll('.pd-app-slide'));
             const pdDots = dotsEl ? Array.from(dotsEl.querySelectorAll('.pd-dot')) : [];
 
