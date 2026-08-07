@@ -55,10 +55,10 @@
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "resimler/uygulama_logo.png",
-        "downloads": "500B+",
+        "downloads": "5B+",
         "rating": "4.5 ★",
         "ageRating": "3+",
-        "appSize": "~35 MB",
+        "appSize": "~18 MB",
         "minAndroid": "Android 8.0 (Oreo) / API 26",
         "description": [
           "V9 Kurye Uygulaması, teslimat süreçlerini uçtan uca yöneten bir mobil çözümdür.",
@@ -90,8 +90,7 @@
             "notes": [
               "Gerçek zamanlı harita motoru yenilendi",
               "Rota optimizasyon algoritması güncellendi",
-              "Kritik hata düzeltmeleri",
-              "v9test0807"
+              "Kritik hata düzeltmeleri"
             ]
           },
           {
@@ -117,11 +116,7 @@
             ]
           }
         ]
-      },
-      "statuses": [
-        "discontinued",
-        "special"
-      ]
+      }
     },
     {
       "id": "grup-v1",
@@ -134,7 +129,7 @@
       "tags": [
         "🗺️ Harita"
       ],
-      "status": "waiting",
+      "status": "paused",
       "order": 2,
       "visible": true,
       "detail": {
@@ -200,11 +195,7 @@
             ]
           }
         ]
-      },
-      "statuses": [
-        "waiting",
-        "rnd"
-      ]
+      }
     },
     {
       "id": "grup-v2",
@@ -286,90 +277,97 @@
   "faq": [
     {
       "id": "faq-cat-1",
-      "category": "📍 Konum & Uygulama İzinleri",
-      "items": [
+      "category": "Genel Sorular",
+      "categoryEN": "General Questions",
+      "questions": [
         {
-          "id": "faq-1-1",
-          "question": "Uygulama neden konum iznine ihtiyaç duyuyor?",
-          "answer": "Uygulamalarımız (V9 Kurye ve Grup Konum Paylaşımı), temel işlevlerini yerine getirebilmek için cihazınızın GPS konumuna erişim ister. Konum verisi yalnızca aktif oturum süresince kullanılır ve üçüncü taraflarla paylaşılmaz.\ntest98989898"
+          "id": "faq-q-1-1",
+          "q": "Bu sitenin amacı nedir?",
+          "a": "Bu site, hem Android/iOS platformları için geliştirdiğim mobil uygulamaları, hem web projelerini hem de farklı alanlardaki bağımsız projelerimi (örneğin bu sitenin kendisi) sergilediğim kişisel bir portfolyodur. Ayrıca her projenin sürüm geçmişini ve detaylarını buradan paylaşmaktayım.",
+          "qEN": "What is the purpose of this site?",
+          "aEN": "This site is a personal portfolio where I showcase mobile applications I've developed for Android/iOS, web projects, and independent projects in various fields (such as this site itself). I also share the release history and details of each project here."
         },
         {
-          "id": "faq-1-2",
-          "question": "Arka plan konum izni neden gerekli?",
-          "answer": "Grup konum paylaşımı özelliği, uygulamanın arka planda çalışması sırasında da konumunuzu grubunuzla paylaşabilmek için arka plan konum iznine ihtiyaç duyar. Bu izni vermek isteğe bağlıdır."
+          "id": "faq-q-1-2",
+          "q": "Projelerinizin sürüm geçmişlerini nasıl takip edebilirim?",
+          "a": "Herhangi bir projenin 'Detayları İncele' butonuna tıklayarak o projeye ait özel sayfaya ulaşabilirsiniz. Bu sayfada, projenin geçmişten bugüne tüm güncellemelerini, hata düzeltmelerini ve yeni eklenen özellikleri görebilirsiniz.",
+          "qEN": "How can I track the release history of your projects?",
+          "aEN": "You can access the dedicated page for any project by clicking the 'View Details' button. On this page, you can see all updates, bug fixes, and newly added features from the past to the present."
+        },
+        {
+          "id": "faq-q-1-3",
+          "q": "Size nasıl ulaşabilirim?",
+          "a": "İletişim formunu kullanarak veya doğrudan agvrsp.v9&#64;gmail.com adresine e-posta göndererek benimle iletişime geçebilirsiniz. Geri bildirimleriniz, hata bildirimleriniz veya proje önerileriniz her zaman memnuniyetle karşılanır.",
+          "qEN": "How can I contact you?",
+          "aEN": "You can contact me using the contact form or by sending an e-mail directly to agvrsp.v9&#64;gmail.com. Your feedback, bug reports, or project suggestions are always welcome."
         }
       ]
     },
     {
       "id": "faq-cat-2",
-      "category": "🔐 Veri Güvenliği",
-      "items": [
+      "category": "Projeler ve Sürümler",
+      "categoryEN": "Projects and Releases",
+      "questions": [
         {
-          "id": "faq-2-1",
-          "question": "Verilerim güvende mi?",
-          "answer": "Evet. Tüm iletişimler şifreli (HTTPS/TLS) bağlantı üzerinden gerçekleşir. Konum verileri yalnızca aktif oturum süresince saklanır, oturum sona erdiğinde sunuculardan silinir."
+          "id": "faq-q-2-1",
+          "q": "Sadece Android uygulamaları mı geliştiriyorsunuz?",
+          "a": "Hayır, ağırlıklı olarak Android ve iOS platformlarına yönelik mobil uygulamalar geliştirsem de, web siteleri, masaüstü araçlar ve farklı teknolojiler üzerine de çalışıyorum. İlerleyen süreçte çok daha çeşitli projeler eklenecektir.",
+          "qEN": "Do you only develop Android applications?",
+          "aEN": "No, although I mainly develop mobile applications for Android and iOS platforms, I also work on websites, desktop tools, and different technologies. Much more diverse projects will be added in the future."
         },
         {
-          "id": "faq-2-2",
-          "question": "Kişisel verilerimi kimlerle paylaşıyorsunuz?",
-          "answer": "Kişisel verileriniz hiçbir üçüncü tarafla paylaşılmaz, satılmaz veya kiralanmaz. Detaylar için Gizlilik Politikamızı inceleyebilirsiniz."
+          "id": "faq-q-2-2",
+          "q": "Projeleriniz açık kaynaklı mı?",
+          "a": "Bazı projelerim açık kaynaklı olarak yayınlanırken bazıları kapalı kaynaklı kalabilmektedir. Proje detay sayfasında varsa kaynak kod bağlantılarını ve indirme linklerini bulabilirsiniz.",
+          "qEN": "Are your projects open source?",
+          "aEN": "Some of my projects are published as open source while others may remain closed source. You can find source code links and download links on the project details page if available."
         }
       ]
     }
   ],
   "legal": {
     "privacy": {
-      "lastUpdated": "2026-08-06",
+      "lastUpdated": "2026-08-07",
       "content": [
         {
-          "id": "prv-1",
-          "heading": "1. Toplanan Veriler",
-          "text": "Uygulamalarımız yalnızca hizmetin işleyişi için zorunlu olan verileri toplar: konum bilgisi (yalnızca aktif oturum sırasında), uygulama hata raporları ve anonim kullanım istatistikleri.d"
+          "id": "privacy-sec-1",
+          "heading": "1. Genel Bakış",
+          "headingEN": "1. Overview",
+          "text": "Bu portfolyo sitesi ve içerisinde yer alan tüm projeler (mobil, web ve diğer platformlar), kullanıcı gizliliğine saygı göstermeyi ve şeffaf olmayı ilke edinir. Sunulan projelerin veya uygulamaların niteliğine göre toplanan veriler değişiklik gösterebilir, ancak genel geçerli ilkelerimiz bu metinde belirtilmiştir.",
+          "textEN": "This portfolio site and all projects included (mobile, web, and other platforms) adopt the principle of respecting user privacy and being transparent. The data collected may vary depending on the nature of the projects or applications offered, but our general principles are stated in this text."
         },
         {
-          "id": "prv-2",
-          "heading": "2. Veri Kullanımı",
-          "text": "Toplanan veriler yalnızca hizmetin sağlanması amacıyla kullanılır. Veriler hiçbir üçüncü tarafla paylaşılmaz, satılmaz veya kiralanmaz."
+          "id": "privacy-sec-2",
+          "heading": "2. Veri Toplama",
+          "headingEN": "2. Data Collection",
+          "text": "Bu web sitesi, iletişim formları veya analitik araçlar aracılığıyla yalnızca gerekli minimum verileri toplar. Yayımlanan mobil uygulamalar veya projeler ise yalnızca kendi işlevlerini yerine getirebilmek için ihtiyaç duydukları verilere erişim izni ister.",
+          "textEN": "This website collects only the necessary minimum data through contact forms or analytical tools. Published mobile applications or projects only request access to the data they need to perform their own functions."
         },
         {
-          "id": "prv-3",
-          "heading": "3. Veri Güvenliği",
-          "text": "Tüm veri iletişimi HTTPS/TLS şifreleme protokolü üzerinden gerçekleştirilir. Konum verileri oturum sona erdiğinde otomatik olarak silinir."
-        },
-        {
-          "id": "prv-4",
-          "heading": "4. İletişim",
-          "text": "Gizlilik politikamız hakkında sorularınız için hakangureli090@gmail.com adresine ulaşabilirsiniz.\ntest898989898"
+          "id": "privacy-sec-3",
+          "heading": "3. İletişim Bilgileri",
+          "headingEN": "3. Contact Information",
+          "text": "Gizlilik politikamız hakkında daha detaylı bilgi almak veya kişisel verilerinizle ilgili haklarınızı kullanmak için agvrsp.v9&#64;gmail.com adresinden bizimle iletişime geçebilirsiniz.",
+          "textEN": "You can contact us at agvrsp.v9&#64;gmail.com to get more detailed information about our privacy policy or to exercise your rights regarding your personal data."
         }
       ]
     },
     "terms": {
-      "lastUpdated": "2026-08-06",
+      "lastUpdated": "2026-08-07",
       "content": [
         {
-          "id": "trm-1",
-          "heading": "1. Kabul Koşulları",
-          "text": "Bu uygulamayı kullanarak aşağıdaki kullanım koşullarını kabul etmiş sayılırsınız. Kabul etmiyorsanız uygulamayı kullanmayınız."
+          "id": "terms-sec-1",
+          "heading": "1. Sorumluluk Reddi",
+          "headingEN": "1. Disclaimer",
+          "text": "Bu portfolyoda listelenen tüm yazılımlar ve projeler \"olduğu gibi\" sunulmaktadır. Geliştirici, projelerin kesintisiz veya tamamen hatasız olacağını garanti etmez ve kullanımdan doğabilecek zararlardan sorumlu tutulamaz.",
+          "textEN": "All software and projects listed in this portfolio are provided \"as is\". The developer does not guarantee that the projects will be uninterrupted or completely error-free and cannot be held liable for any damages that may arise from their use."
         },
         {
-          "id": "trm-2",
-          "heading": "2. Hizmetin Kullanımı",
-          "text": "Uygulama yalnızca yasal amaçlar için kullanılabilir. Konum verilerinin izinsiz takip, zarar verme veya yasadışı faaliyetler için kullanılması kesinlikle yasaktır."
-        },
-        {
-          "id": "trm-3",
-          "heading": "3. Sorumluluk Sınırlaması",
-          "text": "AVS&V9, uygulamanın kullanımından doğabilecek dolaylı zararlardan sorumlu tutulamaz. Hizmet 'olduğu gibi' sunulmaktadır."
-        },
-        {
-          "id": "trm-4",
-          "heading": "4. Değişiklikler",
-          "text": "Bu koşullar önceden haber verilmeksizin değiştirilebilir. Güncel koşullar daima bu sayfada yayınlanacaktır."
-        },
-        {
-          "id": "terms-sec-1786121534699-jx4s8",
-          "heading": "Yeni Bölüm Başlığı",
-          "text": "SDFSDFGSDFDSGDGsdGSDGSDG"
+          "id": "terms-sec-2",
+          "heading": "2. Fikri Mülkiyet",
+          "headingEN": "2. Intellectual Property",
+          "text": "Sitede yer alan projeler, kodlar ve tasarımlar açıkça belirtilmedikçe aksi yönde bir kullanım iznine tabi değildir. Projeleri tersine mühendislik yapmak veya kopyalamak yasaktır.",
+          "textEN": "The projects, codes, and designs on the site are not subject to any permission to use otherwise unless explicitly stated. Reverse engineering or copying projects is prohibited."
         }
       ]
     }
