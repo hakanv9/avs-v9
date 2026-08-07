@@ -47,7 +47,7 @@
         "📦 Kurye",
         "📱 Mobil"
       ],
-      "status": "live",
+      "status": "discontinued",
       "order": 1,
       "visible": true,
       "detail": {
@@ -116,16 +116,7 @@
             ]
           }
         ]
-      },
-      "statuses": [
-        "live",
-        "development",
-        "completed",
-        "discontinued",
-        "research",
-        "bugfix",
-        "special"
-      ]
+      }
     },
     {
       "id": "grup-v1",
@@ -218,7 +209,7 @@
         "💬 Sohbet",
         "📍 Konum"
       ],
-      "status": "development",
+      "status": "development", "statuses": ["development", "live"],
       "order": 3,
       "visible": true,
       "detail": {
@@ -276,12 +267,7 @@
             ]
           }
         ]
-      },
-      "statuses": [
-        "development",
-        "completed",
-        "special"
-      ]
+      }
     }
   ],
   "faq": [
