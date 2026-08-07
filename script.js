@@ -371,18 +371,37 @@ function toggleTheme() {
 
 // --- Dil ---
 function applyLang(lang) {
-    if (!TRANSLATIONS || Object.keys(TRANSLATIONS).length === 0) return;
-    const t = TRANSLATIONS[lang] || TRANSLATIONS['tr'];
-    if (!t) return;
-    
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (t[key] !== undefined) el.textContent = t[key];
-    });
+    if (TRANSLATIONS && Object.keys(TRANSLATIONS).length > 0) {
+        const t = TRANSLATIONS[lang] || TRANSLATIONS['tr'];
+        if (t) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+        }
+    }
     const label = document.getElementById('langLabel');
     if (label) label.textContent = lang.toUpperCase();
     document.documentElement.setAttribute('lang', lang);
     localStorage.setItem('avs_lang', lang);
+
+    // DİNAMİK BÖLÜMLERİ F5 YAPMADAN RE-RENDER ET
+    if (window.CURRENT_SITE_DATA) {
+        const isIndex = !!document.querySelector('.slider-container');
+        const isFaq = !!document.querySelector('.faq-list');
+        const isLegal = !!document.getElementById('panel-privacy');
+        const isProjectDetail = !!document.getElementById('pdAppSlider');
+
+        if (isIndex) {
+            initDynamicProjectsList(window.CURRENT_SITE_DATA);
+            initDynamicSocialFeed(window.CURRENT_SITE_DATA);
+        }
+        if (isFaq) initDynamicFaq(window.CURRENT_SITE_DATA);
+        if (isLegal) initDynamicLegal(window.CURRENT_SITE_DATA);
+        if (isProjectDetail && window.CURRENT_PROJECT) {
+            initProjectDetail(window.CURRENT_PROJECT);
+        }
+    }
 }
 
 function toggleLang() {
@@ -418,6 +437,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         loadSiteData().then(data => {
             if (!data) return; // JSON yoksa statik HTML'e devam et
+            window.CURRENT_SITE_DATA = data;
+
             // Hangi sayfada olduğumuzu anla
             const isIndex = !!document.querySelector('.slider-container');
             const isFaq = !!document.querySelector('.faq-list');
@@ -425,17 +446,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const isProjectDetail = !!document.getElementById('pdAppSlider');
 
             if (isIndex) {
-                initDynamicHeroSlider(data); // Slider img eklenir ve startHeroSlider çağrılır (PERF-3)
+                initDynamicHeroSlider(data);
                 initDynamicProjectsList(data);
                 initDynamicSocialFeed(data);
             }
             if (isFaq) initDynamicFaq(data);
             if (isLegal) initDynamicLegal(data);
-            // Proje detay sayfası için PROJECT_DATA güncelleme
+            
             if (isProjectDetail && data.projects && data.projects.length > 0) {
                 const params = new URLSearchParams(window.location.search);
                 const projKey = params.get('p') || data.projects[0].slug;
-                const proj = data.projects.find(p => p.slug === projKey) || data.projects[0];
+                const proj = data.projects.find(p => p.slug === projKey || p.id === projKey) || data.projects[0];
+                window.CURRENT_PROJECT = proj;
                 if (proj) initProjectDetail(proj);
             }
         });
@@ -875,181 +897,168 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- PROJE DETAY SAYFASI DİNAMİK VERİ HARİTASI ---
 function initProjectDetail(proj) {
-    const pdAppSlider = document.getElementById('pdAppSlider');
-    if (pdAppSlider) {
-        const lang = localStorage.getItem('avs_lang') || 'tr';
-        const name = escapeHTML(proj.name || 'Proje Detayları');
-        const desc = escapeHTML(proj.shortDesc || '');
-        const pdTitle = document.getElementById('pdAppName');
-        const descEl = document.getElementById('pdDescription');
+    if (!proj) return;
+    window.CURRENT_PROJECT = proj;
+    const lang = localStorage.getItem('avs_lang') || 'tr';
+    const detail = proj.detail || {};
 
-        const bc = document.getElementById('pdBreadcrumbName');
-        if (bc) bc.textContent = lang === 'en' ? (proj.nameEN || name) : name;
+    const name = lang === 'en' ? (proj.nameEN || proj.name || 'Project Details') : (proj.name || 'Proje Detayları');
+    const desc = lang === 'en' ? (proj.shortDescEN || proj.shortDesc || '') : (proj.shortDesc || '');
 
-        document.title = `${lang === 'en' ? (proj.nameEN || name) : name} | AVS&V9`;
+    // Title & Breadcrumb
+    document.title = `${name} | AVS&V9`;
+    const bc = document.getElementById('pdBreadcrumbName');
+    if (bc) bc.textContent = name;
 
-        if (pdTitle) pdTitle.textContent = lang === 'en' ? (proj.nameEN || name) : name;
+    // Header Name
+    const pdTitle = document.getElementById('pdAppName');
+    if (pdTitle) pdTitle.textContent = name;
 
-        const logoEl = document.getElementById('pdAppLogo');
-        if (logoEl) { logoEl.src = proj.logo; logoEl.alt = name; }
+    // Logo
+    const logoEl = document.getElementById('pdAppLogo');
+    if (logoEl) {
+        logoEl.src = detail.logo || proj.logo || 'resimler/uygulama_logo.png';
+        logoEl.alt = name;
+    }
 
-        const dlEl = document.getElementById('pdDownloads');
-        if (dlEl) dlEl.textContent = proj.downloads;
+    // Stats
+    const dlEl = document.getElementById('pdDownloads');
+    if (dlEl) dlEl.textContent = detail.downloads || 'N/A';
 
-        const ratingEl = document.getElementById('pdRating');
-        if (ratingEl) ratingEl.textContent = proj.rating;
+    const ratingEl = document.getElementById('pdRating');
+    if (ratingEl) ratingEl.textContent = detail.rating || 'N/A';
 
-        const ageEl = document.getElementById('pdAgeRating');
-        if (ageEl) ageEl.textContent = proj.age;
+    const ageEl = document.getElementById('pdAgeRating');
+    if (ageEl) ageEl.textContent = detail.ageRating || detail.age || '3+';
 
-        const plinkEl = document.getElementById('pdPlayStoreLink');
-        if (plinkEl) plinkEl.href = proj.playUrl;
-
-        const badgeContainer = document.getElementById('pdStatusBadgeContainer');
-        if (badgeContainer) {
-            let statuses = proj.statuses || (proj.status ? [proj.status] : []);
-            let trStatus = proj.detail ? proj.detail.statusText : (proj.statusText || '');
-            let enStatus = proj.detail ? proj.detail.statusTextEN : (proj.statusTextEN || '');
-            
-            badgeContainer.innerHTML = statuses.map(s => {
-                let cls = 'pd-status-badge';
-                if (s === 'inactive') cls += ' inactive';
-                else if (s === 'wip' || s === 'paused' || s === 'waiting' || s === 'research') cls += ' wip';
-                let text = '';
-                if (trStatus && statuses.length === 1 && s === proj.status) {
-                    text = lang === 'en' ? enStatus : trStatus;
-                } else {
-                    text = getStatusTag(s).text;
-                }
-                return `<div class="${cls}"><span>${text}</span></div>`;
-            }).join('');
-        }
-
-        const descArr = (lang === 'en' && proj.detail && proj.detail.descriptionEN) ? proj.detail.descriptionEN : (proj.detail && proj.detail.description ? proj.detail.description : (proj.description || []));
-        if (descEl) descEl.innerHTML = descArr.map(p => `<p>${escapeHTML(p)}</p>`).join('');
-
-        const permEl = document.getElementById('pdPermList');
-        const permsArr = proj.detail && proj.detail.permissions ? proj.detail.permissions : (proj.perms || []);
-        if (permEl) {
-            permEl.innerHTML = permsArr.map(p =>
-                `<span class="pd-tag">${escapeHTML(p)}</span>`
-            ).join('');
-        }
-
-        const minEl = document.getElementById('pdMinAndroid');
-        if (minEl) minEl.textContent = proj.detail ? proj.detail.minAndroid : (proj.minAndroid || '');
-
-        const sizeEl = document.getElementById('pdAppSize');
-        if (sizeEl) sizeEl.textContent = proj.detail ? proj.detail.appSize : (proj.size || '');
+    // Status Badges
+    const badgeContainer = document.getElementById('pdStatusBadgeContainer');
+    if (badgeContainer) {
+        let statuses = proj.statuses || (proj.status ? [proj.status] : []);
+        let trStatus = detail.statusText || proj.statusText || '';
+        let enStatus = detail.statusTextEN || proj.statusTextEN || '';
         
-        const changelogEl = document.getElementById('pdChangelog');
-        const clData = proj.detail && proj.detail.changelog ? proj.detail.changelog : [];
-        if (changelogEl) {
-            if (clData.length > 0) {
-                changelogEl.innerHTML = clData.map(c => {
-                    const title = lang === 'en' && c.titleEN ? c.titleEN : c.title;
-                    const features = lang === 'en' && c.featuresEN ? c.featuresEN : c.features;
-                    const fixes = lang === 'en' && c.fixesEN ? c.fixesEN : c.fixes;
-                    const featStr = features.length ? `<p class=\"cl-subtitle\">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
-                    const bugStr = fixes.length ? `<p class=\"cl-subtitle\">🐛 ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
-                    return `
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>${escapeHTML(c.version)} - ${escapeHTML(title)}</span>
-                            <span class="cl-date">${escapeHTML(c.date)}</span>
-                            <span class="faq-icon">▼</span>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-inner">
-                                ${featStr}
-                                ${bugStr}
-                            </div>
-                        </div>
-                    </div>`;
-                }).join('');
+        badgeContainer.innerHTML = statuses.map(s => {
+            let cls = 'pd-status-badge';
+            if (s === 'inactive' || s === 'discontinued') cls += ' inactive';
+            else if (s === 'wip' || s === 'paused' || s === 'waiting' || s === 'research' || s === 'development') cls += ' wip';
+            let text = '';
+            if (trStatus && statuses.length === 1 && s === proj.status) {
+                text = lang === 'en' ? enStatus : trStatus;
             } else {
-                changelogEl.innerHTML = `<p style="color:var(--text-secondary);">${lang === 'en' ? 'No release history yet.' : 'Henüz sürüm geçmişi bulunmuyor.'}</p>`;
+                text = getStatusTag(s).text;
             }
+            return `<div class="${cls}"><span>${escapeHTML(text)}</span></div>`;
+        }).join('');
+    }
+
+    // Android & Play Store Visibility
+    const isAndroid = detail.isAndroid !== false; // Default true unless explicitly false
+    const playStoreUrl = detail.playStoreUrl || proj.playUrl || '';
+    const hasPlayUrl = playStoreUrl && playStoreUrl !== '#' && playStoreUrl.trim().length > 0;
+
+    const plinkEl = document.getElementById('pdPlayStoreLink');
+    if (plinkEl) {
+        if (isAndroid && hasPlayUrl) {
+            plinkEl.style.display = 'inline-flex';
+            plinkEl.href = playStoreUrl;
+        } else {
+            plinkEl.style.display = 'none';
         }
+    }
 
-        const dotsEl = document.getElementById('pdDots');
-        const pdPrev = document.getElementById('pdPrev');
-        const pdNext = document.getElementById('pdNext');
-        
-        const slides = proj.detail && proj.detail.screenshots ? proj.detail.screenshots : (proj.slides || []);
-        
-        if (slides && slides.length) {
-            pdAppSlider.innerHTML = slides.map((src, i) =>
-                `<div class="pd-app-slide${i === 0 ? ' active' : ''}">
-                   <img src="${src}" alt="Ekran ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="Büyütmek için tıklayın ğŸ”">
-                 </div>`
-            ).join('');
-
-            // T11: Lightbox Zoom
-            pdAppSlider.style.cursor = 'zoom-in';
-            const lbModal = document.getElementById('pdLightboxModal');
-            const lbImg = document.getElementById('pdLightboxImg');
-            const lbClose = document.getElementById('pdLightboxClose');
-
-            function closeLightbox() {
-                if (lbModal) {
-                    lbModal.classList.remove('open');
-                    lbModal.setAttribute('aria-hidden', 'true');
-                    unlockScroll();
-                    try { lbModal.setAttribute('inert', ''); } catch (err) { }
-                }
-            }
-
-            pdAppSlider.addEventListener('click', e => {
-                const img = e.target.closest('img');
-                if (img && lbModal && lbImg) {
-                    lbImg.src = img.src;
-                    lbModal.classList.add('open');
-                    lbModal.setAttribute('aria-hidden', 'false');
-                    lockScroll();
-                    try { lbModal.removeAttribute('inert'); } catch (err) { }
-                }
-            });
-
-            if (lbClose) lbClose.addEventListener('click', closeLightbox);
-
-            const pdSlides = Array.from(pdAppSlider.querySelectorAll('.pd-app-slide'));
-            const pdDots = dotsEl ? Array.from(dotsEl.querySelectorAll('.pd-dot')) : [];
-
-            function pdGoTo(idx) {
-                if (idx === pdCurrent) return;
-                pdSlides[pdCurrent].classList.remove('active');
-                pdDots[pdCurrent]?.classList.remove('active');
-                pdCurrent = (idx + pdSlides.length) % pdSlides.length;
-                pdSlides[pdCurrent].classList.add('active');
-                pdDots[pdCurrent]?.classList.add('active');
-            }
-
-            function pdDoNext() { pdGoTo((pdCurrent + 1) % pdSlides.length); }
-            function pdDoPrev() { pdGoTo((pdCurrent - 1 + pdSlides.length) % pdSlides.length); }
-
-            function pdStartTimer() {
-                clearInterval(pdTimer);
-                pdTimer = setInterval(pdDoNext, 10000);
-            }
-
-            pdStartTimer();
-
-            addSwipeListener(pdAppSlider, 
-                () => { pdDoNext(); pdStartTimer(); }, 
-                () => { pdDoPrev(); pdStartTimer(); }
-            );
-
-            if (pdPrev) pdPrev.addEventListener('click', () => { pdDoPrev(); pdStartTimer(); });
-            if (pdNext) pdNext.addEventListener('click', () => { pdDoNext(); pdStartTimer(); });
-
-            pdDots.forEach((d, i) => d.addEventListener('click', () => { pdGoTo(i); pdStartTimer(); }));
-
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) clearInterval(pdTimer);
-                else pdStartTimer();
-            });
+    // Store Stats Bar (Hide if not Android & no downloads)
+    const storeStats = document.querySelector('.pd-store-stats');
+    if (storeStats) {
+        if (!isAndroid && !detail.downloads && !detail.rating) {
+            storeStats.style.display = 'none';
+        } else {
+            storeStats.style.display = 'flex';
         }
+    }
+
+    // System Requirements & Permissions Grid
+    const reqGrid = document.querySelector('.pd-req-grid');
+    if (reqGrid) {
+        if (isAndroid) {
+            reqGrid.style.display = 'grid';
+        } else {
+            reqGrid.style.display = 'none';
+        }
+    }
+
+    const minEl = document.getElementById('pdMinAndroid');
+    if (minEl) minEl.textContent = detail.minAndroid || 'Android 8.0+';
+
+    const sizeEl = document.getElementById('pdAppSize');
+    if (sizeEl) sizeEl.textContent = detail.appSize || proj.size || '~15 MB';
+
+    const permEl = document.getElementById('pdPermList');
+    const permsArr = detail.permissions || proj.perms || [];
+    if (permEl) {
+        if (permsArr.length > 0) {
+            permEl.innerHTML = permsArr.map(p => `<span class="pd-tag">📌 ${escapeHTML(p)}</span>`).join('');
+        } else {
+            permEl.innerHTML = `<span class="pd-tag">${lang === 'en' ? 'No special permissions required' : 'Özel izin gerektirmez'}</span>`;
+        }
+    }
+
+    // Description (Hakkında)
+    const descEl = document.getElementById('pdDescription');
+    let rawDesc = (lang === 'en' && detail.descriptionEN && detail.descriptionEN.length) ? detail.descriptionEN : (detail.description && detail.description.length ? detail.description : desc);
+    if (typeof rawDesc === 'string') {
+        rawDesc = rawDesc.split('
+
+').map(s => s.trim()).filter(Boolean);
+    }
+    if (descEl) {
+        if (Array.isArray(rawDesc) && rawDesc.length > 0) {
+            descEl.innerHTML = rawDesc.map(p => `<p>${escapeHTML(p)}</p>`).join('');
+        } else {
+            descEl.innerHTML = `<p>${escapeHTML(desc)}</p>`;
+        }
+    }
+
+    // Changelog
+    const changelogEl = document.getElementById('pdChangelog');
+    const clData = detail.changelog || [];
+    if (changelogEl) {
+        if (clData && clData.length > 0) {
+            changelogEl.innerHTML = clData.map(c => {
+                const cTitle = lang === 'en' && c.titleEN ? c.titleEN : (c.title || '');
+                const features = lang === 'en' && c.featuresEN ? c.featuresEN : (c.features || []);
+                const fixes = lang === 'en' && c.fixesEN ? c.fixesEN : (c.fixes || []);
+                const featStr = features.length ? `<p class="cl-subtitle">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
+                const bugStr = fixes.length ? `<p class="cl-subtitle">🐛 ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
+                return `
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>${escapeHTML(c.version || '')} ${cTitle ? '- ' + escapeHTML(cTitle) : ''}</span>
+                        <span class="cl-date">${escapeHTML(c.date || '')}</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            ${featStr}
+                            ${bugStr}
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        } else {
+            changelogEl.innerHTML = `<p style="color:var(--text-secondary); padding: 12px 0;">${lang === 'en' ? 'No release history published for this project yet.' : 'Bu proje için henüz sürüm geçmişi yayınlanmadı.'}</p>`;
+        }
+    }
+
+    // Screenshots / Slider
+    const pdAppSlider = document.getElementById('pdAppSlider');
+    const slides = detail.screenshots || proj.slides || [];
+    if (pdAppSlider && slides && slides.length > 0) {
+        pdAppSlider.innerHTML = slides.map((src, i) =>
+            `<div class="pd-app-slide${i === 0 ? ' active' : ''}">
+               <img src="${src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}">
+             </div>`
+        ).join('');
     }
 }
 

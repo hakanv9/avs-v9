@@ -48,9 +48,7 @@
 }
 
 [data-theme="light"] body {
-    background:
-        linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end)),
-        url("resimler/arkaplan.png") center/cover no-repeat fixed;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
 }
 
 /* === SCROLLBAR === */
@@ -1092,6 +1090,10 @@ body.modal-open {
     color: var(--text-primary);
     overflow-x: hidden;
     transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+[data-theme="light"] .subpage-body {
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
 }
 
 .subpage-main {
@@ -2789,6 +2791,10 @@ body.modal-open {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+[data-theme="light"] .subpage-body {
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
 }
 
 .subpage-main {
