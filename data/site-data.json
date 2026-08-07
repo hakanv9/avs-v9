@@ -47,7 +47,7 @@
         "📦 Kurye",
         "📱 Mobil"
       ],
-      "status": "discontinued",
+      "status": "live",
       "order": 1,
       "visible": true,
       "detail": {
@@ -118,8 +118,9 @@
         ]
       },
       "statuses": [
-        "discontinued",
-        "discontinued"
+        "live",
+        "rnd",
+        "special"
       ]
     },
     {
