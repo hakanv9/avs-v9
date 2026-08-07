@@ -1,9 +1,9 @@
 // =============================================
-// === AVS&V9 ANA SCRIPT (STABİL & HATASIZ) ===
+// === AVS&V9 ANA SCRIPT (STABÄ°L & HATASIZ) ===
 // =============================================
 
-// ─── GÜV-3: XSS KORUMA YARDIMCISI ─────────────────────────────────────────────
-// JSON'dan gelen tüm içerikler bu fonksiyondan geçirilir.
+// â”€â”€â”€ GÃœV-3: XSS KORUMA YARDIMCISI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// JSON'dan gelen tÃ¼m iÃ§erikler bu fonksiyondan geÃ§irilir.
 function sanitize(str) {
     if (str === null || str === undefined) return '';
     return String(str)
@@ -32,8 +32,8 @@ function addSwipeListener(element, onSwipeLeft, onSwipeRight) {
     }
 }
 
-// ─── PERF-3: HERO SLIDER YÖNETİCİSİ ──────────────────────────────────────────
-// Tek interval kaydedici — çift setInterval bellek sızıntısını önler.
+// â”€â”€â”€ PERF-3: HERO SLIDER YÃ–NETÄ°CÄ°SÄ° â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Tek interval kaydedici â€” Ã§ift setInterval bellek sÄ±zÄ±ntÄ±sÄ±nÄ± Ã¶nler.
 let _heroSlideInterval = null;
 
 function startHeroSlider(slidesNodeList) {
@@ -68,19 +68,25 @@ function startHeroSlider(slidesNodeList) {
     }
 }
 
-// ─── KOD-1: DUPLİKE FONKSİYONLAR KALDIRILDI ─────────────────────────────────
-// (Tüm fonksiyonların tek ve doğru versiyonları aşağıda tanımlanmıştır)
+// â”€â”€â”€ KOD-1: DUPLÄ°KE FONKSÄ°YONLAR KALDIRILDI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// (TÃ¼m fonksiyonlarÄ±n tek ve doÄŸru versiyonlarÄ± aÅŸaÄŸÄ±da tanÄ±mlanmÄ±ÅŸtÄ±r)
 
-// Durum etiketi CSS sınıfı ve metnini döndürür
+// Durum etiketi CSS sÄ±nÄ±fÄ± ve metnini dÃ¶ndÃ¼rÃ¼r
 function getStatusTag(status) {
     const map = {
-        'live':         { cls: 'tag-live',      text: '✅ Yayında' },
+        'live':         { cls: 'tag-live',      text: '🟢 Yayında' },
         'development':  { cls: 'tag-wip',       text: '⏳ Geliştirme Aşamasında' },
-        'completed':    { cls: 'tag-completed', text: '🔵 Tamamlandı' },
-        'discontinued': { cls: 'tag-inactive',  text: '📴 Yayından Kaldırılmış' },
+        'completed':    { cls: 'tag-completed', text: '✅ Tamamlandı' },
+        'discontinued': { cls: 'tag-inactive',  text: '❌ Yayından Kaldırılmış' },
         'paused':       { cls: 'tag-soon',      text: '⏸️ Geliştirme Durdurulmuş' },
+        'research':     { cls: 'tag-wip',       text: '🔍 Araştırma Aşamasında' },
+        'bugfix':       { cls: 'tag-wip',       text: '🛠️ Hata Düzeltme' },
+        'waiting':      { cls: 'tag-soon',      text: '⏱ Beklemede' },
+        'special':      { cls: 'tag-wip',       text: '⭐ Özel Durum' },
+        'rnd':          { cls: 'tag-wip',       text: '🧪 Ar-Ge Aşamasında' }
     };
     return map[status] || { cls: '', text: String(status) };
+};
 }
 
 let TRANSLATIONS = {};
@@ -91,37 +97,37 @@ async function loadTranslations() {
         if (res.ok) {
             TRANSLATIONS = await res.json();
             const savedLang = localStorage.getItem('avs_lang') || 'tr';
-            applyLang(savedLang); // İlk yüklendiğinde dili uygula
+            applyLang(savedLang); // Ä°lk yÃ¼klendiÄŸinde dili uygula
         }
     } catch (e) {
-        console.warn('translations.json yüklenemedi:', e);
+        console.warn('translations.json yÃ¼klenemedi:', e);
     }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// DİNAMİK VERİ FONKSİYONLARI — site-data.json üzerinden içerik güncelleme
-// ═══════════════════════════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// DÄ°NAMÄ°K VERÄ° FONKSÄ°YONLARI â€” site-data.json Ã¼zerinden iÃ§erik gÃ¼ncelleme
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
-// PERF-5: ?v=Date.now() kaldırıldı — vercel.json'daki no-cache headerı ile ETag tabantılı doğrulama yapılır.
+// PERF-5: ?v=Date.now() kaldÄ±rÄ±ldÄ± â€” vercel.json'daki no-cache headerÄ± ile ETag tabantÄ±lÄ± doÄŸrulama yapÄ±lÄ±r.
 async function loadSiteData() {
     try {
         const res = await fetch('data/site-data.json', { cache: 'no-cache' });
         if (!res.ok) return null;
         return await res.json();
     } catch (e) {
-        console.warn('site-data.json yüklenemedi:', e);
+        console.warn('site-data.json yÃ¼klenemedi:', e);
         return null;
     }
 }
 
-// KOD-4: img tag kullanılıyor (div+backgroundImage kaldırıldı) — erişilebilir ve SEO dostu.
+// KOD-4: img tag kullanÄ±lÄ±yor (div+backgroundImage kaldÄ±rÄ±ldÄ±) â€” eriÅŸilebilir ve SEO dostu.
 function initDynamicHeroSlider(data) {
     const slides = data.heroSlider;
     if (!slides || !slides.length) return;
     const container = document.querySelector('.slider-container');
     if (!container) return;
 
-    // Mevcut slaytları kaldır
+    // Mevcut slaytlarÄ± kaldÄ±r
     container.querySelectorAll('.slide').forEach(s => s.remove());
 
     slides
@@ -136,7 +142,7 @@ function initDynamicHeroSlider(data) {
             container.appendChild(img);
         });
 
-    // PERF-3: Yeni slaytlarla tek bir interval başlat
+    // PERF-3: Yeni slaytlarla tek bir interval baÅŸlat
     startHeroSlider(container.querySelectorAll('.slide'));
 }
 
@@ -160,16 +166,16 @@ function initDynamicProjectsList(data) {
         const extraTags = p.tags || [];
         const name = (lang === 'en' && p.nameEN) ? p.nameEN : p.name;
         const desc = (lang === 'en' && p.shortDescEN) ? p.shortDescEN : (p.shortDesc || '');
-        const detailLabel = lang === 'en' ? 'View Details' : 'Detayları İncele';
+        const detailLabel = lang === 'en' ? 'View Details' : 'DetaylarÄ± Ä°ncele';
         return `
-        <a href="proje-detay.html?p=${sanitize(p.slug)}" class="project-oval-box scroll-anim" aria-label="${sanitize(name)} Detayları">
+        <a href="proje-detay.html?p=${sanitize(p.slug)}" class="project-oval-box scroll-anim" aria-label="${sanitize(name)} DetaylarÄ±">
             <img src="${sanitize(p.thumbnail)}" alt="${sanitize(name)}" class="project-oval-img" loading="${i === 0 ? 'eager' : 'lazy'}">
             <div class="project-oval-info">
                 <div class="project-oval-title">${sanitize(name)}</div>
                 <div class="project-oval-desc">${sanitize(desc)}</div>
                 <div class="project-oval-tags">
                     ${statusHTML}
-                    ${extraTags.map(t => `<span class="tag">📌 ${sanitize(t)}</span>`).join('')}
+                    ${extraTags.map(t => `<span class="tag">ğŸ“Œ ${sanitize(t)}</span>`).join('')}
                 </div>
             </div>
             <div class="project-oval-btn">${sanitize(detailLabel)}</div>
@@ -184,7 +190,7 @@ function initDynamicProjectsList(data) {
     }
 }
 
-// UIUX-2: Fallback resmi Yakindabos.png (yoksa yeşil placeholder).
+// UIUX-2: Fallback resmi Yakindabos.png (yoksa yeÅŸil placeholder).
 function initDynamicSocialFeed(data) {
     if (!data || !data.socialFeed || !data.socialFeed.posts || !data.socialFeed.posts.length) return;
     const smSlider = document.getElementById('smSlider');
@@ -210,7 +216,7 @@ function initDynamicSocialFeed(data) {
         const pKey = (p.platform || 'youtube').toLowerCase();
         const iconSvg = SVG_ICONS[pKey] || SVG_ICONS.youtube;
         const badgeCls = BADGE_CLASSES[pKey] || 'sm-badge-youtube';
-        // UIUX-2: Resim yoksa Yakindabos.png göster
+        // UIUX-2: Resim yoksa Yakindabos.png gÃ¶ster
         const fallbackSrc = 'resimler/Yakindabos.png';
         return `
             <div class="sm-slide">
@@ -226,14 +232,14 @@ function initDynamicSocialFeed(data) {
                     <h3 class="sm-slide-title">${sanitize(p.title)}</h3>
                     <p class="sm-slide-desc">${sanitize(p.description)}</p>
                     <a href="${sanitize(p.postUrl)}" class="sm-slide-btn" target="_blank" rel="noopener noreferrer">
-                        ${(lang === 'en' ? 'View Post ↗' : 'Gönderiyi İncele ↗')}
+                        ${(lang === 'en' ? 'View Post â†—' : 'GÃ¶nderiyi Ä°ncele â†—')}
                     </a>
                 </div>
             </div>
         `;
     }).join('');
 
-    // Pagination Dots güncelle
+    // Pagination Dots gÃ¼ncelle
     const smDots = document.getElementById('smDots');
     if (smDots) {
         smDots.innerHTML = data.socialFeed.posts.map((_, idx) => `
@@ -251,7 +257,7 @@ function initDynamicFaq(data) {
     const main = document.querySelector('.subpage-main');
     if (!main) return;
 
-    // Mevcut SSS gruplarını ve başlıklarını temizle
+    // Mevcut SSS gruplarÄ±nÄ± ve baÅŸlÄ±klarÄ±nÄ± temizle
     main.querySelectorAll('.faq-section-title, .faq-list-group, .faq-cta-card').forEach(el => el.remove());
 
     faq.forEach(cat => {
@@ -271,7 +277,7 @@ function initDynamicFaq(data) {
             div.innerHTML = `
                 <button class="faq-question">
                     ${item.question}
-                    <span class="faq-icon">»</span>
+                    <span class="faq-icon">Â»</span>
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-inner">${item.answer}</div>
@@ -282,13 +288,13 @@ function initDynamicFaq(data) {
         main.appendChild(list);
     });
 
-    // CTA kartını EN SONA ekle
+    // CTA kartÄ±nÄ± EN SONA ekle
     const cta = document.createElement('section');
     cta.className = 'pd-content-card faq-cta-card';
     cta.innerHTML = `
-        <h3 class="faq-cta-title">Aradığınız cevabı bulamadınız mı?</h3>
-        <p class="faq-cta-sub">Farklı bir sorunuz veya teknik bir talebiniz varsa doğrudan geliştiriciye ulaşabilirsiniz.</p>
-        <a href="index.html#iletisim" class="oval-btn pd-cta-btn">Doğrudan İletişime Geçin →</a>`;
+        <h3 class="faq-cta-title">AradÄ±ÄŸÄ±nÄ±z cevabÄ± bulamadÄ±nÄ±z mÄ±?</h3>
+        <p class="faq-cta-sub">FarklÄ± bir sorunuz veya teknik bir talebiniz varsa doÄŸrudan geliÅŸtiriciye ulaÅŸabilirsiniz.</p>
+        <a href="index.html#iletisim" class="oval-btn pd-cta-btn">DoÄŸrudan Ä°letiÅŸime GeÃ§in â†’</a>`;
     main.appendChild(cta);
 
 
@@ -300,11 +306,11 @@ function initDynamicLegal(data) {
     const legal = data.legal;
     if (!legal) return;
 
-    // Gizlilik politikası
+    // Gizlilik politikasÄ±
     const privSec = document.getElementById('privacy');
     if (privSec && legal.privacy) {
         const dateEl = privSec.querySelector('.legal-date');
-        if (dateEl && legal.privacy.lastUpdated) dateEl.textContent = `Son güncelleme: ${legal.privacy.lastUpdated}`;
+        if (dateEl && legal.privacy.lastUpdated) dateEl.textContent = `Son gÃ¼ncelleme: ${legal.privacy.lastUpdated}`;
         const contentEl = privSec.querySelector('.legal-content');
         if (contentEl && legal.privacy.content) {
             contentEl.innerHTML = legal.privacy.content.map(sec => `
@@ -313,11 +319,11 @@ function initDynamicLegal(data) {
         }
     }
 
-    // Kullanım koşulları
+    // KullanÄ±m koÅŸullarÄ±
     const termsSec = document.getElementById('terms');
     if (termsSec && legal.terms) {
         const dateEl = termsSec.querySelector('.legal-date');
-        if (dateEl && legal.terms.lastUpdated) dateEl.textContent = `Son güncelleme: ${legal.terms.lastUpdated}`;
+        if (dateEl && legal.terms.lastUpdated) dateEl.textContent = `Son gÃ¼ncelleme: ${legal.terms.lastUpdated}`;
         const contentEl = termsSec.querySelector('.legal-content');
         if (contentEl && legal.terms.content) {
             contentEl.innerHTML = legal.terms.content.map(sec => `
@@ -331,7 +337,7 @@ function initDynamicLegal(data) {
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     const icon = document.getElementById('themeIcon');
-    if (icon) icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+    if (icon) icon.textContent = theme === 'dark' ? 'ğŸŒ™' : 'â˜€ï¸';
     localStorage.setItem('avs_theme', theme);
 }
 
@@ -361,7 +367,7 @@ function toggleLang() {
     applyLang(current === 'tr' ? 'en' : 'tr');
 }
 
-// Tercihleri anında başlat (HTML render aşamasında renk yanıp sönmesin)
+// Tercihleri anÄ±nda baÅŸlat (HTML render aÅŸamasÄ±nda renk yanÄ±p sÃ¶nmesin)
 (function () {
     const savedTheme = localStorage.getItem('avs_theme') || 'dark';
     const savedLang = localStorage.getItem('avs_lang') || 'tr';
@@ -369,12 +375,12 @@ function toggleLang() {
     applyLang(savedLang);
 })();
 
-// --- DOM HAZIR OLUNCA ÇALIŞACAK TÜM DİNLEYİCİLER ---
+// --- DOM HAZIR OLUNCA Ã‡ALIÅACAK TÃœM DÄ°NLEYÄ°CÄ°LER ---
 document.addEventListener('DOMContentLoaded', () => {
-    loadTranslations(); // TRANSLATIONS'i yükle
-    // ─── DİNAMİK VERİ YÜKLEME (site-data.json) ───────────────────────────────
-    // Admin panelinden yapılan değişiklikler burada okunur ve sayfalar güncellenir.
-    // Admin paneli sayfasında bu blok çalışmaz (data-admin-page kontrolü).
+    loadTranslations(); // TRANSLATIONS'i yÃ¼kle
+    // â”€â”€â”€ DÄ°NAMÄ°K VERÄ° YÃœKLEME (site-data.json) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Admin panelinden yapÄ±lan deÄŸiÅŸiklikler burada okunur ve sayfalar gÃ¼ncellenir.
+    // Admin paneli sayfasÄ±nda bu blok Ã§alÄ±ÅŸmaz (data-admin-page kontrolÃ¼).
     if (!document.documentElement.hasAttribute('data-admin-page')) {
         const isIndex = !!document.querySelector('.slider-container');
         if (isIndex) {
@@ -389,20 +395,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         loadSiteData().then(data => {
             if (!data) return; // JSON yoksa statik HTML'e devam et
-            // Hangi sayfada olduğumuzu anla
+            // Hangi sayfada olduÄŸumuzu anla
             const isIndex = !!document.querySelector('.slider-container');
             const isFaq = !!document.querySelector('.faq-list');
             const isLegal = !!document.getElementById('privacy');
             const isProjectDetail = !!document.getElementById('pdAppSlider');
 
             if (isIndex) {
-                initDynamicHeroSlider(data); // Slider img eklenir ve startHeroSlider çağrılır (PERF-3)
+                initDynamicHeroSlider(data); // Slider img eklenir ve startHeroSlider Ã§aÄŸrÄ±lÄ±r (PERF-3)
                 initDynamicProjectsList(data);
                 initDynamicSocialFeed(data);
             }
             if (isFaq) initDynamicFaq(data);
             if (isLegal) initDynamicLegal(data);
-            // Proje detay sayfası için PROJECT_DATA güncelleme
+            // Proje detay sayfasÄ± iÃ§in PROJECT_DATA gÃ¼ncelleme
             if (isProjectDetail && data.projects && data.projects.length > 0) {
                 const params = new URLSearchParams(window.location.search);
                 const projKey = params.get('p') || data.projects[0].slug;
@@ -418,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
     if (langToggleBtn) langToggleBtn.addEventListener('click', toggleLang);
 
-    // --- Çerez Banner ---
+    // --- Ã‡erez Banner ---
     const banner = document.getElementById('cookieBanner');
     const acceptBtn = document.getElementById('cookieAccept');
     if (banner && localStorage.getItem('avs_cookie_accepted') !== 'true') {
@@ -434,7 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Ana Sayfa Hero Slayt (Statik HTML fallback) ---
     const staticSlides = document.querySelectorAll('.slide');
     if (staticSlides.length > 0) {
-        // PERF-3: startHeroSlider ile tek interval — JSON gelince zaten override edilir.
+        // PERF-3: startHeroSlider ile tek interval â€” JSON gelince zaten override edilir.
         startHeroSlider(staticSlides);
 
         document.addEventListener('visibilitychange', () => {
@@ -446,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- HAMBURGER MOBİL MENÜ ---
+    // --- HAMBURGER MOBÄ°L MENÃœ ---
     document.addEventListener('click', e => {
         const burgerBtn = e.target.closest('.hamburger');
         if (burgerBtn) {
@@ -474,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- SCROLL ANİMASYONLARI ---
+    // --- SCROLL ANÄ°MASYONLARI ---
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -484,11 +490,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { root: null, rootMargin: '-50px', threshold: 0.15 });
 
-    // KOD-2: Global kaydedildi — dinamik eklenen kartlar da observe edilebilsin
+    // KOD-2: Global kaydedildi â€” dinamik eklenen kartlar da observe edilebilsin
     window._scrollObserver = observer;
     document.querySelectorAll('.scroll-anim').forEach(el => observer.observe(el));
 
-    // --- NAV AKTİF SEKSİYON TAKİBİ ---
+    // --- NAV AKTÄ°F SEKSÄ°YON TAKÄ°BÄ° ---
     const sections = document.querySelectorAll('section[id]');
     const navAnchors = document.querySelectorAll('.nav-links a');
     if (sections.length && navAnchors.length) {
@@ -506,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach(sec => navObserver.observe(sec));
     }
 
-    // --- FORM DOĞRULAMA (İletişim) ---
+    // --- FORM DOÄRULAMA (Ä°letiÅŸim) ---
     const contactNameInput = document.getElementById('contactName');
     const contactEmailInput = document.getElementById('contactEmail');
     const contactMessageInput = document.getElementById('contactMessage');
@@ -530,7 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const val = contactNameInput.value.trim();
         if (val.length === 0) { setFieldState(nameField, nameHint, null, ''); return false; }
         if (val.length < 2) { setFieldState(nameField, nameHint, false, 'En az 2 karakter giriniz.'); return false; }
-        setFieldState(nameField, nameHint, true, '✓ Güzel!');
+        setFieldState(nameField, nameHint, true, 'âœ“ GÃ¼zel!');
         return true;
     }
 
@@ -539,8 +545,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const val = contactEmailInput.value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (val.length === 0) { setFieldState(emailField, emailHint, null, ''); return false; }
-        if (!emailRegex.test(val)) { setFieldState(emailField, emailHint, false, 'Geçerli bir e-posta adresi girin.'); return false; }
-        setFieldState(emailField, emailHint, true, '✓ E-posta adresi geçerli.');
+        if (!emailRegex.test(val)) { setFieldState(emailField, emailHint, false, 'GeÃ§erli bir e-posta adresi girin.'); return false; }
+        setFieldState(emailField, emailHint, true, 'âœ“ E-posta adresi geÃ§erli.');
         return true;
     }
 
@@ -549,8 +555,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const val = contactMessageInput.value.trim();
         if (!messageField || !messageHint) return true;
         if (val.length === 0) { setFieldState(messageField, messageHint, null, ''); return false; }
-        if (val.length < 5) { setFieldState(messageField, messageHint, false, 'Mesajınızı biraz daha uzun yazın.'); return false; }
-        setFieldState(messageField, messageHint, true, '✓ Hazır!');
+        if (val.length < 5) { setFieldState(messageField, messageHint, false, 'MesajÄ±nÄ±zÄ± biraz daha uzun yazÄ±n.'); return false; }
+        setFieldState(messageField, messageHint, true, 'âœ“ HazÄ±r!');
         return true;
     }
 
@@ -558,7 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactEmailInput) contactEmailInput.addEventListener('input', validateEmail);
     if (contactMessageInput) contactMessageInput.addEventListener('input', validateMessage);
 
-    // --- DRY MATEMATİK CAPTCHA YARDIMCISI ---
+    // --- DRY MATEMATÄ°K CAPTCHA YARDIMCISI ---
     function setupMathCaptcha({ questionEl, inputEl, iconEl, statusEl, onVerifySuccess }) {
         let correctAnswer = null;
         let isVerified = false;
@@ -571,7 +577,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (questionEl) questionEl.textContent = `${x} + ${y} = ?`;
             if (inputEl) { inputEl.value = ''; inputEl.className = 'math-input'; }
             if (iconEl) iconEl.textContent = '';
-            if (statusEl) statusEl.textContent = 'Sonucu yazın ve devam edin.';
+            if (statusEl) statusEl.textContent = 'Sonucu yazÄ±n ve devam edin.';
         }
 
         if (inputEl) {
@@ -580,20 +586,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (inputEl.value === '' || isNaN(val)) {
                     inputEl.className = 'math-input';
                     if (iconEl) iconEl.textContent = '';
-                    if (statusEl) statusEl.textContent = 'Sonucu yazın ve devam edin.';
+                    if (statusEl) statusEl.textContent = 'Sonucu yazÄ±n ve devam edin.';
                     isVerified = false;
                     return;
                 }
                 if (val === correctAnswer) {
                     inputEl.className = 'math-input correct';
-                    if (iconEl) { iconEl.textContent = '✓'; iconEl.style.color = '#2ecc71'; }
-                    if (statusEl) statusEl.textContent = '✓ Doğru! Yönlendiriliyorsunuz...';
+                    if (iconEl) { iconEl.textContent = 'âœ“'; iconEl.style.color = '#2ecc71'; }
+                    if (statusEl) statusEl.textContent = 'âœ“ DoÄŸru! YÃ¶nlendiriliyorsunuz...';
                     isVerified = true;
                     setTimeout(() => { if (onVerifySuccess) onVerifySuccess(); }, 600);
                 } else {
                     inputEl.className = 'math-input wrong';
-                    if (iconEl) { iconEl.textContent = '✗'; iconEl.style.color = '#e74c3c'; }
-                    if (statusEl) statusEl.textContent = 'Yanlış cevap! Soru yenileniyor...';
+                    if (iconEl) { iconEl.textContent = 'âœ—'; iconEl.style.color = '#e74c3c'; }
+                    if (statusEl) statusEl.textContent = 'YanlÄ±ÅŸ cevap! Soru yenileniyor...';
                     isVerified = false;
                     setTimeout(generate, 800);
                 }
@@ -607,7 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // --- İLETİŞİM FORMU & MATEMATİK CAPTCHA ---
+    // --- Ä°LETÄ°ÅÄ°M FORMU & MATEMATÄ°K CAPTCHA ---
     const contactButton = document.getElementById('contactButton');
     const verificationModal = document.getElementById('verificationModal');
     const verifyButton = document.getElementById('verifyButton');
@@ -664,32 +670,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = contactNameInput ? contactNameInput.value.trim() : '';
         const email = contactEmailInput ? contactEmailInput.value.trim() : '';
         const message = contactMessageInput ? contactMessageInput.value.trim() : '';
-        const rawEmail = 'hakangureli090@gmail.com';
-        const subject = encodeURIComponent(`Portfolyo İletişim - ${name}`);
-        const body = encodeURIComponent(`Merhaba,\n\nAdım: ${name}\nE-postam: ${email}\n\nMesajım:\n${message}`);
+        const rawEmail = atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==');
+        const subject = encodeURIComponent(`Portfolyo Ä°letiÅŸim - ${name}`);
+        const body = encodeURIComponent(`Merhaba,\n\nAdÄ±m: ${name}\nE-postam: ${email}\n\nMesajÄ±m:\n${message}`);
         const mailtoUrl = `mailto:${rawEmail}?subject=${subject}&body=${body}`;
 
         if (contactStatus) {
-            // KOD-3: innerHTML kullan ama onclick YOK — aşağıda addEventListener ile bağlan
+            // KOD-3: innerHTML kullan ama onclick YOK â€” aÅŸaÄŸÄ±da addEventListener ile baÄŸlan
             contactStatus.innerHTML = `
                 <div class="mail-success-card">
-                    <p class="mail-success-title">✅ Güvenlik Doğrulaması Başarılı!</p>
-                    <p class="mail-success-sub">Mesajınız e-posta istemcinize aktarıldı. Otomatik açılmadıysa aşağıdaki butona basabilir veya adrese doğrudan mail atabilirsiniz:</p>
+                    <p class="mail-success-title">âœ… GÃ¼venlik DoÄŸrulamasÄ± BaÅŸarÄ±lÄ±!</p>
+                    <p class="mail-success-sub">MesajÄ±nÄ±z e-posta istemcinize aktarÄ±ldÄ±. Otomatik aÃ§Ä±lmadÄ±ysa aÅŸaÄŸÄ±daki butona basabilir veya adrese doÄŸrudan mail atabilirsiniz:</p>
                     <div class="mail-success-actions">
-                        <a href="${mailtoUrl}" class="mail-direct-btn">✉️ E-postayı Gönder (${rawEmail})</a>
-                        <button type="button" class="mail-copy-btn" id="mailCopyBtn">📋 Adresi Kopyala</button>
+                        <a href="${mailtoUrl}" class="mail-direct-btn">âœ‰ï¸ E-postayÄ± GÃ¶nder (${rawEmail})</a>
+                        <button type="button" class="mail-copy-btn" id="mailCopyBtn">ğŸ“‹ Adresi Kopyala</button>
                     </div>
                 </div>
             `;
-            // KOD-3: CSP uyumlu event listener — onclick attribute yok
+            // KOD-3: CSP uyumlu event listener â€” onclick attribute yok
             const copyBtn = document.getElementById('mailCopyBtn');
             if (copyBtn) {
                 copyBtn.addEventListener('click', () => {
                     navigator.clipboard.writeText(rawEmail).then(() => {
-                        copyBtn.textContent = '✓ Kopyalandı!';
-                        setTimeout(() => { copyBtn.textContent = '📋 Adresi Kopyala'; }, 2000);
+                        copyBtn.textContent = 'âœ“ KopyalandÄ±!';
+                        setTimeout(() => { copyBtn.textContent = 'ğŸ“‹ Adresi Kopyala'; }, 2000);
                     }).catch(() => {
-                        copyBtn.textContent = rawEmail; // Fallback: metni göster
+                        copyBtn.textContent = rawEmail; // Fallback: metni gÃ¶ster
                     });
                 });
             }
@@ -703,11 +709,11 @@ document.addEventListener('DOMContentLoaded', () => {
             mailLink.click();
             document.body.removeChild(mailLink);
         } catch (err) {
-            console.error('Mailto hatası:', err);
+            console.error('Mailto hatasÄ±:', err);
         }
     }
 
-    if (verifyButton) verifyButton.addEventListener('click', () => { if (contactCaptcha.isVerified()) completeVerification(); else if (captchaStatus) captchaStatus.textContent = 'Lütfen soruyu doğru cevaplayın.'; });
+    if (verifyButton) verifyButton.addEventListener('click', () => { if (contactCaptcha.isVerified()) completeVerification(); else if (captchaStatus) captchaStatus.textContent = 'LÃ¼tfen soruyu doÄŸru cevaplayÄ±n.'; });
     if (cancelButton) cancelButton.addEventListener('click', closeVerificationModal);
     if (verificationModal) verificationModal.addEventListener('click', e => { if (e.target === verificationModal) closeVerificationModal(); });
 
@@ -718,17 +724,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageOk = validateMessage();
 
             if (!nameOk && contactNameInput && contactNameInput.value.trim().length === 0)
-                setFieldState(nameField, nameHint, false, 'Lütfen adınızı girin.');
+                setFieldState(nameField, nameHint, false, 'LÃ¼tfen adÄ±nÄ±zÄ± girin.');
             if (!emailOk && contactEmailInput && contactEmailInput.value.trim().length === 0)
-                setFieldState(emailField, emailHint, false, 'Lütfen e-posta adresinizi girin.');
+                setFieldState(emailField, emailHint, false, 'LÃ¼tfen e-posta adresinizi girin.');
             if (!messageOk && contactMessageInput && contactMessageInput.value.trim().length === 0)
-                setFieldState(messageField, messageHint, false, 'Lütfen mesajınızı girin.');
+                setFieldState(messageField, messageHint, false, 'LÃ¼tfen mesajÄ±nÄ±zÄ± girin.');
 
             if (nameOk && emailOk && messageOk) openVerificationModal();
         });
     }
 
-    // --- BENTO KART TIKLAMALARI VE KLAVYE ERİŞİLEBİLİRLİĞİ ---
+    // --- BENTO KART TIKLAMALARI VE KLAVYE ERÄ°ÅÄ°LEBÄ°LÄ°RLÄ°ÄÄ° ---
     document.addEventListener('click', e => {
         const card = e.target.closest('.bento-card[data-href]');
         if (card) {
@@ -748,7 +754,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- SSS & CHANGELOG AKORDİYON ---
+    // --- SSS & CHANGELOG AKORDÄ°YON ---
     document.addEventListener('click', e => {
         const btn = e.target.closest('.faq-question');
         if (!btn) return;
@@ -844,12 +850,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- PROJE DETAY SAYFASI DİNAMİK VERİ HARİTASI ---
+    // --- PROJE DETAY SAYFASI DÄ°NAMÄ°K VERÄ° HARÄ°TASI ---
 function initProjectDetail(proj) {
     const pdAppSlider = document.getElementById('pdAppSlider');
     if (pdAppSlider) {
         const lang = localStorage.getItem('avs_lang') || 'tr';
-        const name = escapeHTML(proj.name || 'Proje Detayları');
+        const name = escapeHTML(proj.name || 'Proje DetaylarÄ±');
         const desc = escapeHTML(proj.shortDesc || '');
         const pdTitle = document.getElementById('pdAppName');
         const descEl = document.getElementById('pdDescription');
@@ -921,14 +927,14 @@ function initProjectDetail(proj) {
                     const title = lang === 'en' && c.titleEN ? c.titleEN : c.title;
                     const features = lang === 'en' && c.featuresEN ? c.featuresEN : c.features;
                     const fixes = lang === 'en' && c.fixesEN ? c.fixesEN : c.fixes;
-                    const featStr = features.length ? `<p class="cl-subtitle">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
-                    const bugStr = fixes.length ? `<p class="cl-subtitle">🐛 ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
+                    const featStr = features.length ? `<p class=\"cl-subtitle\">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
+                    const bugStr = fixes.length ? `<p class=\"cl-subtitle\">🐛 ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
                     return `
                     <div class="faq-item">
                         <button class="faq-question">
                             <span>${escapeHTML(c.version)} - ${escapeHTML(title)}</span>
                             <span class="cl-date">${escapeHTML(c.date)}</span>
-                            <span class="faq-icon">▼</span>
+                            <span class="faq-icon">â–¼</span>
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
@@ -939,7 +945,7 @@ function initProjectDetail(proj) {
                     </div>`;
                 }).join('');
             } else {
-                changelogEl.innerHTML = `<p style="color:var(--text-secondary);">${lang === 'en' ? 'No release history yet.' : 'Henüz sürüm geçmişi bulunmuyor.'}</p>`;
+                changelogEl.innerHTML = `<p style="color:var(--text-secondary);">${lang === 'en' ? 'No release history yet.' : 'HenÃ¼z sÃ¼rÃ¼m geÃ§miÅŸi bulunmuyor.'}</p>`;
             }
         }
 
@@ -950,9 +956,9 @@ function initProjectDetail(proj) {
         const slides = proj.detail && proj.detail.screenshots ? proj.detail.screenshots : (proj.slides || []);
         
         if (slides && slides.length) {
-            pdAppSlider.innerHTML = proj.slides.map((src, i) =>
+            pdAppSlider.innerHTML = slides.map((src, i) =>
                 `<div class="pd-app-slide${i === 0 ? ' active' : ''}">
-                   <img src="${src}" alt="Ekran ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="Büyütmek için tıklayın 🔍">
+                   <img src="${src}" alt="Ekran ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="BÃ¼yÃ¼tmek iÃ§in tÄ±klayÄ±n ğŸ”">
                  </div>`
             ).join('');
 
@@ -1024,7 +1030,7 @@ function initProjectDetail(proj) {
     }
 }
 
-    // --- Proje Detay Feedback / E-posta Gönderimi (pdSendBtn) ---
+    // --- Proje Detay Feedback / E-posta GÃ¶nderimi (pdSendBtn) ---
     const pdSendBtn = document.getElementById('pdSendBtn');
     const pdVerifyModal = document.getElementById('pdVerifyModal');
     const pdMathQ = document.getElementById('pdMathQ');
@@ -1054,29 +1060,29 @@ function initProjectDetail(proj) {
 
     function completePdVerify() {
         closePdModal();
-        const name = document.getElementById('pdName')?.value.trim() || 'İsimsiz';
+        const name = document.getElementById('pdName')?.value.trim() || 'Ä°simsiz';
         const email = document.getElementById('pdEmail')?.value.trim() || '';
-        const subj = document.getElementById('pdSubject')?.value || 'diğer';
+        const subj = document.getElementById('pdSubject')?.value || 'diÄŸer';
         const msg = document.getElementById('pdMessage')?.value.trim() || '';
 
-        const mailtoUrl = `mailto:hakangureli090@gmail.com?subject=${encodeURIComponent(`[AVS&V9 - ${subj.toUpperCase()}] ${name}`)}&body=${encodeURIComponent(`Gönderen: ${name}\nE-posta: ${email}\n\nMesaj:\n${msg}`)}`;
+        const mailtoUrl = `mailto:${atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==')}?subject=${encodeURIComponent(`[AVS&V9 - ${subj.toUpperCase()}] ${name}`)}&body=${encodeURIComponent(`GÃ¶nderen: ${name}\nE-posta: ${email}\n\nMesaj:\n${msg}`)}`;
         window.location.href = mailtoUrl;
 
         if (pdStatus) {
             pdStatus.style.display = 'block';
             pdStatus.innerHTML = `
                 <div style="background: rgba(0,173,181,0.08); border: 1px solid var(--accent-color); border-radius: 16px; padding: 16px; margin-top: 14px; text-align: left;">
-                    <p style="margin: 0 0 8px; color: var(--accent-color); font-weight: 700;">✓ E-posta istemciniz açıldı!</p>
-                    <p style="margin: 0 0 8px; font-size: 0.85rem; color: var(--text-secondary);">Açılmadıysa doğrudan e-posta atabilirsiniz: <strong>hakangureli090@gmail.com</strong></p>
-                    <button type="button" id="copyPdMailBtn" class="bento-detail-btn" style="font-size: 0.78rem; padding: 5px 12px;">📋 E-postayı Kopyala</button>
+                    <p style="margin: 0 0 8px; color: var(--accent-color); font-weight: 700;">âœ“ E-posta istemciniz aÃ§Ä±ldÄ±!</p>
+                    <p style="margin: 0 0 8px; font-size: 0.85rem; color: var(--text-secondary);">AÃ§Ä±lmadÄ±ysa doÄŸrudan e-posta atabilirsiniz: <strong>${atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==')}</strong></p>
+                    <button type="button" id="copyPdMailBtn" class="bento-detail-btn" style="font-size: 0.78rem; padding: 5px 12px;">ğŸ“‹ E-postayÄ± Kopyala</button>
                 </div>
             `;
             const copyBtn = document.getElementById('copyPdMailBtn');
             if (copyBtn) {
                 copyBtn.addEventListener('click', () => {
-                    navigator.clipboard.writeText('hakangureli090@gmail.com');
-                    copyBtn.textContent = '✓ Kopyalandı!';
-                    setTimeout(() => { copyBtn.textContent = '📋 E-postayı Kopyala'; }, 2000);
+                    navigator.clipboard.writeText(atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ=='));
+                    copyBtn.textContent = 'âœ“ KopyalandÄ±!';
+                    setTimeout(() => { copyBtn.textContent = 'ğŸ“‹ E-postayÄ± Kopyala'; }, 2000);
                 });
             }
         }
@@ -1091,7 +1097,7 @@ function initProjectDetail(proj) {
             if (!name || !email || !msg) {
                 if (pdStatus) {
                     pdStatus.style.display = 'block';
-                    pdStatus.innerHTML = `<span style="color: #e74c3c;">Lütfen tüm gerekli alanları (Ad, E-posta, Mesaj) doldurun.</span>`;
+                    pdStatus.innerHTML = `<span style="color: #e74c3c;">LÃ¼tfen tÃ¼m gerekli alanlarÄ± (Ad, E-posta, Mesaj) doldurun.</span>`;
                 }
                 return;
             }
@@ -1110,9 +1116,10 @@ function initProjectDetail(proj) {
     if (pdVerifyBtn) {
         pdVerifyBtn.addEventListener('click', () => {
             if (pdCaptcha.isVerified()) completePdVerify();
-            else if (pdCapStatus) pdCapStatus.textContent = 'Lütfen soruyu doğru cevaplayın.';
+            else if (pdCapStatus) pdCapStatus.textContent = 'LÃ¼tfen soruyu doÄŸru cevaplayÄ±n.';
         });
     }
 
 });
+
 

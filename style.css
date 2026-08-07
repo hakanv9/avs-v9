@@ -1,4 +1,4 @@
-/* === RENKLER — Dark Mode (Varsayılan) === */
+/* === RENKLER â€” Dark Mode (VarsayÄ±lan) === */
 :root {
     --bg-color: #121212;
     --surface-color: #1e1e1e;
@@ -67,7 +67,7 @@
     font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
 }
 
-/* SEO-4: Input ve textarea için de focus ring — klavye kullanıcıları form alanını görebilsin */
+/* SEO-4: Input ve textarea iÃ§in de focus ring â€” klavye kullanÄ±cÄ±larÄ± form alanÄ±nÄ± gÃ¶rebilsin */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
@@ -78,7 +78,7 @@ select:focus-visible {
     border-radius: 4px;
 }
 
-/* PERF-4: scroll-behavior sadır hareket hassaslığı olmayan kullanıcılarda çalışsın */
+/* PERF-4: scroll-behavior sadÄ±r hareket hassaslÄ±ÄŸÄ± olmayan kullanÄ±cÄ±larda Ã§alÄ±ÅŸsÄ±n */
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
@@ -102,14 +102,14 @@ body.modal-open {
     overflow: hidden !important;
 }
 
-/* === BÖLÜM KAPETİCİ === */
+/* === BÃ–LÃœM KAPETÄ°CÄ° === */
 .snap-container {
     min-height: 100vh;
     background: transparent;
 }
 
 .snap-page {
-    /* Oto kaydırma (snap) kaldırıldı */
+    /* Oto kaydÄ±rma (snap) kaldÄ±rÄ±ldÄ± */
 }
 
 /* === NAV === */
@@ -206,7 +206,7 @@ body.modal-open {
 }
 
 /* === HAMBURGER === */
-/* UIUX-5: WCAG 2.1 AA — en az 44x44px dokunma hedefi */
+/* UIUX-5: WCAG 2.1 AA â€” en az 44x44px dokunma hedefi */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -238,7 +238,7 @@ body.modal-open {
     border-radius: 3px;
 }
 
-/* === BÖLÜMLER === */
+/* === BÃ–LÃœMLER === */
 .section {
     width: 100%;
     padding: 60px 20px;
@@ -361,7 +361,7 @@ body.modal-open {
 
 .slide.active { opacity: 1; }
 
-/* === BENTO GRID — UIUX-1: Gerçek CSS Grid Mozaik Düzeni === */
+/* === BENTO GRID â€” UIUX-1: GerÃ§ek CSS Grid Mozaik DÃ¼zeni === */
 .bento-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -394,7 +394,7 @@ body.modal-open {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* UIUX-1: Büyük kart sol sütunda 2 satır kaplar; küçük kartlar sağ sütunda alt alta */
+/* UIUX-1: BÃ¼yÃ¼k kart sol sÃ¼tunda 2 satÄ±r kaplar; kÃ¼Ã§Ã¼k kartlar saÄŸ sÃ¼tunda alt alta */
 .bento-large {
     grid-row: span 2;
     box-shadow: inset 4px 0 0 var(--accent-color),
@@ -404,7 +404,7 @@ body.modal-open {
 }
 
 .bento-small {
-    /* UIUX-1: Grid ile yerleşim otomatik — flex:1 kaldırıldı */
+    /* UIUX-1: Grid ile yerleÅŸim otomatik â€” flex:1 kaldÄ±rÄ±ldÄ± */
 }
 
 .bento-card:hover {
@@ -479,7 +479,7 @@ body.modal-open {
     margin: 0;
 }
 
-/* === ETİKETLER === */
+/* === ETÄ°KETLER === */
 .bento-tags {
     display: flex;
     flex-wrap: wrap;
@@ -630,7 +630,7 @@ body.modal-open {
     font-size: 1.1rem;
 }
 
-/* === İLETİŞİM SVG === */
+/* === Ä°LETÄ°ÅÄ°M SVG === */
 .contact-illustration {
     width: 110px;
     height: 110px;
@@ -776,7 +776,7 @@ body.modal-open {
     font-size: 0.95rem;
 }
 
-/* === DOĞRULAMA MODALI === */
+/* === DOÄRULAMA MODALI === */
 .verification-modal {
     position: fixed;
     inset: 0;
@@ -885,7 +885,7 @@ body.modal-open {
 .verify-btn  { background: var(--accent-color); color: #121212; }
 .cancel-btn  { background: #444; color: var(--text-primary); }
 
-/* === SCROLL ANİMASYON === */
+/* === SCROLL ANÄ°MASYON === */
 .scroll-anim {
     opacity: 0;
     transform: translateY(30px);
@@ -927,7 +927,7 @@ body.modal-open {
     width: 100%;
 }
 
-/* === BAŞARI ANİMASYONU === */
+/* === BAÅARI ANÄ°MASYONU === */
 @keyframes successPop {
     0%   { transform: scale(0.7); opacity: 0; }
     60%  { transform: scale(1.1); }
@@ -995,7 +995,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === ÇEREZ BANNER ===
+   === Ã‡EREZ BANNER ===
    ============================================= */
 .cookie-banner {
     position: fixed;
@@ -1117,7 +1117,7 @@ body.modal-open {
     line-height: 1.7;
 }
 
-/* === SSS AKORDİYON === */
+/* === SSS AKORDÄ°YON === */
 .faq-list {
     display: flex;
     flex-direction: column;
@@ -1290,7 +1290,7 @@ body.modal-open {
     margin-bottom: 6px;
 }
 
-/* === MOBİL === */
+/* === MOBÄ°L === */
 @media (max-width: 768px) {
 
     .fullscreen { padding: 85px 14px 24px 14px; }
@@ -1303,7 +1303,7 @@ body.modal-open {
 
     .about-oval-box p { font-size: 0.95rem; line-height: 1.6; }
 
-    /* UIUX-5: flex olarak başlatılıyor ki align-items/flex-direction etkin olsun */
+    /* UIUX-5: flex olarak baÅŸlatÄ±lÄ±yor ki align-items/flex-direction etkin olsun */
     .hamburger { display: flex; }
 
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
@@ -1343,7 +1343,7 @@ body.modal-open {
         pointer-events: all;
     }
 
-    .nav-controls { gap: 6px; }
+    .nav-controls { gap: 6px; margin-right: 15px; }
     .nav-ctrl-btn { padding: 5px 9px; font-size: 0.78rem; }
     #langLabel { display: none; }
 
@@ -1382,7 +1382,26 @@ body.modal-open {
 
     .section-title { font-size: 1.7rem; padding: 8px 24px; }
 
-    .slider-container { height: clamp(250px, 44vh, 420px); }
+    .slider-container {
+        height: auto;
+        min-height: 200px;
+    }
+    .slider-container .slide {
+        position: absolute;
+        height: auto;
+        bottom: 0;
+        object-fit: contain;
+    }
+    .slider-container .slide.active {
+        position: relative;
+    }
+    .pd-app-slide img,
+    .sm-slide-img-wrap img,
+    .project-oval-img,
+    .bento-img-wrap img {
+        height: auto !important;
+        object-fit: contain !important;
+    }
 
     .pgallery-box { width: 95vw; padding: 20px 14px 14px; }
     .pgallery-track { height: clamp(340px, 58vh, 520px); }
@@ -1433,7 +1452,7 @@ body.modal-open {
     min-height: 200px;
 }
 
-/* ── Tek slayt ── */
+/* â”€â”€ Tek slayt â”€â”€ */
 .sm-slide {
     display: flex;
     flex-direction: row;
@@ -1461,7 +1480,7 @@ body.modal-open {
     transform: translateX(-30px);
 }
 
-/* ── Görsel tarafı ── */
+/* â”€â”€ GÃ¶rsel tarafÄ± â”€â”€ */
 .sm-slide-img-wrap {
     width: 280px;
     flex-shrink: 0;
@@ -1487,7 +1506,7 @@ body.modal-open {
 
 .sm-slide:hover .sm-slide-img-wrap img { transform: scale(1.04); }
 
-/* ── Metin tarafı ── */
+/* â”€â”€ Metin tarafÄ± â”€â”€ */
 .sm-slide-body {
     flex: 1;
     padding: 28px 32px;
@@ -1572,7 +1591,7 @@ body.modal-open {
     box-shadow: 0 6px 20px rgba(0, 173, 181, 0.38);
 }
 
-/* ── Ok tuşları ── */
+/* â”€â”€ Ok tuÅŸlarÄ± â”€â”€ */
 .sm-arrow {
     position: absolute;
     top: 50%;
@@ -1608,7 +1627,7 @@ body.modal-open {
 .sm-arrow-prev { left: -20px; }
 .sm-arrow-next { right: -20px; }
 
-/* ── Pagination dots ── */
+/* â”€â”€ Pagination dots â”€â”€ */
 .sm-dots {
     display: flex;
     justify-content: center;
@@ -1770,11 +1789,11 @@ body.modal-open {
     box-shadow: 0 14px 38px rgba(1,135,95,0.22);
 }
 
-/* === MOBİL — Sosyal medya ===  */
+/* === MOBÄ°L â€” Sosyal medya ===  */
 @media (max-width: 768px) {
     .sm-slide {
         flex-direction: column;
-    }
+   ; will-change: transform }
 
     .sm-slide-img-wrap {
         width: 100%;
@@ -1819,7 +1838,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === NAVBAR DROPDOWN MENÜ ===
+   === NAVBAR DROPDOWN MENÃœ ===
    ============================================= */
 .nav-dropdown-parent {
     position: relative;
@@ -1889,7 +1908,7 @@ body.modal-open {
     color: var(--accent-color);
 }
 
-/* Mobile: dropdown düz liste */
+/* Mobile: dropdown dÃ¼z liste */
 @media (max-width: 768px) {
     .nav-dropdown {
         position: static;
@@ -1909,7 +1928,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === BENTO KART — AKSIYON ALANI ===
+   === BENTO KART â€” AKSIYON ALANI ===
    ============================================= */
 .bento-actions {
     display: flex;
@@ -1985,7 +2004,7 @@ body.modal-open {
     transition: background 0.35s ease;
 }
 
-/* ── A. Uygulama Slider ── */
+/* â”€â”€ A. Uygulama Slider â”€â”€ */
 .pd-app-slider-wrapper {
     position: relative;
     border-radius: 24px;
@@ -2086,7 +2105,7 @@ body.modal-open {
     width: 22px;
 }
 
-/* ── B. Play Store Kartı ── */
+/* â”€â”€ B. Play Store KartÄ± â”€â”€ */
 .pd-store-card {
     display: flex;
     align-items: center;
@@ -2236,7 +2255,7 @@ body.modal-open {
     flex-shrink: 0;
 }
 
-/* ── C. Açıklama ── */
+/* â”€â”€ C. AÃ§Ä±klama â”€â”€ */
 .pd-description p {
     color: var(--text-secondary);
     line-height: 1.75;
@@ -2249,7 +2268,7 @@ body.modal-open {
     line-height: 1.8;
 }
 
-/* ── D. Gereksinimler & İzinler ── */
+/* â”€â”€ D. Gereksinimler & Ä°zinler â”€â”€ */
 .pd-req-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2327,7 +2346,7 @@ body.modal-open {
     flex-shrink: 0;
 }
 
-/* ── E. Changelog ── */
+/* â”€â”€ E. Changelog â”€â”€ */
 .cl-date {
     font-size: 0.74rem;
     color: var(--text-secondary);
@@ -2343,7 +2362,7 @@ body.modal-open {
     margin: 8px 0 6px;
 }
 
-/* ── F. Feedback Form ── */
+/* â”€â”€ F. Feedback Form â”€â”€ */
 .pd-feedback-intro {
     font-size: 0.88rem;
     color: var(--text-secondary);
@@ -2381,7 +2400,7 @@ body.modal-open {
 
 .pd-select:focus { border-color: var(--accent-color); }
 
-/* ── G. CTA ── */
+/* â”€â”€ G. CTA â”€â”€ */
 .pd-contact-cta {
     text-align: center;
     padding: 20px 0 8px;
@@ -2397,7 +2416,7 @@ body.modal-open {
     text-decoration: none;
 }
 
-/* === MOBİL — Proje Detay ===  */
+/* === MOBÄ°L â€” Proje Detay ===  */
 @media (max-width: 640px) {
     .pd-store-card {
         flex-direction: column;
@@ -2437,7 +2456,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === SIKÇA SORULAN SORULAR (FAQ Accordion) ===
+   === SIKÃ‡A SORULAN SORULAR (FAQ Accordion) ===
    ============================================= */
 .faq-list {
     display: flex;
@@ -2565,7 +2584,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === K3: MAİL BAŞARI & KOPYALAMA KARTI ===
+   === K3: MAÄ°L BAÅARI & KOPYALAMA KARTI ===
    ============================================= */
 .mail-success-card {
     background: var(--surface-color);
@@ -2642,7 +2661,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === T2: MODERN GLOW & HOVER ETKİLERİ ===
+   === T2: MODERN GLOW & HOVER ETKÄ°LERÄ° ===
    ============================================= */
 .bento-card {
     position: relative;
@@ -2690,10 +2709,10 @@ body.modal-open {
 }
 
 /* =============================================
-   === T1: MOBİL & MASAÜSTÜ BENTO FORMATI ===
+   === T1: MOBÄ°L & MASAÃœSTÃœ BENTO FORMATI ===
    ============================================= */
 @media (max-width: 640px) {
-    /* UIUX-1: Mobil'de tek sütun */
+    /* UIUX-1: Mobil'de tek sÃ¼tun */
     .bento-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
@@ -2727,7 +2746,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === TASARIM-05: LIGHT MODE KONTRAST İYİLEŞTİRMESİ ===
+   === TASARIM-05: LIGHT MODE KONTRAST Ä°YÄ°LEÅTÄ°RMESÄ° ===
    ============================================= */
 [data-theme="light"] {
     --bg-color: #f8fafc;
@@ -2753,7 +2772,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === ALT SAYFALAR & YASAL BİLGİLER (yasal.html & sss.html) ===
+   === ALT SAYFALAR & YASAL BÄ°LGÄ°LER (yasal.html & sss.html) ===
    ============================================= */
 .subpage-body {
     min-height: 100vh;
@@ -2895,7 +2914,7 @@ body.modal-open {
     margin-bottom: 6px;
 }
 
-/* === LIGHT MODE — YASAL & SUBPAGE UYUMLULUK === */
+/* === LIGHT MODE â€” YASAL & SUBPAGE UYUMLULUK === */
 [data-theme="light"] .subpage-hero h1 {
     color: #0f172a;
 }
@@ -2966,7 +2985,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === KOD-05: FOOTER & SOSYAL MEDYA İKONLARI ===
+   === KOD-05: FOOTER & SOSYAL MEDYA Ä°KONLARI ===
    ============================================= */
 .site-footer {
     width: 100%;
@@ -3054,7 +3073,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === KOD-03: TEMİZLENEN INLINE STİLLER İÇİN SINIFLAR ===
+   === KOD-03: TEMÄ°ZLENEN INLINE STÄ°LLER Ä°Ã‡Ä°N SINIFLAR ===
    ============================================= */
 .sm-intro-box {
     margin-bottom: 24px;
@@ -3137,7 +3156,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === EXTRA 2: MOBİL VEYA MASAÜSTÜ SIZDIRMAZ EKRAN UYUMU ===
+   === EXTRA 2: MOBÄ°L VEYA MASAÃœSTÃœ SIZDIRMAZ EKRAN UYUMU ===
    ============================================= */
 @media (max-width: 768px) {
     .navbar {
@@ -3184,11 +3203,7 @@ body.modal-open {
         font-size: 0.78rem;
     }
 
-    .slider-container {
-        height: clamp(260px, 45vh, 380px);
-        border-radius: 20px;
-        margin-bottom: 20px;
-    }
+
 
     .section {
         padding: 40px 14px;
@@ -3214,7 +3229,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === LIGHTBOX GÖRSEL ZOOM MODALI (T11) ===
+   === LIGHTBOX GÃ–RSEL ZOOM MODALI (T11) ===
    ============================================= */
 .pgallery-overlay {
     position: fixed;
@@ -3303,7 +3318,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === UIUX-02 & SEO-02: MİKRO ETKİLEŞİM & ERİŞİLEBİLİRLİK ===
+   === UIUX-02 & SEO-02: MÄ°KRO ETKÄ°LEÅÄ°M & ERÄ°ÅÄ°LEBÄ°LÄ°RLÄ°K ===
    ============================================= */
    
 /* Ripple Effect for Buttons */
@@ -3344,7 +3359,7 @@ body.modal-open {
 * {
     -webkit-tap-highlight-color: transparent;
 }
-/* === PROJELER LİSTESİ (OVAL TASARIM) === */
+/* === PROJELER LÄ°STESÄ° (OVAL TASARIM) === */
 .projects-list {
     display: flex;
     flex-direction: column;
@@ -3422,7 +3437,7 @@ body.modal-open {
         align-items: flex-start;
         padding: 20px;
         border-radius: 24px;
-    }
+   ; will-change: transform }
     .project-oval-img {
         width: 100%;
         height: 180px;
