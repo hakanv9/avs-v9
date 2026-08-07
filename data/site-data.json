@@ -116,7 +116,11 @@
             ]
           }
         ]
-      }
+      },
+      "statuses": [
+        "discontinued",
+        "discontinued"
+      ]
     },
     {
       "id": "grup-v1",
@@ -209,7 +213,11 @@
         "💬 Sohbet",
         "📍 Konum"
       ],
-      "status": "development", "statuses": ["development", "live"],
+      "status": "development",
+      "statuses": [
+        "development",
+        "live"
+      ],
       "order": 3,
       "visible": true,
       "detail": {
