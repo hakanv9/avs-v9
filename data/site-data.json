@@ -55,10 +55,10 @@
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "resimler/uygulama_logo.png",
-        "downloads": "5B+",
+        "downloads": "500B+",
         "rating": "4.5 ★",
         "ageRating": "3+",
-        "appSize": "~18 MB",
+        "appSize": "~35 MB",
         "minAndroid": "Android 8.0 (Oreo) / API 26",
         "description": [
           "V9 Kurye Uygulaması, teslimat süreçlerini uçtan uca yöneten bir mobil çözümdür.",
