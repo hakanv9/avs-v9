@@ -1093,7 +1093,7 @@ body.modal-open {
 }
 
 [data-theme="light"] .subpage-body {
-    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end)), var(--bg-color);
 }
 
 .subpage-main {
@@ -2794,7 +2794,7 @@ body.modal-open {
 }
 
 [data-theme="light"] .subpage-body {
-    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end)), var(--bg-color);
 }
 
 .subpage-main {

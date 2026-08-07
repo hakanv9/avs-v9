@@ -1004,8 +1004,10 @@ function initDynamicLegal(data) {
         const contentEl = privSec.querySelector('.legal-content');
         if (contentEl && legal.privacy.content) {
             contentEl.innerHTML = legal.privacy.content.map(sec => `
-                <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>
-                <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>`).join('');
+                <div class="legal-section">
+                    <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>
+                    <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>
+                </div>`).join('');
             
             // Eski CTA varsa kaldr, yenisini ekle
             privSec.querySelectorAll('.faq-cta-card').forEach(el => el.remove());
@@ -1021,8 +1023,10 @@ function initDynamicLegal(data) {
         const contentEl = termsSec.querySelector('.legal-content');
         if (contentEl && legal.terms.content) {
             contentEl.innerHTML = legal.terms.content.map(sec => `
-                <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>
-                <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>`).join('');
+                <div class="legal-section">
+                    <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>
+                    <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>
+                </div>`).join('');
             
             // Eski CTA varsa kaldr, yenisini ekle
             termsSec.querySelectorAll('.faq-cta-card').forEach(el => el.remove());
@@ -1051,7 +1055,15 @@ function applyLang(lang) {
         if (t) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (t[key] !== undefined) el.textContent = t[key];
+                if (t[key] !== undefined) {
+                    el.textContent = t[key];
+                    if (el.tagName === 'LABEL' && el.htmlFor) {
+                        const targetInput = document.getElementById(el.htmlFor);
+                        if (targetInput && (targetInput.tagName === 'INPUT' || targetInput.tagName === 'TEXTAREA')) {
+                            targetInput.placeholder = t[key];
+                        }
+                    }
+                }
             });
         }
     }
@@ -1682,9 +1694,7 @@ function initProjectDetail(proj) {
     const descEl = document.getElementById('pdDescription');
     let rawDesc = (lang === 'en' && detail.descriptionEN && detail.descriptionEN.length) ? detail.descriptionEN : (detail.description && detail.description.length ? detail.description : desc);
     if (typeof rawDesc === 'string') {
-        rawDesc = rawDesc.split('
-
-').map(s => s.trim()).filter(Boolean);
+        rawDesc = rawDesc.split('\n\n').map(s => s.trim()).filter(Boolean);
     }
     if (descEl) {
         if (Array.isArray(rawDesc) && rawDesc.length > 0) {
