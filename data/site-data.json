@@ -276,7 +276,12 @@
             ]
           }
         ]
-      }
+      },
+      "statuses": [
+        "development",
+        "completed",
+        "special"
+      ]
     }
   ],
   "faq": [
