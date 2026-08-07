@@ -47,7 +47,7 @@
         "📦 Kurye",
         "📱 Mobil"
       ],
-      "status": "live",
+      "status": "discontinued",
       "order": 1,
       "visible": true,
       "detail": {
@@ -118,9 +118,8 @@
         ]
       },
       "statuses": [
-        "live",
-        "rnd",
-        "special"
+        "discontinued",
+        "discontinued"
       ]
     },
     {
@@ -142,10 +141,10 @@
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "resimler/uygulama_logo.png",
-        "downloads": "10B+",
+        "downloads": "11B+",
         "rating": "4.8 ★",
         "ageRating": "3+",
-        "appSize": "~12 MB",
+        "appSize": "~31 MB",
         "minAndroid": "Android 8.0 (Oreo) / API 26",
         "description": [
           "V9 Grup Konum Paylaşımı (v1.0), bir grup içindeki tüm üyelerin konumunu aynı anda haritada göstermeye yarayan mobil bir uygulamadır.",
@@ -200,7 +199,10 @@
             ]
           }
         ]
-      }
+      },
+      "statuses": [
+        "paused"
+      ]
     },
     {
       "id": "grup-v2",
