@@ -94,7 +94,11 @@ async function loadTranslations() {
     try {
         const res = await fetch('data/translations.json', { cache: 'no-cache' });
         if (res.ok) {
-            TRANSLATIONS = await res.json();
+            let text = await res.text();
+            if (text.charCodeAt(0) === 0xFEFF) {
+                text = text.slice(1);
+            }
+            TRANSLATIONS = JSON.parse(text);
             const savedLang = localStorage.getItem('avs_lang') || 'tr';
             applyLang(savedLang); // İlk yüklendiğinde dili uygula
         }
@@ -112,7 +116,11 @@ async function loadSiteData() {
     try {
         const res = await fetch('data/site-data.json', { cache: 'no-cache' });
         if (!res.ok) return null;
-        return await res.json();
+        let text = await res.text();
+        if (text.charCodeAt(0) === 0xFEFF) {
+            text = text.slice(1);
+        }
+        return JSON.parse(text);
     } catch (e) {
         console.warn('site-data.json yüklenemedi:', e);
         return null;
