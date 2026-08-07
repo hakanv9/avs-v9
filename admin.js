@@ -100,7 +100,8 @@ class GitHubAPI {
 
     async getFile(path) {
         const res = await fetch(`${this.baseUrl}/contents/${path}?ref=${this.branch}`, {
-            headers: this.headers()
+            headers: this.headers(),
+            cache: 'no-cache'
         });
         if (!res.ok) {
             if (res.status === 404) return null;
@@ -640,7 +641,6 @@ function initModals() {
     document.getElementById('saveLegalBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts);
     document.getElementById('pmAddStatusBtn')?.addEventListener('click', () => createStatusSelect('pmStatusContainer'));
-    document.getElementById('detailAddStatusBtn')?.addEventListener('click', () => createStatusSelect('detailStatusContainer'));
 
     // Yasal Bugün butonları
     document.getElementById('setPrivacyTodayBtn')?.addEventListener('click', () => {
@@ -815,7 +815,6 @@ function loadProjectDetail(id) {
     document.getElementById('detailEditorWrap').style.display = 'block';
     document.getElementById('detailName').value = proj.name;
     document.getElementById('detailNameEN').value = proj.nameEN;
-    document.getElementById('detailStatusContainer').innerHTML = ''; const dVals = proj.statuses || (proj.status ? [proj.status] : []); if (!dVals.length) dVals.push('development'); dVals.forEach(v => createStatusSelect('detailStatusContainer', v));
     document.getElementById('detailSize').value = d.appSize || '';
     document.getElementById('detailAgeRating').value = d.ageRating || '';
     document.getElementById('detailLogo').value = d.logo || '';
@@ -850,7 +849,6 @@ function saveProjectDetail() {
 
     proj.name = document.getElementById('detailName').value.trim();
     proj.nameEN = document.getElementById('detailNameEN').value.trim();
-    proj.statuses = Array.from(document.querySelectorAll('#detailStatusContainer select')).map(s => s.value); proj.status = proj.statuses[0] || 'development';
     proj.thumbnail = document.getElementById('detailThumbnail').value.trim();
 
     const d = proj.detail;

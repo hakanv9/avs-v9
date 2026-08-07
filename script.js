@@ -896,11 +896,13 @@ function initProjectDetail(proj) {
             }).join('');
         }
 
-        if (descEl) descEl.innerHTML = proj.description.map(p => `<p>${escapeHTML(p)}</p>`).join('');
+        const descArr = (lang === 'en' && proj.detail && proj.detail.descriptionEN) ? proj.detail.descriptionEN : (proj.detail && proj.detail.description ? proj.detail.description : (proj.description || []));
+        if (descEl) descEl.innerHTML = descArr.map(p => `<p>${escapeHTML(p)}</p>`).join('');
 
         const permEl = document.getElementById('pdPermList');
+        const permsArr = proj.detail && proj.detail.permissions ? proj.detail.permissions : (proj.perms || []);
         if (permEl) {
-            permEl.innerHTML = proj.perms.map(p =>
+            permEl.innerHTML = permsArr.map(p =>
                 `<span class="pd-tag">${escapeHTML(p)}</span>`
             ).join('');
         }
@@ -909,7 +911,37 @@ function initProjectDetail(proj) {
         if (minEl) minEl.textContent = proj.detail ? proj.detail.minAndroid : (proj.minAndroid || '');
 
         const sizeEl = document.getElementById('pdAppSize');
-        if (sizeEl) sizeEl.textContent = proj.detail ? proj.detail.size : (proj.size || '');
+        if (sizeEl) sizeEl.textContent = proj.detail ? proj.detail.appSize : (proj.size || '');
+        
+        const changelogEl = document.getElementById('pdChangelog');
+        const clData = proj.detail && proj.detail.changelog ? proj.detail.changelog : [];
+        if (changelogEl) {
+            if (clData.length > 0) {
+                changelogEl.innerHTML = clData.map(c => {
+                    const title = lang === 'en' && c.titleEN ? c.titleEN : c.title;
+                    const features = lang === 'en' && c.featuresEN ? c.featuresEN : c.features;
+                    const fixes = lang === 'en' && c.fixesEN ? c.fixesEN : c.fixes;
+                    const featStr = features.length ? `<p class="cl-subtitle">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
+                    const bugStr = fixes.length ? `<p class="cl-subtitle">🐛 ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
+                    return `
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>${escapeHTML(c.version)} - ${escapeHTML(title)}</span>
+                            <span class="cl-date">${escapeHTML(c.date)}</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                ${featStr}
+                                ${bugStr}
+                            </div>
+                        </div>
+                    </div>`;
+                }).join('');
+            } else {
+                changelogEl.innerHTML = `<p style="color:var(--text-secondary);">${lang === 'en' ? 'No release history yet.' : 'Henüz sürüm geçmişi bulunmuyor.'}</p>`;
+            }
+        }
 
         const dotsEl = document.getElementById('pdDots');
         const pdPrev = document.getElementById('pdPrev');
