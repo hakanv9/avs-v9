@@ -220,7 +220,7 @@
         "downloads": "-",
         "rating": "-",
         "ageRating": "3+",
-        "appSize": "~25 MB",
+        "appSize": "~15 MB",
         "minAndroid": "Android 8.0 (Oreo) / API 26",
         "description": [
           "V9 Grup Konum Paylaşımı V2, birinci sürümün üzerine inşa edilmiş, entegre sohbet özelliği ve low-latency GPS senkronizasyonu ile donatılmış gelişmiş bir sürümdür.",
@@ -252,8 +252,7 @@
             "notes": [
               "Sohbet modülü beta testleri",
               "GPS gecikme iyileştirmeleri",
-              "Arayüz güncellemeleri",
-              "v9test"
+              "Arayüz güncellemeleri"
             ]
           },
           {
@@ -269,53 +268,6 @@
           }
         ]
       }
-    },
-    {
-      "id": "https://avs-v9.vercel.app/",
-      "slug": "https://avs-v9.vercel.app/",
-      "name": "SİTE",
-      "nameEN": "SİTE",
-      "shortDesc": "Sitemiz her gün güncelleniyor",
-      "shortDescEN": "Sitemiz her gün güncelleniyor",
-      "thumbnail": "resimler/projeler-resmi1.jpg",
-      "tags": [
-        "site"
-      ],
-      "status": "development",
-      "order": 4,
-      "visible": true,
-      "detail": {
-        "isAndroid": false,
-        "playStoreEnabled": false,
-        "playStoreUrl": "#",
-        "logo": "resimler/uygulama_logo.png",
-        "downloads": "-",
-        "rating": "-",
-        "ageRating": "3+",
-        "appSize": "-",
-        "minAndroid": "-",
-        "description": [
-          "Sitemiz her gün güncelleniyor"
-        ],
-        "descriptionEN": [
-          "Sitemiz her gün güncelleniyor"
-        ],
-        "permissions": [],
-        "screenshots": [],
-        "changelog": [
-          {
-            "id": "cl-1786027181191-967c1",
-            "version": "v0.01",
-            "date": "2026-03-15",
-            "type": "major",
-            "notes": [
-              "Site yapım aşaması",
-              "Site altyapı çalışmaları başlatıldı.",
-              "Site için gerekli kaynaklar ve araştırmalar yapılıyor."
-            ]
-          }
-        ]
-      }
     }
   ],
   "faq": [
@@ -326,7 +278,7 @@
         {
           "id": "faq-1-1",
           "question": "Uygulama neden konum iznine ihtiyaç duyuyor?",
-          "answer": "Uygulamalarımız (V9 Kurye ve Grup Konum Paylaşımı), temel işlevlerini yerine getirebilmek için cihazınızın GPS konumuna erişim ister. Konum verisi yalnızca aktif oturum süresince kullanılır ve üçüncü taraflarla paylaşılmaz.\ntest1"
+          "answer": "Uygulamalarımız (V9 Kurye ve Grup Konum Paylaşımı), temel işlevlerini yerine getirebilmek için cihazınızın GPS konumuna erişim ister. Konum verisi yalnızca aktif oturum süresince kullanılır ve üçüncü taraflarla paylaşılmaz."
         },
         {
           "id": "faq-1-2",
@@ -369,12 +321,12 @@
         {
           "id": "prv-3",
           "heading": "3. Veri Güvenliği",
-          "text": "Tüm veri iletişimi HTTPS/TLS şifreleme protokolü üzerinden gerçekleştirilir. Konum verileri oturum sona erdiğinde otomatik olarak silinir.\ntest45645"
+          "text": "Tüm veri iletişimi HTTPS/TLS şifreleme protokolü üzerinden gerçekleştirilir. Konum verileri oturum sona erdiğinde otomatik olarak silinir."
         },
         {
           "id": "prv-4",
           "heading": "4. İletişim",
-          "text": "Gizlilik politikamız hakkında sorularınız için hakangureli090@gmail.com adresine ulaşabilirsiniz"
+          "text": "Gizlilik politikamız hakkında sorularınız için hakangureli090@gmail.com adresine ulaşabilirsiniz."
         }
       ]
     },
@@ -403,5 +355,58 @@
         }
       ]
     }
+  },
+  "socialFeed": {
+    "lastUpdated": "2026-08-06 19:30",
+    "posts": [
+      {
+        "id": "soc-yt-1",
+        "platform": "youtube",
+        "platformName": "YouTube",
+        "author": "AVS&V9 Official",
+        "title": "📍 Grup Konum V2 — Tanıtım Videosu",
+        "description": "Low-latency GPS senkronizasyonu ve entegre sohbet özelliklerini gösteren detaylı tanıtım videosu.",
+        "thumbnail": "resimler/sosyalmedya_post2.png",
+        "postUrl": "https://youtube.com",
+        "date": "2026-08-05",
+        "badgeColor": "#FF0000"
+      },
+      {
+        "id": "soc-ig-1",
+        "platform": "instagram",
+        "platformName": "Instagram",
+        "author": "@avsv9_dev",
+        "title": "🚀 V9 Kurye — Geliştirme Süreci",
+        "description": "Gerçek zamanlı harita entegrasyonunun sahne arkasına dair özel kareler ve teknik ayrıntılar.",
+        "thumbnail": "resimler/sosyalmedya_post1.png",
+        "postUrl": "https://instagram.com",
+        "date": "2026-08-04",
+        "badgeColor": "#E1306C"
+      },
+      {
+        "id": "soc-tt-1",
+        "platform": "tiktok",
+        "platformName": "TikTok",
+        "author": "@avsv9_official",
+        "title": "⚡ Yeni Güncelleme — Canlı Demo",
+        "description": "Son güncellemeyle gelen yeni özelliklerin kısa ve eğlenceli tanıtım videosu.",
+        "thumbnail": "resimler/sosyalmedya_post3.png",
+        "postUrl": "https://tiktok.com",
+        "date": "2026-08-03",
+        "badgeColor": "#00f2fe"
+      },
+      {
+        "id": "soc-x-1",
+        "platform": "x",
+        "platformName": "X (Twitter)",
+        "author": "@avsv9_dev",
+        "title": "📣 V9 Harita Motoru Sürüm Notları",
+        "description": "Yeni rota optimizasyon algoritması ve bellek iyileştirmeleri hakkında teknik güncellemeler yayınlandı.",
+        "thumbnail": "resimler/sosyalmedya_post1.png",
+        "postUrl": "https://x.com",
+        "date": "2026-08-02",
+        "badgeColor": "#1DA1F2"
+      }
+    ]
   }
 }
