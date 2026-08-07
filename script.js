@@ -95,16 +95,17 @@ async function loadTranslations() {
         const res = await fetch('data/translations.json', { cache: 'no-cache' });
         if (res.ok) {
             let text = await res.text();
-            if (text.charCodeAt(0) === 0xFEFF) {
-                text = text.slice(1);
-            }
+            if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
             TRANSLATIONS = JSON.parse(text);
-            const savedLang = localStorage.getItem('avs_lang') || 'tr';
-            applyLang(savedLang); // İlk yüklendiğinde dili uygula
+        } else {
+            TRANSLATIONS = window.EMBEDDED_TRANSLATIONS || {};
         }
     } catch (e) {
-        console.warn('translations.json yüklenemedi:', e);
+        console.warn('translations.json fetch edilemedi, embedded fallback kullanılıyor:', e);
+        TRANSLATIONS = window.EMBEDDED_TRANSLATIONS || {};
     }
+    const savedLang = localStorage.getItem('avs_lang') || 'tr';
+    applyLang(savedLang);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -115,16 +116,15 @@ async function loadTranslations() {
 async function loadSiteData() {
     try {
         const res = await fetch('data/site-data.json', { cache: 'no-cache' });
-        if (!res.ok) return null;
-        let text = await res.text();
-        if (text.charCodeAt(0) === 0xFEFF) {
-            text = text.slice(1);
+        if (res.ok) {
+            let text = await res.text();
+            if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+            return JSON.parse(text);
         }
-        return JSON.parse(text);
     } catch (e) {
-        console.warn('site-data.json yüklenemedi:', e);
-        return null;
+        console.warn('site-data.json fetch edilemedi, embedded fallback kullanılıyor:', e);
     }
+    return window.EMBEDDED_SITE_DATA || null;
 }
 
 // KOD-4: img tag kullanılıyor (div+backgroundImage kaldırıldı) â€” erişilebilir ve SEO dostu.
