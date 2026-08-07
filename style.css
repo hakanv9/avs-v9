@@ -67,15 +67,25 @@
     font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
 }
 
+/* SEO-4: Input ve textarea için de focus ring — klavye kullanıcıları form alanını görebilsin */
 button:focus-visible,
-a:focus-visible {
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
     outline: 2px solid var(--accent-color);
     outline-offset: 3px;
     border-radius: 4px;
 }
 
+/* PERF-4: scroll-behavior sadır hareket hassaslığı olmayan kullanıcılarda çalışsın */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
 html {
-    scroll-behavior: smooth;
     overflow-x: hidden;
 }
 
@@ -108,7 +118,7 @@ body.modal-open {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 14px 40px;
+    padding: 0.875rem 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -197,6 +207,7 @@ body.modal-open {
 }
 
 /* === HAMBURGER === */
+/* UIUX-5: WCAG 2.1 AA — en az 44x44px dokunma hedefi */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -204,6 +215,12 @@ body.modal-open {
     border: none;
     padding: 0;
     line-height: 0;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .hamburger:focus-visible {
@@ -239,7 +256,7 @@ body.modal-open {
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 20px;
     background: var(--surface-color);
     padding: 10px 40px;
@@ -345,10 +362,11 @@ body.modal-open {
 
 .slide.active { opacity: 1; }
 
-/* === BENTO GRID === */
+/* === BENTO GRID — UIUX-1: Gerçek CSS Grid Mozaik Düzeni === */
 .bento-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
     gap: 20px;
     width: var(--card-max-width);
     max-width: var(--card-max-width);
@@ -358,6 +376,7 @@ body.modal-open {
 .bento-card {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: stretch;
     min-height: 180px;
     border-radius: 20px;
@@ -376,11 +395,18 @@ body.modal-open {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* UIUX-1: Büyük kart sol sütunda 2 satır kaplar; küçük kartlar sağ sütunda alt alta */
 .bento-large {
-    box-shadow: inset 4px 0 0 var(--accent-color), 0 6px 28px rgba(0, 173, 181, 0.14), 0 2px 8px rgba(0, 0, 0, 0.3);
+    grid-row: span 2;
+    box-shadow: inset 4px 0 0 var(--accent-color),
+                0 6px 28px rgba(0, 173, 181, 0.18),
+                0 2px 8px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(0, 173, 181, 0.08);
 }
 
-.bento-small { flex: 1; }
+.bento-small {
+    /* UIUX-1: Grid ile yerleşim otomatik — flex:1 kaldırıldı */
+}
 
 .bento-card:hover {
     transform: translateY(-5px);
@@ -405,11 +431,10 @@ body.modal-open {
 .bento-small .bento-img-wrap { width: 220px; }
 
 .bento-img-wrap img {
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
     object-position: center;
     display: block;
     transition: transform 0.45s ease;
@@ -440,13 +465,13 @@ body.modal-open {
 .bento-large .bento-body { padding: 22px 28px; }
 
 .bento-body h3 {
-    font-size: 1rem;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
     color: var(--text-primary);
     margin: 0;
     line-height: 1.35;
 }
 
-.bento-large .bento-body h3 { font-size: 1.2rem; }
+.bento-large .bento-body h3 { font-size: clamp(1.2rem, 3vw, 1.4rem); }
 
 .bento-body p {
     font-size: 0.83rem;
@@ -863,13 +888,44 @@ body.modal-open {
 
 /* === SCROLL ANİMASYON === */
 .scroll-anim {
-    opacity: 1;
-    transform: none;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .scroll-anim.show {
     opacity: 1;
-    transform: none;
+    transform: translateY(0);
+}
+
+@supports (animation-timeline: view()) {
+    .scroll-anim {
+        animation: fade-in-up linear forwards;
+        animation-timeline: view();
+        animation-range: entry 5% cover 25%;
+        transition: none;
+    }
+}
+
+@keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* === SKELETON LOADER === */
+@keyframes skeleton-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.skeleton-box {
+    background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 2s infinite linear;
+    border-radius: 20px;
+    height: 100%;
+    min-height: 350px;
+    width: 100%;
 }
 
 /* === BAŞARI ANİMASYONU === */
@@ -1140,7 +1196,7 @@ body.modal-open {
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
 }
 
-.faq-item.open .faq-answer { max-height: 500px; }
+.faq-item.open .faq-answer { max-height: 3000px; }
 
 .faq-answer-inner {
     padding: 0 22px 20px;
@@ -1249,13 +1305,12 @@ body.modal-open {
 
     .about-oval-box p { font-size: 0.95rem; line-height: 1.6; }
 
-    .hamburger { display: block; }
+    /* UIUX-5: flex olarak başlatılıyor ki align-items/flex-direction etkin olsun */
+    .hamburger { display: flex; }
 
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-    .slide { object-fit: contain; }
 
     .nav-links {
         position: fixed;
@@ -1524,8 +1579,8 @@ body.modal-open {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: 1px solid rgba(0, 173, 181, 0.30);
     background: rgba(18, 18, 18, 0.70);
@@ -1564,6 +1619,7 @@ body.modal-open {
 }
 
 .sm-dot {
+    position: relative;
     width: 8px;
     height: 8px;
     border-radius: 999px;
@@ -1979,8 +2035,8 @@ body.modal-open {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: 1px solid rgba(0,173,181,0.30);
     background: rgba(18,18,18,0.72);
@@ -2016,6 +2072,7 @@ body.modal-open {
 }
 
 .pd-dot {
+    position: relative;
     width: 7px;
     height: 7px;
     border-radius: 999px;
@@ -2474,7 +2531,7 @@ body.modal-open {
 }
 
 .faq-item.open .faq-answer {
-    max-height: 2000px;
+    max-height: 5000px;
     opacity: 1;
     overflow: hidden;
 }
@@ -2605,19 +2662,51 @@ body.modal-open {
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.35s ease;
+    opacity: 0.8;
+    transition: opacity 0.35s ease, background 0.35s ease;
     pointer-events: none;
+}
+
+.bento-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    border-radius: 20px;
 }
 
 .bento-card:hover::before {
     opacity: 1;
+    background: linear-gradient(135deg, rgba(0,173,181,0.7), transparent 70%);
+}
+
+.sm-dot::after, .pd-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
 }
 
 /* =============================================
    === T1: MOBİL & MASAÜSTÜ BENTO FORMATI ===
    ============================================= */
 @media (max-width: 640px) {
+    /* UIUX-1: Mobil'de tek sütun */
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .bento-large {
+        grid-row: span 1;
+    }
+
     .bento-card {
         flex-direction: column;
     }
@@ -3157,7 +3246,8 @@ body.modal-open {
 
 .pgallery-box {
     position: relative;
-    width: min(94vw, 820px);
+    width: fit-content;
+    max-width: 94vw;
     padding: 18px;
     background: var(--surface-color);
     border: 1px solid var(--border-color);
@@ -3210,5 +3300,146 @@ body.modal-open {
 .pgallery-img-container img {
     max-width: 100%;
     max-height: 78vh;
-    object-fit: contain;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
 }
+
+/* =============================================
+   === UIUX-02 & SEO-02: MİKRO ETKİLEŞİM & ERİŞİLEBİLİRLİK ===
+   ============================================= */
+   
+/* Ripple Effect for Buttons */
+.oval-btn, .bento-detail-btn, .sm-slide-btn, .pd-playstore-btn, .pd-cta-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.oval-btn::after, .bento-detail-btn::after, .sm-slide-btn::after, .pd-playstore-btn::after, .pd-cta-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.oval-btn:active::after, .bento-detail-btn:active::after, .sm-slide-btn:active::after, .pd-playstore-btn:active::after, .pd-cta-btn:active::after {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 1;
+    transition: 0s;
+}
+
+/* Accessibility Focus Outline */
+:focus-visible {
+    outline: 2px dashed var(--accent-color);
+    outline-offset: 4px;
+}
+
+/* KOD-01: Mobile Safari/Chrome native feels */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+body {
+    overscroll-behavior-y: none;
+}
+/* === PROJELER LİSTESİ (OVAL TASARIM) === */
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+.project-oval-box {
+    display: flex;
+    align-items: center;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 16px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+.project-oval-box:hover {
+    background: rgba(0, 173, 181, 0.05);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 173, 181, 0.15);
+}
+.project-oval-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 24px;
+    flex-shrink: 0;
+}
+.project-oval-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.project-oval-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.project-oval-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+.project-oval-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+.project-oval-btn {
+    margin-left: 20px;
+    background: rgba(0, 173, 181, 0.1);
+    color: var(--accent-color);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.project-oval-box:hover .project-oval-btn {
+    background: var(--accent-color);
+    color: #fff;
+}
+@media (max-width: 768px) {
+    .project-oval-box {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        border-radius: 24px;
+    }
+    .project-oval-img {
+        width: 100%;
+        height: 180px;
+        border-radius: 12px;
+        margin-right: 0;
+        margin-bottom: 16px;
+    }
+    .project-oval-btn {
+        margin-left: 0;
+        margin-top: 16px;
+        width: 100%;
+        text-align: center;
+    }
+}
+

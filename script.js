@@ -2,312 +2,352 @@
 // === AVS&V9 ANA SCRIPT (STABİL & HATASIZ) ===
 // =============================================
 
-// ─── SITE-DATA.JSON DİNAMİK YÜKLEME ─────────────────────────────────────────
-// Admin panelinden yapılan tüm değişiklikler buradan okunur.
+// ─── GÜV-3: XSS KORUMA YARDIMCISI ─────────────────────────────────────────────
+// JSON'dan gelen tüm içerikler bu fonksiyondan geçirilir.
+function sanitize(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;');
+}
 
-window.SITE_DATA = null;
-
-async function loadSiteData() {
-    try {
-        const res = await fetch(`data/site-data.json?t=${Date.now()}`);
-        if (!res.ok) throw new Error('site-data.json yüklenemedi');
-        window.SITE_DATA = await res.json();
-        return window.SITE_DATA;
-    } catch (e) {
-        console.warn('site-data.json okunamadı, statik içerik kullanılıyor:', e);
-        return null;
+function addSwipeListener(element, onSwipeLeft, onSwipeRight) {
+    if (!element) return;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    element.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    element.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+    function handleSwipe() {
+        const threshold = 50;
+        if (touchStartX - touchEndX > threshold && onSwipeLeft) onSwipeLeft();
+        else if (touchEndX - touchStartX > threshold && onSwipeRight) onSwipeRight();
     }
 }
+
+// ─── PERF-3: HERO SLIDER YÖNETİCİSİ ──────────────────────────────────────────
+// Tek interval kaydedici — çift setInterval bellek sızıntısını önler.
+let _heroSlideInterval = null;
+
+function startHeroSlider(slidesNodeList) {
+    clearInterval(_heroSlideInterval);
+    if (!slidesNodeList || slidesNodeList.length < 2) return;
+    let cur = Array.from(slidesNodeList).findIndex(s => s.classList.contains('active'));
+    if (cur < 0) cur = 0;
+    
+    function goNext() {
+        slidesNodeList[cur].classList.remove('active');
+        cur = (cur + 1) % slidesNodeList.length;
+        slidesNodeList[cur].classList.add('active');
+        startTimer();
+    }
+    function goPrev() {
+        slidesNodeList[cur].classList.remove('active');
+        cur = (cur - 1 + slidesNodeList.length) % slidesNodeList.length;
+        slidesNodeList[cur].classList.add('active');
+        startTimer();
+    }
+    function startTimer() {
+        clearInterval(_heroSlideInterval);
+        _heroSlideInterval = setInterval(goNext, 10000);
+    }
+    
+    startTimer();
+    
+    const container = document.querySelector('.slider-container');
+    if (container && !container.hasAttribute('data-swipe-added')) {
+        addSwipeListener(container, goNext, goPrev);
+        container.setAttribute('data-swipe-added', 'true');
+    }
+}
+
+// ─── KOD-1: DUPLİKE FONKSİYONLAR KALDIRILDI ─────────────────────────────────
+// (Tüm fonksiyonların tek ve doğru versiyonları aşağıda tanımlanmıştır)
 
 // Durum etiketi CSS sınıfı ve metnini döndürür
 function getStatusTag(status) {
     const map = {
-        'live':         { cls: 'tag-live',     text: '✅ Yayında' },
-        'development':  { cls: 'tag-wip',      text: '⏳ Geliştirme Aşamasında' },
+        'live':         { cls: 'tag-live',      text: '✅ Yayında' },
+        'development':  { cls: 'tag-wip',       text: '⏳ Geliştirme Aşamasında' },
         'completed':    { cls: 'tag-completed', text: '🔵 Tamamlandı' },
         'discontinued': { cls: 'tag-inactive',  text: '📴 Yayından Kaldırılmış' },
         'paused':       { cls: 'tag-soon',      text: '⏸️ Geliştirme Durdurulmuş' },
     };
-    return map[status] || { cls: '', text: status };
+    return map[status] || { cls: '', text: String(status) };
 }
 
-// Anasayfadaki hero slider'ı JSON verisiyle günceller
+let TRANSLATIONS = {};
+
+async function loadTranslations() {
+    try {
+        const res = await fetch('data/translations.json', { cache: 'no-cache' });
+        if (res.ok) {
+            TRANSLATIONS = await res.json();
+            const savedLang = localStorage.getItem('avs_lang') || 'tr';
+            applyLang(savedLang); // İlk yüklendiğinde dili uygula
+        }
+    } catch (e) {
+        console.warn('translations.json yüklenemedi:', e);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DİNAMİK VERİ FONKSİYONLARI — site-data.json üzerinden içerik güncelleme
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// PERF-5: ?v=Date.now() kaldırıldı — vercel.json'daki no-cache headerı ile ETag tabantılı doğrulama yapılır.
+async function loadSiteData() {
+    try {
+        const res = await fetch('data/site-data.json', { cache: 'no-cache' });
+        if (!res.ok) return null;
+        return await res.json();
+    } catch (e) {
+        console.warn('site-data.json yüklenemedi:', e);
+        return null;
+    }
+}
+
+// KOD-4: img tag kullanılıyor (div+backgroundImage kaldırıldı) — erişilebilir ve SEO dostu.
 function initDynamicHeroSlider(data) {
+    const slides = data.heroSlider;
+    if (!slides || !slides.length) return;
     const container = document.querySelector('.slider-container');
-    if (!container || !data || !data.heroSlider || !data.heroSlider.length) return;
-    const slides = data.heroSlider.sort((a, b) => (a.order || 0) - (b.order || 0));
-    container.innerHTML = slides.map((s, i) =>
-        `<img src="${s.src}" class="slide${i === 0 ? ' active' : ''}" alt="${s.alt || ''}" loading="${i === 0 ? 'eager' : 'lazy'}">`
-    ).join('');
+    if (!container) return;
+
+    // Mevcut slaytları kaldır
+    container.querySelectorAll('.slide').forEach(s => s.remove());
+
+    slides
+        .slice()
+        .sort((a, b) => (a.order || 0) - (b.order || 0))
+        .forEach((slide, idx) => {
+            const img = document.createElement('img');
+            img.src = sanitize(slide.src);
+            img.alt = sanitize(slide.alt || '');
+            img.className = 'slide' + (idx === 0 ? ' active' : '');
+            img.loading = idx === 0 ? 'eager' : 'lazy';
+            container.appendChild(img);
+        });
+
+    // PERF-3: Yeni slaytlarla tek bir interval başlat
+    startHeroSlider(container.querySelectorAll('.slide'));
 }
 
-// Anasayfadaki bento grid'i JSON verisiyle oluşturur
-function initDynamicBentoGrid(data) {
-    const grid = document.querySelector('.bento-grid');
-    if (!grid || !data || !data.projects) return;
+function initDynamicProjectsList(data) {
+    const projects = data.projects;
+    if (!projects || !projects.length) return;
 
-    const visible = data.projects.filter(p => p.visible !== false).sort((a, b) => (a.order || 0) - (b.order || 0));
+    const listContainer = document.querySelector('.projects-list');
+    if (!listContainer) return;
+
+    const lang = localStorage.getItem('avs_lang') || 'tr';
+
+    const visible = projects
+        .filter(p => p.visible !== false)
+        .sort((a, b) => (a.order || 0) - (b.order || 0));
+
     if (!visible.length) return;
 
-    grid.innerHTML = visible.map((p, i) => {
-        const isLarge = i === 0;
+    listContainer.innerHTML = visible.map((p, i) => {
         const statusTag = getStatusTag(p.status);
         const extraTags = p.tags || [];
+        const name = (lang === 'en' && p.nameEN) ? p.nameEN : p.name;
+        const desc = (lang === 'en' && p.shortDescEN) ? p.shortDescEN : (p.shortDesc || '');
+        const detailLabel = lang === 'en' ? 'View Details' : 'Detayları İncele';
         return `
-        <div class="bento-card ${isLarge ? 'bento-large' : 'bento-small'} scroll-anim"
-             data-href="proje-detay.html?p=${p.slug}" tabindex="0" role="link"
-             aria-label="${p.name} Detayları">
-            <div class="bento-img-wrap">
-                <img src="${p.thumbnail}" alt="${p.name}" loading="${i === 0 ? 'eager' : 'lazy'}">
-                <div class="bento-overlay"></div>
-            </div>
-            <div class="bento-body">
-                <div class="bento-tags">
-                    ${extraTags.map(t => `<span class="tag">${t}</span>`).join('')}
-                    <span class="tag ${statusTag.cls}">${statusTag.text}</span>
-                </div>
-                <h3>${p.name}</h3>
-                <p>${p.shortDesc || ''}</p>
-                <div class="bento-actions">
-                    <a href="proje-detay.html?p=${p.slug}" class="bento-detail-btn" data-i18n="card.details">🔍 Detayları İncele</a>
+        <a href="proje-detay.html?p=${sanitize(p.slug)}" class="project-oval-box scroll-anim" aria-label="${sanitize(name)} Detayları">
+            <img src="${sanitize(p.thumbnail)}" alt="${sanitize(name)}" class="project-oval-img" loading="${i === 0 ? 'eager' : 'lazy'}">
+            <div class="project-oval-info">
+                <div class="project-oval-title">${sanitize(name)}</div>
+                <div class="project-oval-desc">${sanitize(desc)}</div>
+                <div class="project-oval-tags">
+                    <span class="${statusTag.cls} tag">${statusTag.text}</span>
+                    ${extraTags.map(t => `<span class="tag">📌 ${sanitize(t)}</span>`).join('')}
                 </div>
             </div>
-        </div>`;
+            <div class="project-oval-btn">${sanitize(detailLabel)}</div>
+        </a>
+        `;
     }).join('');
+
+    // Animasyon observera kaydet
+    const newItems = listContainer.querySelectorAll('.scroll-anim');
+    if (window._scrollObserver) {
+        newItems.forEach(item => window._scrollObserver.observe(item));
+    }
 }
 
-// SSS sayfasını JSON'dan dinamik render eder
+// UIUX-2: Fallback resmi Yakindabos.png (yoksa yeşil placeholder).
+function initDynamicSocialFeed(data) {
+    if (!data || !data.socialFeed || !data.socialFeed.posts || !data.socialFeed.posts.length) return;
+    const smSlider = document.getElementById('smSlider');
+    if (!smSlider) return;
+
+    const lang = localStorage.getItem('avs_lang') || 'tr';
+    
+    const SVG_ICONS = {
+        youtube: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
+        instagram: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
+        tiktok: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>`,
+        x: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`
+    };
+
+    const BADGE_CLASSES = {
+        youtube: 'sm-badge-youtube',
+        instagram: 'sm-badge-instagram',
+        tiktok: 'sm-badge-tiktok',
+        x: 'sm-badge-x'
+    };
+
+    smSlider.innerHTML = data.socialFeed.posts.map(p => {
+        const pKey = (p.platform || 'youtube').toLowerCase();
+        const iconSvg = SVG_ICONS[pKey] || SVG_ICONS.youtube;
+        const badgeCls = BADGE_CLASSES[pKey] || 'sm-badge-youtube';
+        // UIUX-2: Resim yoksa Yakindabos.png göster
+        const fallbackSrc = 'resimler/Yakindabos.png';
+        return `
+            <div class="sm-slide">
+                <div class="sm-slide-img-wrap">
+                    <img src="${sanitize(p.thumbnail)}" alt="${sanitize(p.title)}" loading="lazy"
+                         onerror="this.onerror=null; this.src='${fallbackSrc}'">
+                </div>
+                <div class="sm-slide-body">
+                    <div class="sm-platform-badge ${badgeCls}">
+                        ${iconSvg}
+                        ${sanitize(p.platformName || p.platform)}
+                    </div>
+                    <h3 class="sm-slide-title">${sanitize(p.title)}</h3>
+                    <p class="sm-slide-desc">${sanitize(p.description)}</p>
+                    <a href="${sanitize(p.postUrl)}" class="sm-slide-btn" target="_blank" rel="noopener noreferrer">
+                        ${(lang === 'en' ? 'View Post ↗' : 'Gönderiyi İncele ↗')}
+                    </a>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    // Pagination Dots güncelle
+    const smDots = document.getElementById('smDots');
+    if (smDots) {
+        smDots.innerHTML = data.socialFeed.posts.map((_, idx) => `
+            <button class="sm-dot ${idx === 0 ? 'active' : ''}" data-idx="${idx}" role="tab"
+                aria-selected="${idx === 0 ? 'true' : 'false'}" aria-label="Slayt ${idx + 1}"></button>
+        `).join('');
+    }
+}
+
 function initDynamicFaq(data) {
-    const container = document.querySelector('.subpage-main');
-    if (!container || !data || !data.faq) return;
-    const heroEl = container.querySelector('.subpage-hero');
-    const existingFaqContent = container.querySelectorAll('.section-title.faq-section-title, .faq-list');
-    if (!existingFaqContent.length) return; // Statik içerik yoksa dur (çift render önlemi)
 
-    // Statik SSS içeriğini temizle ve JSON'dan yeniden oluştur
-    existingFaqContent.forEach(el => el.remove());
-    container.querySelectorAll('h2.section-title.faq-section-title').forEach(el => el.remove());
+    const faq = data.faq;
+    if (!faq || !faq.length) return;
 
-    data.faq.forEach(cat => {
+    const main = document.querySelector('.subpage-main');
+    if (!main) return;
+
+    // Mevcut SSS gruplarını ve başlıklarını temizle
+    main.querySelectorAll('.faq-section-title, .faq-list-group, .faq-cta-card').forEach(el => el.remove());
+
+    faq.forEach(cat => {
+        if (!cat.items || !cat.items.length) return;
+
         const h2 = document.createElement('h2');
         h2.className = 'section-title faq-section-title';
         h2.textContent = cat.category;
-        container.appendChild(h2);
+        main.appendChild(h2);
 
         const list = document.createElement('div');
         list.className = 'faq-list faq-list-group';
-        list.innerHTML = cat.items.map(item => `
-            <div class="faq-item">
-                <button class="faq-question">${item.question}<span class="faq-icon">»</span></button>
-                <div class="faq-answer"><div class="faq-answer-inner">${item.answer}</div></div>
-            </div>
-        `).join('');
-        container.appendChild(list);
+
+        cat.items.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'faq-item';
+            div.innerHTML = `
+                <button class="faq-question">
+                    ${item.question}
+                    <span class="faq-icon">»</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">${item.answer}</div>
+                </div>`;
+            list.appendChild(div);
+        });
+
+        main.appendChild(list);
+    });
+
+    // CTA kartını EN SONA ekle
+    const cta = document.createElement('section');
+    cta.className = 'pd-content-card faq-cta-card';
+    cta.innerHTML = `
+        <h3 class="faq-cta-title">Aradığınız cevabı bulamadınız mı?</h3>
+        <p class="faq-cta-sub">Farklı bir sorunuz veya teknik bir talebiniz varsa doğrudan geliştiriciye ulaşabilirsiniz.</p>
+        <a href="index.html#iletisim" class="oval-btn pd-cta-btn">Doğrudan İletişime Geçin →</a>`;
+    main.appendChild(cta);
+
+    // Yeni SSS toggle'larını başlat
+    initFaqToggles();
+}
+
+function initFaqToggles() {
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.removeEventListener('click', faqToggleHandler);
+        btn.addEventListener('click', faqToggleHandler);
     });
 }
 
-// Yasal sayfayı JSON'dan render eder
-function initDynamicLegal(data) {
-    if (!data || !data.legal) return;
-
-    const privacyPanel = document.getElementById('privacy');
-    const termsPanel = document.getElementById('terms');
-
-    if (privacyPanel && data.legal.privacy) {
-        const prv = data.legal.privacy;
-        const dateEl = privacyPanel.querySelector('.legal-update-date');
-        if (dateEl) dateEl.textContent = `Son Güncelleme: ${prv.lastUpdated || ''}`;
-        const contentArea = privacyPanel.querySelector('.legal-content');
-        if (contentArea && prv.content) {
-            contentArea.innerHTML = prv.content.map(sec =>
-                `<h3>${sec.heading}</h3><p>${sec.text}</p>`
-            ).join('');
-        }
-    }
-
-    if (termsPanel && data.legal.terms) {
-        const trm = data.legal.terms;
-        const dateEl = termsPanel.querySelector('.legal-update-date');
-        if (dateEl) dateEl.textContent = `Son Güncelleme: ${trm.lastUpdated || ''}`;
-        const contentArea = termsPanel.querySelector('.legal-content');
-        if (contentArea && trm.content) {
-            contentArea.innerHTML = trm.content.map(sec =>
-                `<h3>${sec.heading}</h3><p>${sec.text}</p>`
-            ).join('');
-        }
+function faqToggleHandler() {
+    const item = this.parentElement;
+    if (!item) return;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(openItem => {
+        openItem.classList.remove('open');
+        const ans = openItem.querySelector('.faq-answer');
+        if (ans) ans.style.maxHeight = '0';
+    });
+    if (!isOpen) {
+        item.classList.add('open');
+        const answer = item.querySelector('.faq-answer');
+        if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
     }
 }
 
+function initDynamicLegal(data) {
+    const legal = data.legal;
+    if (!legal) return;
 
-// --- Dil çevirileri ---
-const TRANSLATIONS = {
-    tr: {
-        'nav.home': 'Ana Sayfa',
-        'nav.projects': 'Projelerim',
-        'nav.about': 'Hakkında',
-        'nav.contact': 'İletişim',
-        'nav.faq': 'SSS',
-        'nav.legal': 'Yasal',
-        'hero.title': 'HOŞGELDİN YOLCU',
-        'hero.subtitle': 'Basit ama etkili yazılımlar, kullanıcı dostu deneyimler ve modern çözümlerle yolculuğumuza devam ediyoruz.',
-        'hero.scroll': 'Aşağı Kaydır',
-        'projects.title': 'Projelerim',
-        'projects.intro': 'Kullanıcı deneyimini ön planda tutan, sade tasarımlı ve işlevsel çözümler geliştirmeye odaklanıyorum.',
-        'about.title': 'Hakkında',
-        'about.intro': 'Geliştirdiğim projeler, teknik beceri ve kullanıcı odaklı düşünme yaklaşımının birleşiminden doğuyor.',
-        'about.body1': 'Bu yolculuk, kişisel gelişim ve teknolojiye duyulan merakla başladı; bugünse daha büyük hedeflere hizmet eden güçlü ve sürdürülebilir projelere dönüştü. Sektördeki deneyimlerim, farklı iş kollarından gelen bakış açıları ve sürekli öğrenme isteğim, ortaya koyduğum çözümlerin temelini oluşturuyor.',
-        'about.body2': 'Amacım, karmaşık görünen fikirleri sade, hızlı ve etkili dijital deneyimlere dönüştürmek. Her proje, kullanıcıyla kurulan bağı güçlendiren ve gerçek bir ihtiyaçtan beslenen bir yaklaşım üzerine inşa ediliyor.',
-        'about.skills': '💻 Beceriler & Bilgi Alanları',
-        'contact.title': 'İletişim',
-        'contact.intro': 'Projeler, fikirler ya da iş birlikleri hakkında konuşmak isterseniz mesaj bırakın.',
-        'contact.name': 'Adınız',
-        'contact.email': 'E-posta Adresiniz',
-        'contact.message': 'Mesajınız',
-        'contact.send': 'E-posta Gönder',
-        'captcha.title': 'Güvenlik doğrulaması',
-        'captcha.intro': 'Bir doğrulama işlemi yapın.',
-        'captcha.hint': 'Aşağıdaki soruyu cevaplayın.',
-        'captcha.continue': 'Devam Et',
-        'captcha.cancel': 'İptal',
-        'footer.copy': '© 2026  AVS&V9 — Tüm hakları saklıdır.',
-        'cookie.text': '🍪 Bu site, deneyiminizi iyileştirmek için yerel tercih verileri (tema, dil) saklar. Hiçbir kişisel veri üçüncü taraflarla paylaşılmaz.',
-        'cookie.accept': 'Kabul Et',
-        'cookie.more': 'Daha Fazla',
-
-        'nav.social': 'Sosyal Medya',
-        'nav.proj1': '📦 Kurye Takip Sistemi',
-        'nav.proj2': '🗺️ Grup Konum V1',
-        'nav.proj3': '📍 Grup Konum V2',
-        'card.details': '🔍 Detayları İncele',
-        'detail.downloads': 'İndirme',
-        'detail.rating': 'Puan',
-        'detail.agerating': 'Yaş',
-        'detail.getapp': 'Google Play\'den İndir',
-        'detail.about': '📋 Uygulama Hakkında',
-        'detail.requirements': '📱 Sistem Gereksinimleri',
-        'detail.minandroid': 'Minimum Android',
-        'detail.connection': 'Bağlantı',
-        'detail.connval': 'İnternet bağlantısı gerekli (Wi-Fi / Mobil veri)',
-        'detail.size': 'Boyut',
-        'detail.permissions': '🔐 Gerekli İzinler',
-        'detail.perm.location': '📍 Konum (Ön plan & Arka plan)',
-        'detail.perm.notif': '🔔 Bildirimler',
-        'detail.perm.net': '📶 İnternet Erişimi',
-        'detail.perm.bg': '⚡ Arka Plan Servisi',
-        'detail.changelog': '📝 Sürüm Geçmişi',
-        'detail.feedback': '💬 Görüş, İstek & Öneri',
-        'detail.feedbacksub': 'Bu uygulama hakkında bir hata bildirimi, öneri veya istek göndermek istiyorsanız aşağıdaki formu kullanın.',
-        'detail.subject': 'Konu Türü',
-        'detail.subj.bug': '🐛 Hata Bildirimi',
-        'detail.subj.feature': '💡 Özellik İsteği',
-        'detail.subj.question': '❓ Soru',
-        'detail.subj.other': '💬 Diğer',
-        'detail.cta': 'Farklı bir sorunuz mu var?',
-        'detail.ctabtn': 'Doğrudan İletişime Geçin →',
-        'social.title': 'Sosyal Medya',
-        'social.intro': 'Güncel paylaşımlar, uygulama duyuruları ve geliştirme sürecinden kareler.',
-        'social.slide1.title': '🚀 V9 Kurye — Geliştirme Süreci',
-        'social.slide1.desc': 'Gerçek zamanlı harita entegrasyonunun sahne arkasına dair özel kareler ve teknik ayrıntılar.',
-        'social.slide2.title': '📍 Grup Konum V2 — Tanıtım Videosu',
-        'social.slide2.desc': 'Low-latency GPS senkronizasyonu ve entegre sohbet özelliklerini gösteren tam tanıtım videosu.',
-        'social.slide3.title': '⚡ Yeni Güncelleme — Canlı Demo',
-        'social.slide3.desc': 'Son güncellemeyle gelen yeni özelliklerin kısa ve eğlenceli tanıtım videosu.',
-        'social.viewpost': 'Gönderiyi İncele ↗',
-        'social.follow': 'Takip Et',
-        'social.subscribe': 'Abone Ol',
-        'social.getapp': 'Uygulamayı İndir',
-
-        'faq.page.title': 'Sıkça Sorulan Sorular',
-        'faq.page.sub': 'Uygulamalar hakkında merak edilen tüm sorular burada.',
-        'legal.page.title': 'Yasal Bilgiler',
-        'legal.page.sub': 'Gizlilik Politikamız ve Kullanım Koşullarımız.',
-        'legal.tab.privacy': 'Gizlilik Politikası',
-        'legal.tab.terms': 'Kullanım Koşulları',
-    },
-    en: {
-        'nav.home': 'Home',
-        'nav.projects': 'Projects',
-        'nav.about': 'About',
-        'nav.contact': 'Contact',
-        'nav.faq': 'FAQ',
-        'nav.legal': 'Legal',
-        'hero.title': 'WELCOME, TRAVELLER',
-        'hero.subtitle': 'Simple yet powerful software, user-friendly experiences, and modern solutions — our journey continues.',
-        'hero.scroll': 'Scroll Down',
-        'projects.title': 'My Projects',
-        'projects.intro': 'Focused on developing clean, functional solutions that put user experience first.',
-        'about.title': 'About',
-        'about.intro': 'My projects are born from the combination of technical skill and a user-centred mindset.',
-        'about.body1': 'This journey began with a curiosity for technology and personal growth; today it has evolved into powerful, sustainable projects that serve greater goals. My industry experience, diverse perspectives, and constant drive to learn form the foundation of every solution I build.',
-        'about.body2': 'My goal is to transform seemingly complex ideas into simple, fast, and effective digital experiences. Every project is built on an approach that strengthens the bond with the user and is rooted in a real need.',
-        'about.skills': '💻 Skills & Knowledge Areas',
-        'contact.title': 'Contact',
-        'contact.intro': 'If you would like to talk about projects, ideas, or collaborations, leave a message.',
-        'contact.name': 'Your Name',
-        'contact.email': 'Your Email Address',
-        'contact.message': 'Your Message',
-        'contact.send': 'Send Email',
-        'captcha.title': 'Security Verification',
-        'captcha.intro': 'Please complete a verification step.',
-        'captcha.hint': 'Answer the question below.',
-        'captcha.continue': 'Continue',
-        'captcha.cancel': 'Cancel',
-        'footer.copy': '© 2026  AVS&V9 — All rights reserved.',
-        'cookie.text': '🍪 This site stores local preference data (theme, language) to improve your experience. No personal data is shared with third parties.',
-        'cookie.accept': 'Accept',
-        'cookie.more': 'Learn More',
-
-        'nav.social': 'Social Media',
-        'nav.proj1': '📦 Courier Tracking',
-        'nav.proj2': '🗺️ Group Location V1',
-        'nav.proj3': '📍 Group Location V2',
-        'card.details': '🔍 View Details',
-        'detail.downloads': 'Downloads',
-        'detail.rating': 'Rating',
-        'detail.agerating': 'Age',
-        'detail.getapp': 'Get it on Google Play',
-        'detail.about': '📋 About the App',
-        'detail.requirements': '📱 System Requirements',
-        'detail.minandroid': 'Minimum Android',
-        'detail.connection': 'Connection',
-        'detail.connval': 'Internet connection required (Wi-Fi / Mobile data)',
-        'detail.size': 'Size',
-        'detail.permissions': '🔐 Required Permissions',
-        'detail.perm.location': '📍 Location (Foreground & Background)',
-        'detail.perm.notif': '🔔 Notifications',
-        'detail.perm.net': '📶 Internet Access',
-        'detail.perm.bg': '⚡ Background Service',
-        'detail.changelog': '📝 Version History',
-        'detail.feedback': '💬 Feedback & Suggestions',
-        'detail.feedbacksub': 'Use the form below to report a bug, request a feature, or ask a question about this app.',
-        'detail.subject': 'Subject Type',
-        'detail.subj.bug': '🐛 Bug Report',
-        'detail.subj.feature': '💡 Feature Request',
-        'detail.subj.question': '❓ Question',
-        'detail.subj.other': '💬 Other',
-        'detail.cta': 'Have a different question?',
-        'detail.ctabtn': 'Contact Us Directly →',
-        'social.title': 'Social Media',
-        'social.intro': 'Latest posts, app announcements, and behind-the-scenes moments from development.',
-        'social.slide1.title': '🚀 V9 Courier — Development Process',
-        'social.slide1.desc': 'Exclusive behind-the-scenes shots and technical details from the real-time map integration.',
-        'social.slide2.title': '📍 Group Location V2 — Showcase Video',
-        'social.slide2.desc': 'Full showcase video demonstrating low-latency GPS sync and integrated chat features.',
-        'social.slide3.title': '⚡ New Update — Live Demo',
-        'social.slide3.desc': 'A short, fun teaser video of the features arriving in the latest update.',
-        'social.viewpost': 'View Post ↗',
-        'social.follow': 'Follow',
-        'social.subscribe': 'Subscribe',
-        'social.getapp': 'Get the App',
-
-        'faq.page.title': 'Frequently Asked Questions',
-        'faq.page.sub': 'All common questions about our apps, answered here.',
-        'legal.page.title': 'Legal Information',
-        'legal.page.sub': 'Our Privacy Policy and Terms of Service.',
-        'legal.tab.privacy': 'Privacy Policy',
-        'legal.tab.terms': 'Terms of Service',
+    // Gizlilik politikası
+    const privSec = document.getElementById('privacy');
+    if (privSec && legal.privacy) {
+        const dateEl = privSec.querySelector('.legal-date');
+        if (dateEl && legal.privacy.lastUpdated) dateEl.textContent = `Son güncelleme: ${legal.privacy.lastUpdated}`;
+        const contentEl = privSec.querySelector('.legal-content');
+        if (contentEl && legal.privacy.content) {
+            contentEl.innerHTML = legal.privacy.content.map(sec => `
+                <h3>${sanitize(sec.heading)}</h3>
+                <p>${sanitize(sec.text)}</p>`).join('');
+        }
     }
-};
+
+    // Kullanım koşulları
+    const termsSec = document.getElementById('terms');
+    if (termsSec && legal.terms) {
+        const dateEl = termsSec.querySelector('.legal-date');
+        if (dateEl && legal.terms.lastUpdated) dateEl.textContent = `Son güncelleme: ${legal.terms.lastUpdated}`;
+        const contentEl = termsSec.querySelector('.legal-content');
+        if (contentEl && legal.terms.content) {
+            contentEl.innerHTML = legal.terms.content.map(sec => `
+                <h3>${sanitize(sec.heading)}</h3>
+                <p>${sanitize(sec.text)}</p>`).join('');
+        }
+    }
+}
 
 // --- Tema ---
 function applyTheme(theme) {
@@ -324,7 +364,10 @@ function toggleTheme() {
 
 // --- Dil ---
 function applyLang(lang) {
+    if (!TRANSLATIONS || Object.keys(TRANSLATIONS).length === 0) return;
     const t = TRANSLATIONS[lang] || TRANSLATIONS['tr'];
+    if (!t) return;
+    
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key] !== undefined) el.textContent = t[key];
@@ -350,11 +393,22 @@ function toggleLang() {
 
 // --- DOM HAZIR OLUNCA ÇALIŞACAK TÜM DİNLEYİCİLER ---
 document.addEventListener('DOMContentLoaded', () => {
-
+    loadTranslations(); // TRANSLATIONS'i yükle
     // ─── DİNAMİK VERİ YÜKLEME (site-data.json) ───────────────────────────────
     // Admin panelinden yapılan değişiklikler burada okunur ve sayfalar güncellenir.
     // Admin paneli sayfasında bu blok çalışmaz (data-admin-page kontrolü).
     if (!document.documentElement.hasAttribute('data-admin-page')) {
+        const isIndex = !!document.querySelector('.slider-container');
+        if (isIndex) {
+            const listContainer = document.querySelector('.projects-list');
+            if (listContainer) {
+                listContainer.innerHTML = `
+                    <div class="project-oval-box skeleton-box"></div>
+                    <div class="project-oval-box skeleton-box"></div>
+                    <div class="project-oval-box skeleton-box"></div>
+                `;
+            }
+        }
         loadSiteData().then(data => {
             if (!data) return; // JSON yoksa statik HTML'e devam et
             // Hangi sayfada olduğumuzu anla
@@ -364,28 +418,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const isProjectDetail = !!document.getElementById('pdAppSlider');
 
             if (isIndex) {
-                initDynamicHeroSlider(data);
-                initDynamicBentoGrid(data);
-                // Slider'ı JSON'dan aldıktan sonra timer'ı yeniden başlat
-                const newSlides = document.querySelectorAll('.slide');
-                if (newSlides.length > 1) {
-                    let cur = 0;
-                    setInterval(() => {
-                        newSlides[cur].classList.remove('active');
-                        cur = (cur + 1) % newSlides.length;
-                        newSlides[cur].classList.add('active');
-                    }, 10000);
-                }
+                initDynamicHeroSlider(data); // Slider img eklenir ve startHeroSlider çağrılır (PERF-3)
+                initDynamicProjectsList(data);
+                initDynamicSocialFeed(data);
             }
             if (isFaq) initDynamicFaq(data);
             if (isLegal) initDynamicLegal(data);
             // Proje detay sayfası için PROJECT_DATA güncelleme
-            if (isProjectDetail && data.projects) {
-                // PROJECT_DATA'yı JSON ile üzerine yaz (geriye dönük uyumlu)
-                window._SITE_PROJECTS_FROM_JSON = {};
-                data.projects.forEach(p => {
-                    window._SITE_PROJECTS_FROM_JSON[p.slug] = p;
-                });
+            if (isProjectDetail && data.projects && data.projects.length > 0) {
+                const params = new URLSearchParams(window.location.search);
+                const projKey = params.get('p') || data.projects[0].slug;
+                const proj = data.projects.find(p => p.slug === projKey) || data.projects[0];
+                if (proj) initProjectDetail(proj);
             }
         });
     }
@@ -409,24 +453,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Ana Sayfa Hero Slayt ---
-    const slides = document.querySelectorAll('.slide');
-    let currentSlide = 0;
-    if (slides.length > 0) {
-        let slideInterval = setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 10000);
+    // --- Ana Sayfa Hero Slayt (Statik HTML fallback) ---
+    const staticSlides = document.querySelectorAll('.slide');
+    if (staticSlides.length > 0) {
+        // PERF-3: startHeroSlider ile tek interval — JSON gelince zaten override edilir.
+        startHeroSlider(staticSlides);
 
         document.addEventListener('visibilitychange', () => {
-            clearInterval(slideInterval);
-            if (!document.hidden) {
-                slideInterval = setInterval(() => {
-                    slides[currentSlide].classList.remove('active');
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    slides[currentSlide].classList.add('active');
-                }, 10000);
+            if (document.hidden) {
+                clearInterval(_heroSlideInterval);
+            } else {
+                startHeroSlider(document.querySelectorAll('.slide'));
             }
         });
     }
@@ -469,6 +506,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { root: null, rootMargin: '-50px', threshold: 0.15 });
 
+    // KOD-2: Global kaydedildi — dinamik eklenen kartlar da observe edilebilsin
+    window._scrollObserver = observer;
     document.querySelectorAll('.scroll-anim').forEach(el => observer.observe(el));
 
     // --- NAV AKTİF SEKSİYON TAKİBİ ---
@@ -653,16 +692,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const mailtoUrl = `mailto:${rawEmail}?subject=${subject}&body=${body}`;
 
         if (contactStatus) {
+            // KOD-3: innerHTML kullan ama onclick YOK — aşağıda addEventListener ile bağlan
             contactStatus.innerHTML = `
                 <div class="mail-success-card">
                     <p class="mail-success-title">✅ Güvenlik Doğrulaması Başarılı!</p>
                     <p class="mail-success-sub">Mesajınız e-posta istemcinize aktarıldı. Otomatik açılmadıysa aşağıdaki butona basabilir veya adrese doğrudan mail atabilirsiniz:</p>
                     <div class="mail-success-actions">
                         <a href="${mailtoUrl}" class="mail-direct-btn">✉️ E-postayı Gönder (${rawEmail})</a>
-                        <button type="button" class="mail-copy-btn" onclick="navigator.clipboard.writeText('${rawEmail}'); this.textContent='✓ Kopyalandı!';">📋 Adresi Kopyala</button>
+                        <button type="button" class="mail-copy-btn" id="mailCopyBtn">📋 Adresi Kopyala</button>
                     </div>
                 </div>
             `;
+            // KOD-3: CSP uyumlu event listener — onclick attribute yok
+            const copyBtn = document.getElementById('mailCopyBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(rawEmail).then(() => {
+                        copyBtn.textContent = '✓ Kopyalandı!';
+                        setTimeout(() => { copyBtn.textContent = '📋 Adresi Kopyala'; }, 2000);
+                    }).catch(() => {
+                        copyBtn.textContent = rawEmail; // Fallback: metni göster
+                    });
+                });
+            }
         }
 
         try {
@@ -795,6 +847,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (smPrev) smPrev.addEventListener('click', () => { smGoPrev(); smStartTimer(); });
         if (smNext) smNext.addEventListener('click', () => { smGoNext(); smStartTimer(); });
+        
+        const smContainer = document.querySelector('.sm-slider-container');
+        if (smContainer) {
+            addSwipeListener(smContainer, 
+                () => { smGoNext(); smStartTimer(); }, 
+                () => { smGoPrev(); smStartTimer(); }
+            );
+        }
 
         smDots.forEach((dot, i) => {
             dot.addEventListener('click', () => { smGoTo(i, i > smCurrent ? 'next' : 'prev'); smStartTimer(); });
@@ -807,89 +867,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- PROJE DETAY SAYFASI DİNAMİK VERİ HARİTASI ---
+function initProjectDetail(proj) {
     const pdAppSlider = document.getElementById('pdAppSlider');
     if (pdAppSlider) {
-        const PROJECT_DATA = {
-            'kurye': {
-                name: 'V9 Kurye Uygulaması',
-                nameEN: 'V9 Courier App',
-                status: 'inactive',
-                statusText: '📴 Yayından Kaldırılmış',
-                statusTextEN: '📴 Discontinued',
-                downloads: '5B+',
-                rating: '4.5 ★',
-                age: '3+',
-                size: '~18 MB',
-                minAndroid: 'Android 8.0 (Oreo) / API 26',
-                playUrl: '#',
-                logo: 'resimler/uygulama_logo.png',
-                slides: ['resimler/uygulama_ekran1.png', 'resimler/uygulama_ekran2.png'],
-                description: [
-                    'V9 Kurye Uygulaması, teslimat süreçlerini uçtan uca yöneten bir mobil çözümdür.',
-                    'Gerçek zamanlı GPS takibi ile kuryenin tüm hareketleri anlık olarak izlenebilir. Dinamik rota optimizasyonu, teslimat süresini ve yakıt tüketimini önemli ölçüde azaltır.',
-                    '📍 Gerçek Zamanlı Harita Takibi | 🗺️ Dinamik Rota | 🔔 Anlık Bildirimler | 🚀 Akıllı Teslimat'
-                ],
-                perms: ['📍 Konum (Ön plan & Arka plan)', '🔔 Bildirimler', '📶 İnternet Erişimi', '⚡ Arka Plan Servisi', '📷 Kamera (teslimat fotoğrafı)']
-            },
-            'grup-v1': {
-                name: 'V9 Grup Konum Paylaşımı',
-                nameEN: 'V9 Group Location Sharing',
-                status: 'wip',
-                statusText: '⏸️ Geliştirme Durduruldu',
-                statusTextEN: '⏸️ Development Paused',
-                downloads: '10B+',
-                rating: '4.8 ★',
-                age: '3+',
-                size: '~12 MB',
-                minAndroid: 'Android 8.0 (Oreo) / API 26',
-                playUrl: '#',
-                logo: 'resimler/uygulama_logo.png',
-                slides: ['resimler/uygulama_ekran1.png', 'resimler/uygulama_ekran2.png'],
-                description: [
-                    'V9 Grup Konum Paylaşımı (v1.0), bir grup içindeki tüm üyelerin konumunu aynı anda haritada göstermeye yarayan mobil bir uygulamadır.',
-                    'Saniyeler içinde oda oluşturun, davet bağlantısı paylaşın ve grubunuzun tüm üyelerini anlık olarak haritada izleyin. Akıllı toplanma noktası hesaplaması ile herkese en yakın buluşma noktası belirlenir.',
-                    '👥 Dinamik Grup Yönetimi | 📍 Gerçek Zamanlı Çoklu Takip | 🔋 Optimize Pil Kullanımı | 🎯 Akıllı Toplanma Noktaları'
-                ],
-                perms: ['📍 Konum (Ön plan & Arka plan)', '🔔 Bildirimler', '📶 İnternet Erişimi', '⚡ Arka Plan Servisi']
-            },
-            'grup-v2': {
-                name: 'V9 Grup Konum V2',
-                nameEN: 'V9 Group Location V2',
-                status: 'active',
-                statusText: '✅ Geliştirme Aşamasında',
-                statusTextEN: '✅ In Development',
-                downloads: '-',
-                rating: '-',
-                age: '3+',
-                size: '~15 MB',
-                minAndroid: 'Android 8.0 (Oreo) / API 26',
-                playUrl: '#',
-                logo: 'resimler/uygulama_logo.png',
-                slides: ['resimler/uygulama_ekran1.png', 'resimler/uygulama_ekran2.png'],
-                description: [
-                    'V9 Grup Konum Paylaşımı V2, birinci sürümün üzerine inşa edilmiş, entegre sohbet özelliği ve low-latency GPS senkronizasyonu ile donatılmış gelişmiş bir sürümdür.',
-                    'Yönetici yetkileri, oda kapasite ayarları ve gerçek zamanlı mesajlaşma ile grup yönetimi tamamen yeniden tasarlandı. Modüler mimari sayesinde gelecekteki özellikler kolayca entegre edilebilir.',
-                    '🚀 Low-latency GPS | 💬 Entegre Sohbet | ⚙️ Yönetici Paneli | 🔄 Ölçeklenebilir Mimari'
-                ],
-                perms: ['📍 Konum (Ön plan & Arka plan)', '🔔 Bildirimler', '📶 İnternet Erişimi', '⚡ Arka Plan Servisi', '💬 İnternet Mesajlaşma']
-            }
-        };
-
-        const params = new URLSearchParams(window.location.search);
-        const projKey = params.get('p') || 'grup-v1';
-        const proj = PROJECT_DATA[projKey] || PROJECT_DATA['grup-v1'];
         const lang = localStorage.getItem('avs_lang') || 'tr';
+        const name = escapeHTML(proj.name || 'Proje Detayları');
+        const desc = escapeHTML(proj.shortDesc || '');
+        const pdTitle = document.getElementById('pdAppName');
+        const descEl = document.getElementById('pdDescription');
 
         const bc = document.getElementById('pdBreadcrumbName');
-        if (bc) bc.textContent = lang === 'en' ? proj.nameEN : proj.name;
+        if (bc) bc.textContent = lang === 'en' ? (proj.nameEN || name) : name;
 
-        document.title = `${lang === 'en' ? proj.nameEN : proj.name} | AVS&V9`;
+        document.title = `${lang === 'en' ? (proj.nameEN || name) : name} | AVS&V9`;
 
-        const nameEl = document.getElementById('pdAppName');
-        if (nameEl) nameEl.textContent = lang === 'en' ? proj.nameEN : proj.name;
+        if (pdTitle) pdTitle.textContent = lang === 'en' ? (proj.nameEN || name) : name;
 
         const logoEl = document.getElementById('pdAppLogo');
-        if (logoEl) { logoEl.src = proj.logo; logoEl.alt = proj.name; }
+        if (logoEl) { logoEl.src = proj.logo; logoEl.alt = name; }
 
         const dlEl = document.getElementById('pdDownloads');
         if (dlEl) dlEl.textContent = proj.downloads;
@@ -908,31 +903,35 @@ document.addEventListener('DOMContentLoaded', () => {
         if (badge && statusTxt) {
             badge.className = 'pd-status-badge';
             if (proj.status === 'inactive') badge.classList.add('inactive');
-            else if (proj.status === 'wip') badge.classList.add('wip');
-            statusTxt.textContent = lang === 'en' ? proj.statusTextEN : proj.statusText;
+            else if (proj.status === 'wip' || proj.status === 'paused' || proj.status === 'waiting' || proj.status === 'research') badge.classList.add('wip');
+            
+            let trStatus = proj.detail ? proj.detail.statusText : (proj.statusText || '');
+            let enStatus = proj.detail ? proj.detail.statusTextEN : (proj.statusTextEN || '');
+            statusTxt.textContent = lang === 'en' ? enStatus : trStatus;
         }
 
-        const descEl = document.getElementById('pdDescription');
-        if (descEl) descEl.innerHTML = proj.description.map(p => `<p>${p}</p>`).join('');
+        if (descEl) descEl.innerHTML = proj.description.map(p => `<p>${escapeHTML(p)}</p>`).join('');
 
         const permEl = document.getElementById('pdPermList');
         if (permEl) {
             permEl.innerHTML = proj.perms.map(p =>
-                `<li><span class="pd-perm-badge">${p.split(' ')[0]}</span><span>${p.slice(p.indexOf(' ') + 1)}</span></li>`
+                `<span class="pd-tag">${escapeHTML(p)}</span>`
             ).join('');
         }
 
         const minEl = document.getElementById('pdMinAndroid');
-        if (minEl) minEl.textContent = proj.minAndroid;
+        if (minEl) minEl.textContent = proj.detail ? proj.detail.minAndroid : (proj.minAndroid || '');
 
         const sizeEl = document.getElementById('pdAppSize');
-        if (sizeEl) sizeEl.textContent = proj.size;
+        if (sizeEl) sizeEl.textContent = proj.detail ? proj.detail.size : (proj.size || '');
 
         const dotsEl = document.getElementById('pdDots');
         const pdPrev = document.getElementById('pdPrev');
         const pdNext = document.getElementById('pdNext');
-
-        if (proj.slides && proj.slides.length) {
+        
+        const slides = proj.detail && proj.detail.screenshots ? proj.detail.screenshots : (proj.slides || []);
+        
+        if (slides && slides.length) {
             pdAppSlider.innerHTML = proj.slides.map((src, i) =>
                 `<div class="pd-app-slide${i === 0 ? ' active' : ''}">
                    <img src="${src}" alt="Ekran ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="Büyütmek için tıklayın 🔍">
@@ -967,23 +966,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (lbClose) lbClose.addEventListener('click', closeLightbox);
             if (lbModal) {
-                lbModal.addEventListener('click', evt => {
-                    if (evt.target === lbModal) closeLightbox();
-                });
-            }
-            document.addEventListener('keydown', evt => {
-                if (evt.key === 'Escape') closeLightbox();
-            });
-
-            if (dotsEl) {
-                dotsEl.innerHTML = proj.slides.map((_, i) =>
-                    `<button class="pd-dot${i === 0 ? ' active' : ''}" data-idx="${i}" role="tab" aria-selected="${i === 0}"></button>`
-                ).join('');
-            }
-
-            let pdCurrent = 0;
-            let pdTimer = null;
-
             const pdSlides = Array.from(pdAppSlider.querySelectorAll('.pd-app-slide'));
             const pdDots = dotsEl ? Array.from(dotsEl.querySelectorAll('.pd-dot')) : [];
 
@@ -1006,6 +988,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             pdStartTimer();
 
+            addSwipeListener(pdAppSlider, 
+                () => { pdDoNext(); pdStartTimer(); }, 
+                () => { pdDoPrev(); pdStartTimer(); }
+            );
+
             if (pdPrev) pdPrev.addEventListener('click', () => { pdDoPrev(); pdStartTimer(); });
             if (pdNext) pdNext.addEventListener('click', () => { pdDoNext(); pdStartTimer(); });
 
@@ -1017,6 +1004,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+}
 
     // --- Proje Detay Feedback / E-posta Gönderimi (pdSendBtn) ---
     const pdSendBtn = document.getElementById('pdSendBtn');

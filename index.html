@@ -2,6 +2,15 @@
 <html lang="tr" data-theme="dark">
 
 <head>
+    <script>
+    window.onerror = function(msg, url, line, col, error) {
+        var errDiv = document.createElement('div');
+        errDiv.style.cssText = 'color:red; font-size:20px; z-index:99999; position:fixed; top:0; left:0; width:100%; background:black; padding:20px; border:2px solid red;';
+        errDiv.innerHTML = 'JS ERROR: ' + msg + '<br>Line: ' + line;
+        if(document.body) document.body.appendChild(errDiv);
+        else window.addEventListener('DOMContentLoaded', () => document.body.appendChild(errDiv));
+    };
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -91,73 +100,8 @@
                     geliştirmeye odaklanıyorum.</p>
             </div>
 
-            <div class="bento-grid">
-
-                <!-- BÜYÜK KART — sol sütun -->
-                <div class="bento-card bento-large scroll-anim" data-href="proje-detay.html?p=kurye" tabindex="0" role="link" aria-label="V9 Kurye Uygulaması Detayları">
-                    <div class="bento-img-wrap">
-                        <img src="resimler/projeler-resmi1.jpg" alt="V9 Kurye Uygulaması" loading="lazy">
-                        <div class="bento-overlay"></div>
-                    </div>
-                    <div class="bento-body">
-                        <div class="bento-tags">
-                            <span class="tag">📦 Kurye</span>
-                            <span class="tag">📱 Mobil</span>
-                            <span class="tag tag-inactive">📴 Yayından kaldırılmış</span>
-                            <span class="tag tag-soon">⏸️ Geliştirme Durdurulmuş</span>
-                        </div>
-                        <h3>V9 Kurye Uygulaması</h3>
-                        <p>Gerçek zamanlı harita takibi, akıllı rota yönetimi ve anlık bildirimler ile kuryelerin
-                            teslimat süreçlerini uçtan uca yöneten mobil uygulama.</p>
-                        <div class="bento-actions">
-                            <a href="proje-detay.html?p=kurye" class="bento-detail-btn" data-i18n="card.details">🔍
-                                Detayları İncele</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- KÜÇÜK KART — sağ üst -->
-                <div class="bento-card bento-small scroll-anim" data-href="proje-detay.html?p=grup-v1" tabindex="0" role="link" aria-label="V9 Grup Konum Paylaşımı Detayları">
-                    <div class="bento-img-wrap">
-                        <img src="resimler/projeler-resmi2.jpg" alt="Grup Konum Paylaşımı" loading="lazy">
-                        <div class="bento-overlay"></div>
-                    </div>
-                    <div class="bento-body">
-                        <div class="bento-tags">
-                            <span class="tag">🗺️ Harita</span>
-                            <span class="tag tag-soon">⏸️ Geliştirme Durdurulmuş</span>
-                        </div>
-                        <h3>V9 Grup Konum Paylaşımı</h3>
-                        <p>Anlık çoklu konum takibi ile grubun her üyesini haritada eş zamanlı gösteren mobil uygulama.
-                            v1.0</p>
-                        <div class="bento-actions">
-                            <a href="proje-detay.html?p=grup-v1" class="bento-detail-btn" data-i18n="card.details">🔍
-                                Detayları İncele</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- KÜÇÜK KART — sağ alt -->
-                <div class="bento-card bento-small scroll-anim" data-href="proje-detay.html?p=grup-v2" tabindex="0" role="link" aria-label="V9 Grup Konum Paylaşımı V2 Detayları">
-                    <div class="bento-img-wrap">
-                        <img src="resimler/projeler-resmi3.jpg" alt="Konum Paylaşımı V2" loading="lazy">
-                        <div class="bento-overlay"></div>
-                    </div>
-                    <div class="bento-body">
-                        <div class="bento-tags">
-                            <span class="tag">💬 Sohbet</span>
-                            <span class="tag">📍 Konum</span>
-                            <span class="tag tag-wip">⏳ Geliştirme Aşamasında</span>
-                        </div>
-                        <h3>V9 Grup Konum Paylaşımı V2</h3>
-                        <p>Entegre sohbet, low-latency GPS ve ölçeklenebilir mimariye sahip gelişmiş sürüm. v2.0</p>
-                        <div class="bento-actions">
-                            <a href="proje-detay.html?p=grup-v2" class="bento-detail-btn" data-i18n="card.details">🔍
-                                Detayları İncele</a>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="projects-list">
+                <!-- Projeler script.js tarafından buraya dinamik olarak eklenecek -->
             </div>
         </section>
 

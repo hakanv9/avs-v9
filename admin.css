@@ -6,15 +6,15 @@
 /* --- Admin CSS Değişkenleri (Kırmızı Tema Override) --- */
 [data-admin-page] {
     --admin-accent:       #ff4757;
-    --admin-accent-dim:   rgba(255, 71, 87, 0.15);
+    --admin-accent-dim:   rgba(255, 71, 87, 0.18);
     --admin-accent-glow:  rgba(255, 71, 87, 0.35);
     --admin-accent-dark:  #c0392b;
     --admin-success:      #2ecc71;
     --admin-warning:      #f39c12;
     --admin-info:         #3498db;
     --admin-danger:       #e74c3c;
-    --admin-border:       rgba(255, 71, 87, 0.22);
-    --admin-card-bg:      rgba(255, 71, 87, 0.06);
+    --admin-border:       rgba(255, 71, 87, 0.25);
+    --admin-card-bg:      rgba(18, 8, 12, 0.72);
     --admin-radius:       20px;
     --admin-radius-sm:    12px;
     --admin-shadow:       0 8px 32px rgba(255, 71, 87, 0.12);
@@ -33,9 +33,9 @@
 .admin-login-card {
     width: 100%;
     max-width: 420px;
-    background: var(--glass-bg, rgba(30,30,45,0.7));
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: rgba(14, 6, 10, 0.88);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
     border: 1px solid var(--admin-border);
     border-radius: var(--admin-radius);
     padding: 44px 40px;
@@ -86,7 +86,7 @@
 
 .admin-field input {
     width: 100%;
-    background: rgba(255, 71, 87, 0.05);
+    background: rgba(255, 71, 87, 0.06);
     border: 1.5px solid var(--admin-border);
     border-radius: var(--admin-radius-sm);
     color: var(--text-primary, #e8eaf0);
@@ -156,7 +156,7 @@
     top: 0; left: 0; right: 0;
     z-index: 1000;
     height: 64px;
-    background: rgba(18, 10, 12, 0.85);
+    background: rgba(12, 4, 8, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--admin-border);
@@ -313,8 +313,8 @@
 /* ========== ADMIN KARTLAR (OVAL GLASSMORPHISM) ========== */
 .admin-card {
     background: var(--admin-card-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1.5px solid var(--admin-border);
     border-radius: var(--admin-radius);
     padding: 28px;
@@ -323,7 +323,7 @@
     box-shadow: var(--admin-shadow);
 }
 
-.admin-card:hover { border-color: rgba(255,71,87,0.4); }
+.admin-card:hover { border-color: rgba(255,71,87,0.45); }
 
 .admin-card-header {
     display: flex;
@@ -349,9 +349,10 @@
 /* ========== SLIDER RESİM YÖNETİMİ ========== */
 .slider-img-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 14px;
     margin-bottom: 18px;
+    width: 100%;
 }
 
 .slider-img-item {
@@ -360,8 +361,9 @@
     overflow: hidden;
     border: 1.5px solid var(--admin-border);
     aspect-ratio: 16/9;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.3);
     transition: var(--admin-transition);
+    width: 100%;
 }
 
 .slider-img-item:hover { border-color: var(--admin-accent); }
@@ -376,7 +378,7 @@
 .slider-img-item .img-order-badge {
     position: absolute;
     top: 8px; left: 8px;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.7);
     backdrop-filter: blur(6px);
     color: #fff;
     font-size: 0.72rem;
@@ -389,7 +391,7 @@
     position: absolute;
     top: 6px; right: 6px;
     width: 28px; height: 28px;
-    background: rgba(231,76,60,0.85);
+    background: rgba(231,76,60,0.9);
     border: none;
     border-radius: 50%;
     color: #fff;
@@ -414,6 +416,9 @@
     cursor: pointer;
     transition: var(--admin-transition);
     background: rgba(255,71,87,0.03);
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .admin-upload-area:hover,
@@ -431,7 +436,7 @@
 .admin-project-list { display: flex; flex-direction: column; gap: 14px; }
 
 .admin-project-item {
-    background: rgba(255,71,87,0.04);
+    background: rgba(255,71,87,0.05);
     border: 1.5px solid var(--admin-border);
     border-radius: 16px;
     padding: 18px 22px;
@@ -441,7 +446,7 @@
     transition: var(--admin-transition);
 }
 
-.admin-project-item:hover { border-color: rgba(255,71,87,0.4); }
+.admin-project-item:hover { border-color: rgba(255,71,87,0.45); }
 
 .admin-project-thumb {
     width: 72px; height: 48px;
@@ -449,7 +454,10 @@
     object-fit: cover;
     flex-shrink: 0;
     border: 1px solid var(--admin-border);
+    cursor: pointer;
+    transition: var(--admin-transition);
 }
+.admin-project-thumb:hover { border-color: var(--admin-accent); transform: scale(1.05); }
 
 .admin-project-info { flex: 1; min-width: 0; }
 
@@ -457,28 +465,60 @@
     font-size: 0.98rem;
     font-weight: 700;
     color: var(--text-primary, #e8eaf0);
-    margin: 0 0 5px;
+    margin: 0 0 6px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+/* ── SELECT (Status dropdown) koyu tema fix ── */
 .admin-status-select {
-    background: rgba(0,0,0,0.25);
+    background: rgba(10, 4, 8, 0.85);
     border: 1px solid var(--admin-border);
     border-radius: 8px;
-    color: var(--text-primary, #e8eaf0);
+    color: #e8eaf0;
     font-family: inherit;
     font-size: 0.78rem;
     padding: 5px 10px;
     cursor: pointer;
     outline: none;
     transition: var(--admin-transition);
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ff4757'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
 }
 
 .admin-status-select:focus { border-color: var(--admin-accent); }
 
+/* Genel select dark theme fix */
+.admin-form-group select,
+select.admin-status-select {
+    background-color: rgba(10, 4, 8, 0.88) !important;
+    color: #e8eaf0 !important;
+}
+
+.admin-form-group select option,
+.admin-status-select option {
+    background: #0f0509;
+    color: #e8eaf0;
+}
+
 .admin-project-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+/* ========== THUMBNAIL YÜKLEMESİ ========== */
+.admin-thumb-preview {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1.5px solid var(--admin-border);
+    margin-bottom: 10px;
+    display: block;
+    background: rgba(0,0,0,0.3);
+}
 
 /* ========== BUTONLAR ========== */
 .admin-btn {
@@ -565,7 +605,7 @@
 .admin-form-group textarea,
 .admin-form-group select {
     width: 100%;
-    background: rgba(255,71,87,0.04);
+    background: rgba(255,71,87,0.05);
     border: 1.5px solid var(--admin-border);
     border-radius: var(--admin-radius-sm);
     color: var(--text-primary, #e8eaf0);
@@ -587,8 +627,6 @@
 }
 
 .admin-form-group textarea { min-height: 90px; }
-
-.admin-form-group select option { background: #1a1a2e; }
 
 /* ========== TOGGLE SWITCH ========== */
 .admin-toggle-row {
@@ -657,7 +695,7 @@
 .changelog-list { display: flex; flex-direction: column; gap: 12px; }
 
 .changelog-item {
-    background: rgba(255,71,87,0.04);
+    background: rgba(255,71,87,0.05);
     border: 1.5px solid var(--admin-border);
     border-radius: 14px;
     padding: 16px 20px;
@@ -667,7 +705,7 @@
     transition: var(--admin-transition);
 }
 
-.changelog-item:hover { border-color: rgba(255,71,87,0.35); }
+.changelog-item:hover { border-color: rgba(255,71,87,0.4); }
 
 .changelog-version-badge {
     font-size: 0.78rem;
@@ -696,6 +734,18 @@
     border: 1px solid rgba(46,204,113,0.3);
 }
 
+.changelog-version-badge.feature {
+    background: rgba(155,89,182,0.2);
+    color: #9b59b6;
+    border: 1px solid rgba(155,89,182,0.3);
+}
+
+.changelog-version-badge.initial {
+    background: rgba(241,196,15,0.15);
+    color: #f1c40f;
+    border: 1px solid rgba(241,196,15,0.3);
+}
+
 .changelog-info { flex: 1; }
 .changelog-date {
     font-size: 0.72rem;
@@ -718,10 +768,11 @@
     border-radius: 16px;
     overflow: hidden;
     margin-bottom: 16px;
+    background: rgba(18, 8, 12, 0.5);
 }
 
 .faq-admin-cat-header {
-    background: rgba(255,71,87,0.06);
+    background: rgba(255,71,87,0.08);
     padding: 14px 20px;
     display: flex;
     align-items: center;
@@ -740,8 +791,8 @@
 .faq-admin-items { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
 
 .faq-admin-item {
-    background: rgba(0,0,0,0.12);
-    border: 1px solid rgba(255,71,87,0.1);
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,71,87,0.12);
     border-radius: 10px;
     padding: 14px 16px;
 }
@@ -771,10 +822,11 @@
     border-radius: 16px;
     overflow: hidden;
     margin-bottom: 16px;
+    background: rgba(18, 8, 12, 0.5);
 }
 
 .legal-admin-header {
-    background: rgba(255,71,87,0.06);
+    background: rgba(255,71,87,0.08);
     padding: 14px 20px;
     display: flex;
     align-items: center;
@@ -796,7 +848,7 @@
     position: fixed;
     bottom: 0; left: 0; right: 0;
     z-index: 900;
-    background: rgba(18,10,12,0.92);
+    background: rgba(10, 4, 8, 0.95);
     backdrop-filter: blur(16px);
     border-top: 1px solid var(--admin-border);
     padding: 14px 28px;
@@ -837,7 +889,7 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
     backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
@@ -882,7 +934,7 @@
 }
 
 .admin-toast {
-    background: rgba(30,30,45,0.95);
+    background: rgba(12, 6, 10, 0.96);
     backdrop-filter: blur(16px);
     border-radius: 12px;
     padding: 13px 18px;
@@ -891,13 +943,14 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.5);
     transform: translateX(120%);
     transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
     pointer-events: all;
     min-width: 240px;
     max-width: 340px;
     border-left: 3px solid var(--admin-accent);
+    color: #e8eaf0;
 }
 
 .admin-toast.show { transform: translateX(0); }
@@ -908,13 +961,13 @@
 /* ========== PROJE SEÇİCİ (Detay menüsü için) ========== */
 .admin-project-selector {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 14px;
     margin-bottom: 24px;
 }
 
 .admin-proj-sel-card {
-    background: rgba(255,71,87,0.04);
+    background: rgba(255,71,87,0.05);
     border: 1.5px solid var(--admin-border);
     border-radius: 16px;
     padding: 16px;
@@ -947,7 +1000,7 @@
     color: var(--text-primary, #e8eaf0);
 }
 
-/* ========== EKRAN RESİMLERİ SLIDER YÖNETİMİ ========== */
+/* ========== EKRAN GÖRÜNTÜSÜ GRID ========== */
 .screenshot-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -955,15 +1008,22 @@
     margin-bottom: 16px;
 }
 
+/* Görüntü adaptif: dikey veya yatay */
 .screenshot-item {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
     border: 1.5px solid var(--admin-border);
-    aspect-ratio: 9/16;
     background: rgba(0,0,0,0.3);
     transition: var(--admin-transition);
+    cursor: zoom-in;
 }
+
+/* Dikey resimler için varsayılan */
+.screenshot-item { aspect-ratio: 9/16; }
+/* Yatay/kare resimler otomatik boyutlanır */
+.screenshot-item.landscape { aspect-ratio: 16/9; }
+.screenshot-item.square    { aspect-ratio: 1; }
 
 .screenshot-item:hover { border-color: var(--admin-accent); }
 
@@ -971,6 +1031,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .screenshot-item .ss-del-btn {
@@ -992,6 +1053,61 @@
 
 .screenshot-item:hover .ss-del-btn { opacity: 1; }
 
+/* ========== LİGHTBOX ========== */
+.admin-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(0,0,0,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.admin-lightbox.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.admin-lightbox img {
+    max-width: 90vw;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+    animation: lbIn 0.25s ease both;
+}
+
+@keyframes lbIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.admin-lightbox-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 40px; height: 40px;
+    background: rgba(255,71,87,0.8);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--admin-transition);
+}
+
+.admin-lightbox-close:hover {
+    background: var(--admin-accent);
+    transform: scale(1.1);
+}
+
 /* ========== YASAL TARIH ALANI ========== */
 .legal-date-row {
     display: flex;
@@ -999,7 +1115,7 @@
     gap: 12px;
     margin-bottom: 20px;
     padding: 14px 18px;
-    background: rgba(255,71,87,0.04);
+    background: rgba(255,71,87,0.05);
     border: 1px solid var(--admin-border);
     border-radius: 12px;
     flex-wrap: wrap;
@@ -1013,7 +1129,7 @@
 }
 
 .legal-date-row input[type="date"] {
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.35);
     border: 1px solid var(--admin-border);
     border-radius: 8px;
     color: var(--text-primary, #e8eaf0);
@@ -1041,7 +1157,7 @@
     .admin-project-item { flex-wrap: wrap; }
     .admin-project-thumb { width: 100%; height: 80px; }
     .admin-save-bar { padding: 12px 16px; }
-    .slider-img-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    .slider-img-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
     .admin-project-selector { grid-template-columns: 1fr 1fr; }
 }
 

@@ -5,6 +5,19 @@
 
 'use strict';
 
+function escapeHTML(str) {
+    if (typeof str !== 'string') return str;
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag)
+    );
+}
+
 // ─── YARDIMCI FONKSİYONLAR ───────────────────────────────────────────────────
 
 function adminToast(msg, type = 'info', duration = 3500) {
@@ -118,7 +131,14 @@ class GitHubAPI {
     }
 
     async uploadImage(filename, base64Data, folder = 'resimler') {
-        const path = `${folder}/${filename}`;
+        // Dosya adından sorunlu karakterleri temizle (GitHub path hatası önlenir)
+        const safeFilename = filename
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')  // Aksanları kaldır
+            .replace(/[^a-zA-Z0-9._\-]/g, '_') // Sadece güvenli karakterler
+            .replace(/_{2,}/g, '_')             // Çift alt çizgi temizle
+            .replace(/^_|_$/g, '');            // Baş/son alt çizgi kaldır
+        const path = `${folder}/${safeFilename}`;
         const existing = await this.getFile(path);
         const sha = existing ? existing.sha : null;
         const pureBase64 = base64Data.split(',')[1] || base64Data;
@@ -126,7 +146,7 @@ class GitHubAPI {
             method: 'PUT',
             headers: this.headers(),
             body: JSON.stringify({
-                message: `🖼️ Admin: Görsel yüklendi — ${filename}`,
+                message: `🖼️ Admin: Görsel yüklendi — ${safeFilename}`,
                 content: pureBase64,
                 branch: this.branch,
                 ...(sha ? { sha } : {})
@@ -136,8 +156,7 @@ class GitHubAPI {
             const err = await res.json().catch(() => ({}));
             throw new Error(`Görsel yükleme hatası: ${err.message || res.status}`);
         }
-        const data = await res.json();
-        return `resimler/${filename}`;
+        return `${folder}/${safeFilename}`;
     }
 
     async deleteFile(path, sha, commitMsg) {
@@ -152,6 +171,7 @@ class GitHubAPI {
 
     async saveSiteData(data) {
         const path = 'data/site-data.json';
+        // Her kaydetmede taze SHA al — stale SHA hatasını önler
         const existing = await this.getFile(path);
         const sha = existing ? existing.sha : null;
         const content = JSON.stringify(data, null, 2);
@@ -166,41 +186,44 @@ class GitHubAPI {
     }
 }
 
-// ─── OTURUMi YÖNETİMİ ────────────────────────────────────────────────────────
-
-const SESSION_KEY = 'avs_admin_session';
+// ─── OTURUM YÖNETİMİ (Sadece Bellek) ────────────────────────────────────────
+// GÜV-2: Token hiçbir zaman sessionStorage/localStorage'a yazılmaz.
+// Giriş bilgileri yalnızca ghAPI nesnesi içinde sayfa ömrü boyunca tutulur.
+// Sayfa yenileme veya tarayıcı kapatma → otomatik çıkış (tekrar giriş gerekir).
 
 function saveSession(token, owner, repo) {
-    const s = { token, owner, repo, ts: Date.now() };
-    sessionStorage.setItem(SESSION_KEY, JSON.stringify(s));
+    sessionStorage.setItem('avs_admin_token', token);
+    sessionStorage.setItem('avs_admin_owner', owner);
+    sessionStorage.setItem('avs_admin_repo', repo);
 }
 
 function loadSession() {
-    try {
-        const raw = sessionStorage.getItem(SESSION_KEY);
-        if (!raw) return null;
-        const s = JSON.parse(raw);
-        // 12 saatlik oturum süresi
-        if (Date.now() - s.ts > 12 * 60 * 60 * 1000) {
-            sessionStorage.removeItem(SESSION_KEY);
-            return null;
-        }
-        return s;
-    } catch (e) { return null; }
+    const token = sessionStorage.getItem('avs_admin_token');
+    const owner = sessionStorage.getItem('avs_admin_owner');
+    const repo = sessionStorage.getItem('avs_admin_repo');
+    if (token && owner && repo) return { token, owner, repo };
+    return null;
 }
 
 function clearSession() {
-    sessionStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem('avs_admin_token');
+    sessionStorage.removeItem('avs_admin_owner');
+    sessionStorage.removeItem('avs_admin_repo');
 }
 
 // ─── DURUM ETİKETİ HARİTASI ──────────────────────────────────────────────────
 
 const STATUS_MAP = {
-    'live':          { label: '✅ Yayında',                  tag: 'tag-live',         class: 'active' },
-    'development':   { label: '⏳ Geliştirme Aşamasında',   tag: 'tag-wip',          class: 'wip' },
-    'completed':     { label: '🔵 Tamamlandı',              tag: 'tag-completed',    class: 'completed' },
-    'discontinued':  { label: '📴 Yayından Kaldırılmış',    tag: 'tag-inactive',     class: 'inactive' },
-    'paused':        { label: '⏸️ Geliştirme Durdurulmuş', tag: 'tag-soon',         class: 'paused' }
+    'live':          { label: '✅ Yayında',                    tag: 'tag-live',       class: 'active' },
+    'development':   { label: '⏳ Geliştirme Aşamasında',    tag: 'tag-wip',        class: 'wip' },
+    'completed':     { label: '🔵 Tamamlandı',              tag: 'tag-completed',  class: 'completed' },
+    'discontinued':  { label: '📔 Yayından Kaldırılmış',    tag: 'tag-inactive',   class: 'inactive' },
+    'paused':        { label: '⏸️ Geliştirme Durdurulmuş', tag: 'tag-soon',       class: 'paused' },
+    'research':      { label: '🔍 Araştırma Aşamasında',  tag: 'tag-wip',        class: 'wip' },
+    'bugfix':        { label: '🛠️ Hata Düzeltme',          tag: 'tag-wip',        class: 'wip' },
+    'waiting':       { label: '⏳ Beklemede',                  tag: 'tag-soon',       class: 'paused' },
+    'special':       { label: '⭐ Özel Durum',                tag: 'tag-soon',       class: 'wip' },
+    'rnd':           { label: '🧪 Ar-Ge Aşamasında',        tag: 'tag-wip',        class: 'wip' }
 };
 
 // ─── ANA UYGULAMA ─────────────────────────────────────────────────────────────
@@ -215,10 +238,13 @@ let editingLegalId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     const session = loadSession();
-
     if (session) {
-        ghAPI = new GitHubAPI(session.token, session.owner, session.repo);
-        showPanel();
+        document.getElementById('adminGithubToken').value = session.token;
+        document.getElementById('adminRepoOwner').value = session.owner;
+        document.getElementById('adminRepoName').value = session.repo;
+        setTimeout(() => {
+            document.getElementById('adminLoginBtn').click();
+        }, 100);
     } else {
         showLogin();
     }
@@ -228,6 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initSaveBar();
     initModals();
+    initLightbox();
+    initAutoTranslate();
 });
 
 // ─── GİRİŞ EKRANI ────────────────────────────────────────────────────────────
@@ -304,9 +332,10 @@ function initLoginScreen() {
             if (window._adminDirty) {
                 if (!confirm('Kaydedilmemiş değişiklikler var. Çıkmak istediğinize emin misiniz?')) return;
             }
-            clearSession();
+            // GÜV-2: Bellekten temizle
             ghAPI = null;
             siteData = null;
+            window._adminDirty = false;
             adminToast('Oturum kapatıldı.', 'info');
             showLogin();
         });
@@ -325,6 +354,7 @@ async function loadAndRenderAll() {
         renderDetailProjectSelector();
         renderFaqAdmin();
         renderLegalAdmin();
+        renderSocialFeedAdmin();
         adminToast('Veriler yüklendi!', 'success', 2000);
     } catch (err) {
         adminToast(`Yükleme hatası: ${err.message}`, 'error', 6000);
@@ -419,6 +449,7 @@ async function saveAllToGitHub() {
 function renderSliderSection() {
     const grid = document.getElementById('sliderImgGrid');
     if (!grid || !siteData) return;
+    siteData.heroSlider.sort((a, b) => (a.order || 0) - (b.order || 0));
     const slides = siteData.heroSlider || [];
     grid.innerHTML = slides.map((s, i) => `
         <div class="slider-img-item" data-id="${s.id}">
@@ -441,6 +472,22 @@ function renderSliderSection() {
         uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
         uploadArea.addEventListener('drop', e => { e.preventDefault(); uploadArea.classList.remove('dragover'); handleSliderUpload(e.dataTransfer.files); });
     }
+
+    if (typeof Sortable !== 'undefined') {
+        Sortable.create(grid, {
+            animation: 150,
+            onEnd: function () {
+                const items = Array.from(grid.children);
+                items.forEach((item, index) => {
+                    const slide = siteData.heroSlider.find(s => s.id === item.dataset.id);
+                    if (slide) slide.order = index + 1;
+                });
+                siteData.heroSlider.sort((a, b) => (a.order || 0) - (b.order || 0));
+                markDirty();
+                renderSliderSection();
+            }
+        });
+    }
 }
 
 async function handleSliderUpload(files) {
@@ -454,7 +501,7 @@ async function handleSliderUpload(files) {
             const path = await ghAPI.uploadImage(filename, base64);
             siteData.heroSlider.push({ id: generateId('slide'), src: path, alt: file.name.split('.')[0], order: siteData.heroSlider.length + 1 });
         }
-        await ghAPI.saveSiteData(siteData);
+        markDirty();
         renderSliderSection();
         adminToast('Görseller yüklendi!', 'success');
     } catch (err) {
@@ -473,7 +520,7 @@ async function deleteSliderImage(id) {
     siteData.heroSlider.forEach((s, i) => s.order = i + 1);
     adminLoading(true, 'Kaydediliyor...');
     try {
-        await ghAPI.saveSiteData(siteData);
+        markDirty();
         renderSliderSection();
         adminToast('Görsel silindi.', 'success');
     } catch (err) {
@@ -488,6 +535,7 @@ async function deleteSliderImage(id) {
 function renderProjectList() {
     const list = document.getElementById('adminProjectList');
     if (!list || !siteData) return;
+    siteData.projects.sort((a, b) => (a.order || 0) - (b.order || 0));
     const projects = siteData.projects || [];
     if (!projects.length) { list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:20px;">Henüz proje eklenmemiş.</p>'; return; }
 
@@ -527,6 +575,21 @@ function renderProjectList() {
     list.querySelectorAll('.edit-proj-btn').forEach(btn => {
         btn.addEventListener('click', () => openEditProjectModal(btn.dataset.id));
     });
+
+    if (typeof Sortable !== 'undefined') {
+        Sortable.create(list, {
+            animation: 150,
+            onEnd: function () {
+                const items = Array.from(list.children);
+                items.forEach((item, index) => {
+                    const proj = siteData.projects.find(p => p.id === item.dataset.id);
+                    if (proj) proj.order = index + 1;
+                });
+                siteData.projects.sort((a, b) => (a.order || 0) - (b.order || 0));
+                markDirty();
+            }
+        });
+    }
 }
 
 function deleteProject(id) {
@@ -562,6 +625,7 @@ function initModals() {
     document.getElementById('saveDetailBtn')?.addEventListener('click', saveProjectDetail);
     document.getElementById('saveFaqBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('saveLegalBtn')?.addEventListener('click', saveAllToGitHub);
+    document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts);
 
     // Yasal Bugün butonları
     document.getElementById('setPrivacyTodayBtn')?.addEventListener('click', () => {
@@ -597,6 +661,8 @@ function openAddProjectModal() {
     document.getElementById('pmSlug').value = '';
     document.getElementById('pmStatus').value = 'development';
     document.getElementById('pmTags').value = '';
+    document.getElementById('pmThumbnail').value = '';
+    document.getElementById('pmThumbnailFile').value = '';
     document.getElementById('projectModalSave').dataset.mode = 'add';
     delete document.getElementById('projectModalSave').dataset.editId;
     openModal('projectModal');
@@ -612,12 +678,14 @@ function openEditProjectModal(id) {
     document.getElementById('pmSlug').value = proj.slug;
     document.getElementById('pmStatus').value = proj.status;
     document.getElementById('pmTags').value = proj.tags.join(', ');
+    document.getElementById('pmThumbnail').value = proj.thumbnail || '';
+    document.getElementById('pmThumbnailFile').value = '';
     document.getElementById('projectModalSave').dataset.mode = 'edit';
     document.getElementById('projectModalSave').dataset.editId = id;
     openModal('projectModal');
 }
 
-function saveProjectModal() {
+async function saveProjectModal() {
     const btn = document.getElementById('projectModalSave');
     const mode = btn.dataset.mode;
     const name = document.getElementById('pmName').value.trim();
@@ -626,18 +694,39 @@ function saveProjectModal() {
     const slug = document.getElementById('pmSlug').value.trim().replace(/\s+/g, '-').toLowerCase();
     const status = document.getElementById('pmStatus').value;
     const tags = document.getElementById('pmTags').value.split(',').map(t => t.trim()).filter(Boolean);
+    let thumbnail = document.getElementById('pmThumbnail').value.trim();
 
     if (!name || !slug) { adminToast('Proje adı ve slug zorunludur.', 'error'); return; }
 
+    // Thumbnail dosya yükleme varsa önce yükle
+    const thumbFile = document.getElementById('pmThumbnailFile').files[0];
+    if (thumbFile) {
+        try {
+            adminLoading(true, 'Kapak görseli yükleniyor...');
+            const base64 = await fileToBase64(thumbFile);
+            const safeSlug = slug.replace(/[^a-zA-Z0-9\-]/g, '_');
+            const filename = `thumb-${safeSlug}-${Date.now()}.${thumbFile.name.split('.').pop()}`;
+            thumbnail = await ghAPI.uploadImage(filename, base64);
+        } catch (err) {
+            adminToast(`Kapak görseli yüklenemedi: ${err.message}`, 'error');
+            adminLoading(false);
+            return;
+        } finally {
+            adminLoading(false);
+        }
+    }
+
     if (mode === 'add') {
+        // Özgün ID üret — slug çakışmasını önle
+        const uniqueId = slug + '-' + Date.now().toString(36);
         const newProj = {
-            id: slug,
+            id: uniqueId,
             slug,
             name,
             nameEN: nameEN || name,
             shortDesc: desc,
             shortDescEN: desc,
-            thumbnail: 'resimler/projeler-resmi1.jpg',
+            thumbnail: thumbnail || 'resimler/projeler-resmi1.jpg',
             tags,
             status,
             order: siteData.projects.length + 1,
@@ -646,7 +735,7 @@ function saveProjectModal() {
                 isAndroid: false,
                 playStoreEnabled: false,
                 playStoreUrl: '#',
-                logo: 'resimler/uygulama_logo.png',
+                logo: '',
                 downloads: '-', rating: '-', ageRating: '3+',
                 appSize: '-', minAndroid: '-',
                 description: [desc],
@@ -667,6 +756,7 @@ function saveProjectModal() {
             proj.slug = slug;
             proj.status = status;
             proj.tags = tags;
+            if (thumbnail) proj.thumbnail = thumbnail;
         }
         adminToast('Proje güncellendi. Kaydetmeyi unutmayın.', 'success');
     }
@@ -715,15 +805,20 @@ function loadProjectDetail(id) {
     document.getElementById('detailLogo').value = d.logo || '';
     document.getElementById('detailThumbnail').value = proj.thumbnail || '';
 
-    const isAndroid = d.isAndroid || false;
-    document.getElementById('detailIsAndroid').checked = isAndroid;
-    document.getElementById('playStoreFields').style.display = isAndroid ? 'block' : 'none';
+    // Android/Play Store toggle — isAndroid kontroledü
+    const isAndroid = !!(d.isAndroid);
+    const androidChk = document.getElementById('detailIsAndroid');
+    const playFields = document.getElementById('playStoreFields');
+    if (androidChk) androidChk.checked = isAndroid;
+    if (playFields) playFields.style.display = isAndroid ? 'block' : 'none';
 
-    document.getElementById('detailDownloads').value = d.downloads || '';
-    document.getElementById('detailRating').value = d.rating || '';
-    document.getElementById('detailMinAndroid').value = d.minAndroid || '';
-    document.getElementById('detailPlayStoreUrl').value = d.playStoreUrl || '';
-    document.getElementById('detailPermissions').value = (d.permissions || []).join('\n');
+    if (isAndroid) {
+        document.getElementById('detailDownloads').value = d.downloads || '';
+        document.getElementById('detailRating').value = d.rating || '';
+        document.getElementById('detailMinAndroid').value = d.minAndroid || '';
+        document.getElementById('detailPlayStoreUrl').value = d.playStoreUrl || '';
+        document.getElementById('detailPermissions').value = (d.permissions || []).join('\n');
+    }
 
     document.getElementById('detailDescTR').value = (d.description || []).join('\n\n');
     document.getElementById('detailDescEN').value = (d.descriptionEN || []).join('\n\n');
@@ -768,12 +863,16 @@ function renderScreenshots(screenshots) {
     if (!grid) return;
     grid.innerHTML = screenshots.map((src, i) => `
         <div class="screenshot-item" data-idx="${i}">
-            <img src="${src}" alt="Ekran ${i+1}" onerror="this.src=''">
+            <img src="${src}" alt="Görsel ${i+1}"
+                onerror="this.parentElement.style.display='none'"
+                onload="this.parentElement.className = 'screenshot-item ' + (this.naturalWidth > this.naturalHeight ? 'landscape' : this.naturalWidth === this.naturalHeight ? 'square' : '');"
+                style="cursor:zoom-in;" onclick="openLightbox('${src}')"
+            >
             <button class="ss-del-btn" data-idx="${i}" title="Sil">✕</button>
         </div>
     `).join('');
     grid.querySelectorAll('.ss-del-btn').forEach(btn => {
-        btn.addEventListener('click', () => deleteScreenshot(parseInt(btn.dataset.idx)));
+        btn.addEventListener('click', (e) => { e.stopPropagation(); deleteScreenshot(parseInt(btn.dataset.idx)); });
     });
 }
 
@@ -787,25 +886,29 @@ function deleteScreenshot(idx) {
 }
 
 async function handleScreenshotUpload(files) {
-    if (!currentProjectId) { adminToast('Önce bir proje seçin.', 'warning'); return; }
+    if (!currentProjectId) { adminToast('Lütfen önce bir proje seçin.', 'warning'); return; }
     const proj = siteData.projects.find(p => p.id === currentProjectId);
     if (!proj) return;
-    adminLoading(true, 'Ekran görüntüleri yükleniyor...');
+    adminLoading(true, 'Görseller yükleniyor...');
     try {
         for (const file of Array.from(files)) {
             const base64 = await fileToBase64(file);
-            const filename = `ss-${proj.slug}-${Date.now()}-${file.name.replace(/\s/g, '_')}`;
+            // Güvenli dosya adı oluştur
+            const safeSlug = (proj.slug || proj.id).replace(/[^a-zA-Z0-9\-]/g, '_');
+            const safeExt = file.name.split('.').pop().replace(/[^a-zA-Z0-9]/g, '') || 'jpg';
+            const filename = `ss_${safeSlug}_${Date.now()}.${safeExt}`;
             const path = await ghAPI.uploadImage(filename, base64);
             proj.detail.screenshots.push(path);
         }
-        await ghAPI.saveSiteData(siteData);
+        markDirty();
         renderScreenshots(proj.detail.screenshots);
-        adminToast('Ekran görüntüleri yüklendi!', 'success');
+        adminToast('Görseller yüklendi!', 'success');
     } catch (err) {
         adminToast(`Yükleme hatası: ${err.message}`, 'error');
     } finally {
         adminLoading(false);
-        document.getElementById('screenshotFileInput').value = '';
+        const inp = document.getElementById('screenshotFileInput');
+        if (inp) inp.value = '';
     }
 }
 
@@ -1114,3 +1217,343 @@ function fileToBase64(file) {
         reader.readAsDataURL(file);
     });
 }
+
+// ─── LİGHTBOX ────────────────────────────────────────────────────────────────────
+
+function openLightbox(src) {
+    const lb = document.getElementById('adminLightbox');
+    const img = document.getElementById('adminLightboxImg');
+    if (!lb || !img) return;
+    img.src = src;
+    lb.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lb = document.getElementById('adminLightbox');
+    if (!lb) return;
+    lb.classList.remove('visible');
+    document.body.style.overflow = '';
+    setTimeout(() => { document.getElementById('adminLightboxImg').src = ''; }, 300);
+}
+
+function initLightbox() {
+    const closeBtn = document.getElementById('adminLightboxClose');
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    const lb = document.getElementById('adminLightbox');
+    if (lb) lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+}
+
+// ─── SOSYAL MEDYA AKIŞ YÖNETİMİ ──────────────────────────────────────────────
+
+function renderSocialFeedAdmin() {
+    const list = document.getElementById('socialAdminList');
+    const label = document.getElementById('socialLastUpdatedLabel');
+    if (!list || !siteData) return;
+
+    const social = siteData.socialFeed || { lastUpdated: '-', posts: [] };
+    if (label) label.textContent = `Son Güncelleme: ${social.lastUpdated || '-'}`;
+
+    const posts = social.posts || [];
+    if (!posts.length) {
+        list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:20px;grid-column:1/-1;">Henüz sosyal medya gönderisi çekilmemiş. Yukarıdaki butona basarak rastgele gönderi çekebilirsiniz.</p>';
+        return;
+    }
+
+    list.innerHTML = posts.map(p => `
+        <div class="admin-card" style="margin-bottom:0;padding:16px;background:rgba(255,71,87,0.03);border:1px solid var(--admin-border);">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                <span class="admin-nav-badge" style="background:${p.badgeColor || '#ff4757'};color:#fff;border:none;">
+                    ${p.platformName || p.platform}
+                </span>
+                <span style="font-size:0.72rem;color:var(--text-secondary);">${p.date || ''}</span>
+            </div>
+            <div style="aspect-ratio:16/9;border-radius:10px;overflow:hidden;margin-bottom:10px;background:#000;">
+                <img src="${p.thumbnail}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='resimler/sosyalmedya_post1.png'">
+            </div>
+            <h4 style="font-size:0.88rem;font-weight:700;color:var(--text-primary,#e8eaf0);margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.title}</h4>
+            <p style="font-size:0.78rem;color:var(--text-secondary);margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${p.description}</p>
+            <a href="${p.postUrl}" target="_blank" rel="noopener" class="admin-btn admin-btn-sm" style="width:100%;justify-content:center;">
+                Orijinal Gönderi ↗
+            </a>
+        </div>
+    `).join('');
+}
+
+// Havuz: Her platform için rastgele seçilebilecek gönderiler
+const SOCIAL_POST_POOLS = {
+    youtube: [
+        {
+            title: "📍 Grup Konum V2 — Canlı Harita & Sohbet Testi",
+            description: "Low-latency GPS senkronizasyonu ve entegre sohbet özelliklerinin detaylı canlı gösterimi.",
+            thumbnail: "resimler/sosyalmedya_post2.png",
+            postUrl: "https://youtube.com",
+            author: "AVS&V9 Official",
+            badgeColor: "#FF0000"
+        },
+        {
+            title: "📦 V9 Kurye — Rota Optimizasyon Algoritması",
+            description: "En kısa teslimat rotasını saniyeler içinde hesaplayan yeni harita altyapımız yayında.",
+            thumbnail: "resimler/sosyalmedya_post1.png",
+            postUrl: "https://youtube.com",
+            author: "AVS&V9 Official",
+            badgeColor: "#FF0000"
+        },
+        {
+            title: "⚡ V9 Proje Ailesi — 2026 Sezonu Tanıtım Filmi",
+            description: "Geliştirdiğimiz tüm mobil uygulamalar ve gelecek projelerin toplu tanıtım videosu.",
+            thumbnail: "resimler/sosyalmedya_post3.png",
+            postUrl: "https://youtube.com",
+            author: "AVS&V9 Official",
+            badgeColor: "#FF0000"
+        }
+    ],
+    instagram: [
+        {
+            title: "🚀 V9 Kurye — Geliştirme Sürecinden Kareler",
+            description: "Gerçek zamanlı harita entegrasyonunun sahne arkasına dair özel fotoğraflar ve kod parçaları.",
+            thumbnail: "resimler/sosyalmedya_post1.png",
+            postUrl: "https://instagram.com",
+            author: "@avsv9_dev",
+            badgeColor: "#E1306C"
+        },
+        {
+            title: "🎨 Yeni Karanlık Tema Arayüz Tasarımı",
+            description: "Kullanıcı deneyimini üst seviyeye çıkaran yeni oval kart tasarımı ve neon kırmızı dokunuşlar.",
+            thumbnail: "resimler/sosyalmedya_post2.png",
+            postUrl: "https://instagram.com",
+            author: "@avsv9_dev",
+            badgeColor: "#E1306C"
+        },
+        {
+            title: "📱 Mobil Test Laboratuvarı — Sahadan Görüntüler",
+            description: "Farklı Android cihazlarda gerçekleştirdiğimiz GPS performans test günlüğü.",
+            thumbnail: "resimler/sosyalmedya_post3.png",
+            postUrl: "https://instagram.com",
+            author: "@avsv9_dev",
+            badgeColor: "#E1306C"
+        }
+    ],
+    tiktok: [
+        {
+            title: "⚡ Yeni Güncelleme — Canlı Harita Demosu",
+            description: "Son güncellemeyle gelen canlı takip özelliklerinin 30 saniyelik eğlenceli dikey videosu.",
+            thumbnail: "resimler/sosyalmedya_post3.png",
+            postUrl: "https://tiktok.com",
+            author: "@avsv9_official",
+            badgeColor: "#00f2fe"
+        },
+        {
+            title: "🔍 Yazılımcı Günlüğü — Gece Kodlaması",
+            description: "V9 V2 mimarisini oluştururken karşılaştığımız komik anlar ve performans testi sonuçları.",
+            thumbnail: "resimler/sosyalmedya_post2.png",
+            postUrl: "https://tiktok.com",
+            author: "@avsv9_official",
+            badgeColor: "#00f2fe"
+        },
+        {
+            title: "🚀 10 Saniyede Rota Nasıl Hesaplanır?",
+            description: "Kurye uygulamamızın arkasındaki akıllı algoritmanın eğlenceli görsel özeti.",
+            thumbnail: "resimler/sosyalmedya_post1.png",
+            postUrl: "https://tiktok.com",
+            author: "@avsv9_official",
+            badgeColor: "#00f2fe"
+        }
+    ],
+    x: [
+        {
+            title: "📣 V9 Harita Motoru Sürüm Notları",
+            description: "Yeni rota optimizasyon algoritması ve bellek iyileştirmeleri hakkında detaylı teknik tweet dizisi.",
+            thumbnail: "resimler/sosyalmedya_post1.png",
+            postUrl: "https://x.com",
+            author: "@avsv9_dev",
+            badgeColor: "#1DA1F2"
+        },
+        {
+            title: "💡 Performans Güncellemesi: Low-Latency GPS",
+            description: "Anlık konum aktarımındaki gecikme süresini %40 düşüren yeni sunucu güncellemesi yayında!",
+            thumbnail: "resimler/sosyalmedya_post2.png",
+            postUrl: "https://x.com",
+            author: "@avsv9_dev",
+            badgeColor: "#1DA1F2"
+        },
+        {
+            title: "🌐 AVS&V9 Yönetim Paneli Yayında!",
+            description: "Tüm site içeriğini anlık olarak GitHub ile senkronize eden tam kontrollü admin panelimiz hazır.",
+            thumbnail: "resimler/sosyalmedya_post3.png",
+            postUrl: "https://x.com",
+            author: "@avsv9_dev",
+            badgeColor: "#1DA1F2"
+        }
+    ]
+};
+
+async function fetchRandomSocialPosts() {
+    if (!ghAPI || !siteData) {
+        adminToast('Önce panel verileri yüklenmelidir.', 'error');
+        return;
+    }
+
+    adminLoading(true, 'Sosyal medya gönderileri çekiliyor...');
+
+    try {
+        const todayStr = new Date().toISOString().slice(0, 10);
+        const nowTimeStr = new Date().toISOString().slice(0, 16).replace('T', ' ');
+
+        const getRandomItem = arr => arr[Math.floor(Math.random() * arr.length)];
+
+        // Her platformdan rastgele 1 gönderi seç (Overwrite kuralı — eskinin üzerine yazar)
+        const newPosts = [
+            {
+                id: `soc-yt-${Date.now()}`,
+                platform: 'youtube',
+                platformName: 'YouTube',
+                ...getRandomItem(SOCIAL_POST_POOLS.youtube),
+                date: todayStr
+            },
+            {
+                id: `soc-ig-${Date.now()}`,
+                platform: 'instagram',
+                platformName: 'Instagram',
+                ...getRandomItem(SOCIAL_POST_POOLS.instagram),
+                date: todayStr
+            },
+            {
+                id: `soc-tt-${Date.now()}`,
+                platform: 'tiktok',
+                platformName: 'TikTok',
+                ...getRandomItem(SOCIAL_POST_POOLS.tiktok),
+                date: todayStr
+            },
+            {
+                id: `soc-x-${Date.now()}`,
+                platform: 'x',
+                platformName: 'X (Twitter)',
+                ...getRandomItem(SOCIAL_POST_POOLS.x),
+                date: todayStr
+            }
+        ];
+
+        // site-data.json içindeki socialFeed objesinin üzerine yaz
+        siteData.socialFeed = {
+            lastUpdated: nowTimeStr,
+            posts: newPosts
+        };
+
+        markDirty();
+
+        renderSocialFeedAdmin();
+        adminToast('✅ Yeni rastgele sosyal medya gönderileri çekildi ve kaydedildi!', 'success', 4000);
+
+    } catch (err) {
+        adminToast(`Gönderi çekme hatası: ${err.message}`, 'error', 5000);
+    } finally {
+        adminLoading(false);
+    }
+}
+
+
+// ��� OTO �EV�R� (Google Translate) ��������������������������������������������
+
+function initAutoTranslate() {
+    const btn = document.getElementById('adminAutoTranslateBtn');
+    if (btn) btn.addEventListener('click', autoTranslateAll);
+}
+
+async function googleTranslate(text, sl = 'tr', tl = 'en') {
+    if (!text) return text;
+    try {
+        const url = \https://translate.googleapis.com/translate_a/single?client=gtx&sl=\&tl=\&dt=t&q=\\;
+        const res = await fetch(url);
+        const data = await res.json();
+        return data[0].map(s => s[0]).join('');
+    } catch (e) {
+        console.error('Translate error:', e);
+        return text;
+    }
+}
+
+async function translateArray(arr) {
+    if (!Array.isArray(arr)) return arr;
+    const res = [];
+    for (const item of arr) {
+        res.push(await googleTranslate(item));
+    }
+    return res;
+}
+
+async function autoTranslateAll() {
+    if (!siteData) return;
+    
+    showAdminLoading('Otomatik �evriliyor (Google Translate)... L�tfen bekleyin.');
+    
+    try {
+        let count = 0;
+
+        // Projeler
+        for (const proj of siteData.projects) {
+            if (proj.name && !proj.nameEN) { proj.nameEN = await googleTranslate(proj.name); count++; }
+            if (proj.shortDesc && !proj.shortDescEN) { proj.shortDescEN = await googleTranslate(proj.shortDesc); count++; }
+            
+            if (proj.detail) {
+                if (proj.detail.statusText && !proj.detail.statusTextEN) {
+                    proj.detail.statusTextEN = await googleTranslate(proj.detail.statusText);
+                    count++;
+                }
+                if (proj.detail.description && proj.detail.description.length > 0 && (!proj.detail.descriptionEN || proj.detail.descriptionEN.length === 0)) {
+                    proj.detail.descriptionEN = await translateArray(proj.detail.description);
+                    count += proj.detail.description.length;
+                }
+                
+                if (proj.detail.changelog) {
+                    for (const cl of proj.detail.changelog) {
+                        if (cl.notes && cl.notes.length > 0 && (!cl.notesEN || cl.notesEN.length === 0)) {
+                            cl.notesEN = await translateArray(cl.notes);
+                            count += cl.notes.length;
+                        }
+                    }
+                }
+            }
+        }
+        
+        // SSS
+        if (siteData.faq) {
+            for (const cat of siteData.faq) {
+                if (cat.category && !cat.categoryEN) { cat.categoryEN = await googleTranslate(cat.category); count++; }
+                if (cat.items) {
+                    for (const item of cat.items) {
+                        if (item.question && !item.questionEN) { item.questionEN = await googleTranslate(item.question); count++; }
+                        if (item.answer && !item.answerEN) { item.answerEN = await googleTranslate(item.answer); count++; }
+                    }
+                }
+            }
+        }
+        
+        // Yasal
+        if (siteData.legal) {
+            for (const type of ['privacy', 'terms']) {
+                if (siteData.legal[type] && siteData.legal[type].content) {
+                    for (const sec of siteData.legal[type].content) {
+                        if (sec.heading && !sec.headingEN) { sec.headingEN = await googleTranslate(sec.heading); count++; }
+                        if (sec.text && !sec.textEN) { sec.textEN = await googleTranslate(sec.text); count++; }
+                    }
+                }
+            }
+        }
+        
+        markDirty();
+        renderProjectList();
+        renderDetailProjectSelector();
+        renderFaqAdmin();
+        renderLegalAdmin();
+        
+        adminToast(\�eviri tamamland�. Toplam \ alan �evrildi. De�i�iklikleri kaydetmeyi unutmay�n.\, 'success', 5000);
+    } catch (e) {
+        adminToast('�eviri s�ras�nda bir hata olu�tu.', 'error');
+        console.error(e);
+    } finally {
+        hideAdminLoading();
+    }
+}
+
