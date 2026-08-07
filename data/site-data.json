@@ -55,10 +55,10 @@
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "resimler/uygulama_logo.png",
-        "downloads": "500B+",
+        "downloads": "5B+",
         "rating": "4.5 ★",
         "ageRating": "3+",
-        "appSize": "~128 MB",
+        "appSize": "~18 MB",
         "minAndroid": "Android 8.0 (Oreo) / API 26",
         "description": [
           "V9 Kurye Uygulaması, teslimat süreçlerini uçtan uca yöneten bir mobil çözümdür.",
@@ -82,15 +82,6 @@
           "resimler/uygulama_ekran2.png"
         ],
         "changelog": [
-          {
-            "id": "cl-1786126795825-32js8",
-            "version": "v0.01",
-            "date": "2026-08-07",
-            "type": "major",
-            "notes": [
-              "TEST"
-            ]
-          },
           {
             "id": "cl-kurye-1",
             "version": "v1.2.0",
@@ -125,11 +116,7 @@
             ]
           }
         ]
-      },
-      "statuses": [
-        "discontinued",
-        "special"
-      ]
+      }
     },
     {
       "id": "grup-v1",
@@ -208,11 +195,7 @@
             ]
           }
         ]
-      },
-      "statuses": [
-        "paused",
-        "rnd"
-      ]
+      }
     },
     {
       "id": "grup-v2",
@@ -229,7 +212,7 @@
       "status": "development",
       "statuses": [
         "development",
-        "waiting"
+        "live"
       ],
       "order": 3,
       "visible": true,
@@ -285,60 +268,6 @@
               "V2 mimarisi oluşturuldu",
               "Entegre sohbet altyapısı",
               "Low-latency GPS motoru"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "site-msj9x5es",
-      "slug": "site",
-      "name": "SİTE",
-      "nameEN": "Site",
-      "shortDesc": "Sitemiz güncelleme geçmişi ve dahası.",
-      "shortDescEN": "Sitemiz güncelleme geçmişi ve dahası.",
-      "thumbnail": "resimler/projeler-resmi1.jpg",
-      "tags": [
-        "SİTEV9"
-      ],
-      "status": "development",
-      "statuses": [
-        "development"
-      ],
-      "order": 4,
-      "visible": true,
-      "detail": {
-        "isAndroid": false,
-        "playStoreEnabled": false,
-        "playStoreUrl": "#",
-        "logo": "",
-        "downloads": "500B+",
-        "rating": "4.5 ★",
-        "ageRating": "3+",
-        "appSize": "-",
-        "minAndroid": "Android 8.0 (Oreo) / API 26",
-        "description": [
-          "Sitemiz güncelleme geçmişi ve dahası."
-        ],
-        "descriptionEN": [
-          "Sitemiz güncelleme geçmişi ve dahası."
-        ],
-        "permissions": [
-          "📍 Konum (Ön plan & Arka plan)",
-          "🔔 Bildirimler",
-          "📶 İnternet Erişimi",
-          "⚡ Arka Plan Servisi",
-          "📷 Kamera (teslimat fotoğrafı)"
-        ],
-        "screenshots": [],
-        "changelog": [
-          {
-            "id": "cl-1786127067505-uuojf",
-            "version": "v0.01",
-            "date": "2026-08-07",
-            "type": "initial",
-            "notes": [
-              "test sürümü"
             ]
           }
         ]
