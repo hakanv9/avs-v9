@@ -55,10 +55,10 @@
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "resimler/uygulama_logo.png",
-        "downloads": "5B+",
+        "downloads": "500B+",
         "rating": "4.5 ★",
         "ageRating": "3+",
-        "appSize": "~18 MB",
+        "appSize": "~128 MB",
         "minAndroid": "Android 8.0 (Oreo) / API 26",
         "description": [
           "V9 Kurye Uygulaması, teslimat süreçlerini uçtan uca yöneten bir mobil çözümdür.",
@@ -82,6 +82,15 @@
           "resimler/uygulama_ekran2.png"
         ],
         "changelog": [
+          {
+            "id": "cl-1786126795825-32js8",
+            "version": "v0.01",
+            "date": "2026-08-07",
+            "type": "major",
+            "notes": [
+              "TEST"
+            ]
+          },
           {
             "id": "cl-kurye-1",
             "version": "v1.2.0",
