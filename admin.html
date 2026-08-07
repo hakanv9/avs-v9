@@ -206,18 +206,8 @@
                             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
                                 <div class="admin-form-group">
                                     <label>Durum</label>
-                                    <select id="detailStatus">
-                                        <option value="live">🟢 Yayında</option>
-                                        <option value="development">🟡 Geliştirme Aşamasında</option>
-                                        <option value="completed">🔵 Tamamlandı</option>
-                                        <option value="discontinued">🔴 Yayından Kaldırılmış</option>
-                                        <option value="paused">⏸️ Geliştirme Durdurulmuş</option>
-                                        <option value="research">🔍 Araştırma Aşamasında</option>
-                                        <option value="bugfix">🛠️ Hata Düzeltme</option>
-                                        <option value="waiting">⏳ Beklemede</option>
-                                        <option value="special">⭐ Özel Durum</option>
-                                        <option value="rnd">🧪 Ar-Ge Aşamasında</option>
-                                    </select>
+                                    <div id="detailStatusContainer" style="display:flex; flex-direction:column; gap:8px;"></div>
+                                    <button type="button" class="admin-btn admin-btn-sm" id="detailAddStatusBtn" style="margin-top:8px;">➕ Yeni Durum Ekle</button>
                                 </div>
                                 <div class="admin-form-group">
                                     <label>Uygulama Boyutu</label>
@@ -424,7 +414,7 @@
 
     <!-- Proje Ekle/Düzenle Modal -->
     <div class="verification-modal" id="projectModal" aria-hidden="true" inert>
-        <div class="verification-card" role="dialog" style="max-width:520px;width:95%;border:1.5px solid var(--admin-border);">
+        <div class="verification-card" role="dialog" style="max-width:520px;width:95%;border:1.5px solid var(--admin-border);max-height: 90vh;overflow-y: auto;">
             <h3 id="projectModalTitle" style="color:var(--admin-accent);margin:0 0 20px;">Proje Ekle</h3>
             <div style="display:grid;gap:12px;">
                 <div class="admin-form-group">
@@ -445,18 +435,8 @@
                 </div>
                 <div class="admin-form-group">
                     <label>Durum</label>
-                    <select id="pmStatus">
-                        <option value="live">🟢 Yayında</option>
-                        <option value="development">🟡 Geliştirme Aşamasında</option>
-                        <option value="completed">🔵 Tamamlandı</option>
-                        <option value="discontinued">🔴 Yayından Kaldırılmış</option>
-                        <option value="paused">⏸️ Geliştirme Durdurulmuş</option>
-                        <option value="research">🔍 Araştırma Aşamasında</option>
-                        <option value="bugfix">🛠️ Hata Düzeltme</option>
-                        <option value="waiting">⏳ Beklemede</option>
-                        <option value="special">⭐ Özel Durum</option>
-                        <option value="rnd">🧪 Ar-Ge Aşamasında</option>
-                    </select>
+                    <div id="pmStatusContainer" style="display:flex; flex-direction:column; gap:8px;"></div>
+                    <button type="button" class="admin-btn admin-btn-sm" id="pmAddStatusBtn" style="margin-top:8px;">➕ Yeni Durum Ekle</button>
                 </div>
                 <div class="admin-form-group">
                     <label>Etiketler (virgülle ayrılmış)</label>

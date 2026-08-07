@@ -226,6 +226,18 @@ const STATUS_MAP = {
     'rnd':           { label: '🧪 Ar-Ge Aşamasında',        tag: 'tag-wip',        class: 'wip' }
 };
 
+function createStatusSelect(containerId, selectedValue = 'development') {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const wrap = document.createElement('div');
+    wrap.style.display = 'flex';
+    wrap.style.gap = '8px';
+    const opts = Object.entries(STATUS_MAP).map(([k, v]) => `<option value="${k}">${v.label}</option>`).join('');
+    wrap.innerHTML = `<select class="pm-status-select" style="flex:1;">${opts}</select><button type="button" class="admin-btn admin-btn-sm admin-btn-danger" onclick="this.parentElement.remove()" style="padding:0 10px;">Sil</button>`;
+    wrap.querySelector('select').value = selectedValue;
+    container.appendChild(wrap);
+}
+
 // ─── ANA UYGULAMA ─────────────────────────────────────────────────────────────
 
 let ghAPI = null;
@@ -454,7 +466,7 @@ function renderSliderSection() {
     grid.innerHTML = slides.map((s, i) => `
         <div class="slider-img-item" data-id="${s.id}">
             <img src="${s.src}" alt="${s.alt}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'160\\' height=\\'90\\'><rect width=\\'160\\' height=\\'90\\' fill=\\'%23222\\'/>><text x=\\'50%\\' y=\\'50%\\' fill=\\'%23666\\' text-anchor=\\'middle\\' dy=\\'.3em\\'>?</text></svg>'">
-            <span class="img-order-badge">${i + 1}</span>
+            <div class="img-order-controls" style="position:absolute; top:4px; left:4px; display:flex; flex-direction:column; gap:4px; z-index:10;"><button class="order-btn" onclick="moveSliderImage(${i}, -1)" ${i===0?'disabled':''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9650;</button><span class="img-order-badge" style="position:static; margin:0; text-align:center;">${i + 1}</span><button class="order-btn" onclick="moveSliderImage(${i}, 1)" ${i===slides.length-1?'disabled':''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9660;</button></div>
             <button class="img-delete-btn" data-id="${s.id}" title="Sil">✕</button>
         </div>
     `).join('');
@@ -539,15 +551,15 @@ function renderProjectList() {
     const projects = siteData.projects || [];
     if (!projects.length) { list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:20px;">Henüz proje eklenmemiş.</p>'; return; }
 
-    list.innerHTML = projects.map(p => `
+    list.innerHTML = projects.map((p, index) => `
         <div class="admin-project-item" data-id="${p.id}">
-            <img src="${p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
+            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px;"><button class="order-btn" onclick="moveProject(${index}, -1)" ${index===0?'disabled':''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9650;</button><button class="order-btn" onclick="moveProject(${index}, 1)" ${index===projects.length-1?'disabled':''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9660;</button></div><img src="${p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
                 onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'72\\' height=\\'48\\'><rect width=\\'72\\' height=\\'48\\' fill=\\'%23222\\'/></svg>'">
             <div class="admin-project-info">
                 <div class="admin-project-name">${p.name}</div>
-                <select class="admin-status-select" data-pid="${p.id}" title="Durum">
+                <select class="admin-status-select" data-pid="${p.id}" title="Durum" multiple size="3" style="height:auto; min-height:80px;">
                     ${Object.entries(STATUS_MAP).map(([k, v]) =>
-                        `<option value="${k}" ${p.status === k ? 'selected' : ''}>${v.label}</option>`
+                        `<option value="${k}" ${((p.statuses && p.statuses.includes(k)) || (!p.statuses && p.status === k)) ? 'selected' : ''}>${v.label}</option>`
                     ).join('')}
                 </select>
             </div>
@@ -562,7 +574,7 @@ function renderProjectList() {
     list.querySelectorAll('.admin-status-select').forEach(sel => {
         sel.addEventListener('change', () => {
             const proj = siteData.projects.find(p => p.id === sel.dataset.pid);
-            if (proj) { proj.status = sel.value; markDirty(); }
+            if (proj) { proj.statuses = Array.from(sel.selectedOptions).map(o => o.value); proj.status = proj.statuses[0] || "development"; markDirty(); }
         });
     });
 
@@ -626,6 +638,8 @@ function initModals() {
     document.getElementById('saveFaqBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('saveLegalBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts);
+    document.getElementById('pmAddStatusBtn')?.addEventListener('click', () => createStatusSelect('pmStatusContainer'));
+    document.getElementById('detailAddStatusBtn')?.addEventListener('click', () => createStatusSelect('detailStatusContainer'));
 
     // Yasal Bugün butonları
     document.getElementById('setPrivacyTodayBtn')?.addEventListener('click', () => {
@@ -659,7 +673,7 @@ function openAddProjectModal() {
     document.getElementById('pmNameEN').value = '';
     document.getElementById('pmDesc').value = '';
     document.getElementById('pmSlug').value = '';
-    document.getElementById('pmStatus').value = 'development';
+    document.getElementById('pmStatusContainer').innerHTML = ''; createStatusSelect('pmStatusContainer', 'development');
     document.getElementById('pmTags').value = '';
     document.getElementById('pmThumbnail').value = '';
     document.getElementById('pmThumbnailFile').value = '';
@@ -676,7 +690,7 @@ function openEditProjectModal(id) {
     document.getElementById('pmNameEN').value = proj.nameEN;
     document.getElementById('pmDesc').value = proj.shortDesc;
     document.getElementById('pmSlug').value = proj.slug;
-    document.getElementById('pmStatus').value = proj.status;
+    document.getElementById('pmStatusContainer').innerHTML = ''; const vals = proj.statuses || (proj.status ? [proj.status] : []); if (!vals.length) vals.push('development'); vals.forEach(v => createStatusSelect('pmStatusContainer', v));
     document.getElementById('pmTags').value = proj.tags.join(', ');
     document.getElementById('pmThumbnail').value = proj.thumbnail || '';
     document.getElementById('pmThumbnailFile').value = '';
@@ -692,7 +706,7 @@ async function saveProjectModal() {
     const nameEN = document.getElementById('pmNameEN').value.trim();
     const desc = document.getElementById('pmDesc').value.trim();
     const slug = document.getElementById('pmSlug').value.trim().replace(/\s+/g, '-').toLowerCase();
-    const status = document.getElementById('pmStatus').value;
+    const statuses = Array.from(document.querySelectorAll('#pmStatusContainer select')).map(s => s.value); const status = statuses[0] || 'development';
     const tags = document.getElementById('pmTags').value.split(',').map(t => t.trim()).filter(Boolean);
     let thumbnail = document.getElementById('pmThumbnail').value.trim();
 
@@ -729,6 +743,7 @@ async function saveProjectModal() {
             thumbnail: thumbnail || 'resimler/projeler-resmi1.jpg',
             tags,
             status,
+            statuses,
             order: siteData.projects.length + 1,
             visible: true,
             detail: {
@@ -754,7 +769,7 @@ async function saveProjectModal() {
             proj.nameEN = nameEN || name;
             proj.shortDesc = desc;
             proj.slug = slug;
-            proj.status = status;
+            proj.status = status; proj.statuses = statuses;
             proj.tags = tags;
             if (thumbnail) proj.thumbnail = thumbnail;
         }
@@ -799,7 +814,7 @@ function loadProjectDetail(id) {
     document.getElementById('detailEditorWrap').style.display = 'block';
     document.getElementById('detailName').value = proj.name;
     document.getElementById('detailNameEN').value = proj.nameEN;
-    document.getElementById('detailStatus').value = proj.status;
+    document.getElementById('detailStatusContainer').innerHTML = ''; const dVals = proj.statuses || (proj.status ? [proj.status] : []); if (!dVals.length) dVals.push('development'); dVals.forEach(v => createStatusSelect('detailStatusContainer', v));
     document.getElementById('detailSize').value = d.appSize || '';
     document.getElementById('detailAgeRating').value = d.ageRating || '';
     document.getElementById('detailLogo').value = d.logo || '';
@@ -834,7 +849,7 @@ function saveProjectDetail() {
 
     proj.name = document.getElementById('detailName').value.trim();
     proj.nameEN = document.getElementById('detailNameEN').value.trim();
-    proj.status = document.getElementById('detailStatus').value;
+    proj.statuses = Array.from(document.querySelectorAll('#detailStatusContainer select')).map(s => s.value); proj.status = proj.statuses[0] || 'development';
     proj.thumbnail = document.getElementById('detailThumbnail').value.trim();
 
     const d = proj.detail;
@@ -1464,7 +1479,7 @@ function initAutoTranslate() {
 async function googleTranslate(text, sl = 'tr', tl = 'en') {
     if (!text) return text;
     try {
-        const url = \https://translate.googleapis.com/translate_a/single?client=gtx&sl=\&tl=\&dt=t&q=\\;
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`;
         const res = await fetch(url);
         const data = await res.json();
         return data[0].map(s => s[0]).join('');
@@ -1486,7 +1501,7 @@ async function translateArray(arr) {
 async function autoTranslateAll() {
     if (!siteData) return;
     
-    showAdminLoading('Otomatik �evriliyor (Google Translate)... L�tfen bekleyin.');
+    adminLoading(true, 'Otomatik �evriliyor (Google Translate)... L�tfen bekleyin.');
     
     try {
         let count = 0;
@@ -1548,12 +1563,52 @@ async function autoTranslateAll() {
         renderFaqAdmin();
         renderLegalAdmin();
         
-        adminToast(\�eviri tamamland�. Toplam \ alan �evrildi. De�i�iklikleri kaydetmeyi unutmay�n.\, 'success', 5000);
+        adminToast(`�eviri tamamland�. Toplam ${count} alan �evrildi. De�i�iklikleri kaydetmeyi unutmay�n.`, 'success', 5000);
     } catch (e) {
         adminToast('�eviri s�ras�nda bir hata olu�tu.', 'error');
         console.error(e);
     } finally {
-        hideAdminLoading();
+        adminLoading(false);
     }
 }
+
+
+// --- ORDER FUNCTIONS ---
+window.moveSliderImage = function(idx, dir) {
+    const arr = siteData.heroSlider;
+    if (idx + dir < 0 || idx + dir >= arr.length) return;
+    const temp = arr[idx];
+    arr[idx] = arr[idx + dir];
+    arr[idx + dir] = temp;
+    arr.forEach((s, i) => s.order = i + 1);
+    markDirty();
+    renderSliderSection();
+};
+
+window.moveProject = function(idx, dir) {
+    const arr = siteData.projects;
+    if (idx + dir < 0 || idx + dir >= arr.length) return;
+    const temp = arr[idx];
+    arr[idx] = arr[idx + dir];
+    arr[idx + dir] = temp;
+    arr.forEach((p, i) => p.order = i + 1);
+    markDirty();
+    renderProjectList();
+};
+
+window.moveScreenshot = function(idx, dir) {
+    if (!currentProjectId) return;
+    const proj = siteData.projects.find(p => p.id === currentProjectId);
+    if (!proj) return;
+    const arr = proj.detail.screenshots;
+    if (idx + dir < 0 || idx + dir >= arr.length) return;
+    const temp = arr[idx];
+    arr[idx] = arr[idx + dir];
+    arr[idx + dir] = temp;
+    markDirty();
+    renderScreenshots(arr);
+};
+
+
+
 

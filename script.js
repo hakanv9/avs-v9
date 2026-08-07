@@ -156,7 +156,7 @@ function initDynamicProjectsList(data) {
     if (!visible.length) return;
 
     listContainer.innerHTML = visible.map((p, i) => {
-        const statusTag = getStatusTag(p.status);
+        const statuses = p.statuses || (p.status ? [p.status] : []); const statusHTML = statuses.map(s => { const st = getStatusTag(s); return `<span class="${st.cls} tag">${st.text}</span>`; }).join('');
         const extraTags = p.tags || [];
         const name = (lang === 'en' && p.nameEN) ? p.nameEN : p.name;
         const desc = (lang === 'en' && p.shortDescEN) ? p.shortDescEN : (p.shortDesc || '');
@@ -168,7 +168,7 @@ function initDynamicProjectsList(data) {
                 <div class="project-oval-title">${sanitize(name)}</div>
                 <div class="project-oval-desc">${sanitize(desc)}</div>
                 <div class="project-oval-tags">
-                    <span class="${statusTag.cls} tag">${statusTag.text}</span>
+                    ${statusHTML}
                     ${extraTags.map(t => `<span class="tag">📌 ${sanitize(t)}</span>`).join('')}
                 </div>
             </div>
@@ -876,16 +876,24 @@ function initProjectDetail(proj) {
         const plinkEl = document.getElementById('pdPlayStoreLink');
         if (plinkEl) plinkEl.href = proj.playUrl;
 
-        const badge = document.getElementById('pdStatusBadge');
-        const statusTxt = document.getElementById('pdStatusText');
-        if (badge && statusTxt) {
-            badge.className = 'pd-status-badge';
-            if (proj.status === 'inactive') badge.classList.add('inactive');
-            else if (proj.status === 'wip' || proj.status === 'paused' || proj.status === 'waiting' || proj.status === 'research') badge.classList.add('wip');
-            
+        const badgeContainer = document.getElementById('pdStatusBadgeContainer');
+        if (badgeContainer) {
+            let statuses = proj.statuses || (proj.status ? [proj.status] : []);
             let trStatus = proj.detail ? proj.detail.statusText : (proj.statusText || '');
             let enStatus = proj.detail ? proj.detail.statusTextEN : (proj.statusTextEN || '');
-            statusTxt.textContent = lang === 'en' ? enStatus : trStatus;
+            
+            badgeContainer.innerHTML = statuses.map(s => {
+                let cls = 'pd-status-badge';
+                if (s === 'inactive') cls += ' inactive';
+                else if (s === 'wip' || s === 'paused' || s === 'waiting' || s === 'research') cls += ' wip';
+                let text = '';
+                if (trStatus && statuses.length === 1 && s === proj.status) {
+                    text = lang === 'en' ? enStatus : trStatus;
+                } else {
+                    text = getStatusTag(s).text;
+                }
+                return `<div class="${cls}"><span>${text}</span></div>`;
+            }).join('');
         }
 
         if (descEl) descEl.innerHTML = proj.description.map(p => `<p>${escapeHTML(p)}</p>`).join('');
@@ -1075,3 +1083,4 @@ function initProjectDetail(proj) {
     }
 
 });
+
