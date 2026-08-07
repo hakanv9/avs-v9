@@ -2,7 +2,7 @@
 // === AVS&V9 ANA SCRIPT (STABİL & HATASIZ) ===
 // =============================================
 
-// â”€â”€â”€ GÜV-3: XSS KORUMA YARDIMCISI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── GÜV-3: XSS KORUMA YARDIMCISI ─────────────────────────────────────────────
 // JSON'dan gelen tüm içerikler bu fonksiyondan geçirilir.
 function sanitize(str) {
     if (str === null || str === undefined) return '';
@@ -32,7 +32,7 @@ function addSwipeListener(element, onSwipeLeft, onSwipeRight) {
     }
 }
 
-// â”€â”€â”€ PERF-3: HERO SLIDER YÖNETİCİSİ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── PERF-3: HERO SLIDER YÖNETİCİSİ ──────────────────────────────────────────
 // Tek interval kaydedici â€” çift setInterval bellek sızıntısını önler.
 let _heroSlideInterval = null;
 
@@ -68,7 +68,7 @@ function startHeroSlider(slidesNodeList) {
     }
 }
 
-// â”€â”€â”€ KOD-1: DUPLİKE FONKSİYONLAR KALDIRILDI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── KOD-1: DUPLİKE FONKSİYONLAR KALDIRILDI ─────────────────────────────────
 // (Tüm fonksiyonların tek ve doğru versiyonları aşağıda tanımlanmıştır)
 
 // Durum etiketi CSS sınıfı ve metnini döndürür
@@ -103,9 +103,9 @@ async function loadTranslations() {
     }
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════════════════════════
 // DİNAMİK VERİ FONKSİYONLARI â€” site-data.json üzerinden içerik güncelleme
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════════════════════════
 
 // PERF-5: ?v=Date.now() kaldırıldı â€” vercel.json'daki no-cache headerı ile ETag tabantılı doğrulama yapılır.
 async function loadSiteData() {
@@ -141,7 +141,7 @@ function initDynamicHeroSlider(data) {
             container.appendChild(img);
         });
 
-    // PERF-3: Yeni slaytlarla tek bir interval başlat
+    // PERF-3: Yeni slaytlağırlığıa tek bir interval başlat
     startHeroSlider(container.querySelectorAll('.slide'));
 }
 
@@ -174,7 +174,7 @@ function initDynamicProjectsList(data) {
                 <div class="project-oval-desc">${sanitize(desc)}</div>
                 <div class="project-oval-tags">
                     ${statusHTML}
-                    ${extraTags.map(t => `<span class="tag">ğŸ“Œ ${sanitize(t)}</span>`).join('')}
+                    ${extraTags.map(t => `<span class="tag">📌 ${sanitize(t)}</span>`).join('')}
                 </div>
             </div>
             <div class="project-oval-btn">${sanitize(detailLabel)}</div>
@@ -310,6 +310,17 @@ function initDynamicLegal(data) {
 
     const lang = localStorage.getItem('avs_lang') || 'tr';
 
+    // Cta Kartı HTML Şablonu
+    const ctaTitle = lang === 'en' ? 'Have Questions or Legal Inquiries?' : 'Yasal Konularda Sorunuz mu Var?';
+    const ctaSub = lang === 'en' ? 'For data privacy requests or detailed inquiries, you can contact the developer directly.' : 'Kişisel veri talepleriniz veya detaylı yasal sorularınız için doğrudan iletişime geçebilirsiniz.';
+    const ctaBtn = lang === 'en' ? 'Contact Directly →' : 'Doğrudan İletişime Geçin →';
+    const ctaHtml = `
+        <div class="pd-content-card faq-cta-card" style="margin-top: 30px;">
+            <h3 class="faq-cta-title">${sanitize(ctaTitle)}</h3>
+            <p class="faq-cta-sub">${sanitize(ctaSub)}</p>
+            <a href="index.html#iletisim" class="oval-btn pd-cta-btn">${sanitize(ctaBtn)}</a>
+        </div>`;
+
     // Gizlilik politikası
     const privSec = document.getElementById('panel-privacy');
     if (privSec && legal.privacy) {
@@ -319,7 +330,11 @@ function initDynamicLegal(data) {
         if (contentEl && legal.privacy.content) {
             contentEl.innerHTML = legal.privacy.content.map(sec => `
                 <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>
-                <p>${sanitize((lang === 'en' && sec.textEN) ? sec.textEN : sec.text)}</p>`).join('');
+                <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>`).join('');
+            
+            // Eski CTA varsa kaldır, yenisini ekle
+            privSec.querySelectorAll('.faq-cta-card').forEach(el => el.remove());
+            privSec.insertAdjacentHTML('beforeend', ctaHtml);
         }
     }
 
@@ -332,7 +347,11 @@ function initDynamicLegal(data) {
         if (contentEl && legal.terms.content) {
             contentEl.innerHTML = legal.terms.content.map(sec => `
                 <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>
-                <p>${sanitize((lang === 'en' && sec.textEN) ? sec.textEN : sec.text)}</p>`).join('');
+                <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>`).join('');
+            
+            // Eski CTA varsa kaldır, yenisini ekle
+            termsSec.querySelectorAll('.faq-cta-card').forEach(el => el.remove());
+            termsSec.insertAdjacentHTML('beforeend', ctaHtml);
         }
     }
 }
@@ -341,7 +360,7 @@ function initDynamicLegal(data) {
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     const icon = document.getElementById('themeIcon');
-    if (icon) icon.textContent = theme === 'dark' ? '🌐™' : 'â˜€ï¸';
+    if (icon) icon.textContent = theme === 'dark' ? '🌙' : '☀️';
     localStorage.setItem('avs_theme', theme);
 }
 
@@ -382,7 +401,7 @@ function toggleLang() {
 // --- DOM HAZIR OLUNCA ÇALIŞACAK TÜM DİNLEYİCİLER ---
 document.addEventListener('DOMContentLoaded', () => {
     loadTranslations(); // TRANSLATIONS'i yükle
-    // â”€â”€â”€ DİNAMİK VERİ YÜKLEME (site-data.json) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ─── DİNAMİK VERİ YÜKLEME (site-data.json) ───────────────────────────────
     // Admin panelinden yapılan değişiklikler burada okunur ve sayfalar güncellenir.
     // Admin paneli sayfasında bu blok çalışmaz (data-admin-page kontrolü).
     if (!document.documentElement.hasAttribute('data-admin-page')) {
@@ -683,10 +702,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // KOD-3: innerHTML kullan ama onclick YOK â€” aşağıda addEventListener ile bağlan
             contactStatus.innerHTML = `
                 <div class="mail-success-card">
-                    <p class="mail-success-title">âœ… Güvenlik Doğrulaması Başarılı!</p>
+                    <p class="mail-success-title">✅ Güvenlik Doğrulaması Başarılı!</p>
                     <p class="mail-success-sub">Mesajınız e-posta istemcinize aktarıldı. Otomatik açılmadıysa aşağıdaki butona basabilir veya adrese doğrudan mail atabilirsiniz:</p>
                     <div class="mail-success-actions">
-                        <a href="${mailtoUrl}" class="mail-direct-btn">âœ‰ï¸ E-postayı Gönder (${rawEmail})</a>
+                        <a href="${mailtoUrl}" class="mail-direct-btn">✉️ E-postayı Gönder (${rawEmail})</a>
                         <button type="button" class="mail-copy-btn" id="mailCopyBtn">ğŸ“‹ Adresi Kopyala</button>
                     </div>
                 </div>
@@ -938,7 +957,7 @@ function initProjectDetail(proj) {
                         <button class="faq-question">
                             <span>${escapeHTML(c.version)} - ${escapeHTML(title)}</span>
                             <span class="cl-date">${escapeHTML(c.date)}</span>
-                            <span class="faq-icon">â–¼</span>
+                            <span class="faq-icon">▼</span>
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
