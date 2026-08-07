@@ -1,6 +1,6 @@
 /* ============================================================
-   ADMIN.JS \xe2\x80\x94 AVS&V9 Y\xf6netim Paneli
-   GitHub REST API \xfczerinden site verilerini y\xf6netir.
+   ADMIN.JS â AVS&V9 Yönetim Paneli
+   GitHub REST API üzerinden site verilerini yönetir.
    ============================================================ */
 
 'use strict';
@@ -25,9 +25,9 @@ function adminToast(msg, type = 'info', duration = 3500) {
     if (!wrap) return;
     const t = document.createElement('div');
     t.className = `admin-toast ${type}`;
-    const icons = { success: '\xe2\x9c
-', error: '\xe2\x9d\x8c', info: '\xe2\x84\xb9\xef\xb8\x8f', warning: '\xe2\x9a\xa0\xef\xb8\x8f' };
-    t.innerHTML = `<span>${icons[type] || '\xe2\x84\xb9\xef\xb8\x8f'}</span> ${msg}`;
+    const icons = { success: 'â
+', error: 'â', info: 'â¹ï¸', warning: 'â ï¸' };
+    t.innerHTML = `<span>${icons[type] || 'â¹ï¸'}</span> ${msg}`;
     wrap.appendChild(t);
     requestAnimationFrame(() => t.classList.add('show'));
     setTimeout(() => {
@@ -106,7 +106,7 @@ class GitHubAPI {
         });
         if (!res.ok) {
             if (res.status === 404) return null;
-            throw new Error(`GitHub dosya okunamad\u0131 (${res.status}): ${path}`);
+            throw new Error(`GitHub dosya okunamadı (${res.status}): ${path}`);
         }
         return res.json();
     }
@@ -127,7 +127,7 @@ class GitHubAPI {
 
         if (!res.ok) {
             const err = await res.json().catch(() => ({}));
-            throw new Error(`GitHub kay\u0131t hatas\u0131: ${err.message || res.status}`);
+            throw new Error(`GitHub kayıt hatası: ${err.message || res.status}`);
         }
         return res.json();
     }
@@ -136,10 +136,10 @@ class GitHubAPI {
         // Dosya adndan sorunlu karakterleri temizle (GitHub path hatas nlenir)
         const safeFilename = filename
             .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')  // Aksanlar\u0131 kald\u0131r
-            .replace(/[^a-zA-Z0-9._\-]/g, '_') // Sadece g\xfcvenli karakterler
-            .replace(/_{2,}/g, '_')             // \xc3\x87ift alt \xe7izgi temizle
-            .replace(/^_|_$/g, '');            // Ba\xc5\x9f/son alt \xe7izgi kald\u0131r
+            .replace(/[̀-ͯ]/g, '')  // Aksanları kaldır
+            .replace(/[^a-zA-Z0-9._\-]/g, '_') // Sadece güvenli karakterler
+            .replace(/_{2,}/g, '_')             // Ãift alt çizgi temizle
+            .replace(/^_|_$/g, '');            // BaÅ/son alt çizgi kaldır
         const path = `${folder}/${safeFilename}`;
         const existing = await this.getFile(path);
         const sha = existing ? existing.sha : null;
@@ -148,7 +148,7 @@ class GitHubAPI {
             method: 'PUT',
             headers: this.headers(),
             body: JSON.stringify({
-                message: `\xf0\x9f\x96\xbc\xef\xb8\x8f Admin: G\xf6rsel y\xfcklendi \xe2\x80\x94 ${safeFilename}`,
+                message: `ð¼ï¸ Admin: Görsel yüklendi â ${safeFilename}`,
                 content: pureBase64,
                 branch: this.branch,
                 ...(sha ? { sha } : {})
@@ -156,7 +156,7 @@ class GitHubAPI {
         });
         if (!res.ok) {
             const err = await res.json().catch(() => ({}));
-            throw new Error(`G\xf6rsel y\xfckleme hatas\u0131: ${err.message || res.status}`);
+            throw new Error(`Görsel yükleme hatası: ${err.message || res.status}`);
         }
         return `${folder}/${safeFilename}`;
     }
@@ -167,7 +167,7 @@ class GitHubAPI {
             headers: this.headers(),
             body: JSON.stringify({ message: commitMsg, sha, branch: this.branch })
         });
-        if (!res.ok) throw new Error(`Silme hatas\u0131: ${res.status}`);
+        if (!res.ok) throw new Error(`Silme hatası: ${res.status}`);
         return res.json();
     }
 
@@ -177,12 +177,12 @@ class GitHubAPI {
         const existing = await this.getFile(path);
         const sha = existing ? existing.sha : null;
         const content = JSON.stringify(data, null, 2);
-        return this.putFile(path, content, '\xe2\x9a\x99\xef\xb8\x8f Admin: Site verileri g\xfcncellendi', sha);
+        return this.putFile(path, content, 'âï¸ Admin: Site verileri güncellendi', sha);
     }
 
     async loadSiteData() {
         const file = await this.getFile('data/site-data.json');
-        if (!file) throw new Error('site-data.json bulunamad\u0131!');
+        if (!file) throw new Error('site-data.json bulunamadı!');
         const decoded = decodeURIComponent(escape(atob(file.content)));
         return { data: JSON.parse(decoded), sha: file.sha };
     }
@@ -216,17 +216,17 @@ function clearSession() {
 //  DURUM ETKET HARTASI 
 
 const STATUS_MAP = {
-    'live':          { label: '\xe2\x9c
- Yay\u0131nda',                    tag: 'tag-live',       class: 'active' },
-    'development':   { label: '\xe2\x8f\xb3 Geli\xc5\x9ftirme A\xc5\x9famas\u0131nda',    tag: 'tag-wip',        class: 'wip' },
-    'completed':     { label: '\xf0\x9f\x94\xb5 Tamamland\u0131',              tag: 'tag-completed',  class: 'completed' },
-    'discontinued':  { label: '\xf0\x9f\x93\x94 Yay\u0131ndan Kald\u0131r\u0131lm\u0131\xc5\x9f',    tag: 'tag-inactive',   class: 'inactive' },
-    'paused':        { label: '\xe2\x8f\xb8\xef\xb8\x8f Geli\xc5\x9ftirme Durdurulmu\xc5\x9f', tag: 'tag-soon',       class: 'paused' },
-    'research':      { label: '\xf0\x9f\x94\x8d Ara\xc5\x9ft\u0131rma A\xc5\x9famas\u0131nda',  tag: 'tag-wip',        class: 'wip' },
-    'bugfix':        { label: '\xf0\x9f\x9b\xa0\xef\xb8\x8f Hata D\xfczeltme',          tag: 'tag-wip',        class: 'wip' },
-    'waiting':       { label: '\xe2\x8f\xb3 Beklemede',                  tag: 'tag-soon',       class: 'paused' },
-    'special':       { label: '\xe2\xad\x90 \xc3\x96zel Durum',                tag: 'tag-soon',       class: 'wip' },
-    'rnd':           { label: '\xf0\x9f\xa7\xaa Ar-Ge A\xc5\x9famas\u0131nda',        tag: 'tag-wip',        class: 'wip' }
+    'live':          { label: 'â
+ Yayında',                    tag: 'tag-live',       class: 'active' },
+    'development':   { label: 'â³ GeliÅtirme AÅamasında',    tag: 'tag-wip',        class: 'wip' },
+    'completed':     { label: 'ðµ Tamamlandı',              tag: 'tag-completed',  class: 'completed' },
+    'discontinued':  { label: 'ð Yayından KaldırılmıÅ',    tag: 'tag-inactive',   class: 'inactive' },
+    'paused':        { label: 'â¸ï¸ GeliÅtirme DurdurulmuÅ', tag: 'tag-soon',       class: 'paused' },
+    'research':      { label: 'ð AraÅtırma AÅamasında',  tag: 'tag-wip',        class: 'wip' },
+    'bugfix':        { label: 'ð ï¸ Hata Düzeltme',          tag: 'tag-wip',        class: 'wip' },
+    'waiting':       { label: 'â³ Beklemede',                  tag: 'tag-soon',       class: 'paused' },
+    'special':       { label: 'â­ Ãzel Durum',                tag: 'tag-soon',       class: 'wip' },
+    'rnd':           { label: 'ð§ª Ar-Ge AÅamasında',        tag: 'tag-wip',        class: 'wip' }
 };
 
 function createStatusSelect(containerId, selectedValue = 'development') {
@@ -305,11 +305,11 @@ function initLoginScreen() {
         const repo = repoInput.value.trim();
 
         if (!token || !owner || !repo) {
-            showError('L\xfctfen t\xfcm alanlar\u0131 doldurun.');
+            showError('Lütfen tüm alanları doldurun.');
             return;
         }
 
-        loginBtn.textContent = '\xf0\x9f\x94\x84 Do\xc4\x9frulan\u0131yor...';
+        loginBtn.textContent = 'ð DoÄrulanıyor...';
         loginBtn.disabled = true;
         errorEl.classList.remove('visible');
 
@@ -321,19 +321,19 @@ function initLoginScreen() {
             });
 
             if (!res.ok) {
-                if (res.status === 401) throw new Error('Token ge\xe7ersiz. L\xfctfen GitHub Token\'\u0131n\u0131z\u0131 kontrol edin.');
-                if (res.status === 404) throw new Error('Repo bulunamad\u0131. Kullan\u0131c\u0131 ad\u0131 ve repo ad\u0131n\u0131 kontrol edin.');
-                throw new Error(`Ba\xc4\x9flant\u0131 hatas\u0131: ${res.status}`);
+                if (res.status === 401) throw new Error('Token geçersiz. Lütfen GitHub Token\'ınızı kontrol edin.');
+                if (res.status === 404) throw new Error('Repo bulunamadı. Kullanıcı adı ve repo adını kontrol edin.');
+                throw new Error(`BaÄlantı hatası: ${res.status}`);
             }
 
             ghAPI = api;
             saveSession(token, owner, repo);
-            adminToast('Giri\xc5\x9f ba\xc5\x9far\u0131l\u0131! Panel y\xfckleniyor...', 'success');
+            adminToast('GiriÅ baÅarılı! Panel yükleniyor...', 'success');
             setTimeout(showPanel, 600);
 
         } catch (err) {
             showError(err.message);
-            loginBtn.textContent = '\xf0\x9f\x94\x93 Giri\xc5\x9f Yap';
+            loginBtn.textContent = 'ð GiriÅ Yap';
             loginBtn.disabled = false;
         }
     }
@@ -346,13 +346,13 @@ function initLoginScreen() {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
             if (window._adminDirty) {
-                if (!confirm('Kaydedilmemi\xc5\x9f de\xc4\x9fi\xc5\x9fiklikler var. \xc3\x87\u0131kmak istedi\xc4\x9finize emin misiniz?')) return;
+                if (!confirm('KaydedilmemiÅ deÄiÅiklikler var. Ãıkmak istediÄinize emin misiniz?')) return;
             }
             // GV-2: Bellekten temizle
             ghAPI = null;
             siteData = null;
             window._adminDirty = false;
-            adminToast('Oturum kapat\u0131ld\u0131.', 'info');
+            adminToast('Oturum kapatıldı.', 'info');
             showLogin();
         });
     }
@@ -361,7 +361,7 @@ function initLoginScreen() {
 //  VER YKLEME 
 
 async function loadAndRenderAll() {
-    adminLoading(true, 'Site verileri y\xfckleniyor...');
+    adminLoading(true, 'Site verileri yükleniyor...');
     try {
         const { data } = await ghAPI.loadSiteData();
         siteData = data;
@@ -371,9 +371,9 @@ async function loadAndRenderAll() {
         renderFaqAdmin();
         renderLegalAdmin();
         renderSocialFeedAdmin();
-        adminToast('Veriler y\xfcklendi!', 'success', 2000);
+        adminToast('Veriler yüklendi!', 'success', 2000);
     } catch (err) {
-        adminToast(`Y\xfckleme hatas\u0131: ${err.message}`, 'error', 6000);
+        adminToast(`Yükleme hatası: ${err.message}`, 'error', 6000);
         console.error(err);
     } finally {
         adminLoading(false);
@@ -404,7 +404,7 @@ function initThemeToggle() {
 
     function updateIcon() {
         const theme = document.documentElement.getAttribute('data-theme');
-        icon.textContent = theme === 'dark' ? '\xf0\x9f\x8c\x99' : '\xe2\x98\x80\xef\xb8\x8f';
+        icon.textContent = theme === 'dark' ? 'ð' : 'âï¸';
     }
 
     updateIcon();
@@ -437,7 +437,7 @@ function initSaveBar() {
     const saveAllBtn = document.getElementById('saveAllBtn');
 
     if (discardBtn) discardBtn.addEventListener('click', () => {
-        if (confirm('De\xc4\x9fi\xc5\x9fiklikler iptal edilsin mi?')) {
+        if (confirm('DeÄiÅiklikler iptal edilsin mi?')) {
             loadAndRenderAll();
             clearDirty();
         }
@@ -452,10 +452,10 @@ async function saveAllToGitHub() {
     try {
         await ghAPI.saveSiteData(siteData);
         clearDirty();
-        adminToast('\xe2\x9c
- T\xfcm de\xc4\x9fi\xc5\x9fiklikler GitHub\'a kaydedildi! Site ~15 saniyede g\xfcncellenir.', 'success', 5000);
+        adminToast('â
+ Tüm deÄiÅiklikler GitHub\'a kaydedildi! Site ~15 saniyede güncellenir.', 'success', 5000);
     } catch (err) {
-        adminToast(`Kay\u0131t hatas\u0131: ${err.message}`, 'error', 6000);
+        adminToast(`Kayıt hatası: ${err.message}`, 'error', 6000);
     } finally {
         adminLoading(false);
     }
@@ -472,7 +472,7 @@ function renderSliderSection() {
         <div class="slider-img-item" data-id="${s.id}">
             <img src="${s.src}" alt="${s.alt}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'160\\' height=\\'90\\'><rect width=\\'160\\' height=\\'90\\' fill=\\'%23222\\'/>><text x=\\'50%\\' y=\\'50%\\' fill=\\'%23666\\' text-anchor=\\'middle\\' dy=\\'.3em\\'>?</text></svg>'">
             <div class="img-order-controls" style="position:absolute; top:4px; left:4px; display:flex; flex-direction:column; gap:4px; z-index:10;"><button class="order-btn" onclick="moveSliderImage(${i}, -1)" ${i===0?'disabled':''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9650;</button><span class="img-order-badge" style="position:static; margin:0; text-align:center;">${i + 1}</span><button class="order-btn" onclick="moveSliderImage(${i}, 1)" ${i===slides.length-1?'disabled':''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9660;</button></div>
-            <button class="img-delete-btn" data-id="${s.id}" title="Sil">\xe2\x9c\x95</button>
+            <button class="img-delete-btn" data-id="${s.id}" title="Sil">â</button>
         </div>
     `).join('');
 
@@ -509,10 +509,10 @@ function renderSliderSection() {
 
 async function handleSliderUpload(files) {
     if (!files || !files.length) return;
-    adminLoading(true, 'G\xf6rseller y\xfckleniyor...');
+    adminLoading(true, 'Görseller yükleniyor...');
     try {
         for (const file of Array.from(files)) {
-            if (file.size > 5 * 1024 * 1024) { adminToast(`${file.name} 5MB s\u0131n\u0131r\u0131n\u0131 a\xc5\x9f\u0131yor.`, 'error'); continue; }
+            if (file.size > 5 * 1024 * 1024) { adminToast(`${file.name} 5MB sınırını aÅıyor.`, 'error'); continue; }
             const base64 = await fileToBase64(file);
             const filename = `hero-${Date.now()}-${file.name.replace(/\s/g, '_')}`;
             const path = await ghAPI.uploadImage(filename, base64);
@@ -520,9 +520,9 @@ async function handleSliderUpload(files) {
         }
         markDirty();
         renderSliderSection();
-        adminToast('G\xf6rseller y\xfcklendi!', 'success');
+        adminToast('Görseller yüklendi!', 'success');
     } catch (err) {
-        adminToast(`Y\xfckleme hatas\u0131: ${err.message}`, 'error');
+        adminToast(`Yükleme hatası: ${err.message}`, 'error');
     } finally {
         adminLoading(false);
         document.getElementById('sliderFileInput').value = '';
@@ -530,7 +530,7 @@ async function handleSliderUpload(files) {
 }
 
 async function deleteSliderImage(id) {
-    if (!confirm('Bu g\xf6rsel silinsin mi?')) return;
+    if (!confirm('Bu görsel silinsin mi?')) return;
     const idx = siteData.heroSlider.findIndex(s => s.id === id);
     if (idx === -1) return;
     siteData.heroSlider.splice(idx, 1);
@@ -539,7 +539,7 @@ async function deleteSliderImage(id) {
     try {
         markDirty();
         renderSliderSection();
-        adminToast('G\xf6rsel silindi.', 'success');
+        adminToast('Görsel silindi.', 'success');
     } catch (err) {
         adminToast(`Hata: ${err.message}`, 'error');
     } finally {
@@ -554,7 +554,7 @@ function renderProjectList() {
     if (!list || !siteData) return;
     siteData.projects.sort((a, b) => (a.order || 0) - (b.order || 0));
     const projects = siteData.projects || [];
-    if (!projects.length) { list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:20px;">Hen\xfcz proje eklenmemi\xc5\x9f.</p>'; return; }
+    if (!projects.length) { list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:20px;">Henüz proje eklenmemiÅ.</p>'; return; }
 
     list.innerHTML = projects.map((p, index) => `
         <div class="admin-project-item" data-id="${p.id}">
@@ -569,8 +569,8 @@ function renderProjectList() {
                 </select>
             </div>
             <div class="admin-project-actions">
-                <button class="admin-btn admin-btn-sm edit-proj-btn" data-id="${p.id}" title="D\xfczenle">\xe2\x9c\x8f\xef\xb8\x8f</button>
-                <button class="admin-btn admin-btn-danger admin-btn-sm del-proj-btn" data-id="${p.id}" title="Sil">\xf0\x9f\x97\x91\xef\xb8\x8f</button>
+                <button class="admin-btn admin-btn-sm edit-proj-btn" data-id="${p.id}" title="Düzenle">âï¸</button>
+                <button class="admin-btn admin-btn-danger admin-btn-sm del-proj-btn" data-id="${p.id}" title="Sil">ðï¸</button>
             </div>
         </div>
     `).join('');
@@ -610,12 +610,12 @@ function renderProjectList() {
 }
 
 function deleteProject(id) {
-    if (!confirm('Bu proje silinsin mi? Bu i\xc5\x9flem geri al\u0131namaz.')) return;
+    if (!confirm('Bu proje silinsin mi? Bu iÅlem geri alınamaz.')) return;
     siteData.projects = siteData.projects.filter(p => p.id !== id);
     markDirty();
     renderProjectList();
     renderDetailProjectSelector();
-    adminToast('Proje silindi. Kaydetmeyi unutmay\u0131n.', 'warning');
+    adminToast('Proje silindi. Kaydetmeyi unutmayın.', 'warning');
 }
 
 //  PROJE EKLE/DZENLE MODAL 
@@ -689,7 +689,7 @@ function openAddProjectModal() {
 function openEditProjectModal(id) {
     const proj = siteData.projects.find(p => p.id === id);
     if (!proj) return;
-    document.getElementById('projectModalTitle').textContent = 'Projeyi D\xfczenle';
+    document.getElementById('projectModalTitle').textContent = 'Projeyi Düzenle';
     document.getElementById('pmName').value = proj.name;
     document.getElementById('pmNameEN').value = proj.nameEN;
     document.getElementById('pmDesc').value = proj.shortDesc;
@@ -714,19 +714,19 @@ async function saveProjectModal() {
     const tags = document.getElementById('pmTags').value.split(',').map(t => t.trim()).filter(Boolean);
     let thumbnail = document.getElementById('pmThumbnail').value.trim();
 
-    if (!name || !slug) { adminToast('Proje ad\u0131 ve slug zorunludur.', 'error'); return; }
+    if (!name || !slug) { adminToast('Proje adı ve slug zorunludur.', 'error'); return; }
 
     // Thumbnail dosya ykleme varsa nce ykle
     const thumbFile = document.getElementById('pmThumbnailFile').files[0];
     if (thumbFile) {
         try {
-            adminLoading(true, 'Kapak g\xf6rseli y\xfckleniyor...');
+            adminLoading(true, 'Kapak görseli yükleniyor...');
             const base64 = await fileToBase64(thumbFile);
             const safeSlug = slug.replace(/[^a-zA-Z0-9\-]/g, '_');
             const filename = `thumb-${safeSlug}-${Date.now()}.${thumbFile.name.split('.').pop()}`;
             thumbnail = await ghAPI.uploadImage(filename, base64);
         } catch (err) {
-            adminToast(`Kapak g\xf6rseli y\xfcklenemedi: ${err.message}`, 'error');
+            adminToast(`Kapak görseli yüklenemedi: ${err.message}`, 'error');
             adminLoading(false);
             return;
         } finally {
@@ -765,7 +765,7 @@ async function saveProjectModal() {
             }
         };
         siteData.projects.push(newProj);
-        adminToast('Yeni proje eklendi. Kaydetmeyi unutmay\u0131n.', 'success');
+        adminToast('Yeni proje eklendi. Kaydetmeyi unutmayın.', 'success');
     } else {
         const proj = siteData.projects.find(p => p.id === btn.dataset.editId);
         if (proj) {
@@ -777,7 +777,7 @@ async function saveProjectModal() {
             proj.tags = tags;
             if (thumbnail) proj.thumbnail = thumbnail;
         }
-        adminToast('Proje g\xfcncellendi. Kaydetmeyi unutmay\u0131n.', 'success');
+        adminToast('Proje güncellendi. Kaydetmeyi unutmayın.', 'success');
     }
 
     markDirty();
@@ -846,7 +846,7 @@ function loadProjectDetail(id) {
 }
 
 function saveProjectDetail() {
-    if (!currentProjectId) { adminToast('\xc3\x96nce bir proje se\xe7in.', 'warning'); return; }
+    if (!currentProjectId) { adminToast('Ãnce bir proje seçin.', 'warning'); return; }
     const proj = siteData.projects.find(p => p.id === currentProjectId);
     if (!proj) return;
 
@@ -870,7 +870,7 @@ function saveProjectDetail() {
     markDirty();
     renderProjectList();
     renderDetailProjectSelector();
-    adminToast('Proje detaylar\u0131 g\xfcncellendi. Kaydetmeyi unutmay\u0131n.', 'success');
+    adminToast('Proje detayları güncellendi. Kaydetmeyi unutmayın.', 'success');
 }
 
 //  EKRAN GRNTLER 
@@ -880,12 +880,12 @@ function renderScreenshots(screenshots) {
     if (!grid) return;
     grid.innerHTML = screenshots.map((src, i) => `
         <div class="screenshot-item" data-idx="${i}">
-            <img src="${src}" alt="G\xf6rsel ${i+1}"
+            <img src="${src}" alt="Görsel ${i+1}"
                 onerror="this.parentElement.style.display='none'"
                 onload="this.parentElement.className = 'screenshot-item ' + (this.naturalWidth > this.naturalHeight ? 'landscape' : this.naturalWidth === this.naturalHeight ? 'square' : '');"
                 style="cursor:zoom-in;" onclick="openLightbox('${src}')"
             >
-            <button class="ss-del-btn" data-idx="${i}" title="Sil">\xe2\x9c\x95</button>
+            <button class="ss-del-btn" data-idx="${i}" title="Sil">â</button>
         </div>
     `).join('');
     grid.querySelectorAll('.ss-del-btn').forEach(btn => {
@@ -903,10 +903,10 @@ function deleteScreenshot(idx) {
 }
 
 async function handleScreenshotUpload(files) {
-    if (!currentProjectId) { adminToast('L\xfctfen \xf6nce bir proje se\xe7in.', 'warning'); return; }
+    if (!currentProjectId) { adminToast('Lütfen önce bir proje seçin.', 'warning'); return; }
     const proj = siteData.projects.find(p => p.id === currentProjectId);
     if (!proj) return;
-    adminLoading(true, 'G\xf6rseller y\xfckleniyor...');
+    adminLoading(true, 'Görseller yükleniyor...');
     try {
         for (const file of Array.from(files)) {
             const base64 = await fileToBase64(file);
@@ -919,9 +919,9 @@ async function handleScreenshotUpload(files) {
         }
         markDirty();
         renderScreenshots(proj.detail.screenshots);
-        adminToast('G\xf6rseller y\xfcklendi!', 'success');
+        adminToast('Görseller yüklendi!', 'success');
     } catch (err) {
-        adminToast(`Y\xfckleme hatas\u0131: ${err.message}`, 'error');
+        adminToast(`Yükleme hatası: ${err.message}`, 'error');
     } finally {
         adminLoading(false);
         const inp = document.getElementById('screenshotFileInput');
@@ -934,21 +934,21 @@ async function handleScreenshotUpload(files) {
 function renderChangelogList(changelog) {
     const list = document.getElementById('changelogList');
     if (!list) return;
-    if (!changelog.length) { list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:16px;">Hen\xfcz s\xfcr\xfcm eklenmemi\xc5\x9f.</p>'; return; }
+    if (!changelog.length) { list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:16px;">Henüz sürüm eklenmemiÅ.</p>'; return; }
 
     list.innerHTML = changelog.map(cl => `
         <div class="changelog-item" data-id="${cl.id}">
             <span class="changelog-version-badge ${cl.type}">${cl.version}</span>
             <div class="changelog-info">
-                <div class="changelog-date">\xf0\x9f\x93
- ${cl.date} \xb7 ${cl.type.toUpperCase()}</div>
+                <div class="changelog-date">ð
+ ${cl.date} · ${cl.type.toUpperCase()}</div>
                 <ul class="changelog-notes">
                     ${cl.notes.map(n => `<li>${n}</li>`).join('')}
                 </ul>
             </div>
             <div class="changelog-actions">
-                <button class="admin-btn admin-btn-sm edit-cl-btn" data-id="${cl.id}">\xe2\x9c\x8f\xef\xb8\x8f</button>
-                <button class="admin-btn admin-btn-danger admin-btn-sm del-cl-btn" data-id="${cl.id}">\xf0\x9f\x97\x91\xef\xb8\x8f</button>
+                <button class="admin-btn admin-btn-sm edit-cl-btn" data-id="${cl.id}">âï¸</button>
+                <button class="admin-btn admin-btn-danger admin-btn-sm del-cl-btn" data-id="${cl.id}">ðï¸</button>
             </div>
         </div>
     `).join('');
@@ -962,9 +962,9 @@ function renderChangelogList(changelog) {
 }
 
 function openAddChangelogModal() {
-    if (!currentProjectId) { adminToast('\xc3\x96nce bir proje se\xe7in.', 'warning'); return; }
+    if (!currentProjectId) { adminToast('Ãnce bir proje seçin.', 'warning'); return; }
     editingChangelogId = null;
-    document.getElementById('changelogModalTitle').textContent = 'Yeni S\xfcr\xfcm Ekle';
+    document.getElementById('changelogModalTitle').textContent = 'Yeni Sürüm Ekle';
     document.getElementById('clVersion').value = '';
     document.getElementById('clDate').value = todayISO();
     document.getElementById('clType').value = 'minor';
@@ -979,7 +979,7 @@ function openEditChangelogModal(id) {
     const cl = proj.detail.changelog.find(c => c.id === id);
     if (!cl) return;
     editingChangelogId = id;
-    document.getElementById('changelogModalTitle').textContent = 'S\xfcr\xfcm\xfc D\xfczenle';
+    document.getElementById('changelogModalTitle').textContent = 'Sürümü Düzenle';
     document.getElementById('clVersion').value = cl.version;
     document.getElementById('clDate').value = cl.date;
     document.getElementById('clType').value = cl.type;
@@ -996,7 +996,7 @@ function saveChangelogModal() {
     const type = document.getElementById('clType').value;
     const notes = document.getElementById('clNotes').value.split('\n').map(s => s.trim()).filter(Boolean);
 
-    if (!version || !notes.length) { adminToast('Versiyon ve en az 1 de\xc4\x9fi\xc5\x9fiklik notu gerekli.', 'error'); return; }
+    if (!version || !notes.length) { adminToast('Versiyon ve en az 1 deÄiÅiklik notu gerekli.', 'error'); return; }
 
     const mode = document.getElementById('changelogModalSave').dataset.mode;
     if (mode === 'add') {
@@ -1009,17 +1009,17 @@ function saveChangelogModal() {
     markDirty();
     renderChangelogList(proj.detail.changelog);
     closeModal('changelogModal');
-    adminToast(`S\xfcr\xfcm ${mode === 'add' ? 'eklendi' : 'g\xfcncellendi'}. Kaydetmeyi unutmay\u0131n.`, 'success');
+    adminToast(`Sürüm ${mode === 'add' ? 'eklendi' : 'güncellendi'}. Kaydetmeyi unutmayın.`, 'success');
 }
 
 function deleteChangelog(id) {
-    if (!confirm('Bu s\xfcr\xfcm notu silinsin mi?')) return;
+    if (!confirm('Bu sürüm notu silinsin mi?')) return;
     const proj = siteData.projects.find(p => p.id === currentProjectId);
     if (!proj) return;
     proj.detail.changelog = proj.detail.changelog.filter(c => c.id !== id);
     markDirty();
     renderChangelogList(proj.detail.changelog);
-    adminToast('S\xfcr\xfcm silindi.', 'success');
+    adminToast('Sürüm silindi.', 'success');
 }
 
 //  SSS YNETM 
@@ -1028,15 +1028,15 @@ function renderFaqAdmin() {
     const list = document.getElementById('faqAdminList');
     if (!list || !siteData) return;
     const faq = siteData.faq || [];
-    if (!faq.length) { list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:20px;">Hen\xfcz SSS kategorisi eklenmemi\xc5\x9f.</p>'; return; }
+    if (!faq.length) { list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:20px;">Henüz SSS kategorisi eklenmemiÅ.</p>'; return; }
 
     list.innerHTML = faq.map(cat => `
         <div class="faq-admin-category" data-catid="${cat.id}">
             <div class="faq-admin-cat-header">
                 <input type="text" class="faq-admin-cat-title" value="${cat.category}" data-catid="${cat.id}"
                     style="background:transparent;border:none;color:var(--admin-accent);font-weight:700;font-size:0.95rem;font-family:inherit;outline:none;flex:1;">
-                <button class="admin-btn admin-btn-sm add-faq-item-btn" data-catid="${cat.id}">\xef\xbc\x8b Madde</button>
-                <button class="admin-btn admin-btn-danger admin-btn-sm del-faq-cat-btn" data-catid="${cat.id}">\xf0\x9f\x97\x91\xef\xb8\x8f</button>
+                <button class="admin-btn admin-btn-sm add-faq-item-btn" data-catid="${cat.id}">ï¼ Madde</button>
+                <button class="admin-btn admin-btn-danger admin-btn-sm del-faq-cat-btn" data-catid="${cat.id}">ðï¸</button>
             </div>
             <div class="faq-admin-items" id="faq-items-${cat.id}">
                 ${cat.items.map(item => `
@@ -1044,8 +1044,8 @@ function renderFaqAdmin() {
                         <div class="faq-admin-item-q">${item.question}</div>
                         <div class="faq-admin-item-a">${item.answer}</div>
                         <div class="faq-admin-item-actions">
-                            <button class="admin-btn admin-btn-sm edit-faq-item-btn" data-catid="${cat.id}" data-itemid="${item.id}">\xe2\x9c\x8f\xef\xb8\x8f D\xfczenle</button>
-                            <button class="admin-btn admin-btn-danger admin-btn-sm del-faq-item-btn" data-catid="${cat.id}" data-itemid="${item.id}">\xf0\x9f\x97\x91\xef\xb8\x8f</button>
+                            <button class="admin-btn admin-btn-sm edit-faq-item-btn" data-catid="${cat.id}" data-itemid="${item.id}">âï¸ Düzenle</button>
+                            <button class="admin-btn admin-btn-danger admin-btn-sm del-faq-item-btn" data-catid="${cat.id}" data-itemid="${item.id}">ðï¸</button>
                         </div>
                     </div>
                 `).join('')}
@@ -1083,14 +1083,14 @@ function renderFaqAdmin() {
 }
 
 function addFaqCategory() {
-    const cat = { id: generateId('faq-cat'), category: '\xf0\x9f\x93\x8c Yeni Kategori', items: [] };
+    const cat = { id: generateId('faq-cat'), category: 'ð Yeni Kategori', items: [] };
     siteData.faq.push(cat);
     markDirty();
     renderFaqAdmin();
 }
 
 function deleteFaqCategory(catId) {
-    if (!confirm('Bu kategori ve t\xfcm maddeleri silinsin mi?')) return;
+    if (!confirm('Bu kategori ve tüm maddeleri silinsin mi?')) return;
     siteData.faq = siteData.faq.filter(c => c.id !== catId);
     markDirty();
     renderFaqAdmin();
@@ -1113,7 +1113,7 @@ function openEditFaqItemModal(catId, itemId) {
     if (!item) return;
     editingFaqCatId = catId;
     editingFaqItemId = itemId;
-    document.getElementById('faqItemModalTitle').textContent = 'SSS Madde D\xfczenle';
+    document.getElementById('faqItemModalTitle').textContent = 'SSS Madde Düzenle';
     document.getElementById('faqQ').value = item.question;
     document.getElementById('faqA').value = item.answer;
     document.getElementById('faqItemSave').dataset.mode = 'edit';
@@ -1123,7 +1123,7 @@ function openEditFaqItemModal(catId, itemId) {
 function saveFaqItemModal() {
     const q = document.getElementById('faqQ').value.trim();
     const a = document.getElementById('faqA').value.trim();
-    if (!q || !a) { adminToast('Soru ve cevap bo\xc5\x9f b\u0131rak\u0131lamaz.', 'error'); return; }
+    if (!q || !a) { adminToast('Soru ve cevap boÅ bırakılamaz.', 'error'); return; }
     const cat = siteData.faq.find(c => c.id === editingFaqCatId);
     if (!cat) return;
     const mode = document.getElementById('faqItemSave').dataset.mode;
@@ -1136,7 +1136,7 @@ function saveFaqItemModal() {
     markDirty();
     renderFaqAdmin();
     closeModal('faqItemModal');
-    adminToast('SSS maddesi kaydedildi. Kaydetmeyi unutmay\u0131n.', 'success');
+    adminToast('SSS maddesi kaydedildi. Kaydetmeyi unutmayın.', 'success');
 }
 
 function deleteFaqItem(catId, itemId) {
@@ -1178,7 +1178,7 @@ function renderLegalSections(type) {
                 <input type="text" class="legal-admin-heading-text legal-heading-input"
                     value="${sec.heading}" data-type="${type}" data-id="${sec.id}"
                     style="background:transparent;border:none;color:var(--admin-accent);font-weight:700;font-size:0.9rem;font-family:inherit;outline:none;flex:1;">
-                <button class="admin-btn admin-btn-danger admin-btn-sm del-legal-btn" data-type="${type}" data-id="${sec.id}">\xf0\x9f\x97\x91\xef\xb8\x8f</button>
+                <button class="admin-btn admin-btn-danger admin-btn-sm del-legal-btn" data-type="${type}" data-id="${sec.id}">ðï¸</button>
             </div>
             <div class="legal-admin-body">
                 <textarea class="admin-form-group legal-text-input" rows="3"
@@ -1212,14 +1212,14 @@ function renderLegalSections(type) {
 }
 
 function addLegalSection(type) {
-    const sec = { id: generateId(`${type}-sec`), heading: 'Yeni B\xf6l\xfcm Ba\xc5\x9fl\u0131\xc4\x9f\u0131', text: 'B\xf6l\xfcm i\xe7eri\xc4\x9fi buraya yaz\u0131lacak.' };
+    const sec = { id: generateId(`${type}-sec`), heading: 'Yeni Bölüm BaÅlıÄı', text: 'Bölüm içeriÄi buraya yazılacak.' };
     siteData.legal[type].content.push(sec);
     markDirty();
     renderLegalSections(type);
 }
 
 function deleteLegalSection(type, id) {
-    if (!confirm('Bu b\xf6l\xfcm silinsin mi?')) return;
+    if (!confirm('Bu bölüm silinsin mi?')) return;
     siteData.legal[type].content = siteData.legal[type].content.filter(s => s.id !== id);
     markDirty();
     renderLegalSections(type);
@@ -1271,11 +1271,11 @@ function renderSocialFeedAdmin() {
     if (!list || !siteData) return;
 
     const social = siteData.socialFeed || { lastUpdated: '-', posts: [] };
-    if (label) label.textContent = `Son G\xfcncelleme: ${social.lastUpdated || '-'}`;
+    if (label) label.textContent = `Son Güncelleme: ${social.lastUpdated || '-'}`;
 
     const posts = social.posts || [];
     if (!posts.length) {
-        list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:20px;grid-column:1/-1;">Hen\xfcz sosyal medya g\xf6nderisi \xe7ekilmemi\xc5\x9f. Yukar\u0131daki butona basarak rastgele g\xf6nderi \xe7ekebilirsiniz.</p>';
+        list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:20px;grid-column:1/-1;">Henüz sosyal medya gönderisi çekilmemiÅ. Yukarıdaki butona basarak rastgele gönderi çekebilirsiniz.</p>';
         return;
     }
 
@@ -1293,7 +1293,7 @@ function renderSocialFeedAdmin() {
             <h4 style="font-size:0.88rem;font-weight:700;color:var(--text-primary,#e8eaf0);margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.title}</h4>
             <p style="font-size:0.78rem;color:var(--text-secondary);margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${p.description}</p>
             <a href="${p.postUrl}" target="_blank" rel="noopener" class="admin-btn admin-btn-sm" style="width:100%;justify-content:center;">
-                Orijinal G\xf6nderi \xe2\x86\x97
+                Orijinal Gönderi â
             </a>
         </div>
     `).join('');
@@ -1303,24 +1303,24 @@ function renderSocialFeedAdmin() {
 const SOCIAL_POST_POOLS = {
     youtube: [
         {
-            title: "\xf0\x9f\x93\x8d Grup Konum V2 \xe2\x80\x94 Canl\u0131 Harita & Sohbet Testi",
-            description: "Low-latency GPS senkronizasyonu ve entegre sohbet \xf6zelliklerinin detayl\u0131 canl\u0131 g\xf6sterimi.",
+            title: "ð Grup Konum V2 â Canlı Harita & Sohbet Testi",
+            description: "Low-latency GPS senkronizasyonu ve entegre sohbet özelliklerinin detaylı canlı gösterimi.",
             thumbnail: "resimler/sosyalmedya_post2.png",
             postUrl: "https://youtube.com",
             author: "AVS&V9 Official",
             badgeColor: "#FF0000"
         },
         {
-            title: "\xf0\x9f\x93\xa6 V9 Kurye \xe2\x80\x94 Rota Optimizasyon Algoritmas\u0131",
-            description: "En k\u0131sa teslimat rotas\u0131n\u0131 saniyeler i\xe7inde hesaplayan yeni harita altyap\u0131m\u0131z yay\u0131nda.",
+            title: "ð¦ V9 Kurye â Rota Optimizasyon Algoritması",
+            description: "En kısa teslimat rotasını saniyeler içinde hesaplayan yeni harita altyapımız yayında.",
             thumbnail: "resimler/sosyalmedya_post1.png",
             postUrl: "https://youtube.com",
             author: "AVS&V9 Official",
             badgeColor: "#FF0000"
         },
         {
-            title: "\xe2\x9a\xa1 V9 Proje Ailesi \xe2\x80\x94 2026 Sezonu Tan\u0131t\u0131m Filmi",
-            description: "Geli\xc5\x9ftirdi\xc4\x9fimiz t\xfcm mobil uygulamalar ve gelecek projelerin toplu tan\u0131t\u0131m videosu.",
+            title: "â¡ V9 Proje Ailesi â 2026 Sezonu Tanıtım Filmi",
+            description: "GeliÅtirdiÄimiz tüm mobil uygulamalar ve gelecek projelerin toplu tanıtım videosu.",
             thumbnail: "resimler/sosyalmedya_post3.png",
             postUrl: "https://youtube.com",
             author: "AVS&V9 Official",
@@ -1329,24 +1329,24 @@ const SOCIAL_POST_POOLS = {
     ],
     instagram: [
         {
-            title: "\xf0\x9f\x9a\x80 V9 Kurye \xe2\x80\x94 Geli\xc5\x9ftirme S\xfcrecinden Kareler",
-            description: "Ger\xe7ek zamanl\u0131 harita entegrasyonunun sahne arkas\u0131na dair \xf6zel foto\xc4\x9fraflar ve kod par\xe7alar\u0131.",
+            title: "ð V9 Kurye â GeliÅtirme Sürecinden Kareler",
+            description: "Gerçek zamanlı harita entegrasyonunun sahne arkasına dair özel fotoÄraflar ve kod parçaları.",
             thumbnail: "resimler/sosyalmedya_post1.png",
             postUrl: "https://instagram.com",
             author: "@avsv9_dev",
             badgeColor: "#E1306C"
         },
         {
-            title: "\xf0\x9f\x8e\xa8 Yeni Karanl\u0131k Tema Aray\xfcz Tasar\u0131m\u0131",
-            description: "Kullan\u0131c\u0131 deneyimini \xfcst seviyeye \xe7\u0131karan yeni oval kart tasar\u0131m\u0131 ve neon k\u0131rm\u0131z\u0131 dokunu\xc5\x9flar.",
+            title: "ð¨ Yeni Karanlık Tema Arayüz Tasarımı",
+            description: "Kullanıcı deneyimini üst seviyeye çıkaran yeni oval kart tasarımı ve neon kırmızı dokunuÅlar.",
             thumbnail: "resimler/sosyalmedya_post2.png",
             postUrl: "https://instagram.com",
             author: "@avsv9_dev",
             badgeColor: "#E1306C"
         },
         {
-            title: "\xf0\x9f\x93\xb1 Mobil Test Laboratuvar\u0131 \xe2\x80\x94 Sahadan G\xf6r\xfcnt\xfcler",
-            description: "Farkl\u0131 Android cihazlarda ger\xe7ekle\xc5\x9ftirdi\xc4\x9fimiz GPS performans test g\xfcnl\xfc\xc4\x9f\xfc.",
+            title: "ð± Mobil Test Laboratuvarı â Sahadan Görüntüler",
+            description: "Farklı Android cihazlarda gerçekleÅtirdiÄimiz GPS performans test günlüÄü.",
             thumbnail: "resimler/sosyalmedya_post3.png",
             postUrl: "https://instagram.com",
             author: "@avsv9_dev",
@@ -1355,24 +1355,24 @@ const SOCIAL_POST_POOLS = {
     ],
     tiktok: [
         {
-            title: "\xe2\x9a\xa1 Yeni G\xfcncelleme \xe2\x80\x94 Canl\u0131 Harita Demosu",
-            description: "Son g\xfcncellemeyle gelen canl\u0131 takip \xf6zelliklerinin 30 saniyelik e\xc4\x9flenceli dikey videosu.",
+            title: "â¡ Yeni Güncelleme â Canlı Harita Demosu",
+            description: "Son güncellemeyle gelen canlı takip özelliklerinin 30 saniyelik eÄlenceli dikey videosu.",
             thumbnail: "resimler/sosyalmedya_post3.png",
             postUrl: "https://tiktok.com",
             author: "@avsv9_official",
             badgeColor: "#00f2fe"
         },
         {
-            title: "\xf0\x9f\x94\x8d Yaz\u0131l\u0131mc\u0131 G\xfcnl\xfc\xc4\x9f\xfc \xe2\x80\x94 Gece Kodlamas\u0131",
-            description: "V9 V2 mimarisini olu\xc5\x9ftururken kar\xc5\x9f\u0131la\xc5\x9ft\u0131\xc4\x9f\u0131m\u0131z komik anlar ve performans testi sonu\xe7lar\u0131.",
+            title: "ð Yazılımcı GünlüÄü â Gece Kodlaması",
+            description: "V9 V2 mimarisini oluÅtururken karÅılaÅtıÄımız komik anlar ve performans testi sonuçları.",
             thumbnail: "resimler/sosyalmedya_post2.png",
             postUrl: "https://tiktok.com",
             author: "@avsv9_official",
             badgeColor: "#00f2fe"
         },
         {
-            title: "\xf0\x9f\x9a\x80 10 Saniyede Rota Nas\u0131l Hesaplan\u0131r?",
-            description: "Kurye uygulamam\u0131z\u0131n arkas\u0131ndaki ak\u0131ll\u0131 algoritman\u0131n e\xc4\x9flenceli g\xf6rsel \xf6zeti.",
+            title: "ð 10 Saniyede Rota Nasıl Hesaplanır?",
+            description: "Kurye uygulamamızın arkasındaki akıllı algoritmanın eÄlenceli görsel özeti.",
             thumbnail: "resimler/sosyalmedya_post1.png",
             postUrl: "https://tiktok.com",
             author: "@avsv9_official",
@@ -1381,24 +1381,24 @@ const SOCIAL_POST_POOLS = {
     ],
     x: [
         {
-            title: "\xf0\x9f\x93\xa3 V9 Harita Motoru S\xfcr\xfcm Notlar\u0131",
-            description: "Yeni rota optimizasyon algoritmas\u0131 ve bellek iyile\xc5\x9ftirmeleri hakk\u0131nda detayl\u0131 teknik tweet dizisi.",
+            title: "ð£ V9 Harita Motoru Sürüm Notları",
+            description: "Yeni rota optimizasyon algoritması ve bellek iyileÅtirmeleri hakkında detaylı teknik tweet dizisi.",
             thumbnail: "resimler/sosyalmedya_post1.png",
             postUrl: "https://x.com",
             author: "@avsv9_dev",
             badgeColor: "#1DA1F2"
         },
         {
-            title: "\xf0\x9f\x92\xa1 Performans G\xfcncellemesi: Low-Latency GPS",
-            description: "Anl\u0131k konum aktar\u0131m\u0131ndaki gecikme s\xfcresini %40 d\xfc\xc5\x9f\xfcren yeni sunucu g\xfcncellemesi yay\u0131nda!",
+            title: "ð¡ Performans Güncellemesi: Low-Latency GPS",
+            description: "Anlık konum aktarımındaki gecikme süresini %40 düÅüren yeni sunucu güncellemesi yayında!",
             thumbnail: "resimler/sosyalmedya_post2.png",
             postUrl: "https://x.com",
             author: "@avsv9_dev",
             badgeColor: "#1DA1F2"
         },
         {
-            title: "\xf0\x9f\x8c\x90 AVS&V9 Y\xf6netim Paneli Yay\u0131nda!",
-            description: "T\xfcm site i\xe7eri\xc4\x9fini anl\u0131k olarak GitHub ile senkronize eden tam kontroll\xfc admin panelimiz haz\u0131r.",
+            title: "ð AVS&V9 Yönetim Paneli Yayında!",
+            description: "Tüm site içeriÄini anlık olarak GitHub ile senkronize eden tam kontrollü admin panelimiz hazır.",
             thumbnail: "resimler/sosyalmedya_post3.png",
             postUrl: "https://x.com",
             author: "@avsv9_dev",
@@ -1409,11 +1409,11 @@ const SOCIAL_POST_POOLS = {
 
 async function fetchRandomSocialPosts() {
     if (!ghAPI || !siteData) {
-        adminToast('\xc3\x96nce panel verileri y\xfcklenmelidir.', 'error');
+        adminToast('Ãnce panel verileri yüklenmelidir.', 'error');
         return;
     }
 
-    adminLoading(true, 'Sosyal medya g\xf6nderileri \xe7ekiliyor...');
+    adminLoading(true, 'Sosyal medya gönderileri çekiliyor...');
 
     try {
         const todayStr = new Date().toISOString().slice(0, 10);
@@ -1462,11 +1462,10 @@ async function fetchRandomSocialPosts() {
         markDirty();
 
         renderSocialFeedAdmin();
-        adminToast('\xe2\x9c
- Yeni rastgele sosyal medya g\xf6nderileri \xe7ekildi ve kaydedildi!', 'success', 4000);
+        adminToast('â\n Yeni rastgele sosyal medya gönderileri çekildi ve kaydedildi!', 'success', 4000);
 
     } catch (err) {
-        adminToast(`G\xf6nderi \xe7ekme hatas\u0131: ${err.message}`, 'error', 5000);
+        adminToast(`Gönderi çekme hatası: ${err.message}`, 'error', 5000);
     } finally {
         adminLoading(false);
     }
@@ -1505,7 +1504,7 @@ async function translateArray(arr) {
 async function autoTranslateAll() {
     if (!siteData) return;
     
-    adminLoading(true, 'Otomatik \xe7evriliyor (Google Translate)... L\xfctfen bekleyin.');
+    adminLoading(true, 'Otomatik çevriliyor (Google Translate)... Lütfen bekleyin.');
     
     try {
         let count = 0;
@@ -1567,9 +1566,9 @@ async function autoTranslateAll() {
         renderFaqAdmin();
         renderLegalAdmin();
         
-        adminToast(`\xc7eviri tamamland\xfd. Toplam ${count} alan \xe7evrildi. De\xf0i\xfeiklikleri kaydetmeyi unutmay\xfdn.`, 'success', 5000);
+        adminToast(`Çeviri tamamlandý. Toplam ${count} alan çevrildi. Deðiþiklikleri kaydetmeyi unutmayýn.`, 'success', 5000);
     } catch (e) {
-        adminToast('\xc7eviri s\xfdras\xfdnda bir hata olu\xfetu.', 'error');
+        adminToast('Çeviri sýrasýnda bir hata oluþtu.', 'error');
         console.error(e);
     } finally {
         adminLoading(false);
