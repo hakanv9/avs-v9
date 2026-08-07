@@ -289,6 +289,44 @@
           }
         ]
       }
+    },
+    {
+      "id": "site-msj9x5es",
+      "slug": "site",
+      "name": "SİTE",
+      "nameEN": "Site",
+      "shortDesc": "Sitemiz güncelleme geçmişi ve dahası.",
+      "shortDescEN": "Sitemiz güncelleme geçmişi ve dahası.",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [
+        "SİTEV9"
+      ],
+      "status": "development",
+      "statuses": [
+        "development"
+      ],
+      "order": 4,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "Sitemiz güncelleme geçmişi ve dahası."
+        ],
+        "descriptionEN": [
+          "Sitemiz güncelleme geçmişi ve dahası."
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": []
+      }
     }
   ],
   "faq": [
