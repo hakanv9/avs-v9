@@ -116,11 +116,7 @@
             ]
           }
         ]
-      },
-      "statuses": [
-        "discontinued",
-        "waiting"
-      ]
+      }
     },
     {
       "id": "grup-v1",
@@ -199,11 +195,7 @@
             ]
           }
         ]
-      },
-      "statuses": [
-        "paused",
-        "special"
-      ]
+      }
     },
     {
       "id": "grup-v2",
@@ -217,11 +209,7 @@
         "💬 Sohbet",
         "📍 Konum"
       ],
-      "status": "development",
-      "statuses": [
-        "development",
-        "live"
-      ],
+      "status": "development", "statuses": ["development", "live"],
       "order": 3,
       "visible": true,
       "detail": {
