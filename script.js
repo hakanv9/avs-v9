@@ -1093,7 +1093,7 @@ function toggleLang() {
 })();
 
 // --- DOM HAZIR OLUNCA ÇALIŞACAK TÜM DİNLEYİCİLER ---
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
     loadTranslations(); // TRANSLATIONS'i yükle
     // ─── DİNAMİK VERİ YÜKLEME (site-data.json) ───────────────────────────────
     // Admin panelinden yapılan değişiklikler burada okunur ve sayfalar güncellenir.
@@ -1827,6 +1827,34 @@ function initProjectDetail(proj) {
         });
     }
 
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
+
+// ─── GLOBAL DELEGATED CLICK LISTENERS (BİLİŞSEL BAĞIMSIZLIK) ────────────────
+document.addEventListener('click', e => {
+    const themeBtn = e.target.closest('#themeToggle');
+    if (themeBtn) {
+        toggleTheme();
+        return;
+    }
+    const langBtn = e.target.closest('#langToggle');
+    if (langBtn) {
+        toggleLang();
+        return;
+    }
+    const legalTabBtn = e.target.closest('.legal-tab-btn');
+    if (legalTabBtn) {
+        const target = legalTabBtn.dataset.tab;
+        document.querySelectorAll('.legal-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.legal-panel').forEach(p => p.classList.remove('active'));
+        legalTabBtn.classList.add('active');
+        const panel = document.getElementById(target);
+        if (panel) panel.classList.add('active');
+        return;
+    }
 });
-
-
