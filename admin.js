@@ -233,7 +233,8 @@ function createStatusSelect(containerId, selectedValue = 'development') {
     wrap.style.display = 'flex';
     wrap.style.gap = '8px';
     const opts = Object.entries(STATUS_MAP).map(([k, v]) => `<option value="${k}">${v.label}</option>`).join('');
-    wrap.innerHTML = `<select class="pm-status-select" style="flex:1;">${opts}</select><button type="button" class="admin-btn admin-btn-sm admin-btn-danger" onclick="this.parentElement.remove()" style="padding:0 10px;">Sil</button>`;
+    wrap.innerHTML = `<select class="pm-status-select" style="flex:1;">${opts}</select><button type="button" class="admin-btn admin-btn-sm admin-btn-danger del-status-btn" style="padding:0 10px;">Sil</button>`;
+    wrap.querySelector('.del-status-btn').addEventListener('click', () => wrap.remove());
     wrap.querySelector('select').value = selectedValue;
     container.appendChild(wrap);
 }
