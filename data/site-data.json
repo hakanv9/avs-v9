@@ -116,7 +116,12 @@
             ]
           }
         ]
-      }
+      },
+      "statuses": [
+        "discontinued",
+        "special",
+        "waiting"
+      ]
     },
     {
       "id": "grup-v1",
@@ -129,7 +134,7 @@
       "tags": [
         "🗺️ Harita"
       ],
-      "status": "paused",
+      "status": "waiting",
       "order": 2,
       "visible": true,
       "detail": {
@@ -195,7 +200,11 @@
             ]
           }
         ]
-      }
+      },
+      "statuses": [
+        "waiting",
+        "rnd"
+      ]
     },
     {
       "id": "grup-v2",
@@ -209,7 +218,11 @@
         "💬 Sohbet",
         "📍 Konum"
       ],
-      "status": "development", "statuses": ["development", "live"],
+      "status": "development",
+      "statuses": [
+        "development",
+        "live"
+      ],
       "order": 3,
       "visible": true,
       "detail": {
