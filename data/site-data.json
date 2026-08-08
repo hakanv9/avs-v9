@@ -272,44 +272,6 @@
           }
         ]
       }
-    },
-    {
-      "id": "site-msk8e7mc",
-      "slug": "site",
-      "name": "SİTE",
-      "nameEN": "Site",
-      "shortDesc": "deneme",
-      "shortDescEN": "deneme",
-      "thumbnail": "resimler/projeler-resmi1.jpg",
-      "tags": [
-        "SİTEV9"
-      ],
-      "status": "development",
-      "statuses": [
-        "development"
-      ],
-      "order": 4,
-      "visible": true,
-      "detail": {
-        "isAndroid": false,
-        "playStoreEnabled": false,
-        "playStoreUrl": "#",
-        "logo": "",
-        "downloads": "-",
-        "rating": "-",
-        "ageRating": "3+",
-        "appSize": "-",
-        "minAndroid": "-",
-        "description": [
-          "deneme"
-        ],
-        "descriptionEN": [
-          "deneme"
-        ],
-        "permissions": [],
-        "screenshots": [],
-        "changelog": []
-      }
     }
   ],
   "faq": [
