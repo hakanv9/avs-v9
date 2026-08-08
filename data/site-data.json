@@ -275,6 +275,46 @@
           }
         ]
       }
+    },
+    {
+      "id": "site-mskazwvg",
+      "slug": "site",
+      "name": "SİTE",
+      "nameEN": "Site",
+      "shortDesc": "SİTE uygulamamız",
+      "shortDescEN": "SİTE uygulamamız",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [],
+      "status": "live",
+      "statuses": [
+        "live",
+        "completed",
+        "waiting",
+        "special",
+        "rnd"
+      ],
+      "order": 4,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "SİTE uygulamamız"
+        ],
+        "descriptionEN": [
+          "SİTE uygulamamız"
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": []
+      }
     }
   ],
   "faq": [
