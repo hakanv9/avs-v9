@@ -10,21 +10,21 @@
   },
   "heroSlider": [
     {
+      "id": "slide-3",
+      "src": "resimler/anasayfa-hosgeldin-resmi3.jpg",
+      "alt": "Hoşgeldin 3",
+      "order": 1
+    },
+    {
       "id": "slide-1",
       "src": "resimler/anasayfa-hosgeldin-resmi1.jpg",
       "alt": "Hoşgeldin 1",
-      "order": 1
+      "order": 2
     },
     {
       "id": "slide-2",
       "src": "resimler/anasayfa-hosgeldin-resmi2.jpg",
       "alt": "Hoşgeldin 2",
-      "order": 2
-    },
-    {
-      "id": "slide-3",
-      "src": "resimler/anasayfa-hosgeldin-resmi3.jpg",
-      "alt": "Hoşgeldin 3",
       "order": 3
     },
     {
@@ -122,6 +122,46 @@
       ]
     },
     {
+      "id": "site-mskazwvg",
+      "slug": "site",
+      "name": "SİTE",
+      "nameEN": "Site",
+      "shortDesc": "SİTE uygulamamız",
+      "shortDescEN": "SİTE uygulamamız",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [],
+      "status": "live",
+      "statuses": [
+        "live",
+        "completed",
+        "waiting",
+        "special",
+        "rnd"
+      ],
+      "order": 2,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "SİTE uygulamamız"
+        ],
+        "descriptionEN": [
+          "SİTE uygulamamız"
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": []
+      }
+    },
+    {
       "id": "grup-v1",
       "slug": "grup-v1",
       "name": "V9 Grup Konum Paylaşımı",
@@ -133,7 +173,7 @@
         "🗺️ Harita"
       ],
       "status": "paused",
-      "order": 2,
+      "order": 3,
       "visible": true,
       "detail": {
         "isAndroid": true,
@@ -217,7 +257,7 @@
         "development",
         "live"
       ],
-      "order": 3,
+      "order": 4,
       "visible": true,
       "detail": {
         "isAndroid": true,
@@ -274,46 +314,6 @@
             ]
           }
         ]
-      }
-    },
-    {
-      "id": "site-mskazwvg",
-      "slug": "site",
-      "name": "SİTE",
-      "nameEN": "Site",
-      "shortDesc": "SİTE uygulamamız",
-      "shortDescEN": "SİTE uygulamamız",
-      "thumbnail": "resimler/projeler-resmi1.jpg",
-      "tags": [],
-      "status": "live",
-      "statuses": [
-        "live",
-        "completed",
-        "waiting",
-        "special",
-        "rnd"
-      ],
-      "order": 4,
-      "visible": true,
-      "detail": {
-        "isAndroid": false,
-        "playStoreEnabled": false,
-        "playStoreUrl": "#",
-        "logo": "",
-        "downloads": "-",
-        "rating": "-",
-        "ageRating": "3+",
-        "appSize": "-",
-        "minAndroid": "-",
-        "description": [
-          "SİTE uygulamamız"
-        ],
-        "descriptionEN": [
-          "SİTE uygulamamız"
-        ],
-        "permissions": [],
-        "screenshots": [],
-        "changelog": []
       }
     }
   ],
