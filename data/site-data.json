@@ -62,13 +62,12 @@
         "minAndroid": "Android 8.0 (Oreo) / API 26",
         "description": [
           "V9 Kurye Uygulaması, teslimat süreçlerini uçtan uca yöneten bir mobil çözümdür.",
-          "Gerçek zamanlı GPS takibi ile kuryenin tüm hareketleri anlık olarak izlenebilir. Dinamik rota optimizasyonu, teslimat süresini ve yakıt tüketimini önemli ölçüde azaltır.",
+          "Gerçek zamanlı GPS takibi ile kuryenin tüm hareketleri anlık olarak izlenebilir. Dinamik rota optimizasyonu, teslimat süresini ve yakıt tüketimini önemli ölçüde azaltır.tsatsatrastrastasf",
           "📍 Gerçek Zamanlı Harita Takibi | 🗺️ Dinamik Rota | 🔔 Anlık Bildirimler | 🚀 Akıllı Teslimat"
         ],
         "descriptionEN": [
           "V9 Courier App is a mobile solution that manages delivery processes end-to-end.",
-          "With real-time GPS tracking, all courier movements can be monitored instantly. Dynamic route optimization significantly reduces delivery time and fuel consumption.",
-          "📍 Real-Time Map Tracking | 🗺️ Dynamic Route | 🔔 Instant Notifications | 🚀 Smart Delivery"
+          "With real-time GPS tracking, all courier movements can be monitored instantly. Dynamic route optimization significantly reduces delivery time and fuel consumption.\nasdfasdasdasd\n📍 Real-Time Map Tracking | 🗺️ Dynamic Route | 🔔 Instant Notifications | 🚀 Smart Delivery"
         ],
         "permissions": [
           "📍 Konum (Ön plan & Arka plan)",
