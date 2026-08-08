@@ -10,21 +10,21 @@
   },
   "heroSlider": [
     {
-      "id": "slide-3",
-      "src": "resimler/anasayfa-hosgeldin-resmi3.jpg",
-      "alt": "Hoşgeldin 3",
-      "order": 1
-    },
-    {
       "id": "slide-1",
       "src": "resimler/anasayfa-hosgeldin-resmi1.jpg",
       "alt": "Hoşgeldin 1",
-      "order": 2
+      "order": 1
     },
     {
       "id": "slide-2",
       "src": "resimler/anasayfa-hosgeldin-resmi2.jpg",
       "alt": "Hoşgeldin 2",
+      "order": 2
+    },
+    {
+      "id": "slide-3",
+      "src": "resimler/anasayfa-hosgeldin-resmi3.jpg",
+      "alt": "Hoşgeldin 3",
       "order": 3
     },
     {
@@ -40,7 +40,7 @@
       "slug": "kurye",
       "name": "V9 Kurye Uygulaması",
       "nameEN": "V9 Courier App",
-      "shortDesc": "Gerçek zamanlı harita takibi, akıllı rota yönetimi ve anlık bildirimler ile kuryelerin teslimat süreçlerini uçtan uca yöneten mobil uygulama.asdasdsadasdasdsa",
+      "shortDesc": "Gerçek zamanlı harita takibi, akıllı rota yönetimi ve anlık bildirimler ile kuryelerin teslimat süreçlerini uçtan uca yöneten mobil uygulama.",
       "shortDescEN": "A mobile app that manages courier delivery processes end-to-end with real-time map tracking, smart route management and instant notifications.",
       "thumbnail": "resimler/projeler-resmi1.jpg",
       "tags": [
@@ -57,17 +57,18 @@
         "logo": "resimler/uygulama_logo.png",
         "downloads": "5B+",
         "rating": "4.5 ★",
-        "ageRating": "5+",
-        "appSize": "~108 MB",
+        "ageRating": "3+",
+        "appSize": "~18 MB",
         "minAndroid": "Android 8.0 (Oreo) / API 26",
         "description": [
           "V9 Kurye Uygulaması, teslimat süreçlerini uçtan uca yöneten bir mobil çözümdür.",
-          "Gerçek zamanlı GPS takibi ile kuryenin tüm hareketleri anlık olarak izlenebilir. Dinamik rota optimizasyonu, teslimat süresini ve yakıt tüketimini önemli ölçüde azaltır.tsatsatrastrastasf",
+          "Gerçek zamanlı GPS takibi ile kuryenin tüm hareketleri anlık olarak izlenebilir. Dinamik rota optimizasyonu, teslimat süresini ve yakıt tüketimini önemli ölçüde azaltır.",
           "📍 Gerçek Zamanlı Harita Takibi | 🗺️ Dinamik Rota | 🔔 Anlık Bildirimler | 🚀 Akıllı Teslimat"
         ],
         "descriptionEN": [
           "V9 Courier App is a mobile solution that manages delivery processes end-to-end.",
-          "With real-time GPS tracking, all courier movements can be monitored instantly. Dynamic route optimization significantly reduces delivery time and fuel consumption.\nasdfasdasdasd\n📍 Real-Time Map Tracking | 🗺️ Dynamic Route | 🔔 Instant Notifications | 🚀 Smart Delivery"
+          "With real-time GPS tracking, all courier movements can be monitored instantly. Dynamic route optimization significantly reduces delivery time and fuel consumption.",
+          "📍 Real-Time Map Tracking | 🗺️ Dynamic Route | 🔔 Instant Notifications | 🚀 Smart Delivery"
         ],
         "permissions": [
           "📍 Konum (Ön plan & Arka plan)",
@@ -115,50 +116,6 @@
             ]
           }
         ]
-      },
-      "statuses": [
-        "discontinued",
-        "paused"
-      ]
-    },
-    {
-      "id": "site-mskazwvg",
-      "slug": "site",
-      "name": "SİTE",
-      "nameEN": "Site",
-      "shortDesc": "SİTE uygulamamız",
-      "shortDescEN": "SİTE uygulamamız",
-      "thumbnail": "resimler/projeler-resmi1.jpg",
-      "tags": [],
-      "status": "live",
-      "statuses": [
-        "live",
-        "completed",
-        "waiting",
-        "special",
-        "rnd"
-      ],
-      "order": 2,
-      "visible": true,
-      "detail": {
-        "isAndroid": false,
-        "playStoreEnabled": false,
-        "playStoreUrl": "#",
-        "logo": "",
-        "downloads": "-",
-        "rating": "-",
-        "ageRating": "3+",
-        "appSize": "-",
-        "minAndroid": "-",
-        "description": [
-          "SİTE uygulamamız"
-        ],
-        "descriptionEN": [
-          "SİTE uygulamamız"
-        ],
-        "permissions": [],
-        "screenshots": [],
-        "changelog": []
       }
     },
     {
@@ -173,7 +130,7 @@
         "🗺️ Harita"
       ],
       "status": "paused",
-      "order": 3,
+      "order": 2,
       "visible": true,
       "detail": {
         "isAndroid": true,
@@ -257,7 +214,7 @@
         "development",
         "live"
       ],
-      "order": 4,
+      "order": 3,
       "visible": true,
       "detail": {
         "isAndroid": true,
@@ -314,42 +271,6 @@
             ]
           }
         ]
-      }
-    },
-    {
-      "id": "deneme-mskce5qz",
-      "slug": "deneme",
-      "name": "deneme",
-      "nameEN": "deneme",
-      "shortDesc": "deneme",
-      "shortDescEN": "deneme",
-      "thumbnail": "resimler/projeler-resmi1.jpg",
-      "tags": [],
-      "status": "development",
-      "statuses": [
-        "development"
-      ],
-      "order": 5,
-      "visible": true,
-      "detail": {
-        "isAndroid": false,
-        "playStoreEnabled": false,
-        "playStoreUrl": "#",
-        "logo": "",
-        "downloads": "-",
-        "rating": "-",
-        "ageRating": "3+",
-        "appSize": "-",
-        "minAndroid": "-",
-        "description": [
-          "deneme"
-        ],
-        "descriptionEN": [
-          "deneme"
-        ],
-        "permissions": [],
-        "screenshots": [],
-        "changelog": []
       }
     }
   ],
