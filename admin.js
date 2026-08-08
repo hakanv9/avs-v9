@@ -555,7 +555,7 @@ function renderProjectList() {
 
     list.innerHTML = projects.map((p, index) => `
         <div class="admin-project-item" data-id="${p.id}">
-            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px;"><button class="order-btn" onclick="moveProject(${index}, -1)" ${index === 0 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9650;</button><button class="order-btn" onclick="moveProject(${index}, 1)" ${index === projects.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9660;</button></div><img src="${p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
+            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px;"><button class="order-btn" onclick="moveProject('${p.id}', -1)" ${index === 0 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9650;</button><button class="order-btn" onclick="moveProject('${p.id}', 1)" ${index === projects.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9660;</button></div><img src="${p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
                 onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'72\\' height=\\'48\\'><rect width=\\'72\\' height=\\'48\\' fill=\\'%23222\\'/></svg>'">
             <div class="admin-project-info">
                 <div class="admin-project-name">${p.name}</div>
@@ -694,6 +694,11 @@ function openEditProjectModal(id) {
     document.getElementById('pmStatusContainer').innerHTML = ''; const vals = proj.statuses || (proj.status ? [proj.status] : []); if (!vals.length) vals.push('development'); vals.forEach(v => createStatusSelect('pmStatusContainer', v));
     document.getElementById('pmTags').value = proj.tags.join(', ');
     document.getElementById('pmThumbnail').value = proj.thumbnail || '';
+    const saveBtn = document.getElementById('projectModalSave');
+    if (saveBtn) {
+        saveBtn.dataset.mode = 'edit';
+        saveBtn.dataset.editId = id;
+    }
     openModal('projectModal');
 }
 
@@ -938,19 +943,25 @@ function loadProjectDetails(id) {
 
 function moveProject(id, dir) {
     if (!siteData || !siteData.projects) return;
+    
+    // Ensure all items have an order first
+    siteData.projects.forEach((p, i) => { if (typeof p.order !== 'number') p.order = i + 1; });
+    siteData.projects.sort((a, b) => (a.order || 0) - (b.order || 0));
+    
     const idx = siteData.projects.findIndex(p => p.id === id);
     if (idx === -1) return;
+    
     if (dir === -1 && idx > 0) {
-        const tmp = siteData.projects[idx];
-        siteData.projects[idx] = siteData.projects[idx - 1];
-        siteData.projects[idx - 1] = tmp;
+        const tmpOrder = siteData.projects[idx].order;
+        siteData.projects[idx].order = siteData.projects[idx - 1].order;
+        siteData.projects[idx - 1].order = tmpOrder;
         markDirty();
         renderProjectList();
         renderDetailProjectSelector();
     } else if (dir === 1 && idx < siteData.projects.length - 1) {
-        const tmp = siteData.projects[idx];
-        siteData.projects[idx] = siteData.projects[idx + 1];
-        siteData.projects[idx + 1] = tmp;
+        const tmpOrder = siteData.projects[idx].order;
+        siteData.projects[idx].order = siteData.projects[idx + 1].order;
+        siteData.projects[idx + 1].order = tmpOrder;
         markDirty();
         renderProjectList();
         renderDetailProjectSelector();
@@ -973,18 +984,23 @@ function openAddChangelogModal(projId) {
 function moveSliderImage(idx, dir) {
     if (!siteData || !siteData.heroSlider) return;
     const arr = siteData.heroSlider;
+    
+    // Ensure all items have an order
+    arr.forEach((s, i) => { if (typeof s.order !== 'number') s.order = i + 1; });
+    arr.sort((a, b) => (a.order || 0) - (b.order || 0));
+    
     if (dir === -1 && idx > 0) {
-        const tmp = arr[idx];
-        arr[idx] = arr[idx - 1];
-        arr[idx - 1] = tmp;
+        const tmpOrder = arr[idx].order;
+        arr[idx].order = arr[idx - 1].order;
+        arr[idx - 1].order = tmpOrder;
         markDirty();
-        if (typeof renderSliderAdmin === 'function') renderSliderAdmin();
+        renderSliderSection();
     } else if (dir === 1 && idx < arr.length - 1) {
-        const tmp = arr[idx];
-        arr[idx] = arr[idx + 1];
-        arr[idx + 1] = tmp;
+        const tmpOrder = arr[idx].order;
+        arr[idx].order = arr[idx + 1].order;
+        arr[idx + 1].order = tmpOrder;
         markDirty();
-        if (typeof renderSliderAdmin === 'function') renderSliderAdmin();
+        renderSliderSection();
     }
 }
 
