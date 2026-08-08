@@ -116,7 +116,11 @@
             ]
           }
         ]
-      }
+      },
+      "statuses": [
+        "discontinued",
+        "paused"
+      ]
     },
     {
       "id": "grup-v1",
