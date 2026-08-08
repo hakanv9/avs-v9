@@ -272,6 +272,42 @@
           }
         ]
       }
+    },
+    {
+      "id": "site-mskcgnjc",
+      "slug": "site",
+      "name": "SİTE",
+      "nameEN": "Site",
+      "shortDesc": "site",
+      "shortDescEN": "site",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [],
+      "status": "development",
+      "statuses": [
+        "development"
+      ],
+      "order": 4,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "site"
+        ],
+        "descriptionEN": [
+          "site"
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": []
+      }
     }
   ],
   "faq": [
