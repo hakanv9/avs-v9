@@ -315,6 +315,42 @@
           }
         ]
       }
+    },
+    {
+      "id": "deneme-mskce5qz",
+      "slug": "deneme",
+      "name": "deneme",
+      "nameEN": "deneme",
+      "shortDesc": "deneme",
+      "shortDescEN": "deneme",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [],
+      "status": "development",
+      "statuses": [
+        "development"
+      ],
+      "order": 5,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "deneme"
+        ],
+        "descriptionEN": [
+          "deneme"
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": []
+      }
     }
   ],
   "faq": [
