@@ -1,4 +1,4 @@
-/* === RENKLER â€” Dark Mode (Varsayılan) === */
+/* === RENKLER — Dark Mode (Varsayılan) === */
 :root {
     --bg-color: #121212;
     --surface-color: #1e1e1e;
@@ -65,7 +65,7 @@
     font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
 }
 
-/* SEO-4: Input ve textarea için de focus ring â€” klavye kullanıcıları form alanını görebilsin */
+/* SEO-4: Input ve textarea için de focus ring — klavye kullanıcıları form alanını görebilsin */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
@@ -204,7 +204,7 @@ body.modal-open {
 }
 
 /* === HAMBURGER === */
-/* UIUX-5: WCAG 2.1 AA â€” en az 44x44px dokunma hedefi */
+/* UIUX-5: WCAG 2.1 AA — en az 44x44px dokunma hedefi */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -359,7 +359,7 @@ body.modal-open {
 
 .slide.active { opacity: 1; }
 
-/* === BENTO GRID â€” UIUX-1: Gerçek CSS Grid Mozaik Düzeni === */
+/* === BENTO GRID — UIUX-1: Gerçek CSS Grid Mozaik Düzeni === */
 .bento-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -402,7 +402,7 @@ body.modal-open {
 }
 
 .bento-small {
-    /* UIUX-1: Grid ile yerleşim otomatik â€” flex:1 kaldırıldı */
+    /* UIUX-1: Grid ile yerleşim otomatik — flex:1 kaldırıldı */
 }
 
 .bento-card:hover {
@@ -628,7 +628,7 @@ body.modal-open {
     font-size: 1.1rem;
 }
 
-/* === İLETİÅİM SVG === */
+/* === İLETİŞİM SVG === */
 .contact-illustration {
     width: 110px;
     height: 110px;
@@ -925,7 +925,7 @@ body.modal-open {
     width: 100%;
 }
 
-/* === BAÅARI ANİMASYONU === */
+/* === BAŞARI ANİMASYONU === */
 @keyframes successPop {
     0%   { transform: scale(0.7); opacity: 0; }
     60%  { transform: scale(1.1); }
@@ -1802,7 +1802,7 @@ body.modal-open {
     box-shadow: 0 14px 38px rgba(1,135,95,0.22);
 }
 
-/* === MOBİL â€” Sosyal medya ===  */
+/* === MOBİL — Sosyal medya ===  */
 @media (max-width: 768px) {
     .sm-slide {
         flex-direction: column;
@@ -1941,7 +1941,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === BENTO KART â€” AKSIYON ALANI ===
+   === BENTO KART — AKSIYON ALANI ===
    ============================================= */
 .bento-actions {
     display: flex;
@@ -2429,7 +2429,7 @@ body.modal-open {
     text-decoration: none;
 }
 
-/* === MOBİL â€” Proje Detay ===  */
+/* === MOBİL — Proje Detay ===  */
 @media (max-width: 640px) {
     .pd-store-card {
         flex-direction: column;
@@ -2597,7 +2597,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === K3: MAİL BAÅARI & KOPYALAMA KARTI ===
+   === K3: MAİL BAŞARI & KOPYALAMA KARTI ===
    ============================================= */
 .mail-success-card {
     background: var(--surface-color);
@@ -2759,7 +2759,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === TASARIM-05: LIGHT MODE KONTRAST İYİLEÅTİRMESİ ===
+   === TASARIM-05: LIGHT MODE KONTRAST İYİLEŞTİRMESİ ===
    ============================================= */
 [data-theme="light"] {
     --bg-color: #f8fafc;
@@ -2931,7 +2931,7 @@ body.modal-open {
     margin-bottom: 6px;
 }
 
-/* === LIGHT MODE â€” YASAL & SUBPAGE UYUMLULUK === */
+/* === LIGHT MODE — YASAL & SUBPAGE UYUMLULUK === */
 [data-theme="light"] .subpage-hero h1 {
     color: #0f172a;
 }
@@ -3335,7 +3335,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === UIUX-02 & SEO-02: MİKRO ETKİLEÅİM & ERİÅİLEBİLİRLİK ===
+   === UIUX-02 & SEO-02: MİKRO ETKİLEÅİM & ERİŞİLEBİLİRLİK ===
    ============================================= */
    
 /* Ripple Effect for Buttons */

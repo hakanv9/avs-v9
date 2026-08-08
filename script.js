@@ -1,108 +1,566 @@
-<!DOCTYPE html>
-<html lang="tr" data-theme="dark">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO-2: KOD-6 &amp; encode düzeltildi -->
-    <title>Yasal Bilgiler â€” Gizlilik &amp; Koşullar | AVS&amp;V9</title>
-    <meta name="description" content="AVS&amp;V9 Gizlilik Politikasııı ve Kullanım Koşulları.">
-    <link rel="icon" type="image/png" href="resimler/site-ikonu.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- PERF-6: 3 temel font ağırlığı -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap">
-
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-
-<body class="subpage-body">
-
-    <nav class="navbar" aria-label="Ana gezinti">
-        <!-- KOD-6: Logo &amp; encode düzeltildi -->
-        <a class="logo" href="index.html">AVS&amp;V9</a>
-
-        <button class="hamburger" type="button" aria-label="Menüyü aç/kapat" aria-expanded="false"
-            aria-controls="nav-links-yasal">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-
-        <ul class="nav-links" id="nav-links-yasal">
-            <li><a href="index.html#anasayfa" data-i18n="nav.home">Ana Sayfa</a></li>
-            <li><a href="index.html#projeler" data-i18n="nav.projects">Projelerim</a></li>
-            <li><a href="index.html#sosyal-medya" data-i18n="nav.social">Sosyal Medya</a></li>
-            <li><a href="index.html#hakkinda" data-i18n="nav.about">Hakkında</a></li>
-            <li><a href="index.html#iletisim" data-i18n="nav.contact">İletişim</a></li>
-            <li><a href="sss.html" data-i18n="nav.faq">SSS</a></li>
-            <li><a href="yasal.html" class="active" data-i18n="nav.legal">Yasal</a></li>
-        </ul>
-
-        <div class="nav-controls">
-            <button class="nav-ctrl-btn" id="themeToggle" aria-label="Temayı değiştir">
-                <span id="themeIcon">🌙</span>
-            </button>
-            <button class="nav-ctrl-btn" id="langToggle" aria-label="Dili değiştir">
-                <span>🌐</span><span id="langLabel">TR</span>
-            </button>
-        </div>
-    </nav>
-
-    <main class="subpage-main">
-
-        <div class="subpage-hero">
-            <h1 data-i18n="legal.page.title">Yasal Bilgiler</h1>
-            <p data-i18n="legal.page.sub">Gizlilik Politikamız ve Kullanım Koşullarımız.</p>
-        </div>
-
-        <!-- Sekmeler -->
-        <div class="legal-tabs" role="tablist">
-            <button class="legal-tab-btn active" data-tab="panel-privacy" role="tab" aria-selected="true"
-                aria-controls="panel-privacy" data-i18n="legal.tab.privacy">
-                🔒 Gizlilik Politikası
-            </button>
-            <button class="legal-tab-btn" data-tab="panel-terms" role="tab" aria-selected="false"
-                aria-controls="panel-terms" data-i18n="legal.tab.terms">
-                📄 Kullanım Koşulları
-            </button>
-        </div>
-
-        <!-- ========================
-             GİZLİLİK POLİTİKASI
-             ======================== -->
-        <div class="legal-panel active" id="panel-privacy" role="tabpanel">
-            <h2>🔒 Gizlilik Politikası</h2>
-            <span class="legal-date">Son güncelleme: 5 Ağustos 2026</span>
-            <div class="legal-content">
-                <h3>1. Veri Sorumlusu ve Kapsam</h3>
-                <p>Bu Gizlilik Politikası, AVS&amp;V9 bünyesinde geliştirilen ve yayınlanan tüm web siteleri, mobil uygulamalar (Android &amp; iOS platformları) ve bağımsız dijital projeler için geçerlidir. Geliştirici olarak temel ilkemiz, kullanıcılarımızın kişisel verilerinin gizliliğini korumak, şeffaflık sağlamak ve uluslararası veri güvenliği standartlarına tam uyum göstermektir.</p>
-                <h3>2. Toplanan Veriler ve Kullanım Amaçları</h3>
-                <p>Uygulamalarımızın ve web sitemizin sunduğu hizmet türüne bağlı olarak yalnızca işlevsellik için zorunlu olan minimum seviyede veri işlenmektedir:<br>• <b>Konum Verisi (GPS):</b> V9 Kurye ve Grup Konum uygulamalarımızda harita üzeri canlı takip, rota çizimi ve grup üyelerinin anlık yerini göstermek amacıyla Ön Plan ve Arka Plan konum verisi işlenir.<br>• <b>Cihaz ve Bağlantı Bilgileri:</b> İşletim sistemi sürümü, cihaz modeli ve ağ durumu anonim olarak değerlendirilebilir.<br>• <b>Destek ve İletişim Verileri:</b> İletişim formu üzerinden gönderilen ad, e-posta adresi ve mesaj metinleri yalnızca destek talebinizi yanıtlamak amacıyla kullanılır.</p>
-                <h3>3. Üçüncü Taraf Hizmetler ve Google Gizlilik Politikası</h3>
-                <p>Projelerimiz; Google Play Hizmetleri, Firebase ve Google Maps servislerini kullanabilir. Google hizmetlerinin verileri nasıl işlediği hakkında daha fazla bilgi edinmek için resmi <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="legal-link">Google Gizlilik Politikası (Google Privacy Policy)</a> sayfasını ziyaret edebilirsiniz.</p>
-            </div>
-            <div class="pd-content-card faq-cta-card" style="margin-top: 30px;">
-                <h3 class="faq-cta-title">Yasal Konularda Sorunuz mu Var?</h3>
-                <p class="faq-cta-sub">Kişisel veri talepleriniz veya detaylı yasal sorularınız için doğrudan iletişime geçebilirsiniz.</p>
-                <a href="index.html#iletisim" class="oval-btn pd-cta-btn">Doğrudan İletişime Geçin →</a>
-            </div>
-        </div>
-
-        <!-- ========================
-             KULLANIM KOŞULLARI
-             ======================== -->
-        <div class="legal-panel" id="panel-terms" role="tabpanel">
-            <h2>📄 Kullanım Koşulları</h2>
-            <span class="legal-date">Son güncelleme: 5 Ağustos 2026</span>
-            <div class="legal-content">
-                <h3>1. Hizmet Şartları ve Kabul</h3>
-                <p>Bu web sitesini veya AVS&amp;V9 tarafından geliştirilen mobil uygulamaları kullanarak bu Kullanım Koşullarını kabul etmiş sayılırsınız. Şartları kabul etmiyorsanız lütfen uygulamaları ve siteyi kullanmayınız.</p>
-                <h3>2. Fikri Mülkiyet Hakları</h3>
-                <p>Bu sitede ve uygulamalarda yer alan tüm yazılımlar, tasarım ögeleri, logolar, grafikler, metinler ve kod yapıları AVS&amp;V9'a aittir. İzinsiz kopyalanamaz veya çoğaltılamaz.</p>\n                <h3>3. Kullanım Kuralları ve Yükümlülükler</h3>\n                <p>Kullanıcılar uygulamaları yasalara ve genel ahlak kurallarına uygun olarak kullanacağını taahhüt eder. Tersine mühendislik yapmak veya sisteme zarar vermek yasaktır.</p>\n            </div>\n            <div class="pd-content-card faq-cta-card" style="margin-top: 30px;">\n                <h3 class="faq-cta-title">Yasal Konularda Sorunuz mu Var?</h3>\n                <p class="faq-cta-sub">Kişisel veri talepleriniz veya detaylı yasal sorularınız için doğrudan iletişime geçebilirsiniz.</p>\n                <a href="index.html#iletisim" class="oval-btn pd-cta-btn">Doğrudan İletişime Geçin →</a>\n            </div>\n        </div>\n\n    </main>\n\n    <!-- Footer -->\n    <footer class="site-footer">\n        <div class="footer-inner">\n            <div class="footer-brand">AVS&amp;V9</div>\n            <nav class="footer-links" aria-label="Alt gezinti">\n                <a href="sss.html" data-i18n="nav.faq">SSS</a>\n                <a href="yasal.html" data-i18n="nav.legal">Yasal Bilgiler</a>\n                <a href="index.html#iletisim" data-i18n="nav.contact">İletişim</a>\n            </nav>\n            <div class="footer-social" aria-label="Sosyal Medya Bağlantıları">\n                <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-link">\n                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>\n                </a>\n                <a href="#" target="_blank" rel="noopener" aria-label="TikTok" class="footer-social-link">\n                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>\n                </a>\n                <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="footer-social-link">\n                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>\n                </a>\n                <a href="#" target="_blank" rel="noopener" aria-label="X" class="footer-social-link">\n                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>\n                </a>\n                <a href="#" target="_blank" rel="noopener" aria-label="Google Play Store" class="footer-social-link">\n                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.28.16.6.24.93.24.4 0 .8-.1 1.15-.32l12.24-7.06-2.85-2.85-11.47 9.99zm-1.18-21.9v20.28c0 .5.15.95.42 1.31l.08.09 11.35-11.35v-.27L2.42.35l-.08.09C2.07.8 2 1.24 2 1.72v.14zM20.9 10.1l-2.46-1.42-3.21 3.21 3.21 3.21 2.48-1.43c.71-.41.71-1.16-.02-1.57zM4.11.56L16.35 7.62 13.5 10.47 2.03 1.48C2.3.93 2.7.56 3.18.32c.28-.16.6-.24.93-.24.4 0 .8.1 1.15.32l-.15.16z"/></svg>\n                </a>\n            </div>\n            <p class="footer-copy" data-i18n="footer.copy">© 2026 AVS&amp;V9 â€” Tüm hakları saklıdır.</p>\n        </div>\n    </footer>\n\n    <!-- Çerez Banner -->\n    <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Çerez bildirimi">\n        <div class="cookie-inner">\n            <p class="cookie-text" data-i18n="cookie.text">\n                ğŸª Bu site, deneyiminizi iyileştirmek için yerel tercih verileri (tema, dil) saklar.\n            </p>\n            <div class="cookie-actions">\n                <button class="cookie-btn cookie-accept" id="cookieAccept" data-i18n="cookie.accept">Kabul Et</button>\n                <a href="yasal.html" class="cookie-btn cookie-settings" data-i18n="cookie.more">Daha Fazla</a>\n            </div>\n        </div>\n</body>\n\n</html>\n                            <h2 class="admin-card-title"><span>📱</span> Proje Seç</h2>\n                        </div>\n                        <div class="admin-project-selector" id="detailProjectSelector">\n                            <!-- JS tarafından doldurulacak -->\n                        </div>\n                    </div>\n\n                    <!-- Detay Editör (Proje seçilince açılır) -->\n                    <div id="detailEditorWrap" style="display:none;">\n\n                        <!-- 2A: Proje Görselleri -->\n                        <div class="admin-card">\n                            <div class="admin-card-header">\n                                <h2 class="admin-card-title"><span>📸</span> Proje Görselleri</h2>\n                                <span style="font-size:0.75rem;color:var(--text-secondary)">Dikey → portre modunda, Yatay → tam genişlik açılır</span>\n                            </div>\n                            <div class="screenshot-grid" id="screenshotGrid"></div>\n                            <label class="admin-upload-area" for="screenshotFileInput">\n                                <div class="upload-icon">📤</div>\n                                <div class="upload-text">\n                                    <strong>Görsel ekle</strong><br>\n                                    PNG, JPG, WebP — Dikey veya Yatay olabilir\n                                </div>\n                                <input type="file" id="screenshotFileInput" accept="image/*" multiple>\n                            </label>\n                        </div>\n\n                        <!-- 2B: Proje Kimliği -->\n                        <div class="admin-card">\n                            <div class="admin-card-header">\n                                <h2 class="admin-card-title"><span>🏷️</span> Proje Kimlik Bilgileri</h2>\n                            </div>\n\n                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">\n                                <div class="admin-form-group">\n                                    <label>Proje Adı (TR)</label>\n                                    <input type="text" id="detailName">\n                                </div>\n                                <div class="admin-form-group">\n                                    <label>Proje Adı (EN)</label>\n                                    <input type="text" id="detailNameEN">\n                                </div>\n                            </div>\n\n                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">\n                                <div class="admin-form-group">\n                                    <label>Uygulama Boyutu</label>\n                                    <input type="text" id="detailSize" placeholder="~15 MB">\n                                </div>\n                                <div class="admin-form-group">\n                                    <label>Yaş Sınırı</label>\n                                    <input type="text" id="detailAgeRating" placeholder="3+">\n                                </div>\n                            </div>\n\n                            <div class="admin-form-group">\n                                <label>Uygulama Logosu (Dosya yolu veya URL)</label>\n                                <input type="text" id="detailLogo" placeholder="resimler/uygulama_logo.png">\n                            </div>\n                            <div class="admin-form-group">\n                                <label>Kapak Görseli (Proje listesi için)</label>\n                                <input type="text" id="detailThumbnail" placeholder="resimler/projeler-resmi1.jpg">\n                            </div>\n\n                            <!-- Android / Play Store Toggle -->\n                            <div class="admin-toggle-row" id="androidToggleRow">\n                                <div>\n                                    <div class="admin-toggle-label">🤖 Android / Play Store Entegrasyonu</div>\n                                    <div class="admin-toggle-desc">İndirme sayısı, puan, izinler ve Play Store butonu görünsün mü?</div>\n                                </div>\n                                <label class="admin-toggle">\n                                    <input type="checkbox" id="detailIsAndroid">\n                                    <span class="admin-toggle-slider"></span>\n                                </label>\n                            </div>\n\n                            <!-- Play Store Alanları (Android aktifse görünür) -->\n                            <div id="playStoreFields" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--admin-border);">\n                                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;">\n                                    <div class="admin-form-group">\n                                        <label>İndirme Sayısı</label>\n                                        <input type="text" id="detailDownloads" placeholder="10B+">\n                                    </div>\n                                    <div class="admin-form-group">\n                                        <label>Puan</label>\n                                        <input type="text" id="detailRating" placeholder="4.8 ★">\n                                    </div>\n                                    <div class="admin-form-group">\n                                        <label>Min. Android</label>\n                                        <input type="text" id="detailMinAndroid" placeholder="Android 8.0 / API 26">\n                                    </div>\n                                </div>\n                                <div class="admin-form-group">\n                                    <label>Play Store Linki</label>\n                                    <input type="url" id="detailPlayStoreUrl" placeholder="https://play.google.com/store/apps/details?id=...">\n                                </div>\n                                <div class="admin-form-group">\n                                    <label>Gerekli İzinler (Her satıra bir izin)</label>\n                                    <textarea id="detailPermissions" rows="4" placeholder="📍 Konum (Ön plan & Arka plan)&#10;🔔 Bildirimler&#10;📶 İnternet Erişimi"></textarea>\n                                </div>\n                            </div>\n                        </div>\n\n                        <!-- 2C: Uygulama Hakkında -->\n                        <div class="admin-card">\n                            <div class="admin-card-header">\n                                <h2 class="admin-card-title"><span>📋</span> Uygulama Hakkında</h2>\n                            </div>\n                            <div class="admin-form-group">\n                                <label>Açıklama (TR) — Her paragraf ayrı satır</label>\n                                <textarea id="detailDescTR" rows="5" placeholder="V9 uygulaması...&#10;&#10;Özellik açıklamaları...&#10;&#10;🚀 Özellik 1 | 💡 Özellik 2"></textarea>\n                            </div>\n                            <div class="admin-form-group">\n                                <label>Açıklama (EN) — Her paragraf ayrı satır</label>\n                                <textarea id="detailDescEN" rows="5" placeholder="V9 app...&#10;&#10;Feature descriptions...&#10;&#10;🚀 Feature 1 | 💡 Feature 2"></textarea>\n                            </div>\n                        </div>\n\n                        <!-- 2D: Sürüm Geçmişi -->\n                        <div class="admin-card">\n                            <div class="admin-card-header">\n                                <h2 class="admin-card-title"><span>📝</span> Sürüm Geçmişi</h2>\n                                <button class="admin-btn admin-btn-primary admin-btn-sm" id="addChangelogBtn">\n                                    ＋ Yeni Sürüm\n                                </button>\n                            </div>\n                            <div class="changelog-list" id="changelogList"></div>\n                        </div>\n\n                        <!-- Detay Kaydet -->\n                        <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:4px;">\n                            <button class="admin-btn admin-btn-primary admin-btn-lg" id="saveDetailBtn">\n                                💾 Değişiklikleri Kaydet\n                            </button>\n                        </div>\n                    </div>\n                </div>\n\n                <!-- ============================================================\n                     SEKME 3: SSS & YASAL SAYFALAR\n                     ============================================================ -->\n                <div class="admin-tab-content" id="tab-sayfalar">\n\n                    <!-- 3A: SSS Yönetimi -->\n                    <div class="admin-card">\n                        <div class="admin-card-header">\n                            <h2 class="admin-card-title"><span>❓</span> SSS Yönetimi</h2>\n                            <button class="admin-btn admin-btn-primary admin-btn-sm" id="addFaqCatBtn">\n                                ＋ Kategori Ekle\n                            </button>\n                        </div>\n                        <div id="faqAdminList"></div>\n                    </div>\n\n                    <!-- SSS Kaydet -->\n                    <div style="display:flex;justify-content:flex-end;margin-bottom:24px;">\n                        <button class="admin-btn admin-btn-primary admin-btn-lg" id="saveFaqBtn">\n                            💾 SSS Kaydet\n                        </button>\n                    </div>\n\n                    <!-- 3B: Gizlilik Politikasıı -->\n                    <div class="admin-card">\n                        <div class="admin-card-header">\n                            <h2 class="admin-card-title"><span>🔏</span> Gizlilik Politikasıı</h2>\n                            <button class="admin-btn admin-btn-sm" id="addPrivacySecBtn">＋ Bölüm Ekle</button>\n                        </div>\n                        <div class="legal-date-row">\n                            <label>Son Güncelleme:</label>\n                            <input type="date" id="privacyDate">\n                            <button class="admin-btn admin-btn-sm" id="setPrivacyTodayBtn">📅 Bugün</button>\n                        </div>\n                        <div id="privacyAdminList"></div>\n                    </div>\n\n                    <!-- 3C: Kullanım Koşulları -->\n                    <div class="admin-card">\n                        <div class="admin-card-header">\n                            <h2 class="admin-card-title"><span>📃</span> Kullanım Koşulları</h2>\n                            <button class="admin-btn admin-btn-sm" id="addTermsSecBtn">＋ Bölüm Ekle</button>\n                        </div>\n                        <div class="legal-date-row">\n                            <label>Son Güncelleme:</label>\n                            <input type="date" id="termsDate">\n                            <button class="admin-btn admin-btn-sm" id="setTermsTodayBtn">📅 Bugün</button>\n                        </div>\n                        <div id="termsAdminList"></div>\n                    </div>\n\n                    <!-- Yasal Kaydet -->\n                    <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:4px;">\n                        <button class="admin-btn admin-btn-primary admin-btn-lg" id="saveLegalBtn">\n                            💾 Yasal Sayfaları Kaydet\n                        </button>\n                    </div>\n                </div>\n\n                <!-- ============================================================\n                     SEKME 4: SOSYAL MEDYA YÖNETİMİ\n                     ============================================================ -->\n                <div class="admin-tab-content" id="tab-sosyal">\n                    <div class="admin-card">\n                        <div class="admin-card-header">\n                            <div>\n                                <h2 class="admin-card-title">\n                                    <span>📲</span> Sosyal Medya Akış Yönetimi\n                                </h2>\n                                <p style="font-size:0.8rem;color:var(--text-secondary);margin:4px 0 0;">\n                                    Instagram, TikTok, YouTube ve X (Twitter) hesaplarından güncel paylaşımlar.\n                                </p>\n                            </div>\n                            <button class="admin-btn admin-btn-primary admin-btn-lg" id="fetchSocialFeedBtn">\n                                🔄 Rastgele Gönderi Çek / Yenile\n                            </button>\n                        </div>\n\n                        <div style="padding:12px 16px;background:rgba(255,71,87,0.06);border:1px solid var(--admin-border);border-radius:12px;margin-bottom:20px;font-size:0.82rem;color:var(--text-secondary);">\n                            💡 <strong>Overwriting Kuralı:</strong> Her yenilemede yeni gönderiler eskilerinin üzerine yazılır. Böylece sunucuda gereksiz dosya veya içerik birikmesi tamamen önlenir. Videoların sadece kapak görselleri çekilir.\n                        </div>\n\n                        <div class="admin-card-header" style="margin-bottom:12px;">\n                            <span style="font-size:0.85rem;font-weight:700;color:var(--admin-accent);" id="socialLastUpdatedLabel">\n                                Son Güncelleme: -\n                            </span>\n                        </div>\n\n                        <div class="slider-img-grid" id="socialAdminList" style="grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));">\n                            <!-- JS tarafından doldurulacak -->\n                        </div>\n                    </div>\n                </div>\n\n            </div><!-- /admin-container -->\n        </div><!-- /admin-page -->\n\n        <!-- KAYDET BARRI (Alt) -->\n        <div class="admin-save-bar" id="adminSaveBar">\n            <div class="admin-save-bar-text">Kaydedilmemiş değişiklikler var</div>\n            <div class="admin-save-actions">\n                <button class="admin-btn admin-btn-sm" id="discardChangesBtn">İptal</button>\n                <button class="admin-btn admin-btn-primary admin-btn-sm" id="saveAllBtn">💾 Hepsini Kaydet</button>\n            </div>\n        </div>\n\n    </div><!-- /adminPanel -->\n\n    <!-- ======= MODALLER ======= -->\n\n    <!-- Proje Ekle/Düzenle Modal -->\n    <div class="verification-modal" id="projectModal" aria-hidden="true" inert>\n        <div class="verification-card" role="dialog" style="max-width:520px;width:95%;border:1.5px solid var(--admin-border);max-height: 90vh;overflow-y: auto;">\n            <h3 id="projectModalTitle" style="color:var(--admin-accent);margin:0 0 20px;">Proje Ekle</h3>\n            <div style="display:grid;gap:12px;">\n                <div class="admin-form-group">\n                    <label>Proje Adı (TR)</label>\n                    <input type="text" id="pmName" placeholder="V9 Uygulama Adı">\n                </div>\n                <div class="admin-form-group">\n                    <label>Proje Adı (EN)</label>\n                    <input type="text" id="pmNameEN" placeholder="V9 App Name">\n                </div>\n                <div class="admin-form-group">\n                    <label>Kısa Açıklama (TR)</label>\n                    <textarea id="pmDesc" rows="2" placeholder="Kısa açıklama..."></textarea>\n                </div>\n                <div class="admin-form-group">\n                    <label>Slug (URL kısmı)</label>\n                    <input type="text" id="pmSlug" placeholder="yeni-proje">\n                </div>\n                <div class="admin-form-group">\n                    <label>Durum</label>\n                    <div id="pmStatusContainer" style="display:flex; flex-direction:column; gap:8px;"></div>\n                    <button type="button" class="admin-btn admin-btn-sm" id="pmAddStatusBtn" style="margin-top:8px;">➕ Yeni Durum Ekle</button>\n                </div>\n                <div class="admin-form-group">\n                    <label>Etiketler (virgülle ayrılmış)</label>\n                    <input type="text" id="pmTags" placeholder="📱 Mobil, 🗺️ Harita">\n                </div>\n                <div class="admin-form-group">\n                    <label>Kapak Görseli URL veya Dosya Yolu</label>\n                    <input type="text" id="pmThumbnail" placeholder="resimler/proje-kapak.jpg">\n                </div>\n                <div class="admin-form-group" style="margin-top:-8px;">\n                    <label>veya Dosyadan Yükle</label>\n                    <label class="admin-upload-area" for="pmThumbnailFile" style="padding:16px 20px;">\n                        <div class="upload-icon" style="font-size:1.6rem;margin-bottom:4px;">📤</div>\n                        <div class="upload-text" style="font-size:0.78rem;">Kapak görseli seç (16:9 önerilen)</div>\n                        <input type="file" id="pmThumbnailFile" accept="image/*">\n                    </label>\n                </div>\n            </div>\n            <div class="verification-actions" style="margin-top:20px;">\n                <button class="verify-btn" id="projectModalSave" style="background:var(--admin-accent);">💾 Kaydet</button>\n                <button class="cancel-btn" id="projectModalCancel">İptal</button>\n            </div>\n        </div>\n    </div>\n\n    <!-- Sürüm Ekle/Düzenle Modal -->\n    <div class="verification-modal" id="changelogModal" aria-hidden="true" inert>\n        <div class="verification-card" role="dialog" style="max-width:480px;width:95%;border:1.5px solid var(--admin-border);">\n            <h3 id="changelogModalTitle" style="color:var(--admin-accent);margin:0 0 20px;">Sürüm Ekle</h3>\n            <div style="display:grid;gap:12px;">\n                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">\n                    <div class="admin-form-group">\n                        <label>Versiyon No</label>\n                        <input type="text" id="clVersion" placeholder="v1.0.2">\n                    </div>\n                    <div class="admin-form-group">\n                        <label>Tarih</label>\n                        <input type="date" id="clDate">\n                    </div>\n                </div>\n                <div class="admin-form-group">\n                    <label>Sürüm Türü</label>\n                    <select id="clType">\n                        <option value="major">🔴 Major (Büyük Güncelleme)</option>\n                        <option value="minor">🔵 Minor (Küçük Güncelleme)</option>\n                        <option value="fix">🟢 Fix (Hata Düzeltme)</option>\n                        <option value="feature">🟣 Özellik Eklemesi</option>\n                        <option value="initial">🟡 İlk Sürüm</option>\n                    </select>\n                </div>\n                <div class="admin-form-group">\n                    <label>Değişiklikler (Her satıra bir madde)</label>\n                    <textarea id="clNotes" rows="5" placeholder="Yeni özellik eklendi&#10;Hata düzeltildi&#10;Performans iyileştirildi"></textarea>\n                </div>\n            </div>\n            <div class="verification-actions" style="margin-top:20px;">\n                <button class="verify-btn" id="changelogModalSave" style="background:var(--admin-accent);">💾 Kaydet</button>\n                <button class="cancel-btn" id="changelogModalCancel">İptal</button>\n            </div>\n        </div>\n    </div>\n\n    <!-- SSS Madde Ekle Modal -->\n    <div class="verification-modal" id="faqItemModal" aria-hidden="true" inert>\n        <div class="verification-card" role="dialog" style="max-width:480px;width:95%;border:1.5px solid var(--admin-border);">\n            <h3 id="faqItemModalTitle" style="color:var(--admin-accent);margin:0 0 20px;">SSS Madde Ekle</h3>\n            <div style="display:grid;gap:12px;">\n                <div class="admin-form-group">\n                    <label>Soru</label>\n                    <input type="text" id="faqQ" placeholder="Uygulama neden...?">\n                </div>\n                <div class="admin-form-group">\n                    <label>Cevap</label>\n                    <textarea id="faqA" rows="4" placeholder="Açıklama metni..."></textarea>\n                </div>\n            </div>\n            <div class="verification-actions" style="margin-top:20px;">\n                <button class="verify-btn" id="faqItemSave" style="background:var(--admin-accent);">💾 Kaydet</button>\n                <button class="cancel-btn" id="faqItemCancel">İptal</button>\n            </div>\n        </div>\n    </div>\n\n    <!-- SortableJS (Drag & Drop Sıralama için) -->\n    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>\n    <script src="script.js" defer></script>\n    <script src="admin.js" defer></script>\n\n    <!-- LiGHTBOX -->\n    <div class="admin-lightbox" id="adminLightbox">\n        <img id="adminLightboxImg" src="" alt="">\n        <button class="admin-lightbox-close" id="adminLightboxClose">×</button>\n    </div>\n\n</body>\n\n</html>\n\n  }\n};\nwindow.EMBEDDED_TRANSLATIONS = {\n  "tr": {\n    "nav.home": "Ana Sayfa",\n    "nav.projects": "Projelerim",\n    "nav.about": "Hakkında",\n    "nav.contact": "İletişim",\n    "nav.faq": "SSS",\n    "nav.legal": "Yasal",\n    "hero.title": "HOŞGELDİN YOLCU",\n    "hero.subtitle": "Basit ama etkili yazılımlar, kullanıcı dostu deneyimler ve modern çözümlerle yolculuğumuza devam ediyoruz.",\n    "hero.scroll": "Aşağı Kaydır",\n    "projects.title": "Projelerim",\n    "projects.intro": "Kullanıcı deneyimini ön planda tutan, sade tasarımlı ve işlevsel çözümler geliştirmeye odaklanıyorum.",\n    "about.title": "Hakkında",\n    "about.intro": "Projelerim, teknik beceri ve kullanıcı odaklı düşünce yapısının birleşimiyle ortaya çıkıyor.",\n    "about.body1": "Teknolojiye duyduğum merak ve kişisel gelişim amacıyla başlayan bu yolculuk, bugün daha büyük hedeflere hizmet eden, sürdürülebilir ve güçlü projelere dönüştü. Sektör deneyimim, farklı bakış açılarım ve sürekli öğrenme tutkum, geliştirdiğim her çözümün temelini oluşturuyor.",\n    "about.body2": "Amacım, karmaşık görünen fikirleri basit, hızlı ve etkili dijital deneyimlere dönüştürmek. Her proje, kullanıcıyla olan bağı güçlendiren ve gerçek bir ihtiyaca çözüm sunan bir yaklaşımla inşa ediliyor.",\n    "about.skills": "💻 Beceriler & Uzmanlık Alanları",\n    "contact.title": "İletişim",\n    "contact.intro": "Projeler, fikirler veya işbirlikleri hakkında konuşmak isterseniz, bir mesaj bırakın.",\n    "contact.name": "Adınız",\n    "contact.email": "E-posta Adresiniz",\n    "contact.message": "Mesajınız",\n    "contact.send": "Mail Gönder",\n    "detail.about": "📋 Uygulama Hakkında",\n    "detail.requirements": "📱 Sistem Gereksinimleri",\n    "detail.permissions": "🔐 Gerekli İzinler",\n    "detail.changelog": "📝 Sürüm Geçmişi",\n    "detail.getapp": "Google Play'den İndir",
+// --- EMBEDDED FALLBACK DATA (PURES 7-BIT ASCII SAFE ENCODING) ---
+window.EMBEDDED_SITE_DATA = {
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-06",
+    "repo": {
+      "owner": "hakanv9",
+      "repo": "v9testsite1",
+      "branch": "main"
+    }
+  },
+  "heroSlider": [
+    {
+      "id": "slide-1",
+      "src": "resimler/anasayfa-hosgeldin-resmi1.jpg",
+      "alt": "Hoşgeldin 1",
+      "order": 1
+    },
+    {
+      "id": "slide-2",
+      "src": "resimler/anasayfa-hosgeldin-resmi2.jpg",
+      "alt": "Hoşgeldin 2",
+      "order": 2
+    },
+    {
+      "id": "slide-3",
+      "src": "resimler/anasayfa-hosgeldin-resmi3.jpg",
+      "alt": "Hoşgeldin 3",
+      "order": 3
+    },
+    {
+      "id": "slide-4",
+      "src": "resimler/anasayfa-hosgeldin-resmi4.jpg",
+      "alt": "Hoşgeldin 4",
+      "order": 4
+    }
+  ],
+  "projects": [
+    {
+      "id": "kurye",
+      "slug": "kurye",
+      "name": "V9 Kurye Uygulaması",
+      "nameEN": "V9 Courier App",
+      "shortDesc": "Gerçek zamanlı harita takibi, akıllı rota yönetimi ve anlık bildirimler ile kuryelerin teslimat süreçlerini uçtan uca yöneten mobil uygulama.",
+      "shortDescEN": "A mobile app that manages courier delivery processes end-to-end with real-time map tracking, smart route management and instant notifications.",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [
+        "📦 Kurye",
+        "📱 Mobil"
+      ],
+      "status": "discontinued",
+      "order": 1,
+      "visible": true,
+      "detail": {
+        "isAndroid": true,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "resimler/uygulama_logo.png",
+        "downloads": "5B+",
+        "rating": "4.5 ★",
+        "ageRating": "3+",
+        "appSize": "~18 MB",
+        "minAndroid": "Android 8.0 (Oreo) / API 26",
+        "description": [
+          "V9 Kurye Uygulaması, teslimat süreçlerini uçtan uca yöneten bir mobil çözümdür.",
+          "Gerçek zamanlı GPS takibi ile kuryenin tüm hareketleri anlık olarak izlenebilir. Dinamik rota optimizasyonu, teslimat süresini ve yakıt tüketimini önemli ölçüde azaltır.",
+          "📍 Gerçek Zamanlı Harita Takibi | 🗺️ Dinamik Rota | 🔔 Anlık Bildirimler | 🚀 Akıllı Teslimat"
+        ],
+        "descriptionEN": [
+          "V9 Courier App is a mobile solution that manages delivery processes end-to-end.",
+          "With real-time GPS tracking, all courier movements can be monitored instantly. Dynamic route optimization significantly reduces delivery time and fuel consumption.",
+          "📍 Real-Time Map Tracking | 🗺️ Dynamic Route | 🔔 Instant Notifications | 🚀 Smart Delivery"
+        ],
+        "permissions": [
+          "📍 Konum (Ön plan & Arka plan)",
+          "🔔 Bildirimler",
+          "📶 İnternet Erişimi",
+          "⚡ Arka Plan Servisi",
+          "📷 Kamera (teslimat fotoğrafı)"
+        ],
+        "screenshots": [
+          "resimler/uygulama_ekran1.png",
+          "resimler/uygulama_ekran2.png"
+        ],
+        "changelog": [
+          {
+            "id": "cl-kurye-1",
+            "version": "v1.2.0",
+            "date": "2024-11-15",
+            "type": "major",
+            "notes": [
+              "Gerçek zamanlı harita motoru yenilendi",
+              "Rota optimizasyon algoritması güncellendi",
+              "Kritik hata düzeltmeleri"
+            ]
+          },
+          {
+            "id": "cl-kurye-2",
+            "version": "v1.1.0",
+            "date": "2024-08-01",
+            "type": "minor",
+            "notes": [
+              "Bildirim sistemi iyileştirildi",
+              "Arayüz güncellemeleri",
+              "Performans iyileştirmeleri"
+            ]
+          },
+          {
+            "id": "cl-kurye-3",
+            "version": "v1.0.0",
+            "date": "2024-05-10",
+            "type": "major",
+            "notes": [
+              "İlk sürüm yayınlandı",
+              "Temel harita ve takip özellikleri",
+              "Anlık bildirim altyapısı"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "grup-v1",
+      "slug": "grup-v1",
+      "name": "V9 Grup Konum Paylaşımı",
+      "nameEN": "V9 Group Location Sharing",
+      "shortDesc": "Anlık çoklu konum takibi ile grubun her üyesini haritada eş zamanlı gösteren mobil uygulama. v1.0",
+      "shortDescEN": "A mobile app that shows all group members on the map simultaneously with real-time multi-location tracking. v1.0",
+      "thumbnail": "resimler/projeler-resmi2.jpg",
+      "tags": [
+        "🗺️ Harita"
+      ],
+      "status": "paused",
+      "order": 2,
+      "visible": true,
+      "detail": {
+        "isAndroid": true,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "resimler/uygulama_logo.png",
+        "downloads": "10B+",
+        "rating": "4.8 ★",
+        "ageRating": "3+",
+        "appSize": "~12 MB",
+        "minAndroid": "Android 8.0 (Oreo) / API 26",
+        "description": [
+          "V9 Grup Konum Paylaşımı (v1.0), bir grup içindeki tüm üyelerin konumunu aynı anda haritada göstermeye yarayan mobil bir uygulamadır.",
+          "Saniyeler içinde oda oluşturun, davet bağlantısı paylaşın ve grubunuzun tüm üyelerini anlık olarak haritada izleyin. Akıllı toplanma noktası hesaplaması ile herkese en yakın buluşma noktası belirlenir.",
+          "👥 Dinamik Grup Yönetimi | 📍 Gerçek Zamanlı Çoklu Takip | 🔋 Optimize Pil Kullanımı | 🎯 Akıllı Toplanma Noktaları"
+        ],
+        "descriptionEN": [
+          "V9 Group Location Sharing (v1.0) is a mobile application that shows the location of all members in a group on the map simultaneously.",
+          "Create a room in seconds, share the invitation link, and track all members of your group on the map in real time. The smart gathering point calculation determines the closest meeting point for everyone.",
+          "👥 Dynamic Group Management | 📍 Real-Time Multi-Tracking | 🔋 Optimized Battery Usage | 🎯 Smart Gathering Points"
+        ],
+        "permissions": [
+          "📍 Konum (Ön plan & Arka plan)",
+          "🔔 Bildirimler",
+          "📶 İnternet Erişimi",
+          "⚡ Arka Plan Servisi"
+        ],
+        "screenshots": [
+          "resimler/uygulama_ekran1.png",
+          "resimler/uygulama_ekran2.png"
+        ],
+        "changelog": [
+          {
+            "id": "cl-grv1-1",
+            "version": "v1.0.3",
+            "date": "2025-02-20",
+            "type": "fix",
+            "notes": [
+              "GPS senkronizasyon hatası düzeltildi",
+              "Pil tüketimi optimize edildi"
+            ]
+          },
+          {
+            "id": "cl-grv1-2",
+            "version": "v1.0.2",
+            "date": "2025-01-10",
+            "type": "minor",
+            "notes": [
+              "Harita motoru güncellendi",
+              "Arayüz iyileştirmeleri"
+            ]
+          },
+          {
+            "id": "cl-grv1-3",
+            "version": "v1.0.0",
+            "date": "2024-12-01",
+            "type": "major",
+            "notes": [
+              "İlk sürüm yayınlandı",
+              "Çoklu kullanıcı konum takibi",
+              "Oda sistemi ve davet bağlantısı"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "grup-v2",
+      "slug": "grup-v2",
+      "name": "V9 Grup Konum V2",
+      "nameEN": "V9 Group Location V2",
+      "shortDesc": "Entegre sohbet, low-latency GPS ve ölçeklenebilir mimariye sahip gelişmiş sürüm. v2.0",
+      "shortDescEN": "Advanced version with integrated chat, low-latency GPS and scalable architecture. v2.0",
+      "thumbnail": "resimler/projeler-resmi3.jpg",
+      "tags": [
+        "💬 Sohbet",
+        "📍 Konum"
+      ],
+      "status": "development",
+      "statuses": [
+        "development",
+        "live"
+      ],
+      "order": 3,
+      "visible": true,
+      "detail": {
+        "isAndroid": true,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "resimler/uygulama_logo.png",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "~15 MB",
+        "minAndroid": "Android 8.0 (Oreo) / API 26",
+        "description": [
+          "V9 Grup Konum Paylaşımı V2, birinci sürümün üzerine inşa edilmiş, entegre sohbet özelliği ve low-latency GPS senkronizasyonu ile donatılmış gelişmiş bir sürümdür.",
+          "Yönetici yetkileri, oda kapasite ayağırlığıarı ve gerçek zamanlı mesajlaşma ile grup yönetimi tamamen yeniden tasağırlığıandı. Modüler mimari sayesinde gelecekteki özellikler kolayca entegre edilebilir.",
+          "🚀 Low-latency GPS | 💬 Entegre Sohbet | ⚙️ Yönetici Paneli | 🔄 Ölçeklenebilir Mimari"
+        ],
+        "descriptionEN": [
+          "V9 Group Location Sharing V2 is an advanced version built on top of the first version, equipped with integrated chat and low-latency GPS synchronization.",
+          "Group management has been completely redesigned with administrator permissions, room capacity settings, and real-time messaging. The modular architecture allows future features to be easily integrated.",
+          "🚀 Low-latency GPS | 💬 Integrated Chat | ⚙️ Admin Panel | 🔄 Scalable Architecture"
+        ],
+        "permissions": [
+          "📍 Konum (Ön plan & Arka plan)",
+          "🔔 Bildirimler",
+          "📶 İnternet Erişimi",
+          "⚡ Arka Plan Servisi",
+          "💬 İnternet Mesajlaşma"
+        ],
+        "screenshots": [
+          "resimler/uygulama_ekran1.png",
+          "resimler/uygulama_ekran2.png"
+        ],
+        "changelog": [
+          {
+            "id": "cl-grv2-1",
+            "version": "v2.0.1-beta",
+            "date": "2026-07-15",
+            "type": "minor",
+            "notes": [
+              "Sohbet modülü beta testleri",
+              "GPS gecikme iyileştirmeleri",
+              "Arayüz güncellemeleri"
+            ]
+          },
+          {
+            "id": "cl-grv2-2",
+            "version": "v2.0.0-alpha",
+            "date": "2026-05-01",
+            "type": "major",
+            "notes": [
+              "V2 mimarisi oluşturuldu",
+              "Entegre sohbet altyapısı",
+              "Low-latency GPS motoru"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "faq": [
+    {
+      "id": "faq-cat-1",
+      "category": "🌐 Genel & Portfolyo Hakkında",
+      "categoryEN": "🌐 General & Portfolio",
+      "questions": [
+        {
+          "id": "faq-q-1-1",
+          "q": "Bu sitenin amacı ve vizyonu nedir?",
+          "qEN": "What is the purpose and vision of this site?",
+          "a": "Bu site; Android, iOS, Web ve masaüstü platformları için geliştirdiğim mobil uygulamaları, teknik projelerimi ve yazılım çalışmalarımı sergilediğim kişisel geliştirici portfolyomdur. Amacım, kullanıcı odaklı, yüksek performanslı ve modern dijital çözümler sunmaktır.",
+          "aEN": "This site is my personal developer portfolio where I showcase mobile applications, technical projects, and software work developed for Android, iOS, Web, and desktop platforms. My goal is to deliver user-centric, high-performance, and modern digital solutions."
+        },
+        {
+          "id": "faq-q-1-2",
+          "q": "'Site' adlı proje ve sürüm geçmişi nedir?",
+          "qEN": "What is the 'Site' project and its version history?",
+          "a": "Bu web sitesinin kendisi de aktif olarak geliştirdiğim bağımsız bir projedir. Sitede yapılan performans optimize çalışmaları, yeni UI/UX tasarımları, hata düzeltmeleri ve altyapı güncellemeleri 'Site' adıyla projeler listesinde yayınlanmakta ve sürüm detayları şeffafça sunulmaktadır.",
+          "aEN": "This website itself is an independent project that I actively develop. Performance optimizations, new UI/UX designs, bug fixes, and infrastructure updates made to the site are published under the project named 'Site' in the projects list, with transparent version details."
+        },
+        {
+          "id": "faq-q-1-3",
+          "q": "Sitede hangi tür projeler yer alıyor?",
+          "qEN": "What types of projects are hosted on the site?",
+          "a": "Portfolyoda gerçek zamanlı GPS takip kurye uygulamaları, grup konum paylaşım sistemleri, kişisel web projeleri, açık kaynaklı araçlar, API entegrasyonları ve hobi amaçlı yazılım denemeleri yer almaktadır.",
+          "aEN": "The portfolio features real-time GPS tracking courier apps, group location sharing systems, personal web projects, open-source tools, API integrations, and hobby software experiments."
+        },
+        {
+          "id": "faq-q-1-4",
+          "q": "Projelerinizle ilgili geri bildirimde bulunabilir miyim?",
+          "qEN": "Can I provide feedback regarding your projects?",
+          "a": "Kesinlikle! Her projenin detay sayfasında yer alan 'Hata Bildirimi' veya 'Özellik İsteği' butonlarını kullanarak ya da genel iletişim formumuz aracılığıyla görüş ve önerilerinizi iletebilirsiniz.",
+          "aEN": "Absolutely! You can share your feedback and suggestions using the 'Bug Report' or 'Feature Request' buttons on each project's details page, or via our general contact form."
+        }
+      ]
+    },
+    {
+      "id": "faq-cat-2",
+      "category": "📱 Mobil & Android/iOS Uygulamaları",
+      "categoryEN": "📱 Mobile & Android/iOS Applications",
+      "questions": [
+        {
+          "id": "faq-q-2-1",
+          "q": "Mobil uygulamalarınız hangi izinlere ihtiyaç duyuyor?",
+          "qEN": "What permissions do your mobile apps require?",
+          "a": "V9 Kurye ve Grup Konum Paylaşımı gibi harita tabanlı uygulamalarımız; temel canlı konum takibi fonksiyonu için Konum (Ön plan ve Arka plan), anlık bilgilendirmeler için Bildirim ve veri senkronizasyonu için İnternet izni istemektedir. Gerekli olmayan hiçbir ekstra izin talep edilmez.",
+          "aEN": "Our map-based applications, such as V9 Courier and Group Location Sharing, request Location (Foreground and Background) for core live tracking, Notification for instant alerts, and Internet permission for data sync. No unnecessary extra permissions are ever requested."
+        },
+        {
+          "id": "faq-q-2-2",
+          "q": "Arka plan konum izni pil ömrünü olumsuz etkiler mi?",
+          "qEN": "Does background location permission negatively affect battery life?",
+          "a": "Uygulamalarımız akıllı GPS dinleme algoritmaları ve low-latency konum senkronizasyon motorları ile geliştirilmiştir. Hareket halinde olunmadığında GPS güncellemeleri yavaşlatılır. Ayrıca grup veya kurye oturumu kapatıldığında arka plan izni tamamen durdurulur.",
+          "aEN": "Our applications are built with smart GPS listening algorithms and low-latency location synchronization engines. GPS updates slow down when idle. Additionally, background tracking stops completely when a group or courier session is closed."
+        },
+        {
+          "id": "faq-q-2-3",
+          "q": "Uygulamalarınızı Google Play Store üzerinden indirebilir miyim?",
+          "qEN": "Can I download your applications from the Google Play Store?",
+          "a": "Aktif yayındaki uygulamalarımızın Google Play Store indirme bağlantıları doğrudan detay sayfalarında mevcuttur. Test aşamasında veya yayın öncesi (WIP) durumdaki projeler için APK indirme veya kapalı test katılım bağlantıları sağlanmaktadır.",
+          "aEN": "Download links for apps actively live on the Google Play Store are available directly on their detail pages. For projects in testing or work-in-progress (WIP) status, direct APK downloads or closed test participation links are provided."
+        },
+        {
+          "id": "faq-q-2-4",
+          "q": "Uygulama izinlerini dilediğim zaman iptal edebilir miyim?",
+          "qEN": "Can I revoke application permissions at any time?",
+          "a": "Evet, dilediğiniz an cihazınızın Android veya iOS Ayağırlığıar > Uygulamalar bölümüne giderek uygulamalarımıza verdiğiniz konum, bildirim veya diğer izinleri kısıtlayabilir ya da tamamen kapatabilirsiniz.",
+          "aEN": "Yes, at any time you can go to your device's Android or iOS Settings > Applications menu to restrict or completely turn off location, notification, or other permissions granted to our apps."
+        }
+      ]
+    },
+    {
+      "id": "faq-cat-3",
+      "category": "📝 Sürümler, Güncellemeler ve Açık Kaynak",
+      "categoryEN": "📝 Releases, Updates & Open Source",
+      "questions": [
+        {
+          "id": "faq-q-3-1",
+          "q": "Projelerin sürüm geçmişini nasıl takip edebilirim?",
+          "qEN": "How can I track the release history of projects?",
+          "a": "Proje listesinden ilgili projenin 'Detayları İncele' butonuna tıklayarak açılan özel detay sayfasında projenin tüm sürüm geçmişini (Changelog), yayın tarihlerini, eklenen yeni özellikleri ve düzeltilen hataları inceleyebilirsiniz.",
+          "aEN": "Clicking the 'View Details' button for any project in the project list takes you to its dedicated detail page, where you can inspect the full release history (Changelog), release dates, newly added features, and bug fixes."
+        },
+        {
+          "id": "faq-q-3-2",
+          "q": "Projelerinizin kaynak kodları açık kaynaklı mı?",
+          "qEN": "Are your project source codes open source?",
+          "a": "Bazı projelerimiz ve geliştirme araçlarımız açık kaynak kodlu olarak GitHub üzerinde paylaşılmaktadır. İlgili projenin detay sayfasında açık kaynak kod bağlantısı yer alıyorsa projeyi inceleyebilir ve katkıda bulunabilirsiniz.",
+          "aEN": "Some of our projects and developer tools are shared as open source on GitHub. If an open-source repository link is present on the project's detail page, you can examine the code and contribute."
+        }
+      ]
+    },
+    {
+      "id": "faq-cat-4",
+      "category": "🔒 Veri Gizliliği & Güvenlik",
+      "categoryEN": "🔒 Data Privacy & Security",
+      "questions": [
+        {
+          "id": "faq-q-4-1",
+          "q": "Konum veya kişisel verilerim sunucularınızda saklanıyor mu?",
+          "qEN": "Are my location or personal data stored on your servers?",
+          "a": "Canlı konum takibi gerektiren uygulamalarımızda veriler yalnızca aktif oturum süresince şifreli kanallar (SSL/TLS) üzerinden anlık eşitleme için kullanılır. Oturum sonlandırıldığında konum verisi sunuculardan kalıcı olarak temizlenir.",
+          "aEN": "In applications requiring live location tracking, data is used only for real-time synchronization over encrypted channels (SSL/TLS) during an active session. Once the session ends, location data is permanently purged from servers."
+        },
+        {
+          "id": "faq-q-4-2",
+          "q": "Verilerim üçüncü taraflağırlığıa paylaşılıyor mu?",
+          "qEN": "Is my data shared with third parties?",
+          "a": "Kesinlikle hayır. Verileriniz hiçbir ticari amaçla satılmaz, reklam ağlarına aktarılmaz veya yetkisiz üçüncü taraflağırlığıa paylaşılmaz. Detaylı bilgi için Yasal Bilgiler sayfamızı ziyaret edebilirsiniz.",
+          "aEN": "Strictly no. Your data is never sold for commercial purposes, transferred to ad networks, or shared with unauthorized third parties. For detailed information, please visit our Legal Information page."
+        }
+      ]
+    }
+  ],
+  "legal": {
+    "privacy": {
+      "lastUpdated": "7 Ağustos 2026",
+      "content": [
+        {
+          "id": "privacy-sec-1",
+          "heading": "1. Veri Sorumlusu ve Kapsam",
+          "headingEN": "1. Data Controller and Scope",
+          "text": "Bu Gizlilik Politikasıı, AVS&V9 bünyesinde geliştirilen ve yayınlanan tüm web siteleri, mobil uygulamalar (Android & iOS platformları) ve bağımsız dijital projeler için geçerlidir. Geliştirici olarak temel ilkemiz, kullanıcılarımızın kişisel verilerinin gizliliğini korumak, şeffaflık sağlamak ve uluslararası veri güvenliği standartlarına tam uyum göstermektir.",
+          "textEN": "This Privacy Policy applies to all websites, mobile applications (Android & iOS platforms), and independent digital projects developed and published under AVS&V9. As a developer, our core principle is to protect the privacy of user data, ensure transparency, and comply fully with international data security standards."
+        },
+        {
+          "id": "privacy-sec-2",
+          "heading": "2. Toplanan Veriler ve Kullanım Amaçları",
+          "headingEN": "2. Collected Data and Purposes of Use",
+          "text": "Uygulamalarımızın ve web sitemizin sunduğu hizmet türüne bağlı olarak yalnızca işlevsellik için zorunlu olan minimum seviyede veri işlenmektedir:<br>• <b>Konum Verisi (GPS):</b> V9 Kurye ve Grup Konum uygulamalarımızda harita üzeri canlı takip, rota çizimi ve grup üyelerinin anlık yerini göstermek amacıyla Ön Plan (Foreground) ve Arka Plan (Background) konum verisi işlenir.<br>• <b>Cihaz ve Bağlantı Bilgileri:</b> İşletim sistemi sürümü, cihaz modeli ve ağ durumu, uygulama stabilitesini artırmak ve teknik uyumsuzlukları çözmek amacıyla anonim olarak değerlendirilebilir.<br>• <b>Destek ve İletişim Verileri:</b> Sitedeki iletişim formu üzerinden tarafımıza ilettiğiniz ad, e-posta adresi ve mesaj metinleri yalnızca destek talebinizi yanıtlamak amacıyla kullanılır.",
+          "textEN": "Depending on the services offered by our applications and website, only the minimum data required for functionality is processed:<br>• <b>Location Data (GPS):</b> Foreground and Background location data is processed in map-based apps like V9 Courier and Group Location Sharing to show real-time positions, route drawing, and group tracking.<br>• <b>Device & Network Info:</b> OS version, device model, and network state may be anonymously evaluated to improve application stability and resolve technical bugs.<br>• <b>Support Data:</b> Name, email address, and message contents submitted via the contact form are used exclusively to respond to your inquiry."
+        },
+        {
+          "id": "privacy-sec-3",
+          "heading": "3. Üçüncü Taraf Hizmetler ve Google Gizlilik Politikasıı",
+          "headingEN": "3. Third-Party Services & Google Privacy Policy",
+          "text": "Projelerimiz; Google Play Hizmetleri (Google Play Services), Firebase (Crashlytics ve Performans İzleme) ile harita servislerini (Google Maps / Mapbox) kullanabilir. Bu entegrasyonlar, servis sağlayıcıların kendi gizlilik standartlarına tabidir. Google hizmetlerinin verileri nasıl topladığı ve işlediği hakkında daha fazla bilgi edinmek için resmi <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"legal-link\">Google Gizlilik Politikasıı (Google Privacy Policy)</a> sayfasını ziyaret edebilirsiniz.",
+          "textEN": "Our projects may utilize Google Play Services, Firebase (Crashlytics & Performance Monitoring), and mapping APIs (Google Maps / Mapbox). These integrations are subject to their respective providers' privacy policies. To learn more about how Google handles user data, please visit the official <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"legal-link\">Google Privacy Policy</a> page."
+        },
+        {
+          "id": "privacy-sec-4",
+          "heading": "4. Veri Saklama ve Güvenlik Önlemleri",
+          "headingEN": "4. Data Retention and Security Measures",
+          "text": "Canlı konum takibi esnasında işlenen GPS verileri sunucularımızda kalıcı olarak depolanmaz; yalnızca aktif oturum süresince anlık harita senkronizasyonu için işlenir ve oturum kapatıldığında bellekten temizlenir. Tüm veri iletimleri uçtan uca SSL/TLS şifreleme protokolleri ile güvence altına alınmıştır.",
+          "textEN": "GPS data processed during live tracking is not permanently stored on our servers; it is processed strictly for real-time map sync during active sessions and purged upon session termination. All data transmissions are secured using end-to-end SSL/TLS encryption protocols."
+        },
+        {
+          "id": "privacy-sec-5",
+          "heading": "5. Çocukların Gizliliği (Children's Privacy)",
+          "headingEN": "5. Children's Privacy",
+          "text": "Uygulamalarımız ve web sitemiz 13 yaşın altındaki çocuklardan bilerek kişisel veri toplamamaktadır. 13 yaşından küçük bir bireyin kişisel veri paylaştığını tespit etmemiz durumunda bu veriler derhal sunucularımızdan silinecektir.",
+          "textEN": "Our apps and website do not knowingly collect personal data from children under the age of 13. If we discover that a child under 13 has provided personal data, such information will be promptly purged from our systems."
+        },
+        {
+          "id": "privacy-sec-6",
+          "heading": "6. Haklarınız ve İletişim",
+          "headingEN": "6. Rights and Contact",
+          "text": "Kişisel verilerinize erişme, verilerinizin düzeltilmesini veya tamamen silinmesini talep etme hakkına sahipsiniz. Gizlilikpolitikamız veya kişisel verilerinizle ilgili tüm soru, talep ve bildirimleriniz için sayfanın altındaki iletişim butonunu kullanarak bize ulaşabilirsiniz.",
+          "textEN": "You have the right to access, rectify, or request the deletion of your personal data. For any questions, requests, or notifications regarding our privacy policy or personal data, you can reach out via the contact button at the bottom of the page."
+        }
+      ]
+    },
+    "terms": {
+      "lastUpdated": "7 Ağustos 2026",
+      "content": [
+        {
+          "id": "terms-sec-1",
+          "heading": "1. Hizmet Şartları ve Kabul",
+          "headingEN": "1. Terms of Service and Acceptance",
+          "text": "Bu web sitesini veya AVS&V9 tarafından geliştirilen mobil uygulamaları kullanarak bu Kullanım Koşullarını kabul etmiş sayılırsınız. Şartları kabul etmiyorsanız lütfen uygulamaları ve siteyi kullanmayınız.",
+          "textEN": "By using this website or mobile applications developed by AVS&V9, you agree to be bound by these Terms of Use. If you do not accept these terms, please refrain from using the applications and website."
+        },
+        {
+          "id": "terms-sec-2",
+          "heading": "2. Fikri Mülkiyet Hakları",
+          "headingEN": "2. Intellectual Property Rights",
+          "text": "Bu sitede ve uygulamalarda yer alan tüm yazılımlar, tasarım ögeleri, logolar, grafikler, metinler ve kod yapıları AVS&V9'a aittir. Açık kaynak lisansı (MIT, Apache vb.) açıkça belirtilmemiş içerikler izinsiz kopyalanamaz, çoğaltılamaz veya ticari amaçla kullanılamaz.",
+          "textEN": "All software, design elements, logos, graphics, texts, and code architectures on this site and within apps belong to AVS&V9. Unless explicitly licensed under an open-source framework (e.g. MIT, Apache), content may not be copied, reproduced, or commercially exploited without authorization."
+        },
+        {
+          "id": "terms-sec-3",
+          "heading": "3. Kullanım Kuralları ve Yükümlülükler",
+          "headingEN": "3. Rules of Conduct & User Obligations",
+          "text": "Kullanıcılar uygulamaları yasalara, genel ahlak kurallarına ve amacına uygun olarak kullanacağını taahhüt eder. Uygulamalar üzerinde tersine mühendislik (reverse engineering) yapmak, sistem güvenliğini ihlal etmeye çalışmak veya sunucu altyapısına aşırı yük bindirecek zarağırlığıı girişimlerde bulunmak kesinlikle yasaktır.",
+          "textEN": "Users agree to utilize applications in compliance with laws, ethics, and intended functionality. Attempting reverse engineering, security breaches, or malicious actions that overload server infrastructure is strictly prohibited."
+        },
+        {
+          "id": "terms-sec-4",
+          "heading": "4. Sorumluluk Sınırlaması",
+          "headingEN": "4. Limitation of Liability",
+          "text": "Hizmetlerimiz ve uygulamalarımız 'olduğu gibi' (AS IS) esasıyla sunulmaktadır. Uygulamaların her cihazda kesintisiz veya tamamen hatasız çalışacağı garanti edilmez. İnternet bağlantı kesintileri, cihaz uyumsuzlukları veya üçüncü taraf servis aksamalarından doğabilecek dolaylı zarağırlığıardan AVS&V9 sorumlu tutulamaz.",
+          "textEN": "Our services and applications are provided on an 'AS IS' basis. We do not guarantee uninterrupted or error-free operation on every device. AVS&V9 cannot be held liable for indirect damages arising from network disconnections, device incompatibilities, or third-party service outages."
+        },
+        {
+          "id": "terms-sec-5",
+          "heading": "5. Koşullarda Değişiklik Hakları",
+          "headingEN": "5. Right to Modify Terms",
+          "text": "AVS&V9, bu kullanım şartlarını ve yasal politikaları dilediği zaman güncelleme hakkını saklı tutar. Güncellenen maddeler sitede yayınlandığı andan itibaren yürürlüğe girer.",
+          "textEN": "AVS&V9 reserves the right to modify these terms and legal policies at any time. Modified terms take effect immediately upon being published on the site."
+        }
+      ]
+    }
+  },
+  "socialFeed": {
+    "lastUpdated": "2026-08-06 19:30",
+    "posts": [
+      {
+        "id": "soc-yt-1",
+        "platform": "youtube",
+        "platformName": "YouTube",
+        "author": "AVS&V9 Official",
+        "title": "📍 Grup Konum V2 — Tanıtım Videosu",
+        "description": "Low-latency GPS senkronizasyonu ve entegre sohbet özelliklerini gösteren detaylı tanıtım videosu.",
+        "thumbnail": "resimler/sosyalmedya_post2.png",
+        "postUrl": "https://youtube.com",
+        "date": "2026-08-05",
+        "badgeColor": "#FF0000"
+      },
+      {
+        "id": "soc-ig-1",
+        "platform": "instagram",
+        "platformName": "Instagram",
+        "author": "@avsv9_dev",
+        "title": "🚀 V9 Kurye — Geliştirme Süreci",
+        "description": "Gerçek zamanlı harita entegrasyonunun sahne arkasına dair özel kareler ve teknik ayrıntılar.",
+        "thumbnail": "resimler/sosyalmedya_post1.png",
+        "postUrl": "https://instagram.com",
+        "date": "2026-08-04",
+        "badgeColor": "#E1306C"
+      },
+      {
+        "id": "soc-tt-1",
+        "platform": "tiktok",
+        "platformName": "TikTok",
+        "author": "@avsv9_official",
+        "title": "⚡ Yeni Güncelleme — Canlı Demo",
+        "description": "Son güncellemeyle gelen yeni özelliklerin kısa ve eğlenceli tanıtım videosu.",
+        "thumbnail": "resimler/sosyalmedya_post3.png",
+        "postUrl": "https://tiktok.com",
+        "date": "2026-08-03",
+        "badgeColor": "#00f2fe"
+      },
+      {
+        "id": "soc-x-1",
+        "platform": "x",
+        "platformName": "X (Twitter)",
+        "author": "@avsv9_dev",
+        "title": "📣 V9 Harita Motoru Sürüm Notları",
+        "description": "Yeni rota optimizasyon algoritması ve bellek iyileştirmeleri hakkında teknik güncellemeler yayınlandı.",
+        "thumbnail": "resimler/sosyalmedya_post1.png",
+        "postUrl": "https://x.com",
+        "date": "2026-08-02",
+        "badgeColor": "#1DA1F2"
+      }
+    ]
+  }
+};
+window.EMBEDDED_TRANSLATIONS = {
+  "tr": {
+    "nav.home": "Ana Sayfa",
+    "nav.projects": "Projelerim",
+    "nav.about": "Hakkında",
+    "nav.contact": "İletişim",
+    "nav.faq": "SSS",
+    "nav.legal": "Yasal",
+    "hero.title": "HOŞGELDİN YOLCU",
+    "hero.subtitle": "Basit ama etkili yazılımlar, kullanıcı dostu deneyimler ve modern çözümlerle yolculuğumuza devam ediyoruz.",
+    "hero.scroll": "Aşağı Kaydır",
+    "projects.title": "Projelerim",
+    "projects.intro": "Kullanıcı deneyimini ön planda tutan, sade tasarımlı ve işlevsel çözümler geliştirmeye odaklanıyorum.",
+    "about.title": "Hakkında",
+    "about.intro": "Projelerim, teknik beceri ve kullanıcı odaklı düşünce yapısının birleşimiyle ortaya çıkıyor.",
+    "about.body1": "Teknolojiye duyduğum merak ve kişisel gelişim amacıyla başlayan bu yolculuk, bugün daha büyük hedeflere hizmet eden, sürdürülebilir ve güçlü projelere dönüştü. Sektör deneyimim, farklı bakış açılarım ve sürekli öğrenme tutkum, geliştirdiğim her çözümün temelini oluşturuyor.",
+    "about.body2": "Amacım, karmaşık görünen fikirleri basit, hızlı ve etkili dijital deneyimlere dönüştürmek. Her proje, kullanıcıyla olan bağı güçlendiren ve gerçek bir ihtiyaca çözüm sunan bir yaklaşımla inşa ediliyor.",
+    "about.skills": "💻 Beceriler & Uzmanlık Alanları",
+    "contact.title": "İletişim",
+    "contact.intro": "Projeler, fikirler veya işbirlikleri hakkında konuşmak isterseniz, bir mesaj bırakın.",
+    "contact.name": "Adınız",
+    "contact.email": "E-posta Adresiniz",
+    "contact.message": "Mesajınız",
+    "contact.send": "Mail Gönder",
+    "detail.about": "📋 Uygulama Hakkında",
+    "detail.requirements": "📱 Sistem Gereksinimleri",
+    "detail.permissions": "🔐 Gerekli İzinler",
+    "detail.changelog": "📝 Sürüm Geçmişi",
+    "detail.getapp": "Google Play'den İndir",
     "detail.downloads": "İndirme",
     "detail.rating": "Puan",
     "detail.agerating": "Yaş",
@@ -212,26 +670,1192 @@
 // =============================================
 
 // --- GV-3: XSS KORUMA YARDIMCISI ---------------------------------------------
-// JSON'dan gelen tm ierikler bu fonksiyondan geirilir.\nfunction sanitize(str) {\n    if (str === null || str === undefined) return '';\n    return String(str)\n        .replace(/&/g, '&amp;')\n        .replace(/</g, '&lt;')\n        .replace(/>/g, '&gt;')\n        .replace(/"/g, '&quot;')\n        .replace(/'/g, '&#x27;');\n}\n\nfunction addSwipeListener(element, onSwipeLeft, onSwipeRight) {\n    if (!element) return;\n    let touchStartX = 0;\n    let touchEndX = 0;\n    element.addEventListener('touchstart', e => {\n        touchStartX = e.changedTouches[0].screenX;\n    }, { passive: true });\n    element.addEventListener('touchend', e => {\n        touchEndX = e.changedTouches[0].screenX;\n        handleSwipe();\n    }, { passive: true });\n    function handleSwipe() {\n        const threshold = 50;\n        if (touchStartX - touchEndX > threshold && onSwipeLeft) onSwipeLeft();\n        else if (touchEndX - touchStartX > threshold && onSwipeRight) onSwipeRight();\n    }\n}\n\n// --- PERF-3: HERO SLIDER YNETCS ------------------------------------------\n// Tek interval kaydedici  ift setInterval bellek szntsn nler.\nlet _heroSlideInterval = null;\n\nfunction startHeroSlider(slidesNodeList) {\n    clearInterval(_heroSlideInterval);\n    if (!slidesNodeList || slidesNodeList.length < 2) return;\n    let cur = Array.from(slidesNodeList).findIndex(s => s.classList.contains('active'));\n    if (cur < 0) cur = 0;\n    \n    function goNext() {\n        slidesNodeList[cur].classList.remove('active');\n        cur = (cur + 1) % slidesNodeList.length;\n        slidesNodeList[cur].classList.add('active');\n        startTimer();\n    }\n    function goPrev() {\n        slidesNodeList[cur].classList.remove('active');\n        cur = (cur - 1 + slidesNodeList.length) % slidesNodeList.length;\n        slidesNodeList[cur].classList.add('active');\n        startTimer();\n    }\n    function startTimer() {\n        clearInterval(_heroSlideInterval);\n        _heroSlideInterval = setInterval(goNext, 10000);\n    }\n    \n    startTimer();\n    \n    const container = document.querySelector('.slider-container');\n    if (container && !container.hasAttribute('data-swipe-added')) {\n        addSwipeListener(container, goNext, goPrev);\n        container.setAttribute('data-swipe-added', 'true');\n    }\n}\n\n// --- KOD-1: DUPLKE FONKSYONLAR KALDIRILDI ---------------------------------\n// (Tm fonksiyonlarn tek ve doru versiyonlar aada tanmlanmtr)\n\n// Durum etiketi CSS snf ve metnini dndrr\nfunction getStatusTag(status) {\n    const map = {\n        'live':         { cls: 'tag-live',      text: '\U0001f7e2 Yayında' },\n        'development':  { cls: 'tag-wip',       text: '⏳ Geliştirme Aşamasında' },\n        'completed':    { cls: 'tag-completed', text: '✅ Tamamlandı' },\n        'discontinued': { cls: 'tag-inactive',  text: '❌ Yayından Kaldırılmış' },\n        'paused':       { cls: 'tag-soon',      text: '⏸️ Geliştirme Durdurulmuş' },\n        'research':     { cls: 'tag-wip',       text: '\U0001f50d Araştırma Aşamasında' },\n        'bugfix':       { cls: 'tag-wip',       text: '\U0001f6e0️ Hata Düzeltme' },\n        'waiting':      { cls: 'tag-soon',      text: '⏱ Beklemede' },\n        'special':      { cls: 'tag-wip',       text: '⭐ Özel Durum' },\n        'rnd':          { cls: 'tag-wip',       text: '\U0001f9ea Ar-Ge Aşamasında' }\n    };\n    return map[status] || { cls: '', text: String(status) };\n}\n\nlet TRANSLATIONS = {};\n\nasync function loadTranslations() {\n    try {\n        const res = await fetch('data/translations.json', { cache: 'no-cache' });\n        if (res.ok) {\n            let text = await res.text();\n            if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);\n            TRANSLATIONS = JSON.parse(text);\n        } else {\n            TRANSLATIONS = window.EMBEDDED_TRANSLATIONS || {};\n        }\n    } catch (e) {\n        console.warn('translations.json fetch edilemedi, embedded fallback kullanılıyor:', e);\n        TRANSLATIONS = window.EMBEDDED_TRANSLATIONS || {};\n    }\n    const savedLang = localStorage.getItem('avs_lang') || 'tr';\n    applyLang(savedLang);\n}\n\n// ===============================================================================\n// DNAMK VER FONKSYONLARI  site-data.json zerinden ierik gncelleme\n// ===============================================================================\n\n// PERF-5: ?v=Date.now() kaldrld  vercel.json'daki no-cache header ile ETag tabantl dorulama yaplr.
+// JSON'dan gelen tm ierikler bu fonksiyondan geirilir.
+function sanitize(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;');
+}
+
+function addSwipeListener(element, onSwipeLeft, onSwipeRight) {
+    if (!element) return;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    element.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    element.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+    function handleSwipe() {
+        const threshold = 50;
+        if (touchStartX - touchEndX > threshold && onSwipeLeft) onSwipeLeft();
+        else if (touchEndX - touchStartX > threshold && onSwipeRight) onSwipeRight();
+    }
+}
+
+// --- PERF-3: HERO SLIDER YNETCS ------------------------------------------
+// Tek interval kaydedici  ift setInterval bellek szntsn nler.
+let _heroSlideInterval = null;
+
+function startHeroSlider(slidesNodeList) {
+    clearInterval(_heroSlideInterval);
+    if (!slidesNodeList || slidesNodeList.length < 2) return;
+    let cur = Array.from(slidesNodeList).findIndex(s => s.classList.contains('active'));
+    if (cur < 0) cur = 0;
+    
+    function goNext() {
+        slidesNodeList[cur].classList.remove('active');
+        cur = (cur + 1) % slidesNodeList.length;
+        slidesNodeList[cur].classList.add('active');
+        startTimer();
+    }
+    function goPrev() {
+        slidesNodeList[cur].classList.remove('active');
+        cur = (cur - 1 + slidesNodeList.length) % slidesNodeList.length;
+        slidesNodeList[cur].classList.add('active');
+        startTimer();
+    }
+    function startTimer() {
+        clearInterval(_heroSlideInterval);
+        _heroSlideInterval = setInterval(goNext, 10000);
+    }
+    
+    startTimer();
+    
+    const container = document.querySelector('.slider-container');
+    if (container && !container.hasAttribute('data-swipe-added')) {
+        addSwipeListener(container, goNext, goPrev);
+        container.setAttribute('data-swipe-added', 'true');
+    }
+}
+
+// --- KOD-1: DUPLKE FONKSYONLAR KALDIRILDI ---------------------------------
+// (Tm fonksiyonlarn tek ve doru versiyonlar aada tanmlanmtr)
+
+// Durum etiketi CSS snf ve metnini dndrr
+function getStatusTag(status) {
+    const map = {
+        'live':         { cls: 'tag-live',      text: '🟢 Yayında' },
+        'development':  { cls: 'tag-wip',       text: '⏳ Geliştirme Aşamasında' },
+        'completed':    { cls: 'tag-completed', text: '✅ Tamamlandı' },
+        'discontinued': { cls: 'tag-inactive',  text: '❌ Yayından Kaldırılmış' },
+        'paused':       { cls: 'tag-soon',      text: '⏸️ Geliştirme Durdurulmuş' },
+        'research':     { cls: 'tag-wip',       text: '🔍 Araştırma Aşamasında' },
+        'bugfix':       { cls: 'tag-wip',       text: '🛠️ Hata Düzeltme' },
+        'waiting':      { cls: 'tag-soon',      text: '⏱ Beklemede' },
+        'special':      { cls: 'tag-wip',       text: '⭐ Özel Durum' },
+        'rnd':          { cls: 'tag-wip',       text: '🧪 Ar-Ge Aşamasında' }
+    };
+    return map[status] || { cls: '', text: String(status) };
+}
+
+let TRANSLATIONS = {};
+
+async function loadTranslations() {
+    try {
+        const res = await fetch('data/translations.json', { cache: 'no-cache' });
+        if (res.ok) {
+            let text = await res.text();
+            if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+            TRANSLATIONS = JSON.parse(text);
+        } else {
+            TRANSLATIONS = window.EMBEDDED_TRANSLATIONS || {};
+        }
+    } catch (e) {
+        console.warn('translations.json fetch edilemedi, embedded fallback kullanılıyor:', e);
+        TRANSLATIONS = window.EMBEDDED_TRANSLATIONS || {};
+    }
+    const savedLang = localStorage.getItem('avs_lang') || 'tr';
+    applyLang(savedLang);
+}
+
+// ===============================================================================
+// DNAMK VER FONKSYONLARI  site-data.json zerinden ierik gncelleme
+// ===============================================================================
+
+// PERF-5: ?v=Date.now() kaldrld  vercel.json'daki no-cache header ile ETag tabantl dorulama yaplr.
 async function loadSiteData() {
     try {
-        const res = await fetch('data/site-data.json', { cache: 'no-cache' });\n        if (res.ok) {\n            let text = await res.text();\n            if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);\n            return JSON.parse(text);\n        }\n    } catch (e) {\n        console.warn('site-data.json fetch edilemedi, embedded fallback kullanılıyor:', e);\n    }\n    return window.EMBEDDED_SITE_DATA || null;\n}\n\n// KOD-4: img tag kullanlyor (div+backgroundImage kaldrld)  eriilebilir ve SEO dostu.\nfunction initDynamicHeroSlider(data) {\n    const slides = data.heroSlider;\n    if (!slides || !slides.length) return;\n    const container = document.querySelector('.slider-container');\n    if (!container) return;\n\n    // Mevcut slaytlar kaldr\n    container.querySelectorAll('.slide').forEach(s => s.remove());\n\n    slides\n        .slice()\n        .sort((a, b) => (a.order || 0) - (b.order || 0))\n        .forEach((slide, idx) => {\n            const img = document.createElement('img');\n            img.src = sanitize(slide.src);\n            img.alt = sanitize(slide.alt || '');\n            img.className = 'slide' + (idx === 0 ? ' active' : '');\n            img.loading = idx === 0 ? 'eager' : 'lazy';\n            container.appendChild(img);\n        });\n\n    // PERF-3: Yeni slaytlarla tek bir interval balat\n    startHeroSlider(container.querySelectorAll('.slide'));\n}\n\nfunction initDynamicProjectsList(data) {\n    const projects = data.projects;\n    if (!projects || !projects.length) return;\n\n    const listContainer = document.querySelector('.projects-list');\n    if (!listContainer) return;\n\n    const lang = localStorage.getItem('avs_lang') || 'tr';\n\n    const visible = projects\n        .filter(p => p.visible !== false)\n        .sort((a, b) => (a.order || 0) - (b.order || 0));\n\n    if (!visible.length) return;\n\n    listContainer.innerHTML = visible.map((p, i) => {\n        const statuses = p.statuses || (p.status ? [p.status] : []); const statusHTML = statuses.map(s => { const st = getStatusTag(s); return `<span class="${st.cls} tag">${st.text}</span>`; }).join('');\n        const extraTags = p.tags || [];\n        const name = (lang === 'en' && p.nameEN) ? p.nameEN : p.name;\n        const desc = (lang === 'en' && p.shortDescEN) ? p.shortDescEN : (p.shortDesc || '');\n        const detailLabel = lang === 'en' ? 'View Details' : 'Detayları İncele';\n        return `\n        <a href="proje-detay.html?p=${sanitize(p.slug)}" class="project-oval-box scroll-anim" aria-label="${sanitize(name)} Detayları">\n            <img src="${sanitize(p.thumbnail)}" alt="${sanitize(name)}" class="project-oval-img" loading="${i === 0 ? 'eager' : 'lazy'}">\n            <div class="project-oval-info">\n                <div class="project-oval-title">${sanitize(name)}</div>\n                <div class="project-oval-desc">${sanitize(desc)}</div>\n                <div class="project-oval-tags">\n                    ${statusHTML}\n                    ${extraTags.map(t => `<span class="tag">\U0001f4cc ${sanitize(t)}</span>`).join('')}\n                </div>\n            </div>\n            <div class="project-oval-btn">${sanitize(detailLabel)}</div>\n        </a>\n        `;\n    }).join('');\n\n    // Animasyon observera kaydet\n    const newItems = listContainer.querySelectorAll('.scroll-anim');\n    if (window._scrollObserver) {\n        newItems.forEach(item => window._scrollObserver.observe(item));\n    }\n}\n\n// UIUX-2: Fallback resmi Yakindabos.png (yoksa yeil placeholder).\nfunction initDynamicSocialFeed(data) {\n    if (!data || !data.socialFeed || !data.socialFeed.posts || !data.socialFeed.posts.length) return;\n    const smSlider = document.getElementById('smSlider');\n    if (!smSlider) return;\n\n    const lang = localStorage.getItem('avs_lang') || 'tr';\n    \n    const SVG_ICONS = {\n        youtube: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,\n        instagram: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,\n        tiktok: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>`,\n        x: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`\n    };\n\n    const BADGE_CLASSES = {\n        youtube: 'sm-badge-youtube',\n        instagram: 'sm-badge-instagram',\n        tiktok: 'sm-badge-tiktok',\n        x: 'sm-badge-x'\n    };\n\n    smSlider.innerHTML = data.socialFeed.posts.map(p => {\n        const pKey = (p.platform || 'youtube').toLowerCase();\n        const iconSvg = SVG_ICONS[pKey] || SVG_ICONS.youtube;\n        const badgeCls = BADGE_CLASSES[pKey] || 'sm-badge-youtube';\n        // UIUX-2: Resim yoksa Yakindabos.png gster\n        const fallbackSrc = 'resimler/Yakindabos.png';\n        return `\n            <div class="sm-slide">\n                <div class="sm-slide-img-wrap">\n                    <img src="${sanitize(p.thumbnail)}" alt="${sanitize(p.title)}" loading="lazy"\n                         onerror="this.onerror=null; this.src='${fallbackSrc}'">\n                </div>\n                <div class="sm-slide-body">\n                    <div class="sm-platform-badge ${badgeCls}">\n                        ${iconSvg}\n                        ${sanitize(p.platformName || p.platform)}\n                    </div>\n                    <h3 class="sm-slide-title">${sanitize(p.title)}</h3>\n                    <p class="sm-slide-desc">${sanitize(p.description)}</p>\n                    <a href="${sanitize(p.postUrl)}" class="sm-slide-btn" target="_blank" rel="noopener noreferrer">\n                        ${(lang === 'en' ? 'View Post ↗' : 'Gönderiyi İncele ↗')}\n                    </a>\n                </div>\n            </div>\n        `;\n    }).join('');\n\n    const smDots = document.getElementById('smDots');\n    if (smDots) {\n        smDots.innerHTML = data.socialFeed.posts.map((_, idx) => `\n            <button class="sm-dot ${idx === 0 ? 'active' : ''}" data-idx="${idx}" role="tab"\n                aria-selected="${idx === 0 ? 'true' : 'false'}" aria-label="Slayt ${idx + 1}"></button>\n        `).join('');\n    }\n}\n\nfunction initDynamicFaq(data) {\n\n    const faq = data.faq;\n    if (!faq || !faq.length) return;\n\n    const main = document.querySelector('.subpage-main');\n    if (!main) return;\n    \n    const lang = localStorage.getItem('avs_lang') || 'tr';\n\n    // Mevcut SSS gruplarn ve balklarn temizle\n    main.querySelectorAll('.faq-section-title, .faq-list-group, .faq-cta-card').forEach(el => el.remove());\n\n    faq.forEach(cat => {\n        if (!cat.questions || !cat.questions.length) return;\n\n        const h2 = document.createElement('h2');\n        h2.className = 'section-title faq-section-title';\n        h2.textContent = (lang === 'en' && cat.categoryEN) ? cat.categoryEN : cat.category;\n        main.appendChild(h2);\n\n        const list = document.createElement('div');\n        list.className = 'faq-list faq-list-group';\n\n        cat.questions.forEach(item => {\n            const qText = (lang === 'en' && item.qEN) ? item.qEN : item.q;\n            const aText = (lang === 'en' && item.aEN) ? item.aEN : item.a;\n            const div = document.createElement('div');\n            div.className = 'faq-item';\n            div.innerHTML = `\n                <button class="faq-question">\n                    ${sanitize(qText)}\n                    <span class="faq-icon">»</span>\n                </button>\n                <div class="faq-answer">\n                    <div class="faq-answer-inner">${sanitize(aText)}</div>\n                </div>`;\n            list.appendChild(div);\n        });\n\n        main.appendChild(list);\n    });\n\n    // CTA kartn EN SONA ekle\n    const cta = document.createElement('section');\n    cta.className = 'pd-content-card faq-cta-card';\n    const ctaTitle = lang === 'en' ? 'Did you not find what you were looking for?' : 'Aradığınız cevabı bulamadınız mı?';\n    const ctaSub = lang === 'en' ? 'If you have a different question or a technical request, you can contact the developer directly.' : 'Farklı bir sorunuz veya teknik bir talebiniz varsa doğrudan geliştiriciye ulaşabilirsiniz.';\n    const ctaBtn = lang === 'en' ? 'Contact Directly →' : 'Doğrudan İletişime Geçin →';\n    cta.innerHTML = `\n        <h3 class="faq-cta-title">${sanitize(ctaTitle)}</h3>\n        <p class="faq-cta-sub">${sanitize(ctaSub)}</p>\n        <a href="index.html#iletisim" class="oval-btn pd-cta-btn">${sanitize(ctaBtn)}</a>`;\n    main.appendChild(cta);\n}\n\n\nfunction initDynamicLegal(data) {\n    const legal = data.legal;\n    if (!legal) return;\n\n    const lang = localStorage.getItem('avs_lang') || 'tr';\n\n    // Cta Kart HTML ablonu\n    const ctaTitle = lang === 'en' ? 'Have Questions or Legal Inquiries?' : 'Yasal Konularda Sorunuz mu Var?';\n    const ctaSub = lang === 'en' ? 'For data privacy requests or detailed inquiries, you can contact the developer directly.' : 'Kişisel veri talepleriniz veya detaylı yasal sorularınız için doğrudan iletişime geçebilirsiniz.';\n    const ctaBtn = lang === 'en' ? 'Contact Directly →' : 'Doğrudan İletişime Geçin →';\n    const ctaHtml = `\n        <div class="pd-content-card faq-cta-card" style="margin-top: 30px;">\n            <h3 class="faq-cta-title">${sanitize(ctaTitle)}</h3>\n            <p class="faq-cta-sub">${sanitize(ctaSub)}</p>\n            <a href="index.html#iletisim" class="oval-btn pd-cta-btn">${sanitize(ctaBtn)}</a>\n        </div>`;\n\n    // Gizlilik politikas\n    const privSec = document.getElementById('panel-privacy');\n\n    if (privSec && legal.privacy) {\n\n        const dateEl = privSec.querySelector('.legal-date');\n\n        if (dateEl && legal.privacy.lastUpdated) dateEl.textContent = (lang === 'en' ? `Last updated: ` : `Son güncelleme: `) + legal.privacy.lastUpdated;\n\n        const contentEl = privSec.querySelector('.legal-content');\n\n        if (contentEl && legal.privacy.content) {\n\n            contentEl.innerHTML = legal.privacy.content.map(sec => `\n\n                <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>\n\n                <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>`).join('');\n\n            \n\n            // Eski CTA varsa kaldr, yenisini ekle\n\n            privSec.querySelectorAll('.faq-cta-card').forEach(el => el.remove());\n\n            privSec.insertAdjacentHTML('beforeend', ctaHtml);\n\n        }\n    }\n\n    // Kullanm koullar\n    const termsSec = document.getElementById('panel-terms');\n    if (termsSec && legal.terms) {\n        const dateEl = termsSec.querySelector('.legal-date');\n        if (dateEl && legal.terms.lastUpdated) dateEl.textContent = (lang === 'en' ? `Last updated: ` : `Son güncelleme: `) + legal.terms.lastUpdated;\n        const contentEl = termsSec.querySelector('.legal-content');\n        if (contentEl && legal.terms.content) {\n            contentEl.innerHTML = legal.terms.content.map(sec => `\n                <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>\n                <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>`).join('');\n            \n            // Eski CTA varsa kaldr, yenisini ekle\n            termsSec.querySelectorAll('.faq-cta-card').forEach(el => el.remove());\n            termsSec.insertAdjacentHTML('beforeend', ctaHtml);\n        }\n    }\n}\n\n// --- Tema ---\nfunction applyTheme(theme) {\n    document.documentElement.setAttribute('data-theme', theme);\n    const icon = document.getElementById('themeIcon');\n    if (icon) icon.textContent = theme === 'dark' ? '\U0001f319' : '☀️';\n    localStorage.setItem('avs_theme', theme);\n}\n\nfunction toggleTheme() {\n    const current = document.documentElement.getAttribute('data-theme') || 'dark';\n    applyTheme(current === 'dark' ? 'light' : 'dark');\n}\n\n// --- Dil ---\nfunction applyLang(lang) {\n    if (TRANSLATIONS && Object.keys(TRANSLATIONS).length > 0) {\n        const t = TRANSLATIONS[lang] || TRANSLATIONS['tr'];\n        if (t) {\n            document.querySelectorAll('[data-i18n]').forEach(el => {\n                const key = el.getAttribute('data-i18n');\n                if (t[key] !== undefined) el.textContent = t[key];\n            });\n        }\n    }\n    const label = document.getElementById('langLabel');\n    if (label) label.textContent = lang.toUpperCase();\n    document.documentElement.setAttribute('lang', lang);\n    localStorage.setItem('avs_lang', lang);\n\n    // DNAMK BLMLER F5 YAPMADAN RE-RENDER ET\n    if (window.CURRENT_SITE_DATA) {\n        const isIndex = !!document.querySelector('.slider-container');\n        const isFaq = !!document.querySelector('.faq-list');\n        const isLegal = !!document.getElementById('panel-privacy');\n        const isProjectDetail = !!document.getElementById('pdAppSlider');\n\n        if (isIndex) {\n            initDynamicProjectsList(window.CURRENT_SITE_DATA);\n            initDynamicSocialFeed(window.CURRENT_SITE_DATA);\n        }\n        if (isFaq) initDynamicFaq(window.CURRENT_SITE_DATA);\n        if (isLegal) initDynamicLegal(window.CURRENT_SITE_DATA);\n        if (isProjectDetail && window.CURRENT_PROJECT) {\n            initProjectDetail(window.CURRENT_PROJECT);\n        }\n    }\n}\n\nfunction toggleLang() {\n    const current = localStorage.getItem('avs_lang') || 'tr';\n    applyLang(current === 'tr' ? 'en' : 'tr');\n}\n\n// Tercihleri annda balat (HTML render aamasnda renk yanp snmesin)\n(function () {\n    const savedTheme = localStorage.getItem('avs_theme') || 'dark';\n    const savedLang = localStorage.getItem('avs_lang') || 'tr';\n    applyTheme(savedTheme);\n    applyLang(savedLang);\n})();\n\n// --- DOM HAZIR OLUNCA ALIACAK TM DNLEYCLER ---\nfunction initApp() {\n    loadTranslations(); // TRANSLATIONS'i yükle
-    // --- DNAMK VER YKLEME (site-data.json) -------------------------------
-    // Admin panelinden yaplan deiiklikler burada okunur ve sayfalar gncellenir.
-    // Admin paneli sayfasnda bu blok almaz (data-admin-page kontrol).
-    if (!document.documentElement.hasAttribute('data-admin-page')) {\n        const isIndex = !!document.querySelector('.slider-container');\n        if (isIndex) {\n            const listContainer = document.querySelector('.projects-list');\n            if (listContainer) {\n                listContainer.innerHTML = `\n                    <div class="project-oval-box skeleton-box"></div>\n                    <div class="project-oval-box skeleton-box"></div>\n                    <div class="project-oval-box skeleton-box"></div>\n                `;\n            }\n        }\n        loadSiteData().then(data => {\n            if (!data) return; // JSON yoksa statik HTML'e devam et
-            window.CURRENT_SITE_DATA = data;
+        const res = await fetch('data/site-data.json', { cache: 'no-cache' });
+        if (res.ok) {
+            let text = await res.text();
+            if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+            return JSON.parse(text);
+        }
+    } catch (e) {
+        console.warn('site-data.json fetch edilemedi, embedded fallback kullanılıyor:', e);
+    }
+    return window.EMBEDDED_SITE_DATA || null;
+}
 
-            // Hangi sayfada olduumuzu anla
-            const isIndex = !!document.querySelector('.slider-container');\n            const isFaq = !!document.querySelector('.faq-list');\n            const isLegal = !!document.getElementById('panel-privacy');\n            const isProjectDetail = !!document.getElementById('pdAppSlider');\n\n            if (isIndex) {\n                initDynamicHeroSlider(data);\n                initDynamicProjectsList(data);\n                initDynamicSocialFeed(data);\n            }\n            if (isFaq) initDynamicFaq(data);\n            if (isLegal) initDynamicLegal(data);\n            \n            if (isProjectDetail && data.projects && data.projects.length > 0) {\n                const params = new URLSearchParams(window.location.search);\n                const projKey = params.get('p') || data.projects[0].slug;\n                const proj = data.projects.find(p => p.slug === projKey || p.id === projKey) || data.projects[0];\n                window.CURRENT_PROJECT = proj;\n                if (proj) initProjectDetail(proj);\n            }\n        });\n    }\n\n    // --- Butonlara Tema/Dil Dinleyicisi ---\n    const themeToggleBtn = document.getElementById('themeToggle');\n    const langToggleBtn = document.getElementById('langToggle');\n    if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);\n    if (langToggleBtn) langToggleBtn.addEventListener('click', toggleLang);\n\n    // --- erez Banner ---\n    const banner = document.getElementById('cookieBanner');\n    const acceptBtn = document.getElementById('cookieAccept');\n    if (banner && localStorage.getItem('avs_cookie_accepted') !== 'true') {\n        setTimeout(() => banner.classList.add('visible'), 1200);\n        if (acceptBtn) {\n            acceptBtn.addEventListener('click', () => {\n                localStorage.setItem('avs_cookie_accepted', 'true');\n                banner.classList.remove('visible');\n            });\n        }\n    }\n\n    // --- Ana Sayfa Hero Slayt (Statik HTML fallback) ---\n    const staticSlides = document.querySelectorAll('.slide');\n    if (staticSlides.length > 0) {\n        // PERF-3: startHeroSlider ile tek interval  JSON gelince zaten override edilir.\n        startHeroSlider(staticSlides);\n\n        document.addEventListener('visibilitychange', () => {\n            if (document.hidden) {\n                clearInterval(_heroSlideInterval);\n            } else {\n                startHeroSlider(document.querySelectorAll('.slide'));\n            }\n        });\n    }\n\n    // --- HAMBURGER MOBL MEN ---\n    document.addEventListener('click', e => {\n        const burgerBtn = e.target.closest('.hamburger');\n        if (burgerBtn) {\n            const nav = burgerBtn.parentElement ? burgerBtn.parentElement.querySelector('.nav-links') : document.querySelector('.nav-links');\n            if (nav) {\n                const isOpen = burgerBtn.getAttribute('aria-expanded') === 'true';\n                burgerBtn.classList.toggle('active', !isOpen);\n                nav.classList.toggle('active', !isOpen);\n                burgerBtn.setAttribute('aria-expanded', String(!isOpen));\n            }\n            return;\n        }\n\n        const link = e.target.closest('.nav-links a');\n        if (link) {\n            const nav = link.closest('.nav-links');\n            if (nav) {\n                nav.classList.remove('active');\n                const burger = nav.parentElement ? nav.parentElement.querySelector('.hamburger') : document.querySelector('.hamburger');\n                if (burger) {\n                    burger.classList.remove('active');\n                    burger.setAttribute('aria-expanded', 'false');\n                }\n            }\n        }\n    });\n\n    // --- SCROLL ANMASYONLARI ---\n    const observer = new IntersectionObserver((entries, obs) => {\n        entries.forEach(entry => {\n            if (entry.isIntersecting) {\n                entry.target.classList.add('show');\n                obs.unobserve(entry.target);\n            }\n        });\n    }, { root: null, rootMargin: '-50px', threshold: 0.15 });\n\n    // KOD-2: Global kaydedildi  dinamik eklenen kartlar da observe edilebilsin\n    window._scrollObserver = observer;\n    document.querySelectorAll('.scroll-anim').forEach(el => observer.observe(el));\n\n    // --- NAV AKTF SEKSYON TAKB ---\n    const sections = document.querySelectorAll('section[id]');\n    const navAnchors = document.querySelectorAll('.nav-links a');\n    if (sections.length && navAnchors.length) {\n        const navObserver = new IntersectionObserver((entries) => {\n            entries.forEach(entry => {\n                if (entry.isIntersecting) {\n                    const id = entry.target.getAttribute('id');\n                    navAnchors.forEach(a => {\n                        a.classList.toggle('active', a.getAttribute('href') === `#${id}`);\n                    });\n                }\n            });\n        }, { threshold: 0.15 });\n\n        sections.forEach(sec => navObserver.observe(sec));\n    }\n\n    // --- FORM DORULAMA (letiim) ---\n    const contactNameInput = document.getElementById('contactName');\n    const contactEmailInput = document.getElementById('contactEmail');\n    const contactMessageInput = document.getElementById('contactMessage');\n    const nameField = document.getElementById('nameField');\n    const emailField = document.getElementById('emailField');\n    const messageField = document.getElementById('messageField');\n    const nameHint = document.getElementById('nameHint');\n    const emailHint = document.getElementById('emailHint');\n    const messageHint = document.getElementById('messageHint');\n\n    function setFieldState(fieldEl, hintEl, isValid, message) {\n        if (!fieldEl || !hintEl) return;\n        fieldEl.classList.remove('valid', 'invalid');\n        if (isValid === true) fieldEl.classList.add('valid');\n        if (isValid === false) fieldEl.classList.add('invalid');\n        hintEl.textContent = message;\n    }\n\n    function validateName() {\n        if (!contactNameInput) return true;\n        const val = contactNameInput.value.trim();\n        if (val.length === 0) { setFieldState(nameField, nameHint, null, ''); return false; }\n        if (val.length < 2) { setFieldState(nameField, nameHint, false, 'En az 2 karakter giriniz.'); return false; }\n        setFieldState(nameField, nameHint, true, '✓ Güzel!');\n        return true;\n    }\n\n    function validateEmail() {\n        if (!contactEmailInput) return true;\n        const val = contactEmailInput.value.trim();\n        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;\n        if (val.length === 0) { setFieldState(emailField, emailHint, null, ''); return false; }\n        if (!emailRegex.test(val)) { setFieldState(emailField, emailHint, false, 'Geçerli bir e-posta adresi girin.'); return false; }\n        setFieldState(emailField, emailHint, true, '✓ E-posta adresi geçerli.');\n        return true;\n    }\n\n    function validateMessage() {\n        if (!contactMessageInput) return true;\n        const val = contactMessageInput.value.trim();\n        if (!messageField || !messageHint) return true;\n        if (val.length === 0) { setFieldState(messageField, messageHint, null, ''); return false; }\n        if (val.length < 5) { setFieldState(messageField, messageHint, false, 'Mesajınızı biraz daha uzun yazın.'); return false; }\n        setFieldState(messageField, messageHint, true, '✓ Hazır!');\n        return true;\n    }\n\n    if (contactNameInput) contactNameInput.addEventListener('input', validateName);\n    if (contactEmailInput) contactEmailInput.addEventListener('input', validateEmail);\n    if (contactMessageInput) contactMessageInput.addEventListener('input', validateMessage);\n\n    // --- DRY MATEMATK CAPTCHA YARDIMCISI ---\n    function setupMathCaptcha({ questionEl, inputEl, iconEl, statusEl, onVerifySuccess }) {\n        let correctAnswer = null;\n        let isVerified = false;\n\n        function generate() {\n            const x = Math.floor(Math.random() * 10) + 1;\n            const y = Math.floor(Math.random() * 10) + 1;\n            correctAnswer = x + y;\n            isVerified = false;\n            if (questionEl) questionEl.textContent = `${x} + ${y} = ?`;\n            if (inputEl) { inputEl.value = ''; inputEl.className = 'math-input'; }\n            if (iconEl) iconEl.textContent = '';\n            if (statusEl) statusEl.textContent = 'Sonucu yazın ve devam edin.';\n        }\n\n        if (inputEl) {\n            inputEl.addEventListener('input', () => {\n                const val = parseInt(inputEl.value, 10);\n                if (inputEl.value === '' || isNaN(val)) {\n                    inputEl.className = 'math-input';\n                    if (iconEl) iconEl.textContent = '';\n                    if (statusEl) statusEl.textContent = 'Sonucu yazın ve devam edin.';\n                    isVerified = false;\n                    return;\n                }\n                if (val === correctAnswer) {\n                    inputEl.className = 'math-input correct';\n                    if (iconEl) { iconEl.textContent = '✓'; iconEl.style.color = '#2ecc71'; }\n                    if (statusEl) statusEl.textContent = '✓ Doğru! Yönlendiriliyorsunuz...';\n                    isVerified = true;\n                    setTimeout(() => { if (onVerifySuccess) onVerifySuccess(); }, 600);\n                } else {\n                    inputEl.className = 'math-input wrong';\n                    if (iconEl) { iconEl.textContent = '✗'; iconEl.style.color = '#e74c3c'; }\n                    if (statusEl) statusEl.textContent = 'Yanlış cevap! Soru yenileniyor...';\n                    isVerified = false;\n                    setTimeout(generate, 800);\n                }\n            });\n        }\n\n        return {\n            generate,\n            reset: () => { isVerified = false; },\n            isVerified: () => isVerified\n        };\n    }\n\n    // --- LETM FORMU & MATEMATK CAPTCHA ---\n    const contactButton = document.getElementById('contactButton');\n    const verificationModal = document.getElementById('verificationModal');\n    const verifyButton = document.getElementById('verifyButton');\n    const cancelButton = document.getElementById('cancelButton');\n    const contactStatus = document.getElementById('contactStatus');\n    const captchaStatus = document.getElementById('captchaStatus');\n    const mathQuestion = document.getElementById('mathQuestion');\n    const mathAnswerInput = document.getElementById('mathAnswer');\n    const mathCheckIcon = document.getElementById('mathCheckIcon');\n\n    const contactCaptcha = setupMathCaptcha({\n        questionEl: mathQuestion,\n        inputEl: mathAnswerInput,\n        iconEl: mathCheckIcon,\n        statusEl: captchaStatus,\n        onVerifySuccess: completeVerification\n    });\n\n    function lockScroll() {\n        document.body.classList.add('modal-open');\n    }\n\n    function unlockScroll() {\n        setTimeout(() => {\n            const hasActiveModal = document.querySelector('.verification-modal.active, .pgallery-overlay.open');\n            if (!hasActiveModal) {\n                document.body.classList.remove('modal-open');\n            }\n        }, 50);\n    }\n\n    function openVerificationModal() {\n        if (!verificationModal) return;\n        contactCaptcha.generate();\n        verificationModal.classList.add('active');\n        verificationModal.setAttribute('aria-hidden', 'false');\n        lockScroll();\n        try { verificationModal.removeAttribute('inert'); } catch (e) { }\n        setTimeout(() => { if (mathAnswerInput) mathAnswerInput.focus(); }, 150);\n    }\n\n    function closeVerificationModal() {\n        if (!verificationModal) return;\n        verificationModal.classList.remove('active');\n        verificationModal.setAttribute('aria-hidden', 'true');\n        unlockScroll();\n        try { verificationModal.setAttribute('inert', ''); } catch (e) { }\n        contactCaptcha.reset();\n    }\n\n    function completeVerification() {\n        closeVerificationModal();\n\n        const name = contactNameInput ? contactNameInput.value.trim() : '';\n        const email = contactEmailInput ? contactEmailInput.value.trim() : '';\n        const message = contactMessageInput ? contactMessageInput.value.trim() : '';\n        const rawEmail = atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==');\n        const subject = encodeURIComponent(`Portfolyo İletişim - ${name}`);\n        const body = encodeURIComponent(`Merhaba,\n\nAdım: ${name}\nE-postam: ${email}\n\nMesajım:\n${message}`);\n        const mailtoUrl = `mailto:${rawEmail}?subject=${subject}&body=${body}`;\n\n        if (contactStatus) {\n            // KOD-3: innerHTML kullan ama onclick YOK  aada addEventListener ile balan\n            contactStatus.innerHTML = `\n                <div class="mail-success-card">\n                    <p class="mail-success-title">✅ Güvenlik Doğrulaması Başarılı!</p>\n                    <p class="mail-success-sub">Mesajınız e-posta istemcinize aktarıldı. Otomatik açılmadıysa aşağıdaki butona basabilir veya adrese doğrudan mail atabilirsiniz:</p>\n                    <div class="mail-success-actions">\n                        <a href="${mailtoUrl}" class="mail-direct-btn">✉️ E-postayı Gönder (${rawEmail})</a>\n                        <button type="button" class="mail-copy-btn" id="mailCopyBtn">ğŸ“‹ Adresi Kopyala</button>\n                    </div>\n                </div>\n            `;\n            // KOD-3: CSP uyumlu event listener  onclick attribute yok\n            const copyBtn = document.getElementById('mailCopyBtn');\n            if (copyBtn) {\n                copyBtn.addEventListener('click', () => {\n                    navigator.clipboard.writeText(rawEmail).then(() => {\n                        copyBtn.textContent = '✓ Kopyalandı!';\n                        setTimeout(() => { copyBtn.textContent = 'ğŸ“‹ Adresi Kopyala'; }, 2000);\n                    }).catch(() => {\n                        copyBtn.textContent = rawEmail; // Fallback: metni göster\n                    });\n                });\n            }\n        }\n\n        try {\n            const mailLink = document.createElement('a');\n            mailLink.href = mailtoUrl;\n            mailLink.style.display = 'none';\n            document.body.appendChild(mailLink);\n            mailLink.click();\n            document.body.removeChild(mailLink);\n        } catch (err) {\n            console.error('Mailto hatası:', err);\n        }\n    }\n\n    if (verifyButton) verifyButton.addEventListener('click', () => { if (contactCaptcha.isVerified()) completeVerification(); else if (captchaStatus) captchaStatus.textContent = 'Lütfen soruyu doğru cevaplayın.'; });\n    if (cancelButton) cancelButton.addEventListener('click', closeVerificationModal);\n    if (verificationModal) verificationModal.addEventListener('click', e => { if (e.target === verificationModal) closeVerificationModal(); });\n\n    if (contactButton) {\n        contactButton.addEventListener('click', () => {\n            const nameOk = validateName();\n            const emailOk = validateEmail();\n            const messageOk = validateMessage();\n\n            if (!nameOk && contactNameInput && contactNameInput.value.trim().length === 0)\n                setFieldState(nameField, nameHint, false, 'Lütfen adınızı girin.');\n            if (!emailOk && contactEmailInput && contactEmailInput.value.trim().length === 0)\n                setFieldState(emailField, emailHint, false, 'Lütfen e-posta adresinizi girin.');\n            if (!messageOk && contactMessageInput && contactMessageInput.value.trim().length === 0)\n                setFieldState(messageField, messageHint, false, 'Lütfen mesajınızı girin.');\n\n            if (nameOk && emailOk && messageOk) openVerificationModal();\n        });\n    }\n\n    // --- BENTO KART TIKLAMALARI VE KLAVYE ERLEBLRL ---\n    document.addEventListener('click', e => {\n        const card = e.target.closest('.bento-card[data-href]');\n        if (card) {\n            if (e.target.closest('.bento-detail-btn')) return;\n            window.location.href = card.dataset.href;\n        }\n    });\n\n    document.addEventListener('keydown', e => {\n        if (e.key === 'Enter' || e.key === ' ') {\n            const card = e.target.closest('.bento-card[data-href]');\n            if (card && (e.target === card || e.target.closest('.bento-card') === card)) {\n                if (e.target.closest('.bento-detail-btn')) return;\n                e.preventDefault();\n                window.location.href = card.dataset.href;\n            }\n        }\n    });\n\n    // --- SSS & CHANGELOG AKORDYON ---\n    document.addEventListener('click', e => {\n        const btn = e.target.closest('.faq-question');\n        if (!btn) return;\n\n        const item = btn.closest('.faq-item');\n        if (!item) return;\n\n        const isOpen = item.classList.contains('open');\n        const container = item.closest('.faq-list') || item.parentElement;\n\n        if (container) {\n            container.querySelectorAll('.faq-item.open').forEach(openItem => {\n                if (openItem !== item) openItem.classList.remove('open');\n            });\n        }\n\n        item.classList.toggle('open', !isOpen);\n    });\n\n    // --- YASAL SEKMELER (yasal.html) ---\n    document.querySelectorAll('.legal-tab-btn').forEach(btn => {\n        btn.addEventListener('click', () => {\n            const target = btn.dataset.tab;\n            document.querySelectorAll('.legal-tab-btn').forEach(b => b.classList.remove('active'));\n            document.querySelectorAll('.legal-panel').forEach(p => p.classList.remove('active'));\n            btn.classList.add('active');\n            const panel = document.getElementById(target);\n            if (panel) panel.classList.add('active');\n        });\n    });\n\n    // --- SOSYAL MEDYA SLIDER ---\n    const smSlider = document.getElementById('smSlider');\n    if (smSlider) {\n        const smSlides = Array.from(smSlider.querySelectorAll('.sm-slide'));\n        const smDotsEl = document.getElementById('smDots');\n        const smDots = smDotsEl ? Array.from(smDotsEl.querySelectorAll('.sm-dot')) : [];\n        const smPrev = document.getElementById('smPrev');\n        const smNext = document.getElementById('smNext');\n        let smCurrent = 0;\n        let smTimer = null;\n\n        if (smSlides[0]) smSlides[0].classList.add('active');\n\n        function smGoTo(idx, direction = 'next') {\n            if (idx === smCurrent) return;\n            const prev = smCurrent;\n            smCurrent = (idx + smSlides.length) % smSlides.length;\n\n            smSlides[prev].classList.add(direction === 'next' ? 'exit-left' : 'exit-right');\n            smSlides[prev].classList.remove('active');\n\n            requestAnimationFrame(() => { smSlides[smCurrent].classList.add('active'); });\n\n            setTimeout(() => {\n                smSlides[prev].classList.remove('exit-left', 'exit-right');\n            }, 560);\n\n            smDots.forEach((d, i) => {\n                d.classList.toggle('active', i === smCurrent);\n                d.setAttribute('aria-selected', String(i === smCurrent));\n            });\n        }\n\n        function smGoNext() { smGoTo((smCurrent + 1) % smSlides.length, 'next'); }\n        function smGoPrev() { smGoTo((smCurrent - 1 + smSlides.length) % smSlides.length, 'prev'); }\n\n        function smStartTimer() {\n            clearInterval(smTimer);\n            smTimer = setInterval(smGoNext, 10000);\n        }\n\n        smStartTimer();\n\n        if (smPrev) smPrev.addEventListener('click', () => { smGoPrev(); smStartTimer(); });\n        if (smNext) smNext.addEventListener('click', () => { smGoNext(); smStartTimer(); });\n        \n        const smContainer = document.querySelector('.sm-slider-container');\n        if (smContainer) {\n            addSwipeListener(smContainer, \n                () => { smGoNext(); smStartTimer(); }, \n                () => { smGoPrev(); smStartTimer(); }\n            );\n        }\n\n        smDots.forEach((dot, i) => {\n            dot.addEventListener('click', () => { smGoTo(i, i > smCurrent ? 'next' : 'prev'); smStartTimer(); });\n        });\n\n        document.addEventListener('visibilitychange', () => {\n            if (document.hidden) clearInterval(smTimer);\n            else smStartTimer();\n        });\n    }\n\n    // --- PROJE DETAY SAYFASI DNAMK VER HARTASI ---\nfunction initProjectDetail(proj) {\n    if (!proj) return;\n    window.CURRENT_PROJECT = proj;\n    const lang = localStorage.getItem('avs_lang') || 'tr';\n    const detail = proj.detail || {};\n\n    const name = lang === 'en' ? (proj.nameEN || proj.name || 'Project Details') : (proj.name || 'Proje Detayları');\n    const desc = lang === 'en' ? (proj.shortDescEN || proj.shortDesc || '') : (proj.shortDesc || '');\n\n    // Title & Breadcrumb\n    document.title = `${name} | AVS&V9`;\n    const bc = document.getElementById('pdBreadcrumbName');\n    if (bc) bc.textContent = name;\n\n    // Header Name\n    const pdTitle = document.getElementById('pdAppName');\n    if (pdTitle) pdTitle.textContent = name;\n\n    // Logo\n    const logoEl = document.getElementById('pdAppLogo');\n    if (logoEl) {\n        logoEl.src = detail.logo || proj.logo || 'resimler/uygulama_logo.png';\n        logoEl.alt = name;\n    }\n\n    // Stats\n    const dlEl = document.getElementById('pdDownloads');\n    if (dlEl) dlEl.textContent = detail.downloads || 'N/A';\n\n    const ratingEl = document.getElementById('pdRating');\n    if (ratingEl) ratingEl.textContent = detail.rating || 'N/A';\n\n    const ageEl = document.getElementById('pdAgeRating');\n    if (ageEl) ageEl.textContent = detail.ageRating || detail.age || '3+';\n\n    // Status Badges\n    const badgeContainer = document.getElementById('pdStatusBadgeContainer');\n    if (badgeContainer) {\n        let statuses = proj.statuses || (proj.status ? [proj.status] : []);\n        let trStatus = detail.statusText || proj.statusText || '';\n        let enStatus = detail.statusTextEN || proj.statusTextEN || '';\n        \n        badgeContainer.innerHTML = statuses.map(s => {\n            let cls = 'pd-status-badge';\n            if (s === 'inactive' || s === 'discontinued') cls += ' inactive';\n            else if (s === 'wip' || s === 'paused' || s === 'waiting' || s === 'research' || s === 'development') cls += ' wip';\n            let text = '';\n            if (trStatus && statuses.length === 1 && s === proj.status) {\n                text = lang === 'en' ? enStatus : trStatus;\n            } else {\n                text = getStatusTag(s).text;\n            }\n            return `<div class="${cls}"><span>${escapeHTML(text)}</span></div>`;\n        }).join('');\n    }\n\n    // Android & Play Store Visibility\n    const isAndroid = detail.isAndroid !== false; // Default true unless explicitly false\n    const playStoreUrl = detail.playStoreUrl || proj.playUrl || '';\n    const hasPlayUrl = playStoreUrl && playStoreUrl !== '#' && playStoreUrl.trim().length > 0;\n\n    const plinkEl = document.getElementById('pdPlayStoreLink');\n    if (plinkEl) {\n        if (isAndroid && hasPlayUrl) {\n            plinkEl.style.display = 'inline-flex';\n            plinkEl.href = playStoreUrl;\n        } else {\n            plinkEl.style.display = 'none';\n        }\n    }\n\n    // Store Stats Bar (Hide if not Android & no downloads)\n    const storeStats = document.querySelector('.pd-store-stats');\n    if (storeStats) {\n        if (!isAndroid && !detail.downloads && !detail.rating) {\n            storeStats.style.display = 'none';\n        } else {\n            storeStats.style.display = 'flex';\n        }\n    }\n\n    // System Requirements & Permissions Grid\n    const reqGrid = document.querySelector('.pd-req-grid');\n    if (reqGrid) {\n        if (isAndroid) {\n            reqGrid.style.display = 'grid';\n        } else {\n            reqGrid.style.display = 'none';\n        }\n    }\n\n    const minEl = document.getElementById('pdMinAndroid');\n    if (minEl) minEl.textContent = detail.minAndroid || 'Android 8.0+';\n\n    const sizeEl = document.getElementById('pdAppSize');\n    if (sizeEl) sizeEl.textContent = detail.appSize || proj.size || '~15 MB';\n\n    const permEl = document.getElementById('pdPermList');\n    const permsArr = detail.permissions || proj.perms || [];\n    if (permEl) {\n        if (permsArr.length > 0) {\n            permEl.innerHTML = permsArr.map(p => `<span class="pd-tag">\U0001f4cc ${escapeHTML(p)}</span>`).join('');\n        } else {\n            permEl.innerHTML = `<span class="pd-tag">${lang === 'en' ? 'No special permissions required' : 'Özel izin gerektirmez'}</span>`;\n        }\n    }\n\n    // Description (Hakknda)\n    const descEl = document.getElementById('pdDescription');\n    let rawDesc = (lang === 'en' && detail.descriptionEN && detail.descriptionEN.length) ? detail.descriptionEN : (detail.description && detail.description.length ? detail.description : desc);\n    if (typeof rawDesc === 'string') {\n        rawDesc = rawDesc.split(\'\n\n\').map(s => s.trim()).filter(Boolean);\n    }\n    if (descEl) {\n        if (Array.isArray(rawDesc) && rawDesc.length > 0) {\n            descEl.innerHTML = rawDesc.map(p => `<p>${escapeHTML(p)}</p>`).join('');\n        } else {\n            descEl.innerHTML = `<p>${escapeHTML(desc)}</p>`;\n        }\n    }\n\n    // Changelog\n    const changelogEl = document.getElementById('pdChangelog');\n    const clData = detail.changelog || [];\n    if (changelogEl) {\n        if (clData && clData.length > 0) {\n            changelogEl.innerHTML = clData.map(c => {\n                const cTitle = lang === 'en' && c.titleEN ? c.titleEN : (c.title || '');\n                const features = lang === 'en' && c.featuresEN ? c.featuresEN : (c.features || []);\n                const fixes = lang === 'en' && c.fixesEN ? c.fixesEN : (c.fixes || []);\n                const featStr = features.length ? `<p class="cl-subtitle">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';\n                const bugStr = fixes.length ? `<p class="cl-subtitle">\U0001f41b ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';\n                return `\n                <div class="faq-item">\n                    <button class="faq-question">\n                        <span>${escapeHTML(c.version || '')} ${cTitle ? '- ' + escapeHTML(cTitle) : ''}</span>\n                        <span class="cl-date">${escapeHTML(c.date || '')}</span>\n                        <span class="faq-icon">▼</span>\n                    </button>\n                    <div class="faq-answer">\n                        <div class="faq-answer-inner">\n                            ${featStr}\n                            ${bugStr}\n                        </div>\n                    </div>\n                </div>`;\n            }).join('');\n        } else {\n            changelogEl.innerHTML = `<p style="color:var(--text-secondary); padding: 12px 0;">${lang === 'en' ? 'No release history published for this project yet.' : 'Bu proje için henüz sürüm geçmişi yayınlanmadı.'}</p>`;\n        }\n    }\n\n    // Screenshots / Slider\n    const pdAppSlider = document.getElementById('pdAppSlider');\n    const slides = detail.screenshots || proj.slides || [];\n    if (pdAppSlider && slides && slides.length > 0) {\n        pdAppSlider.innerHTML = slides.map((src, i) =>\n            `<div class="pd-app-slide${i === 0 ? ' active' : ''}">\n               <img src="${src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}">\n             </div>`\n        ).join('');\n    }\n}\n\n    // --- Proje Detay Feedback / E-posta Gnderimi (pdSendBtn) ---\n    const pdSendBtn = document.getElementById('pdSendBtn');\n    const pdVerifyModal = document.getElementById('pdVerifyModal');\n    const pdMathQ = document.getElementById('pdMathQ');\n    const pdMathA = document.getElementById('pdMathA');\n    const pdMathIcon = document.getElementById('pdMathIcon');\n    const pdCapStatus = document.getElementById('pdCaptchaStatus');\n    const pdVerifyBtn = document.getElementById('pdVerifyBtn');\n    const pdCancelBtn = document.getElementById('pdCancelBtn');\n    const pdStatus = document.getElementById('pdStatus');\n\n    const pdCaptcha = setupMathCaptcha({\n        questionEl: pdMathQ,\n        inputEl: pdMathA,\n        iconEl: pdMathIcon,\n        statusEl: pdCapStatus,\n        onVerifySuccess: completePdVerify\n    });\n\n    function closePdModal() {\n        if (!pdVerifyModal) return;\n        pdVerifyModal.classList.remove('active');\n        pdVerifyModal.setAttribute('aria-hidden', 'true');\n        unlockScroll();\n        try { pdVerifyModal.setAttribute('inert', ''); } catch (e) { }\n        pdCaptcha.reset();\n    }\n\n    function completePdVerify() {\n        closePdModal();\n        const name = document.getElementById('pdName')?.value.trim() || 'İsimsiz';\n        const email = document.getElementById('pdEmail')?.value.trim() || '';\n        const subj = document.getElementById('pdSubject')?.value || 'diğer';\n        const msg = document.getElementById('pdMessage')?.value.trim() || '';\n\n        const mailtoUrl = `mailto:${atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==')}?subject=${encodeURIComponent(`[AVS&V9 - ${subj.toUpperCase()}] ${name}`)}&body=${encodeURIComponent(`Gönderen: ${name}\nE-posta: ${email}\n\nMesaj:\n${msg}`)}`;\n        window.location.href = mailtoUrl;\n\n        if (pdStatus) {\n            pdStatus.style.display = 'block';\n            pdStatus.innerHTML = `\n                <div style="background: rgba(0,173,181,0.08); border: 1px solid var(--accent-color); border-radius: 16px; padding: 16px; margin-top: 14px; text-align: left;">\n                    <p style="margin: 0 0 8px; color: var(--accent-color); font-weight: 700;">✓ E-posta istemciniz açıldı!</p>\n                    <p style="margin: 0 0 8px; font-size: 0.85rem; color: var(--text-secondary);">Açılmadıysa doğrudan e-posta atabilirsiniz: <strong>${atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==')}</strong></p>\n                    <button type="button" id="copyPdMailBtn" class="bento-detail-btn" style="font-size: 0.78rem; padding: 5px 12px;">ğŸ“‹ E-postayı Kopyala</button>\n                </div>\n            `;\n            const copyBtn = document.getElementById('copyPdMailBtn');\n            if (copyBtn) {\n                copyBtn.addEventListener('click', () => {\n                    navigator.clipboard.writeText(atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ=='));\n                    copyBtn.textContent = '✓ Kopyalandı!';\n                    setTimeout(() => { copyBtn.textContent = 'ğŸ“‹ E-postayı Kopyala'; }, 2000);\n                });\n            }\n        }\n    }\n\n    if (pdSendBtn) {\n        pdSendBtn.addEventListener('click', () => {\n            const name = document.getElementById('pdName')?.value.trim();\n            const email = document.getElementById('pdEmail')?.value.trim();\n            const msg = document.getElementById('pdMessage')?.value.trim();\n\n            if (!name || !email || !msg) {\n                if (pdStatus) {\n                    pdStatus.style.display = 'block';\n                    pdStatus.innerHTML = `<span style="color: #e74c3c;">Lütfen tüm gerekli alanları (Ad, E-posta, Mesaj) doldurun.</span>`;\n                }\n                return;\n            }\n\n            if (!pdVerifyModal) return;\n            pdCaptcha.generate();\n            pdVerifyModal.classList.add('active');\n            pdVerifyModal.setAttribute('aria-hidden', 'false');\n            lockScroll();\n            try { pdVerifyModal.removeAttribute('inert'); } catch (e) { }\n            setTimeout(() => { if (pdMathA) pdMathA.focus(); }, 150);\n        });\n    }\n\n    if (pdCancelBtn) pdCancelBtn.addEventListener('click', closePdModal);\n    if (pdVerifyBtn) {\n        pdVerifyBtn.addEventListener('click', () => {\n            if (pdCaptcha.isVerified()) completePdVerify();\n            else if (pdCapStatus) pdCapStatus.textContent = 'Lütfen soruyu doğru cevaplayın.';\n        });\n    }\n\n}\n\nif (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', initApp);\n} else {\n    initApp();\n}\n\n// --- GLOBAL DELEGATED CLICK LISTENERS (BLSEL BAIMSIZLIK) ----------------\ndocument.addEventListener('click', e => {\n}\n\n\n\nif (document.readyState === 'loading') {\n\n    document.addEventListener('DOMContentLoaded', initApp);
+// KOD-4: img tag kullanlyor (div+backgroundImage kaldrld)  eriilebilir ve SEO dostu.
+function initDynamicHeroSlider(data) {
+    const slides = data.heroSlider;
+    if (!slides || !slides.length) return;
+    const container = document.querySelector('.slider-container');
+    if (!container) return;
 
-} else {
+    // Mevcut slaytlar kaldr
+    container.querySelectorAll('.slide').forEach(s => s.remove());
 
-    initApp();
+    slides
+        .slice()
+        .sort((a, b) => (a.order || 0) - (b.order || 0))
+        .forEach((slide, idx) => {
+            const img = document.createElement('img');
+            img.src = sanitize(slide.src);
+            img.alt = sanitize(slide.alt || '');
+            img.className = 'slide' + (idx === 0 ? ' active' : '');
+            img.loading = idx === 0 ? 'eager' : 'lazy';
+            container.appendChild(img);
+        });
 
+    // PERF-3: Yeni slaytlarla tek bir interval balat
+    startHeroSlider(container.querySelectorAll('.slide'));
+}
+
+function initDynamicProjectsList(data) {
+    const projects = data.projects;
+    if (!projects || !projects.length) return;
+
+    const listContainer = document.querySelector('.projects-list');
+    if (!listContainer) return;
+
+    const lang = localStorage.getItem('avs_lang') || 'tr';
+
+    const visible = projects
+        .filter(p => p.visible !== false)
+        .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    if (!visible.length) return;
+
+    listContainer.innerHTML = visible.map((p, i) => {
+        const statuses = p.statuses || (p.status ? [p.status] : []); const statusHTML = statuses.map(s => { const st = getStatusTag(s); return `<span class="${st.cls} tag">${st.text}</span>`; }).join('');
+        const extraTags = p.tags || [];
+        const name = (lang === 'en' && p.nameEN) ? p.nameEN : p.name;
+        const desc = (lang === 'en' && p.shortDescEN) ? p.shortDescEN : (p.shortDesc || '');
+        const detailLabel = lang === 'en' ? 'View Details' : 'Detayları İncele';
+        return `
+        <a href="proje-detay.html?p=${sanitize(p.slug)}" class="project-oval-box scroll-anim" aria-label="${sanitize(name)} Detayları">
+            <img src="${sanitize(p.thumbnail)}" alt="${sanitize(name)}" class="project-oval-img" loading="${i === 0 ? 'eager' : 'lazy'}">
+            <div class="project-oval-info">
+                <div class="project-oval-title">${sanitize(name)}</div>
+                <div class="project-oval-desc">${sanitize(desc)}</div>
+                <div class="project-oval-tags">
+                    ${statusHTML}
+                    ${extraTags.map(t => `<span class="tag">📌 ${sanitize(t)}</span>`).join('')}
+                </div>
+            </div>
+            <div class="project-oval-btn">${sanitize(detailLabel)}</div>
+        </a>
+        `;
+    }).join('');
+
+    // Animasyon observera kaydet
+    const newItems = listContainer.querySelectorAll('.scroll-anim');
+    if (window._scrollObserver) {
+        newItems.forEach(item => window._scrollObserver.observe(item));
+    }
+}
+
+// UIUX-2: Fallback resmi Yakindabos.png (yoksa yeil placeholder).
+function initDynamicSocialFeed(data) {
+    if (!data || !data.socialFeed || !data.socialFeed.posts || !data.socialFeed.posts.length) return;
+    const smSlider = document.getElementById('smSlider');
+    if (!smSlider) return;
+
+    const lang = localStorage.getItem('avs_lang') || 'tr';
+    
+    const SVG_ICONS = {
+        youtube: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
+        instagram: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
+        tiktok: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>`,
+        x: `<svg class="sm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`
+    };
+
+    const BADGE_CLASSES = {
+        youtube: 'sm-badge-youtube',
+        instagram: 'sm-badge-instagram',
+        tiktok: 'sm-badge-tiktok',
+        x: 'sm-badge-x'
+    };
+
+    smSlider.innerHTML = data.socialFeed.posts.map(p => {
+        const pKey = (p.platform || 'youtube').toLowerCase();
+        const iconSvg = SVG_ICONS[pKey] || SVG_ICONS.youtube;
+        const badgeCls = BADGE_CLASSES[pKey] || 'sm-badge-youtube';
+        // UIUX-2: Resim yoksa Yakindabos.png gster
+        const fallbackSrc = 'resimler/Yakindabos.png';
+        return `
+            <div class="sm-slide">
+                <div class="sm-slide-img-wrap">
+                    <img src="${sanitize(p.thumbnail)}" alt="${sanitize(p.title)}" loading="lazy"
+                         onerror="this.onerror=null; this.src='${fallbackSrc}'">
+                </div>
+                <div class="sm-slide-body">
+                    <div class="sm-platform-badge ${badgeCls}">
+                        ${iconSvg}
+                        ${sanitize(p.platformName || p.platform)}
+                    </div>
+                    <h3 class="sm-slide-title">${sanitize(p.title)}</h3>
+                    <p class="sm-slide-desc">${sanitize(p.description)}</p>
+                    <a href="${sanitize(p.postUrl)}" class="sm-slide-btn" target="_blank" rel="noopener noreferrer">
+                        ${(lang === 'en' ? 'View Post ↗' : 'Gönderiyi İncele ↗')}
+                    </a>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    const smDots = document.getElementById('smDots');
+    if (smDots) {
+        smDots.innerHTML = data.socialFeed.posts.map((_, idx) => `
+            <button class="sm-dot ${idx === 0 ? 'active' : ''}" data-idx="${idx}" role="tab"
+                aria-selected="${idx === 0 ? 'true' : 'false'}" aria-label="Slayt ${idx + 1}"></button>
+        `).join('');
+    }
+}
+
+function initDynamicFaq(data) {
+
+    const faq = data.faq;
+    if (!faq || !faq.length) return;
+
+    const main = document.querySelector('.subpage-main');
+    if (!main) return;
+    
+    const lang = localStorage.getItem('avs_lang') || 'tr';
+
+    // Mevcut SSS gruplarn ve balklarn temizle
+    main.querySelectorAll('.faq-section-title, .faq-list-group, .faq-cta-card').forEach(el => el.remove());
+
+    faq.forEach(cat => {
+        if (!cat.questions || !cat.questions.length) return;
+
+        const h2 = document.createElement('h2');
+        h2.className = 'section-title faq-section-title';
+        h2.textContent = (lang === 'en' && cat.categoryEN) ? cat.categoryEN : cat.category;
+        main.appendChild(h2);
+
+        const list = document.createElement('div');
+        list.className = 'faq-list faq-list-group';
+
+        cat.questions.forEach(item => {
+            const qText = (lang === 'en' && item.qEN) ? item.qEN : item.q;
+            const aText = (lang === 'en' && item.aEN) ? item.aEN : item.a;
+            const div = document.createElement('div');
+            div.className = 'faq-item';
+            div.innerHTML = `
+                <button class="faq-question">
+                    ${sanitize(qText)}
+                    <span class="faq-icon">»</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">${sanitize(aText)}</div>
+                </div>`;
+            list.appendChild(div);
+        });
+
+        main.appendChild(list);
+    });
+
+    // CTA kartn EN SONA ekle
+    const cta = document.createElement('section');
+    cta.className = 'pd-content-card faq-cta-card';
+    const ctaTitle = lang === 'en' ? 'Did you not find what you were looking for?' : 'Aradığınız cevabı bulamadınız mı?';
+    const ctaSub = lang === 'en' ? 'If you have a different question or a technical request, you can contact the developer directly.' : 'Farklı bir sorunuz veya teknik bir talebiniz varsa doğrudan geliştiriciye ulaşabilirsiniz.';
+    const ctaBtn = lang === 'en' ? 'Contact Directly →' : 'Doğrudan İletişime Geçin →';
+    cta.innerHTML = `
+        <h3 class="faq-cta-title">${sanitize(ctaTitle)}</h3>
+        <p class="faq-cta-sub">${sanitize(ctaSub)}</p>
+        <a href="index.html#iletisim" class="oval-btn pd-cta-btn">${sanitize(ctaBtn)}</a>`;
+    main.appendChild(cta);
 }
 
 
+function initDynamicLegal(data) {
+    const legal = data.legal;
+    if (!legal) return;
+
+    const lang = localStorage.getItem('avs_lang') || 'tr';
+
+    // Cta Kart HTML ablonu
+    const ctaTitle = lang === 'en' ? 'Have Questions or Legal Inquiries?' : 'Yasal Konularda Sorunuz mu Var?';
+    const ctaSub = lang === 'en' ? 'For data privacy requests or detailed inquiries, you can contact the developer directly.' : 'Kişisel veri talepleriniz veya detaylı yasal sorularınız için doğrudan iletişime geçebilirsiniz.';
+    const ctaBtn = lang === 'en' ? 'Contact Directly →' : 'Doğrudan İletişime Geçin →';
+    const ctaHtml = `
+        <div class="pd-content-card faq-cta-card" style="margin-top: 30px;">
+            <h3 class="faq-cta-title">${sanitize(ctaTitle)}</h3>
+            <p class="faq-cta-sub">${sanitize(ctaSub)}</p>
+            <a href="index.html#iletisim" class="oval-btn pd-cta-btn">${sanitize(ctaBtn)}</a>
+        </div>`;
+
+    // Gizlilik politikas
+    const privSec = document.getElementById('panel-privacy');
+    if (privSec && legal.privacy) {
+        const dateEl = privSec.querySelector('.legal-date');
+        if (dateEl && legal.privacy.lastUpdated) dateEl.textContent = (lang === 'en' ? `Last updated: ` : `Son güncelleme: `) + legal.privacy.lastUpdated;
+        const contentEl = privSec.querySelector('.legal-content');
+        if (contentEl && legal.privacy.content) {
+            contentEl.innerHTML = legal.privacy.content.map(sec => `
+                <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>
+                <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>`).join('');
+            
+            // Eski CTA varsa kaldr, yenisini ekle
+            privSec.querySelectorAll('.faq-cta-card').forEach(el => el.remove());
+            privSec.insertAdjacentHTML('beforeend', ctaHtml);
+        }
+    }
+
+    // Kullanm koullar
+    const termsSec = document.getElementById('panel-terms');
+    if (termsSec && legal.terms) {
+        const dateEl = termsSec.querySelector('.legal-date');
+        if (dateEl && legal.terms.lastUpdated) dateEl.textContent = (lang === 'en' ? `Last updated: ` : `Son güncelleme: `) + legal.terms.lastUpdated;
+        const contentEl = termsSec.querySelector('.legal-content');
+        if (contentEl && legal.terms.content) {
+            contentEl.innerHTML = legal.terms.content.map(sec => `
+                <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>
+                <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>`).join('');
+            
+            // Eski CTA varsa kaldr, yenisini ekle
+            termsSec.querySelectorAll('.faq-cta-card').forEach(el => el.remove());
+            termsSec.insertAdjacentHTML('beforeend', ctaHtml);
+        }
+    }
+}
+
+// --- Tema ---
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = document.getElementById('themeIcon');
+    if (icon) icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+    localStorage.setItem('avs_theme', theme);
+}
+
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+// --- Dil ---
+function applyLang(lang) {
+    if (TRANSLATIONS && Object.keys(TRANSLATIONS).length > 0) {
+        const t = TRANSLATIONS[lang] || TRANSLATIONS['tr'];
+        if (t) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+        }
+    }
+    const label = document.getElementById('langLabel');
+    if (label) label.textContent = lang.toUpperCase();
+    document.documentElement.setAttribute('lang', lang);
+    localStorage.setItem('avs_lang', lang);
+
+    // DNAMK BLMLER F5 YAPMADAN RE-RENDER ET
+    if (window.CURRENT_SITE_DATA) {
+        const isIndex = !!document.querySelector('.slider-container');
+        const isFaq = !!document.querySelector('.faq-list');
+        const isLegal = !!document.getElementById('panel-privacy');
+        const isProjectDetail = !!document.getElementById('pdAppSlider');
+
+        if (isIndex) {
+            initDynamicProjectsList(window.CURRENT_SITE_DATA);
+            initDynamicSocialFeed(window.CURRENT_SITE_DATA);
+        }
+        if (isFaq) initDynamicFaq(window.CURRENT_SITE_DATA);
+        if (isLegal) initDynamicLegal(window.CURRENT_SITE_DATA);
+        if (isProjectDetail && window.CURRENT_PROJECT) {
+            initProjectDetail(window.CURRENT_PROJECT);
+        }
+    }
+}
+
+function toggleLang() {
+    const current = localStorage.getItem('avs_lang') || 'tr';
+    applyLang(current === 'tr' ? 'en' : 'tr');
+}
+
+// Tercihleri annda balat (HTML render aamasnda renk yanp snmesin)
+(function () {
+    const savedTheme = localStorage.getItem('avs_theme') || 'dark';
+    const savedLang = localStorage.getItem('avs_lang') || 'tr';
+    applyTheme(savedTheme);
+    applyLang(savedLang);
+})();
+
+// --- DOM HAZIR OLUNCA ALIACAK TM DNLEYCLER ---
+function initApp() {
+    loadTranslations(); // TRANSLATIONS'i yükle
+    // --- DNAMK VER YKLEME (site-data.json) -------------------------------
+    // Admin panelinden yaplan deiiklikler burada okunur ve sayfalar gncellenir.
+    // Admin paneli sayfasnda bu blok almaz (data-admin-page kontrol).
+    if (!document.documentElement.hasAttribute('data-admin-page')) {
+        const isIndex = !!document.querySelector('.slider-container');
+        if (isIndex) {
+            const listContainer = document.querySelector('.projects-list');
+            if (listContainer) {
+                listContainer.innerHTML = `
+                    <div class="project-oval-box skeleton-box"></div>
+                    <div class="project-oval-box skeleton-box"></div>
+                    <div class="project-oval-box skeleton-box"></div>
+                `;
+            }
+        }
+        loadSiteData().then(data => {
+            if (!data) return; // JSON yoksa statik HTML'e devam et
+            window.CURRENT_SITE_DATA = data;
+
+            // Hangi sayfada olduumuzu anla
+            const isIndex = !!document.querySelector('.slider-container');
+            const isFaq = !!document.querySelector('.faq-list');
+            const isLegal = !!document.getElementById('panel-privacy');
+            const isProjectDetail = !!document.getElementById('pdAppSlider');
+
+            if (isIndex) {
+                initDynamicHeroSlider(data);
+                initDynamicProjectsList(data);
+                initDynamicSocialFeed(data);
+            }
+            if (isFaq) initDynamicFaq(data);
+            if (isLegal) initDynamicLegal(data);
+            
+            if (isProjectDetail && data.projects && data.projects.length > 0) {
+                const params = new URLSearchParams(window.location.search);
+                const projKey = params.get('p') || data.projects[0].slug;
+                const proj = data.projects.find(p => p.slug === projKey || p.id === projKey) || data.projects[0];
+                window.CURRENT_PROJECT = proj;
+                if (proj) initProjectDetail(proj);
+            }
+        });
+    }
+
+    // --- Butonlara Tema/Dil Dinleyicisi ---
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const langToggleBtn = document.getElementById('langToggle');
+    if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+    if (langToggleBtn) langToggleBtn.addEventListener('click', toggleLang);
+
+    // --- erez Banner ---
+    const banner = document.getElementById('cookieBanner');
+    const acceptBtn = document.getElementById('cookieAccept');
+    if (banner && localStorage.getItem('avs_cookie_accepted') !== 'true') {
+        setTimeout(() => banner.classList.add('visible'), 1200);
+        if (acceptBtn) {
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('avs_cookie_accepted', 'true');
+                banner.classList.remove('visible');
+            });
+        }
+    }
+
+    // --- Ana Sayfa Hero Slayt (Statik HTML fallback) ---
+    const staticSlides = document.querySelectorAll('.slide');
+    if (staticSlides.length > 0) {
+        // PERF-3: startHeroSlider ile tek interval  JSON gelince zaten override edilir.
+        startHeroSlider(staticSlides);
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(_heroSlideInterval);
+            } else {
+                startHeroSlider(document.querySelectorAll('.slide'));
+            }
+        });
+    }
+
+    // --- HAMBURGER MOBL MEN ---
+    document.addEventListener('click', e => {
+        const burgerBtn = e.target.closest('.hamburger');
+        if (burgerBtn) {
+            const nav = burgerBtn.parentElement ? burgerBtn.parentElement.querySelector('.nav-links') : document.querySelector('.nav-links');
+            if (nav) {
+                const isOpen = burgerBtn.getAttribute('aria-expanded') === 'true';
+                burgerBtn.classList.toggle('active', !isOpen);
+                nav.classList.toggle('active', !isOpen);
+                burgerBtn.setAttribute('aria-expanded', String(!isOpen));
+            }
+            return;
+        }
+
+        const link = e.target.closest('.nav-links a');
+        if (link) {
+            const nav = link.closest('.nav-links');
+            if (nav) {
+                nav.classList.remove('active');
+                const burger = nav.parentElement ? nav.parentElement.querySelector('.hamburger') : document.querySelector('.hamburger');
+                if (burger) {
+                    burger.classList.remove('active');
+                    burger.setAttribute('aria-expanded', 'false');
+                }
+            }
+        }
+    });
+
+    // --- SCROLL ANMASYONLARI ---
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { root: null, rootMargin: '-50px', threshold: 0.15 });
+
+    // KOD-2: Global kaydedildi  dinamik eklenen kartlar da observe edilebilsin
+    window._scrollObserver = observer;
+    document.querySelectorAll('.scroll-anim').forEach(el => observer.observe(el));
+
+    // --- NAV AKTF SEKSYON TAKB ---
+    const sections = document.querySelectorAll('section[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+    if (sections.length && navAnchors.length) {
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navAnchors.forEach(a => {
+                        a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, { threshold: 0.15 });
+
+        sections.forEach(sec => navObserver.observe(sec));
+    }
+
+    // --- FORM DORULAMA (letiim) ---
+    const contactNameInput = document.getElementById('contactName');
+    const contactEmailInput = document.getElementById('contactEmail');
+    const contactMessageInput = document.getElementById('contactMessage');
+    const nameField = document.getElementById('nameField');
+    const emailField = document.getElementById('emailField');
+    const messageField = document.getElementById('messageField');
+    const nameHint = document.getElementById('nameHint');
+    const emailHint = document.getElementById('emailHint');
+    const messageHint = document.getElementById('messageHint');
+
+    function setFieldState(fieldEl, hintEl, isValid, message) {
+        if (!fieldEl || !hintEl) return;
+        fieldEl.classList.remove('valid', 'invalid');
+        if (isValid === true) fieldEl.classList.add('valid');
+        if (isValid === false) fieldEl.classList.add('invalid');
+        hintEl.textContent = message;
+    }
+
+    function validateName() {
+        if (!contactNameInput) return true;
+        const val = contactNameInput.value.trim();
+        if (val.length === 0) { setFieldState(nameField, nameHint, null, ''); return false; }
+        if (val.length < 2) { setFieldState(nameField, nameHint, false, 'En az 2 karakter giriniz.'); return false; }
+        setFieldState(nameField, nameHint, true, '✓ Güzel!');
+        return true;
+    }
+
+    function validateEmail() {
+        if (!contactEmailInput) return true;
+        const val = contactEmailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (val.length === 0) { setFieldState(emailField, emailHint, null, ''); return false; }
+        if (!emailRegex.test(val)) { setFieldState(emailField, emailHint, false, 'Geçerli bir e-posta adresi girin.'); return false; }
+        setFieldState(emailField, emailHint, true, '✓ E-posta adresi geçerli.');
+        return true;
+    }
+
+    function validateMessage() {
+        if (!contactMessageInput) return true;
+        const val = contactMessageInput.value.trim();
+        if (!messageField || !messageHint) return true;
+        if (val.length === 0) { setFieldState(messageField, messageHint, null, ''); return false; }
+        if (val.length < 5) { setFieldState(messageField, messageHint, false, 'Mesajınızı biraz daha uzun yazın.'); return false; }
+        setFieldState(messageField, messageHint, true, '✓ Hazır!');
+        return true;
+    }
+
+    if (contactNameInput) contactNameInput.addEventListener('input', validateName);
+    if (contactEmailInput) contactEmailInput.addEventListener('input', validateEmail);
+    if (contactMessageInput) contactMessageInput.addEventListener('input', validateMessage);
+
+    // --- DRY MATEMATK CAPTCHA YARDIMCISI ---
+    function setupMathCaptcha({ questionEl, inputEl, iconEl, statusEl, onVerifySuccess }) {
+        let correctAnswer = null;
+        let isVerified = false;
+
+        function generate() {
+            const x = Math.floor(Math.random() * 10) + 1;
+            const y = Math.floor(Math.random() * 10) + 1;
+            correctAnswer = x + y;
+            isVerified = false;
+            if (questionEl) questionEl.textContent = `${x} + ${y} = ?`;
+            if (inputEl) { inputEl.value = ''; inputEl.className = 'math-input'; }
+            if (iconEl) iconEl.textContent = '';
+            if (statusEl) statusEl.textContent = 'Sonucu yazın ve devam edin.';
+        }
+
+        if (inputEl) {
+            inputEl.addEventListener('input', () => {
+                const val = parseInt(inputEl.value, 10);
+                if (inputEl.value === '' || isNaN(val)) {
+                    inputEl.className = 'math-input';
+                    if (iconEl) iconEl.textContent = '';
+                    if (statusEl) statusEl.textContent = 'Sonucu yazın ve devam edin.';
+                    isVerified = false;
+                    return;
+                }
+                if (val === correctAnswer) {
+                    inputEl.className = 'math-input correct';
+                    if (iconEl) { iconEl.textContent = '✓'; iconEl.style.color = '#2ecc71'; }
+                    if (statusEl) statusEl.textContent = '✓ Doğru! Yönlendiriliyorsunuz...';
+                    isVerified = true;
+                    setTimeout(() => { if (onVerifySuccess) onVerifySuccess(); }, 600);
+                } else {
+                    inputEl.className = 'math-input wrong';
+                    if (iconEl) { iconEl.textContent = '✗'; iconEl.style.color = '#e74c3c'; }
+                    if (statusEl) statusEl.textContent = 'Yanlış cevap! Soru yenileniyor...';
+                    isVerified = false;
+                    setTimeout(generate, 800);
+                }
+            });
+        }
+
+        return {
+            generate,
+            reset: () => { isVerified = false; },
+            isVerified: () => isVerified
+        };
+    }
+
+    // --- LETM FORMU & MATEMATK CAPTCHA ---
+    const contactButton = document.getElementById('contactButton');
+    const verificationModal = document.getElementById('verificationModal');
+    const verifyButton = document.getElementById('verifyButton');
+    const cancelButton = document.getElementById('cancelButton');
+    const contactStatus = document.getElementById('contactStatus');
+    const captchaStatus = document.getElementById('captchaStatus');
+    const mathQuestion = document.getElementById('mathQuestion');
+    const mathAnswerInput = document.getElementById('mathAnswer');
+    const mathCheckIcon = document.getElementById('mathCheckIcon');
+
+    const contactCaptcha = setupMathCaptcha({
+        questionEl: mathQuestion,
+        inputEl: mathAnswerInput,
+        iconEl: mathCheckIcon,
+        statusEl: captchaStatus,
+        onVerifySuccess: completeVerification
+    });
+
+    function lockScroll() {
+        document.body.classList.add('modal-open');
+    }
+
+    function unlockScroll() {
+        setTimeout(() => {
+            const hasActiveModal = document.querySelector('.verification-modal.active, .pgallery-overlay.open');
+            if (!hasActiveModal) {
+                document.body.classList.remove('modal-open');
+            }
+        }, 50);
+    }
+
+    function openVerificationModal() {
+        if (!verificationModal) return;
+        contactCaptcha.generate();
+        verificationModal.classList.add('active');
+        verificationModal.setAttribute('aria-hidden', 'false');
+        lockScroll();
+        try { verificationModal.removeAttribute('inert'); } catch (e) { }
+        setTimeout(() => { if (mathAnswerInput) mathAnswerInput.focus(); }, 150);
+    }
+
+    function closeVerificationModal() {
+        if (!verificationModal) return;
+        verificationModal.classList.remove('active');
+        verificationModal.setAttribute('aria-hidden', 'true');
+        unlockScroll();
+        try { verificationModal.setAttribute('inert', ''); } catch (e) { }
+        contactCaptcha.reset();
+    }
+
+    function completeVerification() {
+        closeVerificationModal();
+
+        const name = contactNameInput ? contactNameInput.value.trim() : '';
+        const email = contactEmailInput ? contactEmailInput.value.trim() : '';
+        const message = contactMessageInput ? contactMessageInput.value.trim() : '';
+        const rawEmail = atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==');
+        const subject = encodeURIComponent(`Portfolyo İletişim - ${name}`);
+        const body = encodeURIComponent(`Merhaba,\n\nAdım: ${name}\nE-postam: ${email}\n\nMesajım:\n${message}`);
+        const mailtoUrl = `mailto:${rawEmail}?subject=${subject}&body=${body}`;
+
+        if (contactStatus) {
+            // KOD-3: innerHTML kullan ama onclick YOK  aada addEventListener ile balan
+            contactStatus.innerHTML = `
+                <div class="mail-success-card">
+                    <p class="mail-success-title">✅ Güvenlik Doğrulaması Başarılı!</p>
+                    <p class="mail-success-sub">Mesajınız e-posta istemcinize aktarıldı. Otomatik açılmadıysa aşağıdaki butona basabilir veya adrese doğrudan mail atabilirsiniz:</p>
+                    <div class="mail-success-actions">
+                        <a href="${mailtoUrl}" class="mail-direct-btn">✉️ E-postayı Gönder (${rawEmail})</a>
+                        <button type="button" class="mail-copy-btn" id="mailCopyBtn">📋 Adresi Kopyala</button>
+                    </div>
+                </div>
+            `;
+            // KOD-3: CSP uyumlu event listener  onclick attribute yok
+            const copyBtn = document.getElementById('mailCopyBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(rawEmail).then(() => {
+                        copyBtn.textContent = '✓ Kopyalandı!';
+                        setTimeout(() => { copyBtn.textContent = '📋 Adresi Kopyala'; }, 2000);
+                    }).catch(() => {
+                        copyBtn.textContent = rawEmail; // Fallback: metni göster
+                    });
+                });
+            }
+        }
+
+        try {
+            const mailLink = document.createElement('a');
+            mailLink.href = mailtoUrl;
+            mailLink.style.display = 'none';
+            document.body.appendChild(mailLink);
+            mailLink.click();
+            document.body.removeChild(mailLink);
+        } catch (err) {
+            console.error('Mailto hatası:', err);
+        }
+    }
+
+    if (verifyButton) verifyButton.addEventListener('click', () => { if (contactCaptcha.isVerified()) completeVerification(); else if (captchaStatus) captchaStatus.textContent = 'Lütfen soruyu doğru cevaplayın.'; });
+    if (cancelButton) cancelButton.addEventListener('click', closeVerificationModal);
+    if (verificationModal) verificationModal.addEventListener('click', e => { if (e.target === verificationModal) closeVerificationModal(); });
+
+    if (contactButton) {
+        contactButton.addEventListener('click', () => {
+            const nameOk = validateName();
+            const emailOk = validateEmail();
+            const messageOk = validateMessage();
+
+            if (!nameOk && contactNameInput && contactNameInput.value.trim().length === 0)
+                setFieldState(nameField, nameHint, false, 'Lütfen adınızı girin.');
+            if (!emailOk && contactEmailInput && contactEmailInput.value.trim().length === 0)
+                setFieldState(emailField, emailHint, false, 'Lütfen e-posta adresinizi girin.');
+            if (!messageOk && contactMessageInput && contactMessageInput.value.trim().length === 0)
+                setFieldState(messageField, messageHint, false, 'Lütfen mesajınızı girin.');
+
+            if (nameOk && emailOk && messageOk) openVerificationModal();
+        });
+    }
+
+    // --- BENTO KART TIKLAMALARI VE KLAVYE ERLEBLRL ---
+    document.addEventListener('click', e => {
+        const card = e.target.closest('.bento-card[data-href]');
+        if (card) {
+            if (e.target.closest('.bento-detail-btn')) return;
+            window.location.href = card.dataset.href;
+        }
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            const card = e.target.closest('.bento-card[data-href]');
+            if (card && (e.target === card || e.target.closest('.bento-card') === card)) {
+                if (e.target.closest('.bento-detail-btn')) return;
+                e.preventDefault();
+                window.location.href = card.dataset.href;
+            }
+        }
+    });
+
+    // --- SSS & CHANGELOG AKORDYON ---
+    document.addEventListener('click', e => {
+        const btn = e.target.closest('.faq-question');
+        if (!btn) return;
+
+        const item = btn.closest('.faq-item');
+        if (!item) return;
+
+        const isOpen = item.classList.contains('open');
+        const container = item.closest('.faq-list') || item.parentElement;
+
+        if (container) {
+            container.querySelectorAll('.faq-item.open').forEach(openItem => {
+                if (openItem !== item) openItem.classList.remove('open');
+            });
+        }
+
+        item.classList.toggle('open', !isOpen);
+    });
+
+    // --- YASAL SEKMELER (yasal.html) ---
+    document.querySelectorAll('.legal-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.dataset.tab;
+            document.querySelectorAll('.legal-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.legal-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            const panel = document.getElementById(target);
+            if (panel) panel.classList.add('active');
+        });
+    });
+
+    // --- SOSYAL MEDYA SLIDER ---
+    const smSlider = document.getElementById('smSlider');
+    if (smSlider) {
+        const smSlides = Array.from(smSlider.querySelectorAll('.sm-slide'));
+        const smDotsEl = document.getElementById('smDots');
+        const smDots = smDotsEl ? Array.from(smDotsEl.querySelectorAll('.sm-dot')) : [];
+        const smPrev = document.getElementById('smPrev');
+        const smNext = document.getElementById('smNext');
+        let smCurrent = 0;
+        let smTimer = null;
+
+        if (smSlides[0]) smSlides[0].classList.add('active');
+
+        function smGoTo(idx, direction = 'next') {
+            if (idx === smCurrent) return;
+            const prev = smCurrent;
+            smCurrent = (idx + smSlides.length) % smSlides.length;
+
+            smSlides[prev].classList.add(direction === 'next' ? 'exit-left' : 'exit-right');
+            smSlides[prev].classList.remove('active');
+
+            requestAnimationFrame(() => { smSlides[smCurrent].classList.add('active'); });
+
+            setTimeout(() => {
+                smSlides[prev].classList.remove('exit-left', 'exit-right');
+            }, 560);
+
+            smDots.forEach((d, i) => {
+                d.classList.toggle('active', i === smCurrent);
+                d.setAttribute('aria-selected', String(i === smCurrent));
+            });
+        }
+
+        function smGoNext() { smGoTo((smCurrent + 1) % smSlides.length, 'next'); }
+        function smGoPrev() { smGoTo((smCurrent - 1 + smSlides.length) % smSlides.length, 'prev'); }
+
+        function smStartTimer() {
+            clearInterval(smTimer);
+            smTimer = setInterval(smGoNext, 10000);
+        }
+
+        smStartTimer();
+
+        if (smPrev) smPrev.addEventListener('click', () => { smGoPrev(); smStartTimer(); });
+        if (smNext) smNext.addEventListener('click', () => { smGoNext(); smStartTimer(); });
+        
+        const smContainer = document.querySelector('.sm-slider-container');
+        if (smContainer) {
+            addSwipeListener(smContainer, 
+                () => { smGoNext(); smStartTimer(); }, 
+                () => { smGoPrev(); smStartTimer(); }
+            );
+        }
+
+        smDots.forEach((dot, i) => {
+            dot.addEventListener('click', () => { smGoTo(i, i > smCurrent ? 'next' : 'prev'); smStartTimer(); });
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) clearInterval(smTimer);
+            else smStartTimer();
+        });
+    }
+
+    // --- PROJE DETAY SAYFASI DNAMK VER HARTASI ---
+function initProjectDetail(proj) {
+    if (!proj) return;
+    window.CURRENT_PROJECT = proj;
+    const lang = localStorage.getItem('avs_lang') || 'tr';
+    const detail = proj.detail || {};
+
+    const name = lang === 'en' ? (proj.nameEN || proj.name || 'Project Details') : (proj.name || 'Proje Detayları');
+    const desc = lang === 'en' ? (proj.shortDescEN || proj.shortDesc || '') : (proj.shortDesc || '');
+
+    // Title & Breadcrumb
+    document.title = `${name} | AVS&V9`;
+    const bc = document.getElementById('pdBreadcrumbName');
+    if (bc) bc.textContent = name;
+
+    // Header Name
+    const pdTitle = document.getElementById('pdAppName');
+    if (pdTitle) pdTitle.textContent = name;
+
+    // Logo
+    const logoEl = document.getElementById('pdAppLogo');
+    if (logoEl) {
+        logoEl.src = detail.logo || proj.logo || 'resimler/uygulama_logo.png';
+        logoEl.alt = name;
+    }
+
+    // Stats
+    const dlEl = document.getElementById('pdDownloads');
+    if (dlEl) dlEl.textContent = detail.downloads || 'N/A';
+
+    const ratingEl = document.getElementById('pdRating');
+    if (ratingEl) ratingEl.textContent = detail.rating || 'N/A';
+
+    const ageEl = document.getElementById('pdAgeRating');
+    if (ageEl) ageEl.textContent = detail.ageRating || detail.age || '3+';
+
+    // Status Badges
+    const badgeContainer = document.getElementById('pdStatusBadgeContainer');
+    if (badgeContainer) {
+        let statuses = proj.statuses || (proj.status ? [proj.status] : []);
+        let trStatus = detail.statusText || proj.statusText || '';
+        let enStatus = detail.statusTextEN || proj.statusTextEN || '';
+        
+        badgeContainer.innerHTML = statuses.map(s => {
+            let cls = 'pd-status-badge';
+            if (s === 'inactive' || s === 'discontinued') cls += ' inactive';
+            else if (s === 'wip' || s === 'paused' || s === 'waiting' || s === 'research' || s === 'development') cls += ' wip';
+            let text = '';
+            if (trStatus && statuses.length === 1 && s === proj.status) {
+                text = lang === 'en' ? enStatus : trStatus;
+            } else {
+                text = getStatusTag(s).text;
+            }
+            return `<div class="${cls}"><span>${escapeHTML(text)}</span></div>`;
+        }).join('');
+    }
+
+    // Android & Play Store Visibility
+    const isAndroid = detail.isAndroid !== false; // Default true unless explicitly false
+    const playStoreUrl = detail.playStoreUrl || proj.playUrl || '';
+    const hasPlayUrl = playStoreUrl && playStoreUrl !== '#' && playStoreUrl.trim().length > 0;
+
+    const plinkEl = document.getElementById('pdPlayStoreLink');
+    if (plinkEl) {
+        if (isAndroid && hasPlayUrl) {
+            plinkEl.style.display = 'inline-flex';
+            plinkEl.href = playStoreUrl;
+        } else {
+            plinkEl.style.display = 'none';
+        }
+    }
+
+    // Store Stats Bar (Hide if not Android & no downloads)
+    const storeStats = document.querySelector('.pd-store-stats');
+    if (storeStats) {
+        if (!isAndroid && !detail.downloads && !detail.rating) {
+            storeStats.style.display = 'none';
+        } else {
+            storeStats.style.display = 'flex';
+        }
+    }
+
+    // System Requirements & Permissions Grid
+    const reqGrid = document.querySelector('.pd-req-grid');
+    if (reqGrid) {
+        if (isAndroid) {
+            reqGrid.style.display = 'grid';
+        } else {
+            reqGrid.style.display = 'none';
+        }
+    }
+
+    const minEl = document.getElementById('pdMinAndroid');
+    if (minEl) minEl.textContent = detail.minAndroid || 'Android 8.0+';
+
+    const sizeEl = document.getElementById('pdAppSize');
+    if (sizeEl) sizeEl.textContent = detail.appSize || proj.size || '~15 MB';
+
+    const permEl = document.getElementById('pdPermList');
+    const permsArr = detail.permissions || proj.perms || [];
+    if (permEl) {
+        if (permsArr.length > 0) {
+            permEl.innerHTML = permsArr.map(p => `<span class="pd-tag">📌 ${escapeHTML(p)}</span>`).join('');
+        } else {
+            permEl.innerHTML = `<span class="pd-tag">${lang === 'en' ? 'No special permissions required' : 'Özel izin gerektirmez'}</span>`;
+        }
+    }
+
+    // Description (Hakknda)
+    const descEl = document.getElementById('pdDescription');
+    let rawDesc = (lang === 'en' && detail.descriptionEN && detail.descriptionEN.length) ? detail.descriptionEN : (detail.description && detail.description.length ? detail.description : desc);
+    if (typeof rawDesc === 'string') {
+        rawDesc = rawDesc.split('\n\n').map(s => s.trim()).filter(Boolean);
+    }
+    if (descEl) {
+        if (Array.isArray(rawDesc) && rawDesc.length > 0) {
+            descEl.innerHTML = rawDesc.map(p => `<p>${escapeHTML(p)}</p>`).join('');
+        } else {
+            descEl.innerHTML = `<p>${escapeHTML(desc)}</p>`;
+        }
+    }
+
+    // Changelog
+    const changelogEl = document.getElementById('pdChangelog');
+    const clData = detail.changelog || [];
+    if (changelogEl) {
+        if (clData && clData.length > 0) {
+            changelogEl.innerHTML = clData.map(c => {
+                const cTitle = lang === 'en' && c.titleEN ? c.titleEN : (c.title || '');
+                const features = lang === 'en' && c.featuresEN ? c.featuresEN : (c.features || []);
+                const fixes = lang === 'en' && c.fixesEN ? c.fixesEN : (c.fixes || []);
+                const featStr = features.length ? `<p class="cl-subtitle">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
+                const bugStr = fixes.length ? `<p class="cl-subtitle">🐛 ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
+                return `
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>${escapeHTML(c.version || '')} ${cTitle ? '- ' + escapeHTML(cTitle) : ''}</span>
+                        <span class="cl-date">${escapeHTML(c.date || '')}</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            ${featStr}
+                            ${bugStr}
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        } else {
+            changelogEl.innerHTML = `<p style="color:var(--text-secondary); padding: 12px 0;">${lang === 'en' ? 'No release history published for this project yet.' : 'Bu proje için henüz sürüm geçmişi yayınlanmadı.'}</p>`;
+        }
+    }
+
+    // Screenshots / Slider
+    const pdAppSlider = document.getElementById('pdAppSlider');
+    const slides = detail.screenshots || proj.slides || [];
+    if (pdAppSlider && slides && slides.length > 0) {
+        pdAppSlider.innerHTML = slides.map((src, i) =>
+            `<div class="pd-app-slide${i === 0 ? ' active' : ''}">
+               <img src="${src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}">
+             </div>`
+        ).join('');
+    }
+}
+
+    // --- Proje Detay Feedback / E-posta Gnderimi (pdSendBtn) ---
+    const pdSendBtn = document.getElementById('pdSendBtn');
+    const pdVerifyModal = document.getElementById('pdVerifyModal');
+    const pdMathQ = document.getElementById('pdMathQ');
+    const pdMathA = document.getElementById('pdMathA');
+    const pdMathIcon = document.getElementById('pdMathIcon');
+    const pdCapStatus = document.getElementById('pdCaptchaStatus');
+    const pdVerifyBtn = document.getElementById('pdVerifyBtn');
+    const pdCancelBtn = document.getElementById('pdCancelBtn');
+    const pdStatus = document.getElementById('pdStatus');
+
+    const pdCaptcha = setupMathCaptcha({
+        questionEl: pdMathQ,
+        inputEl: pdMathA,
+        iconEl: pdMathIcon,
+        statusEl: pdCapStatus,
+        onVerifySuccess: completePdVerify
+    });
+
+    function closePdModal() {
+        if (!pdVerifyModal) return;
+        pdVerifyModal.classList.remove('active');
+        pdVerifyModal.setAttribute('aria-hidden', 'true');
+        unlockScroll();
+        try { pdVerifyModal.setAttribute('inert', ''); } catch (e) { }
+        pdCaptcha.reset();
+    }
+
+    function completePdVerify() {
+        closePdModal();
+        const name = document.getElementById('pdName')?.value.trim() || 'İsimsiz';
+        const email = document.getElementById('pdEmail')?.value.trim() || '';
+        const subj = document.getElementById('pdSubject')?.value || 'diğer';
+        const msg = document.getElementById('pdMessage')?.value.trim() || '';
+
+        const mailtoUrl = `mailto:${atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==')}?subject=${encodeURIComponent(`[AVS&V9 - ${subj.toUpperCase()}] ${name}`)}&body=${encodeURIComponent(`Gönderen: ${name}\nE-posta: ${email}\n\nMesaj:\n${msg}`)}`;
+        window.location.href = mailtoUrl;
+
+        if (pdStatus) {
+            pdStatus.style.display = 'block';
+            pdStatus.innerHTML = `
+                <div style="background: rgba(0,173,181,0.08); border: 1px solid var(--accent-color); border-radius: 16px; padding: 16px; margin-top: 14px; text-align: left;">
+                    <p style="margin: 0 0 8px; color: var(--accent-color); font-weight: 700;">✓ E-posta istemciniz açıldı!</p>
+                    <p style="margin: 0 0 8px; font-size: 0.85rem; color: var(--text-secondary);">Açılmadıysa doğrudan e-posta atabilirsiniz: <strong>${atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==')}</strong></p>
+                    <button type="button" id="copyPdMailBtn" class="bento-detail-btn" style="font-size: 0.78rem; padding: 5px 12px;">📋 E-postayı Kopyala</button>
+                </div>
+            `;
+            const copyBtn = document.getElementById('copyPdMailBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ=='));
+                    copyBtn.textContent = '✓ Kopyalandı!';
+                    setTimeout(() => { copyBtn.textContent = '📋 E-postayı Kopyala'; }, 2000);
+                });
+            }
+        }
+    }
+
+    if (pdSendBtn) {
+        pdSendBtn.addEventListener('click', () => {
+            const name = document.getElementById('pdName')?.value.trim();
+            const email = document.getElementById('pdEmail')?.value.trim();
+            const msg = document.getElementById('pdMessage')?.value.trim();
+
+            if (!name || !email || !msg) {
+                if (pdStatus) {
+                    pdStatus.style.display = 'block';
+                    pdStatus.innerHTML = `<span style="color: #e74c3c;">Lütfen tüm gerekli alanları (Ad, E-posta, Mesaj) doldurun.</span>`;
+                }
+                return;
+            }
+
+            if (!pdVerifyModal) return;
+            pdCaptcha.generate();
+            pdVerifyModal.classList.add('active');
+            pdVerifyModal.setAttribute('aria-hidden', 'false');
+            lockScroll();
+            try { pdVerifyModal.removeAttribute('inert'); } catch (e) { }
+            setTimeout(() => { if (pdMathA) pdMathA.focus(); }, 150);
+        });
+    }
+
+    if (pdCancelBtn) pdCancelBtn.addEventListener('click', closePdModal);
+    if (pdVerifyBtn) {
+        pdVerifyBtn.addEventListener('click', () => {
+            if (pdCaptcha.isVerified()) completePdVerify();
+            else if (pdCapStatus) pdCapStatus.textContent = 'Lütfen soruyu doğru cevaplayın.';
+        });
+    }
+
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
 
 // --- GLOBAL DELEGATED CLICK LISTENERS (BLSEL BAIMSIZLIK) ----------------
+document.addEventListener('click', e => {
+    const themeBtn = e.target.closest('#themeToggle');
+    if (themeBtn) {
+        toggleTheme();
+        return;
+    }
+    const langBtn = e.target.closest('#langToggle');
+    if (langBtn) {
+        toggleLang();
+        return;
+    }
+    const legalTabBtn = e.target.closest('.legal-tab-btn');
+    if (legalTabBtn) {
+        const target = legalTabBtn.dataset.tab;
+        document.querySelectorAll('.legal-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.legal-panel').forEach(p => p.classList.remove('active'));
+        legalTabBtn.classList.add('active');
+        const panel = document.getElementById(target);
+        if (panel) panel.classList.add('active');
+        return;
+});
+
+
+// --- RECOVERED FUNCTIONS ---
 
