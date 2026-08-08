@@ -626,20 +626,20 @@ function initModals() {
     // Srm Modal
     document.getElementById('addChangelogBtn')?.addEventListener('click', () => openAddChangelogModal());
     document.getElementById('changelogModalCancel')?.addEventListener('click', () => closeModal('changelogModal'));
-    document.getElementById('changelogModalSave')?.addEventListener('click', saveChangelogModal);
+    // document.getElementById('changelogModalSave')?.addEventListener('click', saveChangelogModal);
 
     // SSS Madde Modal
     document.getElementById('faqItemCancel')?.addEventListener('click', () => closeModal('faqItemModal'));
-    document.getElementById('faqItemSave')?.addEventListener('click', saveFaqItemModal);
+    // document.getElementById('faqItemSave')?.addEventListener('click', saveFaqItemModal); // Handled by global listener at EOF
 
     // SSS Kategori Ekle
-    document.getElementById('addFaqCatBtn')?.addEventListener('click', addFaqCategory);
+    // document.getElementById('addFaqCatBtn')?.addEventListener('click', addFaqCategory); // Handled by global listener at EOF
 
     // Detay Kaydet
     document.getElementById('saveDetailBtn')?.addEventListener('click', saveProjectDetail);
     document.getElementById('saveFaqBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('saveLegalBtn')?.addEventListener('click', saveAllToGitHub);
-    document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts);
+    // document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts); // Handled by global listener at EOF
     document.getElementById('pmAddStatusBtn')?.addEventListener('click', () => createStatusSelect('pmStatusContainer'));
 
     // Yasal Bugn butonlar
@@ -846,7 +846,7 @@ function renderScreenshots(screenshots) {
     onload="this.parentElement.className = 'screenshot-item ' + (this.naturalWidth > this.naturalHeight ? 'landscape' : this.naturalWidth === this.naturalHeight ? 'square' : '');"
     style="cursor:zoom-in;" onclick="openLightbox('${src}')"
 >
-    <button class="ss-del-btn" data-idx="${i}" title="Sil">â</button>
+    <button class="ss-del-btn" data-idx="${i}" title="Sil">✖</button>
 </div>
 `).join('');
     grid.querySelectorAll('.ss-del-btn').forEach(btn => {
@@ -907,6 +907,9 @@ function loadProjectDetails(id) {
     document.getElementById('detailName').value = proj.name || '';
     document.getElementById('detailNameEN').value = proj.nameEN || '';
     document.getElementById('detailThumbnail').value = proj.thumbnail || '';
+    
+    const wrap = document.getElementById('detailEditorWrap');
+    if (wrap) wrap.style.display = 'block';
 
     const d = proj.detail || {};
     document.getElementById('detailSize').value = d.appSize || '';
@@ -1105,20 +1108,21 @@ function renderSocialFeedAdmin() {
     const list = document.getElementById('socialAdminList');
     if (!list || !siteData) return;
     const lable = document.getElementById('socialLastUpdatedLabel');
-    if (lable) lable.textContent = siteData.socialLastUpdated || '-';
+    if (lable) lable.textContent = (siteData.socialFeed && siteData.socialFeed.lastUpdated) ? siteData.socialFeed.lastUpdated : '-';
 
-    if (!siteData.socialFeed || siteData.socialFeed.length === 0) {
+    if (!siteData.socialFeed || !siteData.socialFeed.posts || siteData.socialFeed.posts.length === 0) {
         list.innerHTML = '<p>Hiç sosyal medya gönderisi yok.</p>';
         return;
     }
     let html = '';
-    siteData.socialFeed.forEach((post, idx) => {
+    siteData.socialFeed.posts.forEach((post, idx) => {
         html += `
     <div class="social-post-item" style="border:1px solid #444; padding:10px; margin-bottom:10px; border-radius:5px; display:flex; align-items:center;">
-        <img src="${post.image}" style="width:80px; height:80px; object-fit:cover; margin-right:15px; border-radius:5px;" />
+        <img src="${post.thumbnail || ''}" style="width:80px; height:80px; object-fit:cover; margin-right:15px; border-radius:5px;" />
         <div style="flex:1;">
-            <p style="margin:0 0 5px 0;">${post.text}</p>
-            <small style="color:#aaa;">Platform: ${post.platform} | Tarih: ${post.date} | URL: <a href="${post.url}" target="_blank" style="color:#3498db;">${post.url}</a></small>
+            <p style="margin:0 0 5px 0;"><strong>${post.title || ''}</strong></p>
+            <p style="margin:0 0 5px 0; font-size: 0.9em; color: #ccc;">${post.description || ''}</p>
+            <small style="color:#aaa;">Platform: ${post.platformName || post.platform} | Tarih: ${post.date} | URL: <a href="${post.postUrl || ''}" target="_blank" style="color:#3498db;">${post.postUrl || ''}</a></small>
         </div>
         <button class="admin-btn" style="background:#e74c3c; margin-left:10px;" onclick="deleteSocialPost(${idx})">Sil</button>
     </div>`;
@@ -1128,7 +1132,7 @@ function renderSocialFeedAdmin() {
 
 window.deleteSocialPost = function (idx) {
     if (confirm('Silmek istediğinize emin misiniz?')) {
-        siteData.socialFeed.splice(idx, 1);
+        siteData.socialFeed.posts.splice(idx, 1);
         markDirty();
         renderSocialFeedAdmin();
     }
