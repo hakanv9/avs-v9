@@ -623,23 +623,23 @@ function initModals() {
     document.getElementById('projectModalCancel')?.addEventListener('click', () => closeModal('projectModal'));
     document.getElementById('projectModalSave')?.addEventListener('click', saveProjectModal);
 
-    // Srm Modal
+    // Sürüm Modal
     document.getElementById('addChangelogBtn')?.addEventListener('click', () => openAddChangelogModal());
     document.getElementById('changelogModalCancel')?.addEventListener('click', () => closeModal('changelogModal'));
-    // document.getElementById('changelogModalSave')?.addEventListener('click', saveChangelogModal);
+    document.getElementById('changelogModalSave')?.addEventListener('click', saveChangelogModal);
 
     // SSS Madde Modal
     document.getElementById('faqItemCancel')?.addEventListener('click', () => closeModal('faqItemModal'));
-    // document.getElementById('faqItemSave')?.addEventListener('click', saveFaqItemModal); // Handled by global listener at EOF
+    document.getElementById('faqItemSave')?.addEventListener('click', saveFaqItemModal); 
 
     // SSS Kategori Ekle
-    // document.getElementById('addFaqCatBtn')?.addEventListener('click', addFaqCategory); // Handled by global listener at EOF
+    document.getElementById('addFaqCatBtn')?.addEventListener('click', addFaqCategory); 
 
     // Detay Kaydet
     document.getElementById('saveDetailBtn')?.addEventListener('click', saveProjectDetail);
     document.getElementById('saveFaqBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('saveLegalBtn')?.addEventListener('click', saveAllToGitHub);
-    // document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts); // Handled by global listener at EOF
+    document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts); 
     document.getElementById('pmAddStatusBtn')?.addEventListener('click', () => createStatusSelect('pmStatusContainer'));
 
     // Yasal Bugn butonlar
@@ -812,7 +812,7 @@ function renderDetailProjectSelector() {
 }
 
 function saveProjectDetail() {
-    if (!currentProjectId) { adminToast('Ãnce bir proje seçin.', 'warning'); return; }
+    if (!currentProjectId) { adminToast('Önce bir proje seçin.', 'warning'); return; }
     const proj = siteData.projects.find(p => p.id === currentProjectId);
     if (!proj) return;
 
@@ -820,6 +820,7 @@ function saveProjectDetail() {
     proj.nameEN = document.getElementById('detailNameEN').value.trim();
     proj.thumbnail = document.getElementById('detailThumbnail').value.trim();
 
+    if (!proj.detail) proj.detail = {};
     const d = proj.detail;
     d.appSize = document.getElementById('detailSize').value.trim();
     d.ageRating = document.getElementById('detailAgeRating').value.trim();
@@ -939,9 +940,13 @@ function loadProjectDetails(id) {
             c.classList.toggle('selected', c.dataset.id === id);
         });
     }
+
+    if (typeof renderChangelogsAdmin === 'function') {
+        renderChangelogsAdmin(id);
+    }
 }
 
-function moveProject(id, dir) {
+window.moveProject = function(id, dir) {
     if (!siteData || !siteData.projects) return;
     
     // Ensure all items have an order first
@@ -968,20 +973,93 @@ function moveProject(id, dir) {
     }
 }
 
-function openAddChangelogModal(projId) {
-    currentProjectId = projId;
-    const modal = document.getElementById('changelogModal');
-    if (modal) {
-        document.getElementById('changelogModalTitle').textContent = "Yeni Güncelleme Notu Ekle";
-        document.getElementById('changelogVersion').value = '';
-        document.getElementById('changelogDate').value = new Date().toISOString().split('T')[0];
-        document.getElementById('changelogDescTR').value = '';
-        document.getElementById('changelogDescEN').value = '';
-        modal.style.display = 'flex';
+function openAddChangelogModal(projId = null) {
+    if (projId) currentProjectId = projId;
+    if (!currentProjectId) { adminToast('Lütfen önce sol taraftan bir proje seçin.', 'warning'); return; }
+    
+    document.getElementById('changelogModalTitle').textContent = "Yeni Sürüm Ekle";
+    document.getElementById('clVersion').value = '';
+    document.getElementById('clDate').value = new Date().toISOString().split('T')[0];
+    document.getElementById('clType').value = 'minor';
+    document.getElementById('clNotes').value = '';
+    
+    openModal('changelogModal');
+}
+
+function saveChangelogModal() {
+    if (!currentProjectId) return;
+    const proj = siteData.projects.find(p => p.id === currentProjectId);
+    if (!proj) return;
+    
+    if (!proj.detail) proj.detail = {};
+    if (!proj.detail.changelog) proj.detail.changelog = [];
+    
+    const version = document.getElementById('clVersion').value.trim();
+    const date = document.getElementById('clDate').value;
+    const type = document.getElementById('clType').value;
+    const notesStr = document.getElementById('clNotes').value.trim();
+    
+    if (!version) { adminToast('Versiyon no zorunludur.', 'error'); return; }
+    
+    const notesArr = notesStr.split('\n').map(s => s.trim()).filter(Boolean);
+    
+    const isFix = type === 'fix';
+    
+    const newLog = {
+        version,
+        date,
+        type, 
+        features: isFix ? [] : notesArr,
+        fixes: isFix ? notesArr : []
+    };
+    
+    proj.detail.changelog.unshift(newLog); 
+    markDirty();
+    renderChangelogsAdmin(currentProjectId);
+    closeModal('changelogModal');
+    adminToast('Yeni sürüm eklendi. Kaydetmeyi unutmayın.', 'success');
+}
+
+window.deleteChangelog = function(projId, index) {
+    if (!siteData || !siteData.projects) return;
+    const proj = siteData.projects.find(p => p.id === projId);
+    if (!proj || !proj.detail || !proj.detail.changelog) return;
+    
+    if (confirm('Bu sürümü silmek istediğinize emin misiniz?')) {
+        proj.detail.changelog.splice(index, 1);
+        markDirty();
+        renderChangelogsAdmin(projId);
+        adminToast('Sürüm notu silindi.', 'success');
     }
 }
 
-function moveSliderImage(idx, dir) {
+function renderChangelogsAdmin(projId) {
+    const list = document.getElementById('changelogList');
+    if (!list) return;
+    
+    const proj = siteData.projects.find(p => p.id === projId);
+    if (!proj || !proj.detail || !proj.detail.changelog || proj.detail.changelog.length === 0) {
+        list.innerHTML = '<p style="color:var(--text-secondary); padding:10px;">Henüz sürüm geçmişi eklenmemiş.</p>';
+        return;
+    }
+    
+    list.innerHTML = proj.detail.changelog.map((c, i) => {
+        const feats = (c.features || []).map(f => `<li>${f}</li>`).join('');
+        const fixes = (c.fixes || []).map(f => `<li>${f}</li>`).join('');
+        return `
+            <div style="background:var(--surface-color); border:1px solid var(--border-color); border-radius:8px; padding:12px; margin-bottom:10px; display:flex; justify-content:space-between;">
+                <div>
+                    <h4 style="margin:0 0 8px; color:var(--text-primary);">${c.version} <span style="font-size:12px; color:var(--text-secondary); margin-left:8px;">${c.date || ''}</span></h4>
+                    ${feats ? `<ul style="margin:0; padding-left:16px; color:var(--text-secondary); font-size:14px;">${feats}</ul>` : ''}
+                    ${fixes ? `<ul style="margin:4px 0 0 0; padding-left:16px; color:var(--text-secondary); font-size:14px;">${fixes}</ul>` : ''}
+                </div>
+                <button class="admin-btn admin-btn-danger admin-btn-sm" onclick="deleteChangelog('${projId}', ${i})" style="height:32px;">Sil</button>
+            </div>
+        `;
+    }).join('');
+}
+
+window.moveSliderImage = function(idx, dir) {
     if (!siteData || !siteData.heroSlider) return;
     const arr = siteData.heroSlider;
     

@@ -1606,6 +1606,9 @@ function initApp() {
         const ageEl = document.getElementById('pdAgeRating');
         if (ageEl) ageEl.textContent = detail.ageRating || detail.age || '3+';
 
+        // Android & Play Store Visibility
+        const isAndroid = detail.isAndroid !== false; // Default true unless explicitly false
+
         // Status Badges
         const badgeContainer = document.getElementById('pdStatusBadgeContainer');
         if (badgeContainer) {
@@ -1627,8 +1630,6 @@ function initApp() {
             }).join('');
         }
 
-        // Android & Play Store Visibility
-        const isAndroid = detail.isAndroid !== false; // Default true unless explicitly false
         const playStoreUrl = detail.playStoreUrl || proj.playUrl || '';
         const hasPlayUrl = playStoreUrl && playStoreUrl !== '#' && playStoreUrl.trim().length > 0;
 
@@ -1645,7 +1646,7 @@ function initApp() {
         // Store Stats Bar (Hide if not Android & no downloads)
         const storeStats = document.querySelector('.pd-store-stats');
         if (storeStats) {
-            if (!isAndroid && !detail.downloads && !detail.rating) {
+            if (!isAndroid) {
                 storeStats.style.display = 'none';
             } else {
                 storeStats.style.display = 'flex';
@@ -1655,9 +1656,12 @@ function initApp() {
         // System Requirements & Permissions Grid
         const reqGrid = document.querySelector('.pd-req-grid');
         if (reqGrid) {
+            const reqSection = reqGrid.closest('.pd-section');
             if (isAndroid) {
+                if (reqSection) reqSection.style.display = 'block';
                 reqGrid.style.display = 'grid';
             } else {
+                if (reqSection) reqSection.style.display = 'none';
                 reqGrid.style.display = 'none';
             }
         }
