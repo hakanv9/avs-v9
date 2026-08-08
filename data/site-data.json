@@ -306,7 +306,17 @@
         ],
         "permissions": [],
         "screenshots": [],
-        "changelog": []
+        "changelog": [
+          {
+            "version": "v0.01",
+            "date": "2026-08-08",
+            "type": "minor",
+            "features": [
+              "test deneme"
+            ],
+            "fixes": []
+          }
+        ]
       }
     }
   ],
