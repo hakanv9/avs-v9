@@ -1131,7 +1131,14 @@ function initApp() {
             if (isProjectDetail && data.projects && data.projects.length > 0) {
                 const params = new URLSearchParams(window.location.search);
                 const projKey = params.get('p') || data.projects[0].slug;
-                const proj = data.projects.find(p => p.slug === projKey || p.id === projKey) || data.projects[0];
+                const proj = data.projects.find(p => p.slug === projKey || p.id === projKey);
+                if (!proj) {
+                    const mainArea = document.querySelector('.pd-main');
+                    if (mainArea) {
+                        mainArea.innerHTML = '<div style="text-align:center; padding:100px 20px;"><h2 style="color:var(--text-primary); margin-bottom:10px;">Proje Bulunamadı veya Henüz Yüklenmedi</h2><p style="color:var(--text-secondary); line-height:1.6;">Bu projenin verileri henüz sunucuya yansımamış olabilir. Lütfen 1-2 dakika sonra sayfayı yenileyin.</p></div>';
+                    }
+                    return;
+                }
                 window.CURRENT_PROJECT = proj;
                 if (proj) initProjectDetail(proj);
             }

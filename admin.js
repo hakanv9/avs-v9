@@ -250,6 +250,9 @@ let editingFaqCatId = null;
 let editingFaqItemId = null;
 let editingLegalId = null;
 
+let _sliderSortable = null;
+let _projectSortable = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     const session = loadSession();
     if (session) {
@@ -488,7 +491,8 @@ function renderSliderSection() {
     }
 
     if (typeof Sortable !== 'undefined') {
-        Sortable.create(grid, {
+        if (window._sliderSortable) window._sliderSortable.destroy();
+        window._sliderSortable = Sortable.create(grid, {
             animation: 150,
             onEnd: function () {
                 const items = Array.from(grid.children);
@@ -498,7 +502,7 @@ function renderSliderSection() {
                 });
                 siteData.heroSlider.sort((a, b) => (a.order || 0) - (b.order || 0));
                 markDirty();
-                renderSliderSection();
+                setTimeout(() => renderSliderSection(), 10);
             }
         });
     }
@@ -591,7 +595,8 @@ function renderProjectList() {
     });
 
     if (typeof Sortable !== 'undefined') {
-        Sortable.create(list, {
+        if (window._projectSortable) window._projectSortable.destroy();
+        window._projectSortable = Sortable.create(list, {
             animation: 150,
             onEnd: function () {
                 const items = Array.from(list.children);
@@ -601,6 +606,7 @@ function renderProjectList() {
                 });
                 siteData.projects.sort((a, b) => (a.order || 0) - (b.order || 0));
                 markDirty();
+                setTimeout(() => renderProjectList(), 10);
             }
         });
     }
@@ -669,18 +675,24 @@ function initModals() {
 }
 
 function openAddProjectModal() {
-    document.getElementById('projectModalTitle').textContent = 'Yeni Proje Ekle';
-    document.getElementById('pmName').value = '';
-    document.getElementById('pmNameEN').value = '';
-    document.getElementById('pmDesc').value = '';
-    document.getElementById('pmSlug').value = '';
-    document.getElementById('pmStatusContainer').innerHTML = ''; createStatusSelect('pmStatusContainer', 'development');
-    document.getElementById('pmTags').value = '';
-    document.getElementById('pmThumbnail').value = '';
-    document.getElementById('pmThumbnailFile').value = '';
-    document.getElementById('projectModalSave').dataset.mode = 'add';
-    delete document.getElementById('projectModalSave').dataset.editId;
-    openModal('projectModal');
+    try {
+        document.getElementById('projectModalTitle').textContent = 'Yeni Proje Ekle';
+        document.getElementById('pmName').value = '';
+        document.getElementById('pmNameEN').value = '';
+        document.getElementById('pmDesc').value = '';
+        document.getElementById('pmSlug').value = '';
+        document.getElementById('pmStatusContainer').innerHTML = ''; 
+        createStatusSelect('pmStatusContainer', 'development');
+        document.getElementById('pmTags').value = '';
+        document.getElementById('pmThumbnail').value = '';
+        document.getElementById('pmThumbnailFile').value = '';
+        document.getElementById('projectModalSave').dataset.mode = 'add';
+        document.getElementById('projectModalSave').removeAttribute('data-edit-id');
+        openModal('projectModal');
+    } catch (e) {
+        console.error('Proje ekleme penceresi hatası:', e);
+        adminToast('Proje penceresi açılırken hata oluştu.', 'error');
+    }
 }
 
 function openEditProjectModal(id) {
@@ -945,6 +957,8 @@ function loadProjectDetails(id) {
     document.getElementById('detailAgeRating').value = d.ageRating || '';
     document.getElementById('detailLogo').value = d.logo || '';
     document.getElementById('detailIsAndroid').checked = !!d.isAndroid;
+    const playStoreFields = document.getElementById('playStoreFields');
+    if (playStoreFields) playStoreFields.style.display = !!d.isAndroid ? 'block' : 'none';
     document.getElementById('detailDownloads').value = d.downloads || '';
     document.getElementById('detailRating').value = d.rating || '';
     document.getElementById('detailMinAndroid').value = d.minAndroid || '';
