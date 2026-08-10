@@ -87,6 +87,42 @@
           }
         ]
       }
+    },
+    {
+      "id": "test2-msn5c7en",
+      "slug": "test2",
+      "name": "test2",
+      "nameEN": "test2",
+      "shortDesc": "test2kısa",
+      "shortDescEN": "test2kısa",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [],
+      "status": "development",
+      "statuses": [
+        "development"
+      ],
+      "order": 2,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "test2kısa"
+        ],
+        "descriptionEN": [
+          "test2kısa"
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": []
+      }
     }
   ],
   "faq": [
