@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Delegation for dynamically generated or late-bound elements
     document.addEventListener('click', (e) => {
-        if (e.target && e.target.id === 'pmAddStatusBtn') {
+        if (e.target && e.target.closest('#pmAddStatusBtn')) {
             if (typeof createStatusSelect === 'function') {
                 createStatusSelect('pmStatusContainer');
             }

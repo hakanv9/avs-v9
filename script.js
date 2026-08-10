@@ -782,7 +782,7 @@ async function loadTranslations() {
 // PERF-5: ?v=Date.now() kaldrld  vercel.json'daki no-cache header ile ETag tabantl dorulama yaplr.
 async function loadSiteData() {
     try {
-        const res = await fetch('data/site-data.json', { cache: 'no-cache' });
+        const res = await fetch(`data/site-data.json?t=${Date.now()}`, { cache: 'no-cache' });
         if (res.ok) {
             let text = await res.text();
             if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
