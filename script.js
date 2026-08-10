@@ -25,25 +25,25 @@ window.EMBEDDED_SITE_DATA = {
     "heroSlider": [
         {
             "id": "slide-1",
-            "src": "resimler/anasayfa-hosgeldin-resmi1.jpg",
+            "src": "resimler/anasayfa-hosgeldin-resmi1.webp",
             "alt": "Hoşgeldin 1",
             "order": 1
         },
         {
             "id": "slide-2",
-            "src": "resimler/anasayfa-hosgeldin-resmi2.jpg",
+            "src": "resimler/anasayfa-hosgeldin-resmi2.webp",
             "alt": "Hoşgeldin 2",
             "order": 2
         },
         {
             "id": "slide-3",
-            "src": "resimler/anasayfa-hosgeldin-resmi3.jpg",
+            "src": "resimler/anasayfa-hosgeldin-resmi3.webp",
             "alt": "Hoşgeldin 3",
             "order": 3
         },
         {
             "id": "slide-4",
-            "src": "resimler/anasayfa-hosgeldin-resmi4.jpg",
+            "src": "resimler/anasayfa-hosgeldin-resmi4.webp",
             "alt": "Hoşgeldin 4",
             "order": 4
         }
@@ -56,7 +56,7 @@ window.EMBEDDED_SITE_DATA = {
             "nameEN": "V9 Courier App",
             "shortDesc": "Gerçek zamanlı harita takibi, akıllı rota yönetimi ve anlık bildirimler ile kuryelerin teslimat süreçlerini uçtan uca yöneten mobil uygulama.",
             "shortDescEN": "A mobile app that manages courier delivery processes end-to-end with real-time map tracking, smart route management and instant notifications.",
-            "thumbnail": "resimler/projeler-resmi1.jpg",
+            "thumbnail": "resimler/projeler-resmi1.webp",
             "tags": [
                 "📦 Kurye",
                 "📱 Mobil"
@@ -68,7 +68,7 @@ window.EMBEDDED_SITE_DATA = {
                 "isAndroid": true,
                 "playStoreEnabled": false,
                 "playStoreUrl": "#",
-                "logo": "resimler/uygulama_logo.png",
+                "logo": "resimler/uygulama_logo.webp",
                 "downloads": "5B+",
                 "rating": "4.5 ★",
                 "ageRating": "3+",
@@ -92,8 +92,8 @@ window.EMBEDDED_SITE_DATA = {
                     "📷 Kamera (teslimat fotoğrafı)"
                 ],
                 "screenshots": [
-                    "resimler/uygulama_ekran1.png",
-                    "resimler/uygulama_ekran2.png"
+                    "resimler/uygulama_ekran1.webp",
+                    "resimler/uygulama_ekran2.webp"
                 ],
                 "changelog": [
                     {
@@ -139,7 +139,7 @@ window.EMBEDDED_SITE_DATA = {
             "nameEN": "V9 Group Location Sharing",
             "shortDesc": "Anlık çoklu konum takibi ile grubun her üyesini haritada eş zamanlı gösteren mobil uygulama. v1.0",
             "shortDescEN": "A mobile app that shows all group members on the map simultaneously with real-time multi-location tracking. v1.0",
-            "thumbnail": "resimler/projeler-resmi2.jpg",
+            "thumbnail": "resimler/projeler-resmi2.webp",
             "tags": [
                 "🗺️ Harita"
             ],
@@ -150,7 +150,7 @@ window.EMBEDDED_SITE_DATA = {
                 "isAndroid": true,
                 "playStoreEnabled": false,
                 "playStoreUrl": "#",
-                "logo": "resimler/uygulama_logo.png",
+                "logo": "resimler/uygulama_logo.webp",
                 "downloads": "10B+",
                 "rating": "4.8 ★",
                 "ageRating": "3+",
@@ -173,8 +173,8 @@ window.EMBEDDED_SITE_DATA = {
                     "⚡ Arka Plan Servisi"
                 ],
                 "screenshots": [
-                    "resimler/uygulama_ekran1.png",
-                    "resimler/uygulama_ekran2.png"
+                    "resimler/uygulama_ekran1.webp",
+                    "resimler/uygulama_ekran2.webp"
                 ],
                 "changelog": [
                     {
@@ -218,7 +218,7 @@ window.EMBEDDED_SITE_DATA = {
             "nameEN": "V9 Group Location V2",
             "shortDesc": "Entegre sohbet, low-latency GPS ve ölçeklenebilir mimariye sahip gelişmiş sürüm. v2.0",
             "shortDescEN": "Advanced version with integrated chat, low-latency GPS and scalable architecture. v2.0",
-            "thumbnail": "resimler/projeler-resmi3.jpg",
+            "thumbnail": "resimler/projeler-resmi3.webp",
             "tags": [
                 "💬 Sohbet",
                 "📍 Konum"
@@ -234,7 +234,7 @@ window.EMBEDDED_SITE_DATA = {
                 "isAndroid": true,
                 "playStoreEnabled": false,
                 "playStoreUrl": "#",
-                "logo": "resimler/uygulama_logo.png",
+                "logo": "resimler/uygulama_logo.webp",
                 "downloads": "-",
                 "rating": "-",
                 "ageRating": "3+",
@@ -258,8 +258,8 @@ window.EMBEDDED_SITE_DATA = {
                     "💬 İnternet Mesajlaşma"
                 ],
                 "screenshots": [
-                    "resimler/uygulama_ekran1.png",
-                    "resimler/uygulama_ekran2.png"
+                    "resimler/uygulama_ekran1.webp",
+                    "resimler/uygulama_ekran2.webp"
                 ],
                 "changelog": [
                     {
@@ -501,7 +501,7 @@ window.EMBEDDED_SITE_DATA = {
                 "author": "AVS&V9 Official",
                 "title": "📍 Grup Konum V2 — Tanıtım Videosu",
                 "description": "Low-latency GPS senkronizasyonu ve entegre sohbet özelliklerini gösteren detaylı tanıtım videosu.",
-                "thumbnail": "resimler/sosyalmedya_post2.png",
+                "thumbnail": "resimler/sosyalmedya_post2.webp",
                 "postUrl": "https://youtube.com",
                 "date": "2026-08-05",
                 "badgeColor": "#FF0000"
@@ -513,8 +513,8 @@ window.EMBEDDED_SITE_DATA = {
                 "author": "@avsv9_dev",
                 "title": "🚀 V9 Kurye — Geliştirme Süreci",
                 "description": "Gerçek zamanlı harita entegrasyonunun sahne arkasına dair özel kareler ve teknik ayrıntılar.",
-                "thumbnail": "resimler/sosyalmedya_post1.png",
-                "postUrl": "https://instagram.com",
+                "thumbnail": "resimler/sosyalmedya_post1.webp",
+                "postUrl": "https://www.instagram.com/avs.v9",
                 "date": "2026-08-04",
                 "badgeColor": "#E1306C"
             },
@@ -525,7 +525,7 @@ window.EMBEDDED_SITE_DATA = {
                 "author": "@avsv9_official",
                 "title": "⚡ Yeni Güncelleme — Canlı Demo",
                 "description": "Son güncellemeyle gelen yeni özelliklerin kısa ve eğlenceli tanıtım videosu.",
-                "thumbnail": "resimler/sosyalmedya_post3.png",
+                "thumbnail": "resimler/sosyalmedya_post3.webp",
                 "postUrl": "https://tiktok.com",
                 "date": "2026-08-03",
                 "badgeColor": "#00f2fe"
@@ -537,7 +537,7 @@ window.EMBEDDED_SITE_DATA = {
                 "author": "@avsv9_dev",
                 "title": "📣 V9 Harita Motoru Sürüm Notları",
                 "description": "Yeni rota optimizasyon algoritması ve bellek iyileştirmeleri hakkında teknik güncellemeler yayınlandı.",
-                "thumbnail": "resimler/sosyalmedya_post1.png",
+                "thumbnail": "resimler/sosyalmedya_post1.webp",
                 "postUrl": "https://x.com",
                 "date": "2026-08-02",
                 "badgeColor": "#1DA1F2"
@@ -877,7 +877,7 @@ function initDynamicProjectsList(data) {
     }
 }
 
-// UIUX-2: Fallback resmi Yakindabos.png (yoksa yeil placeholder).
+// UIUX-2: Fallback resmi Yakindabos.webp (yoksa yeil placeholder).
 function initDynamicSocialFeed(data) {
     if (!data || !data.socialFeed || !data.socialFeed.posts || !data.socialFeed.posts.length) return;
     const smSlider = document.getElementById('smSlider');
@@ -903,8 +903,8 @@ function initDynamicSocialFeed(data) {
         const pKey = (p.platform || 'youtube').toLowerCase();
         const iconSvg = SVG_ICONS[pKey] || SVG_ICONS.youtube;
         const badgeCls = BADGE_CLASSES[pKey] || 'sm-badge-youtube';
-        // UIUX-2: Resim yoksa Yakindabos.png gster
-        const fallbackSrc = 'resimler/Yakindabos.png';
+        // UIUX-2: Resim yoksa Yakindabos.webp gster
+        const fallbackSrc = 'resimler/Yakindabos.webp';
         return `
             <div class="sm-slide">
                 <div class="sm-slide-img-wrap">
@@ -1614,7 +1614,7 @@ function initApp() {
         // Logo
         const logoEl = document.getElementById('pdAppLogo');
         if (logoEl) {
-            logoEl.src = detail.logo || proj.logo || 'resimler/uygulama_logo.png';
+            logoEl.src = detail.logo || proj.logo || 'resimler/uygulama_logo.webp';
             logoEl.alt = name;
         }
 

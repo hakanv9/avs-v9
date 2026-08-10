@@ -103,7 +103,7 @@ body {
     min-height: 100vh;
     background:
         linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end)),
-        url("resimler/arkaplan.png") center/cover no-repeat fixed;
+        url("resimler/arkaplan.webp") center/cover no-repeat fixed;
     color: var(--text-primary);
     transition: background-color 0.35s ease, color 0.35s ease;
 }
@@ -1227,7 +1227,7 @@ body.modal-open {
     min-height: 100vh;
     background:
         linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end)),
-        url("resimler/arkaplan.png") center/cover no-repeat fixed;
+        url("resimler/arkaplan.webp") center/cover no-repeat fixed;
     color: var(--text-primary);
     overflow-x: hidden;
     transition: background-color 0.35s ease, color 0.35s ease;

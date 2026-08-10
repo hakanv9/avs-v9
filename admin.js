@@ -776,7 +776,7 @@ async function saveProjectModal() {
             nameEN: nameEN || name,
             shortDesc: desc,
             shortDescEN: desc,
-            thumbnail: thumbnail || 'resimler/projeler-resmi1.jpg',
+            thumbnail: thumbnail || 'resimler/projeler-resmi1.webp',
             tags,
             status,
             statuses,
