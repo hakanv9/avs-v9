@@ -101,7 +101,11 @@
       "tags": [],
       "status": "development",
       "statuses": [
-        "development"
+        "development",
+        "completed",
+        "discontinued",
+        "paused",
+        "rnd"
       ],
       "order": 2,
       "visible": true,
