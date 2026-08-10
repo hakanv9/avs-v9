@@ -44,9 +44,11 @@
       "shortDescEN": "test kısa",
       "thumbnail": "resimler/projeler-resmi1.jpg",
       "tags": [],
-      "status": "development",
+      "status": "live",
       "statuses": [
-        "development"
+        "live",
+        "development",
+        "completed"
       ],
       "order": 1,
       "visible": true,
