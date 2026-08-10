@@ -121,7 +121,18 @@
         ],
         "permissions": [],
         "screenshots": [],
-        "changelog": []
+        "changelog": [
+          {
+            "version": "v1.01.1",
+            "date": "2026-08-10",
+            "type": "major",
+            "features": [
+              "test",
+              "yapıldı"
+            ],
+            "fixes": []
+          }
+        ]
       }
     }
   ],
