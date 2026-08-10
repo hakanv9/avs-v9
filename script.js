@@ -1,4 +1,17 @@
-﻿// --- EMBEDDED FALLBACK DATA (PURES 7-BIT ASCII SAFE ENCODING) ---
+function escapeHTML(str) {
+    if (typeof str !== 'string') return str;
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag)
+    );
+}
+
+// --- EMBEDDED FALLBACK DATA (PURES 7-BIT ASCII SAFE ENCODING) ---
 window.EMBEDDED_SITE_DATA = {
     "_meta": {
         "version": "1.0.0",
@@ -1617,6 +1630,8 @@ function initApp() {
 
         // Android & Play Store Visibility
         const isAndroid = detail.isAndroid === true;
+        const isPlayStoreEnabled = detail.playStoreEnabled === true;
+        const showAndroidReqs = isAndroid && isPlayStoreEnabled;
 
         // Status Badges
         const badgeContainer = document.getElementById('pdStatusBadgeContainer');
@@ -1644,7 +1659,7 @@ function initApp() {
 
         const plinkEl = document.getElementById('pdPlayStoreLink');
         if (plinkEl) {
-            if (isAndroid && hasPlayUrl) {
+            if (showAndroidReqs && hasPlayUrl) {
                 plinkEl.style.display = 'inline-flex';
                 plinkEl.href = playStoreUrl;
             } else {
@@ -1655,7 +1670,7 @@ function initApp() {
         // Store Stats Bar (Hide if not Android & no downloads)
         const storeStats = document.querySelector('.pd-store-stats');
         if (storeStats) {
-            if (!isAndroid) {
+            if (!showAndroidReqs) {
                 storeStats.style.display = 'none';
             } else {
                 storeStats.style.display = 'flex';
@@ -1665,7 +1680,7 @@ function initApp() {
         // System Requirements & Permissions Grid
         const reqGrid = document.querySelector('.pd-req-grid');
         const reqBoxes = document.querySelectorAll('.pd-req-box');
-        if (isAndroid) {
+        if (showAndroidReqs) {
             if (reqGrid) {
                 const reqSection = reqGrid.closest('.pd-section');
                 if (reqSection) reqSection.style.display = 'block';
@@ -1727,7 +1742,7 @@ function initApp() {
             if (clData && clData.length > 0) {
                 changelogEl.innerHTML = clData.map(c => {
                     const cTitle = lang === 'en' && c.titleEN ? c.titleEN : (c.title || '');
-                    const features = lang === 'en' && c.featuresEN ? c.featuresEN : (c.features || []);
+                    const features = lang === 'en' && c.featuresEN ? c.featuresEN : (c.features || c.notes || []);
                     const fixes = lang === 'en' && c.fixesEN ? c.fixesEN : (c.fixes || []);
                     const featStr = features.length ? `<p class="cl-subtitle">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
                     const bugStr = fixes.length ? `<p class="cl-subtitle">🐛 ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';

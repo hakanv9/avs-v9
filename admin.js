@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    ADMIN.JS — AVS&V9 Yönetim Paneli
    GitHub REST API üzerinden site verilerini yönetir.
    ============================================================ */
@@ -495,8 +495,7 @@ function renderSliderSection() {
     }
 
     if (typeof Sortable !== 'undefined') {
-        if (window._sliderSortable) window._sliderSortable.destroy();
-        window._sliderSortable = Sortable.create(grid, {
+        Sortable.create(grid, {
             animation: 150,
             onEnd: function () {
                 const items = Array.from(grid.children);
@@ -506,7 +505,7 @@ function renderSliderSection() {
                 });
                 siteData.heroSlider.sort((a, b) => (a.order || 0) - (b.order || 0));
                 markDirty();
-                setTimeout(() => renderSliderSection(), 10);
+                renderSliderSection();
             }
         });
     }
@@ -599,8 +598,7 @@ function renderProjectList() {
     });
 
     if (typeof Sortable !== 'undefined') {
-        if (window._projectSortable) window._projectSortable.destroy();
-        window._projectSortable = Sortable.create(list, {
+        Sortable.create(list, {
             animation: 150,
             onEnd: function () {
                 const items = Array.from(list.children);
@@ -610,7 +608,6 @@ function renderProjectList() {
                 });
                 siteData.projects.sort((a, b) => (a.order || 0) - (b.order || 0));
                 markDirty();
-                // renderProjectList() is intentionally omitted here to prevent SortableJS glitches.
             }
         });
     }
