@@ -141,6 +141,16 @@
         "screenshots": [],
         "changelog": [
           {
+            "version": "v0.2.6",
+            "date": "2026-08-03",
+            "type": "feature",
+            "features": [
+              "Web sitesine ikincil dil desteği için çalışmalar başlandı.(İngilizce/Eng)",
+              "Karanlık ve Aydınlık Tema eklendi."
+            ],
+            "fixes": []
+          },
+          {
             "version": "v0.2.5",
             "date": "2026-08-01",
             "type": "feature",
