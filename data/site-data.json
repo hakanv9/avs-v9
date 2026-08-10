@@ -47,7 +47,7 @@
         "📦 Kurye",
         "📱 Mobil"
       ],
-      "status": "discontinued",
+      "status": "development",
       "order": 1,
       "visible": true,
       "detail": {
@@ -116,7 +116,10 @@
             ]
           }
         ]
-      }
+      },
+      "statuses": [
+        "development"
+      ]
     },
     {
       "id": "grup-v1",
