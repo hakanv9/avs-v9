@@ -136,6 +136,15 @@
         "screenshots": [],
         "changelog": [
           {
+            "version": "v0.01",
+            "date": "2026-08-10",
+            "type": "minor",
+            "features": [
+              "v9test1"
+            ],
+            "fixes": []
+          },
+          {
             "version": "v1.01.1",
             "date": "2026-08-10",
             "type": "major",
