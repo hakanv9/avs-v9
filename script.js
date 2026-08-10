@@ -1667,16 +1667,28 @@ function initApp() {
 
         // System Requirements & Permissions Grid
         const reqGrid = document.querySelector('.pd-req-grid');
-        if (reqGrid) {
-            const reqSection = reqGrid.closest('.pd-section');
-            if (isAndroid) {
+        const reqBoxes = document.querySelectorAll('.pd-req-box');
+        if (isAndroid) {
+            if (reqGrid) {
+                const reqSection = reqGrid.closest('.pd-section');
                 if (reqSection) reqSection.style.display = 'block';
                 reqGrid.style.display = 'grid';
-            } else {
+            }
+            reqBoxes.forEach(b => b.style.display = 'block');
+        } else {
+            if (reqGrid) {
+                const reqSection = reqGrid.closest('.pd-section');
                 if (reqSection) reqSection.style.display = 'none';
                 reqGrid.style.display = 'none';
                 reqGrid.innerHTML = ''; // Aggressive clear to prevent DOM leaks
             }
+            reqBoxes.forEach(b => b.style.display = 'none');
+            
+            // Fallback for older DOM structures
+            const fallbackReq = document.getElementById('pdReqList');
+            if (fallbackReq && fallbackReq.parentElement) fallbackReq.parentElement.style.display = 'none';
+            const fallbackPerm = document.getElementById('pdPermList');
+            if (fallbackPerm && fallbackPerm.parentElement) fallbackPerm.parentElement.style.display = 'none';
         }
 
         const minEl = document.getElementById('pdMinAndroid');

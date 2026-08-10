@@ -187,10 +187,6 @@ class GitHubAPI {
     }
 }
 
-//  OTURUM YNETM (Sadece Bellek) 
-// GV-2: Token hibir zaman sessionStorage/localStorage'a yazlmaz.
-// Giri bilgileri yalnzca ghAPI nesnesi iinde sayfa mr boyunca tutulur.
-// Sayfa yenileme veya tarayc kapatma  otomatik k (tekrar giri gerekir).
 
 function saveSession(token, owner, repo) {
     sessionStorage.setItem('avs_admin_token', token);
@@ -272,7 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initSaveBar();
     initModals();
     initLightbox();
-    initAutoTranslate();
 
     // Event Delegation for dynamically generated or late-bound elements
     document.addEventListener('click', (e) => {
@@ -325,7 +320,7 @@ function initLoginScreen() {
 
         try {
             const api = new GitHubAPI(token, owner, repo);
-            // Test: repo'yu okumay dene
+
             const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
                 headers: api.headers()
             });
@@ -480,7 +475,7 @@ function renderSliderSection() {
     grid.innerHTML = slides.map((s, i) => `
         <div class="slider-img-item" data-id="${s.id}">
             <img src="${s.src}" alt="${s.alt}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'160\\' height=\\'90\\'><rect width=\\'160\\' height=\\'90\\' fill=\\'%23222\\'/>><text x=\\'50%\\' y=\\'50%\\' fill=\\'%23666\\' text-anchor=\\'middle\\' dy=\\'.3em\\'>?</text></svg>'">
-            <div class="img-order-controls" style="position:absolute; top:4px; left:4px; display:flex; flex-direction:column; gap:4px; z-index:10;"><button class="order-btn" onclick="moveSliderImage(${i}, -1)" ${i === 0 ? 'disabled' : ''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9650;</button><span class="img-order-badge" style="position:static; margin:0; text-align:center;">${i + 1}</span><button class="order-btn" onclick="moveSliderImage(${i}, 1)" ${i === slides.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9660;</button></div>
+            <div class="img-order-controls" style="position:absolute; top:4px; left:4px; display:flex; flex-direction:column; gap:4px; z-index:10;"><button class="order-btn" onclick="event.stopPropagation(); moveSliderImage(${i}, -1)" ${i === 0 ? 'disabled' : ''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9650;</button><span class="img-order-badge" style="position:static; margin:0; text-align:center;">${i + 1}</span><button class="order-btn" onclick="event.stopPropagation(); moveSliderImage(${i}, 1)" ${i === slides.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9660;</button></div>
             <button class="img-delete-btn" data-id="${s.id}" title="Sil">✕</button>
         </div>
     `).join('');
@@ -568,7 +563,7 @@ function renderProjectList() {
 
     list.innerHTML = projects.map((p, index) => `
         <div class="admin-project-item" data-id="${p.id}">
-            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px;"><button class="order-btn" onclick="moveProject('${p.id}', -1)" ${index === 0 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9650;</button><button class="order-btn" onclick="moveProject('${p.id}', 1)" ${index === projects.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9660;</button></div><img src="${p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
+            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px;"><button class="order-btn" onclick="event.stopPropagation(); moveProject('${p.id}', -1)" ${index === 0 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9650;</button><button class="order-btn" onclick="event.stopPropagation(); moveProject('${p.id}', 1)" ${index === projects.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9660;</button></div><img src="${p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
                 onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'72\\' height=\\'48\\'><rect width=\\'72\\' height=\\'48\\' fill=\\'%23222\\'/></svg>'">
             <div class="admin-project-info">
                 <div class="admin-project-name">${p.name}</div>
@@ -585,7 +580,7 @@ function renderProjectList() {
         </div>
     `).join('');
 
-    // Durum deitirme
+    // Durum degistirme
     list.querySelectorAll('.admin-status-select').forEach(sel => {
         sel.addEventListener('change', () => {
             const proj = siteData.projects.find(p => p.id === sel.dataset.pid);
@@ -645,18 +640,18 @@ function initModals() {
 
     // SSS Madde Modal
     document.getElementById('faqItemCancel')?.addEventListener('click', () => closeModal('faqItemModal'));
-    document.getElementById('faqItemSave')?.addEventListener('click', saveFaqItemModal); 
+    document.getElementById('faqItemSave')?.addEventListener('click', saveFaqItemModal);
 
     // SSS Kategori Ekle
-    document.getElementById('addFaqCatBtn')?.addEventListener('click', addFaqCategory); 
+    document.getElementById('addFaqCatBtn')?.addEventListener('click', addFaqCategory);
 
     // Detay Kaydet
     document.getElementById('saveDetailBtn')?.addEventListener('click', saveProjectDetail);
     document.getElementById('saveFaqBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('saveLegalBtn')?.addEventListener('click', saveAllToGitHub);
-    document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts); 
+    document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts);
     // pmAddStatusBtn event delegation used instead
-    
+
     // Yasal Bugün butonları
     document.getElementById('setPrivacyTodayBtn')?.addEventListener('click', () => {
         document.getElementById('privacyDate').value = todayISO();
@@ -669,7 +664,7 @@ function initModals() {
         markDirty();
     });
 
-    // Yasal Blm Ekle
+    // Yasal Bolum Ekle
     document.getElementById('addPrivacySecBtn')?.addEventListener('click', () => addLegalSection('privacy'));
     document.getElementById('addTermsSecBtn')?.addEventListener('click', () => addLegalSection('terms'));
 
@@ -690,7 +685,7 @@ function openAddProjectModal() {
         document.getElementById('pmNameEN').value = '';
         document.getElementById('pmDesc').value = '';
         document.getElementById('pmSlug').value = '';
-        document.getElementById('pmStatusContainer').innerHTML = ''; 
+        document.getElementById('pmStatusContainer').innerHTML = '';
         createStatusSelect('pmStatusContainer', 'development');
         document.getElementById('pmTags').value = '';
         document.getElementById('pmThumbnail').value = '';
@@ -793,12 +788,12 @@ async function saveProjectModal() {
         };
         siteData.projects.push(newProj);
         adminToast('Yeni proje eklendi. Kaydetmeyi unutmayın.', 'success');
-        
+
         markDirty();
         renderProjectList();
         renderDetailProjectSelector();
         closeModal('projectModal');
-        
+
         if (typeof loadProjectDetails === 'function') {
             loadProjectDetails(uniqueId);
         }
@@ -812,7 +807,7 @@ async function saveProjectModal() {
             finalSlug = `${slug}-${counter}`;
             counter++;
         }
-        
+
         const proj = siteData.projects.find(p => p.id === editId);
         if (proj) {
             proj.name = name;
@@ -848,8 +843,8 @@ function renderDetailProjectSelector() {
     const selDOM = document.getElementById('detailProjectSelector');
     if (selDOM) {
         selDOM.querySelectorAll('.admin-proj-sel-card').forEach(card => {
-            card.addEventListener('click', () => { 
-                if(typeof loadProjectDetails === 'function') loadProjectDetails(card.dataset.id);
+            card.addEventListener('click', () => {
+                if (typeof loadProjectDetails === 'function') loadProjectDetails(card.dataset.id);
             });
         });
     }
@@ -884,7 +879,7 @@ function saveProjectDetail() {
     adminToast('Proje detayları güncellendi. Kaydetmeyi unutmayın.', 'success');
 }
 
-// âââ EKRAN GÃRÃNTÃLERİ âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// âââ ekran goruntuleri âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function renderScreenshots(screenshots) {
     const grid = document.getElementById('screenshotGrid');
@@ -944,9 +939,6 @@ async function handleScreenshotUpload(files) {
     }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// RECONSTRUCTED MISSING FUNCTIONS
-// ─────────────────────────────────────────────────────────────────────────────
 
 function loadProjectDetails(id) {
     if (!siteData || !siteData.projects) return;
@@ -957,7 +949,7 @@ function loadProjectDetails(id) {
     document.getElementById('detailName').value = proj.name || '';
     document.getElementById('detailNameEN').value = proj.nameEN || '';
     document.getElementById('detailThumbnail').value = proj.thumbnail || '';
-    
+
     const wrap = document.getElementById('detailEditorWrap');
     if (wrap) wrap.style.display = 'block';
 
@@ -992,15 +984,15 @@ function loadProjectDetails(id) {
     }
 }
 
-window.moveProject = function(id, dir) {
+window.moveProject = function (id, dir) {
     if (!siteData || !siteData.projects) return;
-    
+
     const arr = siteData.projects;
     arr.sort((a, b) => (a.order || 0) - (b.order || 0));
-    
+
     const idx = arr.findIndex(p => p.id === id);
     if (idx === -1) return;
-    
+
     if (dir === -1 && idx > 0) {
         const item = arr.splice(idx, 1)[0];
         arr.splice(idx - 1, 0, item);
@@ -1010,9 +1002,9 @@ window.moveProject = function(id, dir) {
     } else {
         return;
     }
-    
+
     arr.forEach((p, i) => { p.order = i + 1; });
-    
+
     markDirty();
     renderProjectList();
     renderDetailProjectSelector();
@@ -1021,13 +1013,13 @@ window.moveProject = function(id, dir) {
 function openAddChangelogModal(projId = null) {
     if (projId) currentProjectId = projId;
     if (!currentProjectId) { adminToast('Lütfen önce sol taraftan bir proje seçin.', 'warning'); return; }
-    
+
     document.getElementById('changelogModalTitle').textContent = "Yeni Sürüm Ekle";
     document.getElementById('clVersion').value = '';
     document.getElementById('clDate').value = new Date().toISOString().split('T')[0];
     document.getElementById('clType').value = 'minor';
     document.getElementById('clNotes').value = '';
-    
+
     openModal('changelogModal');
 }
 
@@ -1035,41 +1027,41 @@ function saveChangelogModal() {
     if (!currentProjectId) return;
     const proj = siteData.projects.find(p => p.id === currentProjectId);
     if (!proj) return;
-    
+
     if (!proj.detail) proj.detail = {};
     if (!proj.detail.changelog) proj.detail.changelog = [];
-    
+
     const version = document.getElementById('clVersion').value.trim();
     const date = document.getElementById('clDate').value;
     const type = document.getElementById('clType').value;
     const notesStr = document.getElementById('clNotes').value.trim();
-    
+
     if (!version) { adminToast('Versiyon no zorunludur.', 'error'); return; }
-    
+
     const notesArr = notesStr.split('\n').map(s => s.trim()).filter(Boolean);
-    
+
     const isFix = type === 'fix';
-    
+
     const newLog = {
         version,
         date,
-        type, 
+        type,
         features: isFix ? [] : notesArr,
         fixes: isFix ? notesArr : []
     };
-    
-    proj.detail.changelog.unshift(newLog); 
+
+    proj.detail.changelog.unshift(newLog);
     markDirty();
     renderChangelogsAdmin(currentProjectId);
     closeModal('changelogModal');
     adminToast('Yeni sürüm eklendi. Kaydetmeyi unutmayın.', 'success');
 }
 
-window.deleteChangelog = function(projId, index) {
+window.deleteChangelog = function (projId, index) {
     if (!siteData || !siteData.projects) return;
     const proj = siteData.projects.find(p => p.id === projId);
     if (!proj || !proj.detail || !proj.detail.changelog) return;
-    
+
     if (confirm('Bu sürümü silmek istediğinize emin misiniz?')) {
         proj.detail.changelog.splice(index, 1);
         markDirty();
@@ -1081,13 +1073,13 @@ window.deleteChangelog = function(projId, index) {
 function renderChangelogsAdmin(projId) {
     const list = document.getElementById('changelogList');
     if (!list) return;
-    
+
     const proj = siteData.projects.find(p => p.id === projId);
     if (!proj || !proj.detail || !proj.detail.changelog || proj.detail.changelog.length === 0) {
         list.innerHTML = '<p style="color:var(--text-secondary); padding:10px;">Henüz sürüm geçmişi eklenmemiş.</p>';
         return;
     }
-    
+
     list.innerHTML = proj.detail.changelog.map((c, i) => {
         const feats = (c.features || []).map(f => `<li>${f}</li>`).join('');
         const fixes = (c.fixes || []).map(f => `<li>${f}</li>`).join('');
@@ -1104,13 +1096,13 @@ function renderChangelogsAdmin(projId) {
     }).join('');
 }
 
-window.moveSliderImage = function(idx, dir) {
+window.moveSliderImage = function (idx, dir) {
     if (!siteData || !siteData.heroSlider) return;
     const arr = siteData.heroSlider;
-    
+
     // Sort visually before any manipulation
     arr.sort((a, b) => (a.order || 0) - (b.order || 0));
-    
+
     if (dir === -1 && idx > 0) {
         const item = arr.splice(idx, 1)[0];
         arr.splice(idx - 1, 0, item);
@@ -1120,10 +1112,10 @@ window.moveSliderImage = function(idx, dir) {
     } else {
         return;
     }
-    
+
     // Reassign strict sequential ordering based on array position
     arr.forEach((s, i) => { s.order = i + 1; });
-    
+
     markDirty();
     renderSliderSection();
 }
@@ -1210,7 +1202,7 @@ function renderLegalAdmin() {
     <button class="admin-btn" style="margin-bottom:20px;" onclick="addLegalSection('terms')">+ Bölüm Ekle</button>
 `;
 
-    // Basit bir render mantığı
+    //  render 
     ['privacy', 'terms'].forEach(type => {
         const secDiv = document.getElementById(type + 'Sections');
         let html = '';
@@ -1287,7 +1279,7 @@ function openLightbox(src) {
     }
 }
 
-// Global butonları bağla
+// Global butonlar
 setTimeout(() => {
     const addFaqCatBtn = document.getElementById('addFaqCatBtn');
     if (addFaqCatBtn) addFaqCatBtn.addEventListener('click', () => {
