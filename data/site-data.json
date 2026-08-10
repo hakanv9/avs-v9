@@ -361,7 +361,17 @@
         ],
         "permissions": [],
         "screenshots": [],
-        "changelog": []
+        "changelog": [
+          {
+            "version": "v0.01",
+            "date": "2026-08-10",
+            "type": "minor",
+            "features": [
+              "asdasdas test 1"
+            ],
+            "fixes": []
+          }
+        ]
       }
     }
   ],
