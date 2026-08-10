@@ -734,11 +734,18 @@ async function saveProjectModal() {
     }
 
     if (mode === 'add') {
-        // Ãzgün ID üret â slug çakıÅmasını önle
-        const uniqueId = slug + '-' + Date.now().toString(36);
+        // Enforce unique slug
+        let finalSlug = slug;
+        let counter = 1;
+        while (siteData.projects.some(p => p.slug === finalSlug)) {
+            finalSlug = `${slug}-${counter}`;
+            counter++;
+        }
+
+        const uniqueId = finalSlug + '-' + Date.now().toString(36);
         const newProj = {
             id: uniqueId,
-            slug,
+            slug: finalSlug,
             name,
             nameEN: nameEN || name,
             shortDesc: desc,
@@ -755,9 +762,6 @@ async function saveProjectModal() {
                 playStoreUrl: '#',
                 logo: '',
                 downloads: '-', rating: '-', ageRating: '3+',
-                playStoreUrl: '#',
-                logo: '',
-                downloads: '-', rating: '-', ageRating: '3+',
                 appSize: '-', minAndroid: '-',
                 description: [desc],
                 descriptionEN: [desc],
@@ -768,13 +772,32 @@ async function saveProjectModal() {
         };
         siteData.projects.push(newProj);
         adminToast('Yeni proje eklendi. Kaydetmeyi unutmayın.', 'success');
+        
+        markDirty();
+        renderProjectList();
+        renderDetailProjectSelector();
+        closeModal('projectModal');
+        
+        if (typeof loadProjectDetails === 'function') {
+            loadProjectDetails(uniqueId);
+        }
+        return;
     } else {
-        const proj = siteData.projects.find(p => p.id === btn.dataset.editId);
+        // Edit mode - also enforce unique slug
+        let finalSlug = slug;
+        let counter = 1;
+        const editId = btn.dataset.editId;
+        while (siteData.projects.some(p => p.slug === finalSlug && p.id !== editId)) {
+            finalSlug = `${slug}-${counter}`;
+            counter++;
+        }
+        
+        const proj = siteData.projects.find(p => p.id === editId);
         if (proj) {
             proj.name = name;
             proj.nameEN = nameEN || name;
             proj.shortDesc = desc;
-            proj.slug = slug;
+            proj.slug = finalSlug;
             proj.status = status; proj.statuses = statuses;
             proj.tags = tags;
             if (thumbnail) proj.thumbnail = thumbnail;
