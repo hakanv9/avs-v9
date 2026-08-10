@@ -265,6 +265,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initLoginScreen();
     initTabSystem();
     initThemeToggle();
+
+    // Attach markDirty to all detail inputs dynamically
+    document.querySelectorAll('#detailEditorWrap input, #detailEditorWrap textarea').forEach(el => {
+        el.addEventListener('input', markDirty);
+        el.addEventListener('change', markDirty);
+    });
     initSaveBar();
     initModals();
     initLightbox();
@@ -453,6 +459,13 @@ function initSaveBar() {
 
 async function saveAllToGitHub() {
     if (!ghAPI || !siteData) return;
+    
+    // Auto-save detail fields before pushing if editor is open
+    const wrap = document.getElementById('detailEditorWrap');
+    if (wrap && wrap.style.display !== 'none' && typeof saveProjectDetail === 'function') {
+        saveProjectDetail(true);
+    }
+    
     adminLoading(true, 'GitHub\'a kaydediliyor...');
     try {
         await ghAPI.saveSiteData(siteData);
@@ -847,8 +860,9 @@ function renderDetailProjectSelector() {
     }
 }
 
-function saveProjectDetail() {
-    if (!currentProjectId) { adminToast('Önce bir proje seçin.', 'warning'); return; }
+function saveProjectDetail(silent = false) {
+    const isSilent = silent === true;
+    if (!currentProjectId) { if (!isSilent) adminToast('Önce bir proje seçin.', 'warning'); return; }
     const proj = siteData.projects.find(p => p.id === currentProjectId);
     if (!proj) return;
 
@@ -873,7 +887,7 @@ function saveProjectDetail() {
     markDirty();
     renderProjectList();
     renderDetailProjectSelector();
-    adminToast('Proje detayları güncellendi. Kaydetmeyi unutmayın.', 'success');
+    if (!isSilent) adminToast('Proje detayları güncellendi. Kaydetmeyi unutmayın.', 'success');
 }
 
 // â”€â”€â”€ ekran goruntuleri â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -1133,7 +1147,8 @@ function renderChangelogsAdmin(projId) {
     }
 
     list.innerHTML = proj.detail.changelog.map((c, i) => {
-        const feats = (c.features || []).map(f => `<li>${f}</li>`).join('');
+        const featsList = c.features || c.notes || [];
+        const feats = featsList.map(f => `<li>${f}</li>`).join('');
         const fixes = (c.fixes || []).map(f => `<li>${f}</li>`).join('');
         return `
             <div style="background:var(--surface-color); border:1px solid var(--border-color); border-radius:8px; padding:12px; margin-bottom:10px; display:flex; justify-content:space-between;">
@@ -1142,7 +1157,7 @@ function renderChangelogsAdmin(projId) {
                     ${feats ? `<ul style="margin:0; padding-left:16px; color:var(--text-secondary); font-size:14px;">${feats}</ul>` : ''}
                     ${fixes ? `<ul style="margin:4px 0 0 0; padding-left:16px; color:var(--text-secondary); font-size:14px;">${fixes}</ul>` : ''}
                 </div>
-                <button class="admin-btn admin-btn-danger admin-btn-sm" onclick="deleteChangelog('${projId}', ${i})" style="height:32px;">Sil</button>
+                <button type="button" class="admin-btn admin-btn-danger admin-btn-sm" onclick="deleteChangelog('${projId}', ${i})" style="height:32px;">Sil</button>
             </div>
         `;
     }).join('');
