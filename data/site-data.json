@@ -308,6 +308,15 @@
         "screenshots": [],
         "changelog": [
           {
+            "version": "v2.0.1-beta",
+            "date": "2026-08-10",
+            "type": "feature",
+            "features": [
+              "sadasdsa"
+            ],
+            "fixes": []
+          },
+          {
             "version": "v0.01",
             "date": "2026-08-08",
             "type": "minor",
