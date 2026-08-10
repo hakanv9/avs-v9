@@ -156,6 +156,46 @@
           }
         ]
       }
+    },
+    {
+      "id": "v9-site-projemiz-msnisj4d",
+      "slug": "v9-site-projemiz",
+      "name": "AVS&V9 Web Site Projemiz",
+      "nameEN": "AVS&V9 Site",
+      "shortDesc": "AVS&V9 İnternet sitesi projemiz. Proje yayınlama , sürüm geçmişi , hakkımızda ve iletişim gibi hizmetlerin bağlı olduğu web sitemiz.",
+      "shortDescEN": "AVS&V9 İnternet sitesi projemiz. Proje yayınlama , sürüm geçmişi , hakkımızda ve iletişim gibi hizmetlerin bağlı olduğu web sitemiz.",
+      "thumbnail": "resimler/projeler-resmi1.webp",
+      "tags": [],
+      "status": "live",
+      "statuses": [
+        "live",
+        "development",
+        "research",
+        "bugfix",
+        "rnd"
+      ],
+      "order": 3,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "AVS&V9 İnternet sitesi projemiz. Proje yayınlama , sürüm geçmişi , hakkımızda ve iletişim gibi hizmetlerin bağlı olduğu web sitemiz."
+        ],
+        "descriptionEN": [
+          "AVS&V9 İnternet sitesi projemiz. Proje yayınlama , sürüm geçmişi , hakkımızda ve iletişim gibi hizmetlerin bağlı olduğu web sitemiz."
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": []
+      }
     }
   ],
   "faq": [
