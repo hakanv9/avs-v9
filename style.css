@@ -843,7 +843,7 @@ body.modal-open {
     font-size: 0.95rem;
 }
 
-/* === DOÄRULAMA MODALI === */
+/* === DOĞRULAMA MODELI === */
 .verification-modal {
     position: fixed;
     inset: 0;
@@ -1475,7 +1475,6 @@ body.modal-open {
         line-height: 1.6;
     }
 
-    /* UIUX-5: flex olarak başlatılıyor ki align-items/flex-direction etkin olsun */
     .hamburger {
         display: flex;
     }

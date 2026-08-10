@@ -1135,13 +1135,16 @@ function initApp() {
                     window.location.href = 'index.html';
                     return;
                 }
+                if (!projKey) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                if (!projKey) {
+                    window.location.href = 'index.html';
+                    return;
+                }
                 const proj = data.projects.find(p => p.slug === projKey || p.id === projKey);
                 
-                if (!proj) {
-                    const mainArea = document.querySelector('.pd-main');
-                    if (mainArea) {
-                        mainArea.innerHTML = '<div style="text-align:center; padding:100px 20px;"><h2 style="color:var(--text-primary); margin-bottom:10px;">Proje Bulunamadı veya Henüz Yüklenmedi</h2><p style="color:var(--text-secondary); line-height:1.6;">Bu projenin verileri henüz sunucuya yansımamış olabilir. Lütfen 1-2 dakika sonra sayfayı yenileyin.</p></div>';
-                    }
                     return;
                 }
                 window.CURRENT_PROJECT = proj;
@@ -1862,8 +1865,6 @@ function initApp() {
             else if (pdCapStatus) pdCapStatus.textContent = 'Lütfen soruyu doğru cevaplayın.';
         });
     }
-
-}
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initApp);

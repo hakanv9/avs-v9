@@ -1125,8 +1125,6 @@ function renderChangelogsAdmin(projId) {
     }).join('');
 }
 
-}
-
 function renderFaqAdmin() {
     const list = document.getElementById('faqAdminList');
     if (!list || !siteData || !siteData.faq) return;
