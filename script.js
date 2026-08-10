@@ -1619,7 +1619,7 @@ function initApp() {
         if (ageEl) ageEl.textContent = detail.ageRating || detail.age || '3+';
 
         // Android & Play Store Visibility
-        const isAndroid = detail.isAndroid !== false; // Default true unless explicitly false
+        const isAndroid = detail.isAndroid === true;
 
         // Status Badges
         const badgeContainer = document.getElementById('pdStatusBadgeContainer');
