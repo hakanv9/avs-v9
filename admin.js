@@ -606,7 +606,7 @@ function renderProjectList() {
                 });
                 siteData.projects.sort((a, b) => (a.order || 0) - (b.order || 0));
                 markDirty();
-                setTimeout(() => renderProjectList(), 10);
+                // renderProjectList() is intentionally omitted here to prevent SortableJS glitches.
             }
         });
     }

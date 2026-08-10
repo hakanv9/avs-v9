@@ -1,4 +1,4 @@
-// --- EMBEDDED FALLBACK DATA (PURES 7-BIT ASCII SAFE ENCODING) ---
+﻿// --- EMBEDDED FALLBACK DATA (PURES 7-BIT ASCII SAFE ENCODING) ---
 window.EMBEDDED_SITE_DATA = {
     "_meta": {
         "version": "1.0.0",
@@ -1130,8 +1130,13 @@ function initApp() {
 
             if (isProjectDetail && data.projects && data.projects.length > 0) {
                 const params = new URLSearchParams(window.location.search);
-                const projKey = params.get('p') || data.projects[0].slug;
+                const projKey = params.get('p');
+                if (!projKey) {
+                    window.location.href = 'index.html';
+                    return;
+                }
                 const proj = data.projects.find(p => p.slug === projKey || p.id === projKey);
+                
                 if (!proj) {
                     const mainArea = document.querySelector('.pd-main');
                     if (mainArea) {
@@ -1914,3 +1919,4 @@ document.addEventListener('click', e => {
         e.preventDefault();
     }
 });
+
