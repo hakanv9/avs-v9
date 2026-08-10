@@ -48,7 +48,7 @@
       "statuses": [
         "live",
         "development",
-        "completed"
+        "paused"
       ],
       "order": 1,
       "visible": true,
