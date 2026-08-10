@@ -1,4 +1,4 @@
-// --- EMBEDDED FALLBACK DATA (PURES 7-BIT ASCII SAFE ENCODING) ---
+﻿// --- EMBEDDED FALLBACK DATA (PURES 7-BIT ASCII SAFE ENCODING) ---
 window.EMBEDDED_SITE_DATA = {
     "_meta": {
         "version": "1.0.0",
@@ -1135,16 +1135,10 @@ function initApp() {
                     window.location.href = 'index.html';
                     return;
                 }
-                if (!projKey) {
-                    window.location.href = 'index.html';
-                    return;
-                }
-                if (!projKey) {
-                    window.location.href = 'index.html';
-                    return;
-                }
                 const proj = data.projects.find(p => p.slug === projKey || p.id === projKey);
                 
+                if (!proj) {
+                    window.location.href = 'index.html';
                     return;
                 }
                 window.CURRENT_PROJECT = proj;
@@ -1865,6 +1859,8 @@ function initApp() {
             else if (pdCapStatus) pdCapStatus.textContent = 'Lütfen soruyu doğru cevaplayın.';
         });
     }
+
+} // End of initApp
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initApp);

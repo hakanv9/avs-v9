@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    ADMIN.JS — AVS&V9 Yönetim Paneli
    GitHub REST API üzerinden site verilerini yönetir.
    ============================================================ */
@@ -475,10 +475,7 @@ function renderSliderSection() {
     grid.innerHTML = slides.map((s, i) => `
         <div class="slider-img-item" data-id="${s.id}">
             <img src="${s.src}" alt="${s.alt}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'160\\' height=\\'90\\'><rect width=\\'160\\' height=\\'90\\' fill=\\'%23222\\'/>><text x=\\'50%\\' y=\\'50%\\' fill=\\'%23666\\' text-anchor=\\'middle\\' dy=\\'.3em\\'>?</text></svg>'">
-            <div class="img-order-controls" style="position:absolute; top:4px; left:4px; display:flex; flex-direction:column; gap:4px; z-index:10;">
-                <button class="admin-btn admin-btn-sm admin-sort-btn" onclick="event.stopPropagation(); moveSliderImage(${i}, -1)">▲</button>
-                <button class="admin-btn admin-btn-sm admin-sort-btn" onclick="event.stopPropagation(); moveSliderImage(${i}, 1)">▼</button>
-            </div>
+            <div class="img-order-controls" style="position:absolute; top:4px; left:4px; display:flex; flex-direction:column; gap:4px; z-index:10;"><button class="order-btn" onclick="moveSliderImage(${i}, -1)" ${i === 0 ? 'disabled' : ''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9650;</button><span class="img-order-badge" style="position:static; margin:0; text-align:center;">${i + 1}</span><button class="order-btn" onclick="moveSliderImage(${i}, 1)" ${i === slides.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9660;</button></div>
             <button class="img-delete-btn" data-id="${s.id}" title="Sil">✕</button>
         </div>
     `).join('');
@@ -566,10 +563,7 @@ function renderProjectList() {
 
     list.innerHTML = projects.map((p, index) => `
         <div class="admin-project-item" data-id="${p.id}">
-            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px;">
-                <button class="admin-btn admin-btn-sm admin-sort-btn" onclick="event.stopPropagation(); changeProjectOrder('${p.id}', -1)">▲</button>
-                <button class="admin-btn admin-btn-sm admin-sort-btn" onclick="event.stopPropagation(); changeProjectOrder('${p.id}', 1)">▼</button>
-            </div><img src="${p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
+            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px;"><button class="order-btn" onclick="moveProject('${p.id}', -1)" ${index === 0 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9650;</button><button class="order-btn" onclick="moveProject('${p.id}', 1)" ${index === projects.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9660;</button></div><img src="${p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
                 onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'72\\' height=\\'48\\'><rect width=\\'72\\' height=\\'48\\' fill=\\'%23222\\'/></svg>'">
             <div class="admin-project-info">
                 <div class="admin-project-name">${p.name}</div>
@@ -990,53 +984,32 @@ function loadProjectDetails(id) {
     }
 }
 
-window.changeProjectOrder = function (id, dir) {
+window.moveProject = function (id, dir) {
     if (!siteData || !siteData.projects) return;
-    const arr = siteData.projects;
 
-    arr.sort((a, b) => (a.order || 0) - (b.order || 0));
+    // Ensure all items have an order first
+    siteData.projects.forEach((p, i) => { if (typeof p.order !== 'number') p.order = i + 1; });
+    siteData.projects.sort((a, b) => (a.order || 0) - (b.order || 0));
 
-    const idx = arr.findIndex(p => p.id === id);
+    const idx = siteData.projects.findIndex(p => p.id === id);
     if (idx === -1) return;
 
     if (dir === -1 && idx > 0) {
-        const item = arr.splice(idx, 1)[0];
-        arr.splice(idx - 1, 0, item);
-    } else if (dir === 1 && idx < arr.length - 1) {
-        const item = arr.splice(idx, 1)[0];
-        arr.splice(idx + 1, 0, item);
-    } else {
-        return;
+        const tmpOrder = siteData.projects[idx].order;
+        siteData.projects[idx].order = siteData.projects[idx - 1].order;
+        siteData.projects[idx - 1].order = tmpOrder;
+        markDirty();
+        renderProjectList();
+        renderDetailProjectSelector();
+    } else if (dir === 1 && idx < siteData.projects.length - 1) {
+        const tmpOrder = siteData.projects[idx].order;
+        siteData.projects[idx].order = siteData.projects[idx + 1].order;
+        siteData.projects[idx + 1].order = tmpOrder;
+        markDirty();
+        renderProjectList();
+        renderDetailProjectSelector();
     }
-
-    arr.forEach((p, i) => { p.order = i + 1; });
-
-    markDirty();
-    renderProjectList();
-    if (typeof renderDetailProjectSelector === 'function') renderDetailProjectSelector();
-};
-
-window.moveSliderImage = function (idx, dir) {
-    if (!siteData || !siteData.heroSlider) return;
-    const arr = siteData.heroSlider;
-
-    arr.sort((a, b) => (a.order || 0) - (b.order || 0));
-
-    if (dir === -1 && idx > 0) {
-        const item = arr.splice(idx, 1)[0];
-        arr.splice(idx - 1, 0, item);
-    } else if (dir === 1 && idx < arr.length - 1) {
-        const item = arr.splice(idx, 1)[0];
-        arr.splice(idx + 1, 0, item);
-    } else {
-        return;
-    }
-
-    arr.forEach((s, i) => { s.order = i + 1; });
-
-    markDirty();
-    renderSliderSection();
-};
+}
 
 function openAddChangelogModal(projId = null) {
     if (projId) currentProjectId = projId;
@@ -1083,6 +1056,60 @@ function saveChangelogModal() {
     renderChangelogsAdmin(currentProjectId);
     closeModal('changelogModal');
     adminToast('Yeni sürüm eklendi. Kaydetmeyi unutmayın.', 'success');
+}
+
+window.moveSliderImage = function (idx, dir) {
+    if (!siteData || !siteData.heroSlider) return;
+    const arr = siteData.heroSlider;
+
+    // Ensure all items have an order
+    arr.forEach((s, i) => { if (typeof s.order !== 'number') s.order = i + 1; });
+    arr.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    if (dir === -1 && idx > 0) {
+        const tmpOrder = arr[idx].order;
+        arr[idx].order = arr[idx - 1].order;
+        arr[idx - 1].order = tmpOrder;
+        markDirty();
+        renderSliderSection();
+    } else if (dir === 1 && idx < arr.length - 1) {
+        const tmpOrder = arr[idx].order;
+        arr[idx].order = arr[idx + 1].order;
+        arr[idx + 1].order = tmpOrder;
+        markDirty();
+        renderSliderSection();
+    }
+}
+
+function renderFaqAdmin() {
+    const list = document.getElementById('faqAdminList');
+    if (!list || !siteData || !siteData.faq) return;
+    let html = '';
+    siteData.faq.forEach((cat, cIdx) => {
+        html += `
+    <div class="faq-cat-block" style="border:1px solid #444; padding:10px; margin-bottom:10px; border-radius:5px;">
+        <h3 style="display:flex; justify-content:space-between;">
+            Kategori: ${cat.category} (EN: ${cat.categoryEN})
+            <button class="admin-btn" style="background:#e74c3c;" onclick="deleteFaqCat(${cIdx})">Kategoriyi Sil</button>
+        </h3>
+        <button class="admin-btn" style="margin-bottom:10px;" onclick="openFaqModal(${cIdx}, -1)">+ Soru Ekle</button>
+        <div class="faq-q-list">
+    `;
+        if (cat.questions) {
+            cat.questions.forEach((q, qIdx) => {
+                html += `
+            <div class="faq-q-item" style="background:#2a2a2a; padding:10px; margin-bottom:5px; border-radius:5px; display:flex; justify-content:space-between;">
+                <div><b>${q.q}</b> <br/> <small>${q.qEN}</small></div>
+                <div>
+                    <button class="admin-btn" style="background:#f39c12; margin-right:5px;" onclick="openFaqModal(${cIdx}, ${qIdx})">Düzenle</button>
+                    <button class="admin-btn" style="background:#e74c3c;" onclick="deleteFaqQuestion(${cIdx}, ${qIdx})">Sil</button>
+                </div>
+            </div>`;
+            });
+        }
+        html += `</div></div>`;
+    });
+    list.innerHTML = html;
 }
 
 window.deleteChangelog = function (projId, index) {
