@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr" data-theme="dark">
 
 <head>
@@ -71,19 +71,10 @@
         <section class="pd-section pd-slider-section" aria-label="Uygulama ekran görüntüleri">
             <div class="pd-app-slider-wrapper">
                 <div class="pd-app-slider" id="pdAppSlider">
-                    <!-- JS tarafından dinamik olarak doldurulacak -->
-                    <div class="pd-app-slide active">
-                        <img src="resimler/uygulama_ekran1.png" alt="Uygulama Ekran 1" loading="eager">
-                    </div>
-                    <div class="pd-app-slide">
-                        <img src="resimler/uygulama_ekran2.png" alt="Uygulama Ekran 2" loading="lazy">
-                    </div>
                 </div>
                 <button class="pd-arrow pd-arrow-prev" id="pdPrev" aria-label="Önceki ekran">&#8592;</button>
                 <button class="pd-arrow pd-arrow-next" id="pdNext" aria-label="Sonraki ekran">&#8594;</button>
                 <div class="pd-dots" id="pdDots" role="tablist">
-                    <button class="pd-dot active" data-idx="0" role="tab" aria-selected="true"></button>
-                    <button class="pd-dot" data-idx="1" role="tab" aria-selected="false"></button>
                 </div>
             </div>
         </section>
@@ -137,7 +128,6 @@
             <div class="pd-content-card">
                 <h2 class="pd-section-title" data-i18n="detail.about">📋 Uygulama Hakkında</h2>
                 <div class="pd-description" id="pdDescription">
-                    <p>Bu sayfa proje parametresine göre dinamik olarak yükleniyor...</p>
                 </div>
             </div>
         </section>
@@ -151,37 +141,12 @@
                 <div class="pd-req-box">
                     <h3 class="pd-req-title" data-i18n="detail.requirements">📱 Sistem Gereksinimleri</h3>
                     <ul class="pd-req-list" id="pdReqList">
-                        <li>
-                            <span class="pd-req-icon">🤖</span>
-                            <span>
-                                <strong data-i18n="detail.minandroid">Minimum Android</strong>
-                                <span class="pd-req-val" id="pdMinAndroid">Android 8.0 (Oreo) / API 26</span>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="pd-req-icon">📶</span>
-                            <span>
-                                <strong data-i18n="detail.connection">Bağlantı</strong>
-                                <span class="pd-req-val" data-i18n="detail.connval">İnternet bağlantısı gerekli (Wi-Fi / Mobil veri)</span>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="pd-req-icon">📦</span>
-                            <span>
-                                <strong data-i18n="detail.size">Boyut</strong>
-                                <span class="pd-req-val" id="pdAppSize">~15 MB</span>
-                            </span>
-                        </li>
                     </ul>
                 </div>
                 <!-- İzinler -->
                 <div class="pd-req-box">
                     <h3 class="pd-req-title" data-i18n="detail.permissions">🔐 Gerekli İzinler</h3>
                     <ul class="pd-perm-list" id="pdPermList">
-                        <li><span class="pd-perm-badge">📍</span><span data-i18n="detail.perm.location">Konum (Ön plan &amp; Arka plan)</span></li>
-                        <li><span class="pd-perm-badge">🔔</span><span data-i18n="detail.perm.notif">Bildirimler</span></li>
-                        <li><span class="pd-perm-badge">📶</span><span data-i18n="detail.perm.net">İnternet Erişimi</span></li>
-                        <li><span class="pd-perm-badge">⚡</span><span data-i18n="detail.perm.bg">Arka Plan Servisi</span></li>
                     </ul>
                 </div>
             </div>
@@ -194,71 +159,6 @@
             <div class="pd-content-card">
                 <h2 class="pd-section-title" data-i18n="detail.changelog">📝 Sürüm Geçmişi</h2>
                 <div class="faq-list" id="pdChangelog">
-
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>v2.0 — Performans &amp; İletişim Güncellemesi</span>
-                            <span class="cl-date">Ağustos 2025</span>
-                            <span class="faq-icon">»</span>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-inner">
-                                <p class="cl-subtitle">🆕 Yeni Özellikler</p>
-                                <ul>
-                                    <li>Entegre gerçek zamanlı grup sohbeti eklendi.</li>
-                                    <li>Yönetici paneli ve katılımcı yetki yönetimi.</li>
-                                    <li>Dinamik oda ayağırlığıarı (kapasite, görünürlük).</li>
-                                </ul>
-                                <p class="cl-subtitle">🐛 Hata Düzeltmeleri</p>
-                                <ul>
-                                    <li>Yüksek katılımcı sayısında GPS senkronizasyon gecikmesi giderildi.</li>
-                                    <li>Arka plan servis çökmesi Android 13'te düzeltildi.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>v1.5 — Harita &amp; Arayüz İyileştirmeleri</span>
-                            <span class="cl-date">Nisan 2025</span>
-                            <span class="faq-icon">»</span>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-inner">
-                                <p class="cl-subtitle">🆕 Yeni Özellikler</p>
-                                <ul>
-                                    <li>Koyu tema tam desteği eklendi.</li>
-                                    <li>Harita katman seçenekleri (Uydu / Sokak görünümü).</li>
-                                </ul>
-                                <p class="cl-subtitle">⚡ İyileştirmeler</p>
-                                <ul>
-                                    <li>Pil tüketimi %30 azaltıldı (güncelleme aralığı optimizasyonu).</li>
-                                    <li>Uygulama açılış süresi %40 kısaltıldı.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>v1.0 — İlk Sürüm</span>
-                            <span class="cl-date">Ocak 2025</span>
-                            <span class="faq-icon">»</span>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-inner">
-                                <p class="cl-subtitle">🚀 İlk Yayın</p>
-                                <ul>
-                                    <li>Gerçek zamanlı çoklu konum takibi.</li>
-                                    <li>Grup odası oluşturma ve davet linki paylaşımı.</li>
-                                    <li>Akıllı toplanma noktası hesaplama.</li>
-                                    <li>Optimize edilmiş arka plan GPS servisi.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>

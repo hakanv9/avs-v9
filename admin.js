@@ -995,28 +995,27 @@ function loadProjectDetails(id) {
 window.moveProject = function(id, dir) {
     if (!siteData || !siteData.projects) return;
     
-    // Ensure all items have an order first
-    siteData.projects.forEach((p, i) => { if (typeof p.order !== 'number') p.order = i + 1; });
-    siteData.projects.sort((a, b) => (a.order || 0) - (b.order || 0));
+    const arr = siteData.projects;
+    arr.sort((a, b) => (a.order || 0) - (b.order || 0));
     
-    const idx = siteData.projects.findIndex(p => p.id === id);
+    const idx = arr.findIndex(p => p.id === id);
     if (idx === -1) return;
     
     if (dir === -1 && idx > 0) {
-        const tmpOrder = siteData.projects[idx].order;
-        siteData.projects[idx].order = siteData.projects[idx - 1].order;
-        siteData.projects[idx - 1].order = tmpOrder;
-        markDirty();
-        renderProjectList();
-        renderDetailProjectSelector();
-    } else if (dir === 1 && idx < siteData.projects.length - 1) {
-        const tmpOrder = siteData.projects[idx].order;
-        siteData.projects[idx].order = siteData.projects[idx + 1].order;
-        siteData.projects[idx + 1].order = tmpOrder;
-        markDirty();
-        renderProjectList();
-        renderDetailProjectSelector();
+        const item = arr.splice(idx, 1)[0];
+        arr.splice(idx - 1, 0, item);
+    } else if (dir === 1 && idx < arr.length - 1) {
+        const item = arr.splice(idx, 1)[0];
+        arr.splice(idx + 1, 0, item);
+    } else {
+        return;
     }
+    
+    arr.forEach((p, i) => { p.order = i + 1; });
+    
+    markDirty();
+    renderProjectList();
+    renderDetailProjectSelector();
 }
 
 function openAddChangelogModal(projId = null) {
@@ -1109,23 +1108,24 @@ window.moveSliderImage = function(idx, dir) {
     if (!siteData || !siteData.heroSlider) return;
     const arr = siteData.heroSlider;
     
-    // Ensure all items have an order
-    arr.forEach((s, i) => { if (typeof s.order !== 'number') s.order = i + 1; });
+    // Sort visually before any manipulation
     arr.sort((a, b) => (a.order || 0) - (b.order || 0));
     
     if (dir === -1 && idx > 0) {
-        const tmpOrder = arr[idx].order;
-        arr[idx].order = arr[idx - 1].order;
-        arr[idx - 1].order = tmpOrder;
-        markDirty();
-        renderSliderSection();
+        const item = arr.splice(idx, 1)[0];
+        arr.splice(idx - 1, 0, item);
     } else if (dir === 1 && idx < arr.length - 1) {
-        const tmpOrder = arr[idx].order;
-        arr[idx].order = arr[idx + 1].order;
-        arr[idx + 1].order = tmpOrder;
-        markDirty();
-        renderSliderSection();
+        const item = arr.splice(idx, 1)[0];
+        arr.splice(idx + 1, 0, item);
+    } else {
+        return;
     }
+    
+    // Reassign strict sequential ordering based on array position
+    arr.forEach((s, i) => { s.order = i + 1; });
+    
+    markDirty();
+    renderSliderSection();
 }
 
 function renderFaqAdmin() {
