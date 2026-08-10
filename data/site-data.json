@@ -68,7 +68,17 @@
         ],
         "permissions": [],
         "screenshots": [],
-        "changelog": []
+        "changelog": [
+          {
+            "version": "v0.01",
+            "date": "2026-08-10",
+            "type": "minor",
+            "features": [
+              "test123"
+            ],
+            "fixes": []
+          }
+        ]
       }
     }
   ],
