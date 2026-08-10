@@ -98,66 +98,6 @@
       }
     },
     {
-      "id": "test2-msn5c7en",
-      "slug": "test2",
-      "name": "test2",
-      "nameEN": "test2",
-      "shortDesc": "test2kısa",
-      "shortDescEN": "test2kısa",
-      "thumbnail": "resimler/projeler-resmi1.jpg",
-      "tags": [],
-      "status": "development",
-      "statuses": [
-        "development",
-        "completed",
-        "discontinued",
-        "paused",
-        "rnd"
-      ],
-      "order": 2,
-      "visible": true,
-      "detail": {
-        "isAndroid": false,
-        "playStoreEnabled": false,
-        "playStoreUrl": "#",
-        "logo": "",
-        "downloads": "-",
-        "rating": "-",
-        "ageRating": "3+",
-        "appSize": "-",
-        "minAndroid": "-",
-        "description": [
-          "test2kısatest uzun"
-        ],
-        "descriptionEN": [
-          "test2kısa"
-        ],
-        "permissions": [],
-        "screenshots": [],
-        "changelog": [
-          {
-            "version": "v0.01",
-            "date": "2026-08-10",
-            "type": "minor",
-            "features": [
-              "v9test1"
-            ],
-            "fixes": []
-          },
-          {
-            "version": "v1.01.1",
-            "date": "2026-08-10",
-            "type": "major",
-            "features": [
-              "test",
-              "yapıldı"
-            ],
-            "fixes": []
-          }
-        ]
-      }
-    },
-    {
       "id": "v9-site-projemiz-msnisj4d",
       "slug": "v9-site-projemiz",
       "name": "AVS&V9 Web Site Projemiz",
