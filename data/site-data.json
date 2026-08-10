@@ -72,6 +72,15 @@
         "screenshots": [],
         "changelog": [
           {
+            "version": "123",
+            "date": "2026-08-10",
+            "type": "fix",
+            "features": [],
+            "fixes": [
+              "test"
+            ]
+          },
+          {
             "version": "v0.01",
             "date": "2026-08-10",
             "type": "minor",
