@@ -1,4 +1,4 @@
-﻿// --- EMBEDDED FALLBACK DATA (PURES 7-BIT ASCII SAFE ENCODING) ---
+// --- EMBEDDED FALLBACK DATA (PURES 7-BIT ASCII SAFE ENCODING) ---
 window.EMBEDDED_SITE_DATA = {
     "_meta": {
         "version": "1.0.0",
@@ -1675,6 +1675,7 @@ function initApp() {
             } else {
                 if (reqSection) reqSection.style.display = 'none';
                 reqGrid.style.display = 'none';
+                reqGrid.innerHTML = ''; // Aggressive clear to prevent DOM leaks
             }
         }
 
@@ -1703,8 +1704,10 @@ function initApp() {
         if (descEl) {
             if (Array.isArray(rawDesc) && rawDesc.length > 0) {
                 descEl.innerHTML = rawDesc.map(p => `<p>${escapeHTML(p)}</p>`).join('');
-            } else {
+            } else if (desc) {
                 descEl.innerHTML = `<p>${escapeHTML(desc)}</p>`;
+            } else {
+                descEl.innerHTML = ''; // Clear placeholder
             }
         }
 
@@ -1742,12 +1745,19 @@ function initApp() {
         // Screenshots / Slider
         const pdAppSlider = document.getElementById('pdAppSlider');
         const slides = detail.screenshots || proj.slides || [];
-        if (pdAppSlider && slides && slides.length > 0) {
-            pdAppSlider.innerHTML = slides.map((src, i) =>
-                `<div class="pd-app-slide${i === 0 ? ' active' : ''}">
-               <img src="${src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}">
-             </div>`
-            ).join('');
+        if (pdAppSlider) {
+            if (slides && slides.length > 0) {
+                pdAppSlider.innerHTML = slides.map((src, i) =>
+                    `<div class="pd-app-slide${i === 0 ? ' active' : ''}">
+                   <img src="${src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}">
+                 </div>`
+                ).join('');
+            } else {
+                pdAppSlider.innerHTML = ''; // Clear hardcoded placeholder
+                // Hide the slider section if no images
+                const sliderSection = pdAppSlider.closest('.pd-section');
+                if (sliderSection) sliderSection.style.display = 'none';
+            }
         }
     }
 

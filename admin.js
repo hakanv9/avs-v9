@@ -273,6 +273,15 @@ document.addEventListener('DOMContentLoaded', () => {
     initModals();
     initLightbox();
     initAutoTranslate();
+
+    // Event Delegation for dynamically generated or late-bound elements
+    document.addEventListener('click', (e) => {
+        if (e.target && e.target.id === 'pmAddStatusBtn') {
+            if (typeof createStatusSelect === 'function') {
+                createStatusSelect('pmStatusContainer');
+            }
+        }
+    });
 });
 
 //  GR EKRANI 
@@ -646,9 +655,9 @@ function initModals() {
     document.getElementById('saveFaqBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('saveLegalBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts); 
-    document.getElementById('pmAddStatusBtn')?.addEventListener('click', () => createStatusSelect('pmStatusContainer'));
-
-    // Yasal Bugn butonlar
+    // pmAddStatusBtn event delegation used instead
+    
+    // Yasal Bugün butonları
     document.getElementById('setPrivacyTodayBtn')?.addEventListener('click', () => {
         document.getElementById('privacyDate').value = todayISO();
         if (siteData) siteData.legal.privacy.lastUpdated = todayISO();
