@@ -475,9 +475,9 @@ function renderSliderSection() {
     grid.innerHTML = slides.map((s, i) => `
         <div class="slider-img-item" data-id="${s.id}">
             <img src="${s.src}" alt="${s.alt}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'160\\' height=\\'90\\'><rect width=\\'160\\' height=\\'90\\' fill=\\'%23222\\'/>><text x=\\'50%\\' y=\\'50%\\' fill=\\'%23666\\' text-anchor=\\'middle\\' dy=\\'.3em\\'>?</text></svg>'">
-            <div class="img-order-controls" style="position:absolute; top:4px; left:4px; display:flex; flex-direction:column; gap:4px; z-index:10; background:rgba(0,0,0,0.7); padding:4px; border-radius:4px; text-align:center;">
-                <label style="font-size:10px; color:#ddd; margin-bottom:2px;">Sıra</label>
-                <input type="number" class="order-input" value="${i + 1}" min="1" max="${slides.length}" onchange="window.changeSliderOrder(${i}, this.value)" style="width:40px; text-align:center; background:rgba(0,0,0,0.5); color:white; border:1px solid #777; border-radius:4px; padding:2px;">
+            <div class="img-order-controls" style="position:absolute; top:4px; left:4px; display:flex; flex-direction:column; gap:4px; z-index:10;">
+                <button class="admin-btn admin-btn-sm admin-sort-btn" onclick="event.stopPropagation(); moveSliderImage(${i}, -1)">▲</button>
+                <button class="admin-btn admin-btn-sm admin-sort-btn" onclick="event.stopPropagation(); moveSliderImage(${i}, 1)">▼</button>
             </div>
             <button class="img-delete-btn" data-id="${s.id}" title="Sil">✕</button>
         </div>
@@ -566,9 +566,9 @@ function renderProjectList() {
 
     list.innerHTML = projects.map((p, index) => `
         <div class="admin-project-item" data-id="${p.id}">
-            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px; align-items:center;">
-                <label style="font-size:10px; color:#888;">Sıra</label>
-                <input type="number" value="${index + 1}" min="1" max="${projects.length}" onchange="window.changeProjectOrder('${p.id}', this.value)" style="width:45px; text-align:center; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); border-radius:4px; padding:4px;">
+            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px;">
+                <button class="admin-btn admin-btn-sm admin-sort-btn" onclick="event.stopPropagation(); changeProjectOrder('${p.id}', -1)">▲</button>
+                <button class="admin-btn admin-btn-sm admin-sort-btn" onclick="event.stopPropagation(); changeProjectOrder('${p.id}', 1)">▼</button>
             </div><img src="${p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
                 onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'72\\' height=\\'48\\'><rect width=\\'72\\' height=\\'48\\' fill=\\'%23222\\'/></svg>'">
             <div class="admin-project-info">
@@ -990,48 +990,47 @@ function loadProjectDetails(id) {
     }
 }
 
-window.changeProjectOrder = function (id, newPos) {
+window.changeProjectOrder = function (id, dir) {
     if (!siteData || !siteData.projects) return;
-
-    let newIndex = parseInt(newPos, 10) - 1;
-    if (isNaN(newIndex)) return;
-
     const arr = siteData.projects;
+
     arr.sort((a, b) => (a.order || 0) - (b.order || 0));
 
-    const oldIndex = arr.findIndex(p => p.id === id);
-    if (oldIndex === -1) return;
+    const idx = arr.findIndex(p => p.id === id);
+    if (idx === -1) return;
 
-    if (newIndex < 0) newIndex = 0;
-    if (newIndex >= arr.length) newIndex = arr.length - 1;
-
-    if (newIndex === oldIndex) return;
-
-    const item = arr.splice(oldIndex, 1)[0];
-    arr.splice(newIndex, 0, item);
+    if (dir === -1 && idx > 0) {
+        const item = arr.splice(idx, 1)[0];
+        arr.splice(idx - 1, 0, item);
+    } else if (dir === 1 && idx < arr.length - 1) {
+        const item = arr.splice(idx, 1)[0];
+        arr.splice(idx + 1, 0, item);
+    } else {
+        return;
+    }
 
     arr.forEach((p, i) => { p.order = i + 1; });
 
     markDirty();
     renderProjectList();
+    if (typeof renderDetailProjectSelector === 'function') renderDetailProjectSelector();
 };
 
-window.changeSliderOrder = function (oldIndex, newPos) {
+window.moveSliderImage = function (idx, dir) {
     if (!siteData || !siteData.heroSlider) return;
-    
-    let newIndex = parseInt(newPos, 10) - 1;
-    if (isNaN(newIndex)) return;
-
     const arr = siteData.heroSlider;
+
     arr.sort((a, b) => (a.order || 0) - (b.order || 0));
 
-    if (newIndex < 0) newIndex = 0;
-    if (newIndex >= arr.length) newIndex = arr.length - 1;
-
-    if (newIndex === oldIndex) return;
-
-    const item = arr.splice(oldIndex, 1)[0];
-    arr.splice(newIndex, 0, item);
+    if (dir === -1 && idx > 0) {
+        const item = arr.splice(idx, 1)[0];
+        arr.splice(idx - 1, 0, item);
+    } else if (dir === 1 && idx < arr.length - 1) {
+        const item = arr.splice(idx, 1)[0];
+        arr.splice(idx + 1, 0, item);
+    } else {
+        return;
+    }
 
     arr.forEach((s, i) => { s.order = i + 1; });
 
