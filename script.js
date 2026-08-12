@@ -1746,10 +1746,21 @@ function initApp() {
                     const fixes = lang === 'en' && c.fixesEN ? c.fixesEN : (c.fixes || []);
                     const featStr = features.length ? `<p class="cl-subtitle">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
                     const bugStr = fixes.length ? `<p class="cl-subtitle">🐛 ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
+                    
+                    const typeMap = {
+                        major: { tr: '🔴 Büyük Güncelleme', en: '🔴 Major Update', color: '#ff4757' },
+                        minor: { tr: '🔵 Küçük Güncelleme', en: '🔵 Minor Update', color: '#3742fa' },
+                        fix: { tr: '🟢 Hata Düzeltme', en: '🟢 Bug Fix', color: '#2ed573' },
+                        feature: { tr: '🟣 Özellik', en: '🟣 Feature', color: '#9b59b6' },
+                        initial: { tr: '🟡 İlk Sürüm', en: '🟡 Initial Release', color: '#f1c40f' }
+                    };
+                    const cType = c.type && typeMap[c.type] ? typeMap[c.type] : null;
+                    const typeBadge = cType ? `<span style="font-size: 11px; padding: 2px 6px; border-radius: 4px; background: ${cType.color}15; color: ${cType.color}; border: 1px solid ${cType.color}40; margin-left: 8px;">${lang === 'en' ? cType.en : cType.tr}</span>` : '';
+
                     return `
                 <div class="faq-item">
                     <button class="faq-question">
-                        <span>${escapeHTML(c.version || '')} ${cTitle ? '- ' + escapeHTML(cTitle) : ''}</span>
+                        <span>${escapeHTML(c.version || '')} ${typeBadge} ${cTitle ? '- ' + escapeHTML(cTitle) : ''}</span>
                         <span class="cl-date">${escapeHTML(c.date || '')}</span>
                         <span class="faq-icon">▼</span>
                     </button>

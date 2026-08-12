@@ -132,10 +132,10 @@ class GitHubAPI {
     }
 
     async uploadImage(filename, base64Data, folder = 'resimler') {
-        // Dosya adndan sorunlu karakterleri temizle (GitHub path hatas nlenir)
+        // Dosya adından sorunlu karakterleri temizle (GitHub path hatası önlenir)
         const safeFilename = filename
             .normalize('NFD')
-            .replace(/[̀-ͯ]/g, '')  // Aksanları kaldır
+            .replace(/[\u0300-\u036f]/g, '')  // Aksanları kaldır
             .replace(/[^a-zA-Z0-9._\-]/g, '_') // Sadece güvenli karakterler
             .replace(/_{2,}/g, '_')             // Çift alt çizgi temizle
             .replace(/^_|_$/g, '');            // Baş/son alt çizgi kaldır
@@ -927,9 +927,8 @@ async function handleScreenshotUpload(files) {
     try {
         for (const file of Array.from(files)) {
             const base64 = await fileToBase64(file);
-            // Güvenli dosya adı oluştur
             const safeSlug = (proj.slug || proj.id).replace(/[^a-zA-Z0-9\-]/g, '_');
-            const safeExt = file.name.split('.').pop().replace(/[^a-zA-Z0-9]/g, '') || 'jpg';
+            const safeExt = file.name.split('.').pop().replace(/[^a-zA-Z0-9]/g, '') || 'webp';
             const filename = `ss_${safeSlug}_${Date.now()}.${safeExt}`;
             const path = await ghAPI.uploadImage(filename, base64);
             proj.detail.screenshots.push(path);
@@ -938,15 +937,10 @@ async function handleScreenshotUpload(files) {
         renderScreenshots(proj.detail.screenshots);
         adminToast('Görseller yüklendi!', 'success');
     } catch (err) {
-    };
-
-    try {
-        markDirty();
-        renderSocialFeedAdmin();
-        adminToast('✅ Yeni rastgele sosyal medya gönderileri çekildi ve kaydedildi!', 'success', 4000);
-    } catch (err) {
-        adminToast(`Gönderi çekme hatası: ${err.message}`, 'error', 5000);
+        adminToast(`Görsel yükleme hatası: ${err.message}`, 'error', 5000);
     } finally {
+        adminLoading(false);
+        document.getElementById('screenshotFileInput').value = '';
     }
 }
 
@@ -1150,10 +1144,21 @@ function renderChangelogsAdmin(projId) {
         const featsList = c.features || c.notes || [];
         const feats = featsList.map(f => `<li>${f}</li>`).join('');
         const fixes = (c.fixes || []).map(f => `<li>${f}</li>`).join('');
+        
+        const typeMap = {
+            major: { tr: '🔴 Büyük Güncelleme', color: '#ff4757' },
+            minor: { tr: '🔵 Küçük Güncelleme', color: '#3742fa' },
+            fix: { tr: '🟢 Hata Düzeltme', color: '#2ed573' },
+            feature: { tr: '🟣 Özellik', color: '#9b59b6' },
+            initial: { tr: '🟡 İlk Sürüm', color: '#f1c40f' }
+        };
+        const cType = c.type && typeMap[c.type] ? typeMap[c.type] : null;
+        const typeBadge = cType ? `<span style="font-size: 11px; padding: 2px 6px; border-radius: 4px; background: ${cType.color}15; color: ${cType.color}; border: 1px solid ${cType.color}40; margin-left: 8px;">${cType.tr}</span>` : '';
+
         return `
             <div style="background:var(--surface-color); border:1px solid var(--border-color); border-radius:8px; padding:12px; margin-bottom:10px; display:flex; justify-content:space-between;">
                 <div>
-                    <h4 style="margin:0 0 8px; color:var(--text-primary);">${c.version} <span style="font-size:12px; color:var(--text-secondary); margin-left:8px;">${c.date || ''}</span></h4>
+                    <h4 style="margin:0 0 8px; color:var(--text-primary);">${c.version} ${typeBadge} <span style="font-size:12px; color:var(--text-secondary); margin-left:8px;">${c.date || ''}</span></h4>
                     ${feats ? `<ul style="margin:0; padding-left:16px; color:var(--text-secondary); font-size:14px;">${feats}</ul>` : ''}
                     ${fixes ? `<ul style="margin:4px 0 0 0; padding-left:16px; color:var(--text-secondary); font-size:14px;">${fixes}</ul>` : ''}
                 </div>
