@@ -1,8 +1,4 @@
-/* ============================================================
-   ADMIN.JS — AVS&V9 Yönetim Paneli
-   GitHub REST API üzerinden site verilerini yönetir.
-   ============================================================ */
-
+﻿
 'use strict';
 
 function escapeHTML(str) {
@@ -35,7 +31,7 @@ function adminToast(msg, type = 'info', duration = 3500) {
     }, duration);
 }
 
-function adminLoading(show, text = 'GitHub\'a kaydediliyor...') {
+function adminLoading(show, text = 'kaydediliyor...') {
     const el = document.getElementById('adminLoading');
     const txtEl = document.getElementById('adminLoadingText');
     if (!el) return;
@@ -79,7 +75,6 @@ function closeModal(id) {
     try { m.setAttribute('inert', ''); } catch (e) { }
 }
 
-//  GTHUB API 
 
 class GitHubAPI {
     constructor(token, owner, repo) {
@@ -105,7 +100,7 @@ class GitHubAPI {
         });
         if (!res.ok) {
             if (res.status === 404) return null;
-            throw new Error(`GitHub dosya okunamadı (${res.status}): ${path}`);
+            throw new Error(`dosya okunamadı (${res.status}): ${path}`);
         }
         return res.json();
     }
@@ -132,13 +127,13 @@ class GitHubAPI {
     }
 
     async uploadImage(filename, base64Data, folder = 'resimler') {
-        // Dosya adından sorunlu karakterleri temizle (GitHub path hatası önlenir)
+
         const safeFilename = filename
             .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')  // Aksanları kaldır
-            .replace(/[^a-zA-Z0-9._\-]/g, '_') // Sadece güvenli karakterler
-            .replace(/_{2,}/g, '_')             // Çift alt çizgi temizle
-            .replace(/^_|_$/g, '');            // Baş/son alt çizgi kaldır
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-zA-Z0-9._\-]/g, '_')
+            .replace(/_{2,}/g, '_')
+            .replace(/^_|_$/g, '');
         const path = `${folder}/${safeFilename}`;
         const existing = await this.getFile(path);
         const sha = existing ? existing.sha : null;
@@ -172,7 +167,6 @@ class GitHubAPI {
 
     async saveSiteData(data) {
         const path = 'data/site-data.json';
-        // Her kaydetmede taze SHA al  stale SHA hatasn nler
         const existing = await this.getFile(path);
         const sha = existing ? existing.sha : null;
         const content = JSON.stringify(data, null, 2);
@@ -234,6 +228,16 @@ function createStatusSelect(containerId, selectedValue = 'development') {
     wrap.querySelector('.del-status-btn').addEventListener('click', () => wrap.remove());
     wrap.querySelector('select').value = selectedValue;
     container.appendChild(wrap);
+}
+
+// YARDIMCI FONKSİYONLAR
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
 }
 
 //  ANA UYGULAMA 
@@ -359,7 +363,6 @@ function initLoginScreen() {
             if (window._adminDirty) {
                 if (!confirm('Kaydedilmemiş değişiklikler var. Çıkmak istediğinize emin misiniz?')) return;
             }
-            // GV-2: Bellekten temizle
             ghAPI = null;
             siteData = null;
             window._adminDirty = false;
@@ -406,7 +409,7 @@ function initTabSystem() {
     });
 }
 
-//  TEMA & DL 
+//  TEMA & DiL 
 
 function initThemeToggle() {
     const btn = document.getElementById('adminThemeToggle');
@@ -459,13 +462,12 @@ function initSaveBar() {
 
 async function saveAllToGitHub() {
     if (!ghAPI || !siteData) return;
-    
-    // Auto-save detail fields before pushing if editor is open
+
     const wrap = document.getElementById('detailEditorWrap');
     if (wrap && wrap.style.display !== 'none' && typeof saveProjectDetail === 'function') {
         saveProjectDetail(true);
     }
-    
+
     adminLoading(true, 'GitHub\'a kaydediliyor...');
     try {
         await ghAPI.saveSiteData(siteData);
@@ -660,7 +662,6 @@ function initModals() {
     document.getElementById('saveFaqBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('saveLegalBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts);
-    // pmAddStatusBtn event delegation used instead
 
     // Yasal Bugün butonları
     document.getElementById('setPrivacyTodayBtn')?.addEventListener('click', () => {
@@ -741,7 +742,6 @@ async function saveProjectModal() {
 
     if (!name || !slug) { adminToast('Proje adı ve slug zorunludur.', 'error'); return; }
 
-    // Thumbnail dosya yükleme varsa önce yükle
     const thumbFile = document.getElementById('pmThumbnailFile').files[0];
     if (thumbFile) {
         try {
@@ -760,7 +760,6 @@ async function saveProjectModal() {
     }
 
     if (mode === 'add') {
-        // Enforce unique slug
         let finalSlug = slug;
         let counter = 1;
         while (siteData.projects.some(p => p.slug === finalSlug)) {
@@ -890,7 +889,7 @@ function saveProjectDetail(silent = false) {
     if (!isSilent) adminToast('Proje detayları güncellendi. Kaydetmeyi unutmayın.', 'success');
 }
 
-// â”€â”€â”€ ekran goruntuleri â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+//ekran goruntuleri 
 
 function renderScreenshots(screenshots) {
     const grid = document.getElementById('screenshotGrid');
@@ -1144,7 +1143,7 @@ function renderChangelogsAdmin(projId) {
         const featsList = c.features || c.notes || [];
         const feats = featsList.map(f => `<li>${f}</li>`).join('');
         const fixes = (c.fixes || []).map(f => `<li>${f}</li>`).join('');
-        
+
         const typeMap = {
             major: { tr: '🔴 Büyük Güncelleme', color: '#ff4757' },
             minor: { tr: '🔵 Küçük Güncelleme', color: '#3742fa' },

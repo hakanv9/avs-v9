@@ -77,7 +77,7 @@
     font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
 }
 
-/* SEO-4: Input ve textarea için de focus ring — klavye kullanıcıları form alanını görebilsin */
+
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
@@ -88,7 +88,6 @@ select:focus-visible {
     border-radius: 4px;
 }
 
-/* PERF-4: scroll-behavior sadır hareket hassaslığı olmayan kullanıcılarda çalışsın */
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
@@ -419,7 +418,7 @@ body.modal-open {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* UIUX-1: Büyük kart sol sütunda 2 satır kaplar; küçük kartlar sağ sütunda alt alta */
+
 .bento-large {
     grid-row: span 2;
     box-shadow: inset 4px 0 0 var(--accent-color),
@@ -3043,7 +3042,6 @@ body.modal-open {
    ============================================= */
 @media (max-width: 640px) {
 
-    /* UIUX-1: Mobil'de tek sütun */
     .bento-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
@@ -3662,11 +3660,7 @@ body.modal-open {
     border-radius: 8px;
 }
 
-/* =============================================
-   === UIUX-02 & SEO-02: MİKRO ETKİLEÅİM & ERİŞİLEBİLİRLİK ===
-   ============================================= */
 
-/* Ripple Effect for Buttons */
 .oval-btn,
 .bento-detail-btn,
 .sm-slide-btn,
@@ -3706,13 +3700,13 @@ body.modal-open {
     transition: 0s;
 }
 
-/* Accessibility Focus Outline */
+
 :focus-visible {
     outline: 2px dashed var(--accent-color);
     outline-offset: 4px;
 }
 
-/* KOD-01: Mobile Safari/Chrome native feels */
+
 * {
     -webkit-tap-highlight-color: transparent;
 }

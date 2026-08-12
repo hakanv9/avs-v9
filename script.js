@@ -1,6 +1,6 @@
-function escapeHTML(str) {
+﻿function escapeHTML(str) {
     if (typeof str !== 'string') return str;
-    return str.replace(/[&<>'"]/g, 
+    return str.replace(/[&<>'"]/g,
         tag => ({
             '&': '&amp;',
             '<': '&lt;',
@@ -11,7 +11,6 @@ function escapeHTML(str) {
     );
 }
 
-// --- EMBEDDED FALLBACK DATA (PURES 7-BIT ASCII SAFE ENCODING) ---
 window.EMBEDDED_SITE_DATA = {
     "_meta": {
         "version": "1.0.0",
@@ -682,8 +681,6 @@ window.EMBEDDED_TRANSLATIONS = {
 // === AVS&V9 ANA SCRIPT (STABL & HATASIZ) ===
 // =============================================
 
-// --- GV-3: XSS KORUMA YARDIMCISI ---------------------------------------------
-// JSON'dan gelen tm ierikler bu fonksiyondan geirilir.
 function sanitize(str) {
     if (str === null || str === undefined) return '';
     return String(str)
@@ -713,7 +710,7 @@ function addSwipeListener(element, onSwipeLeft, onSwipeRight) {
 }
 
 // --- PERF-3: HERO SLIDER YNETCS ------------------------------------------
-// Tek interval kaydedici  ift setInterval bellek szntsn nler.
+
 let _heroSlideInterval = null;
 
 function startHeroSlider(slidesNodeList) {
@@ -748,10 +745,7 @@ function startHeroSlider(slidesNodeList) {
     }
 }
 
-// --- KOD-1: DUPLKE FONKSYONLAR KALDIRILDI ---------------------------------
-// (Tm fonksiyonlarn tek ve doru versiyonlar aada tanmlanmtr)
 
-// Durum etiketi CSS snf ve metnini dndrr
 function getStatusTag(status) {
     const map = {
         'live': { cls: 'tag-live', text: '🟢 Yayında' },
@@ -788,11 +782,7 @@ async function loadTranslations() {
     applyLang(savedLang);
 }
 
-// ===============================================================================
-// DNAMK VER FONKSYONLARI  site-data.json zerinden ierik gncelleme
-// ===============================================================================
 
-// PERF-5: ?v=Date.now() kaldrld  vercel.json'daki no-cache header ile ETag tabantl dorulama yaplr.
 async function loadSiteData() {
     try {
         const res = await fetch(`data/site-data.json?t=${Date.now()}`, { cache: 'no-cache' });
@@ -807,14 +797,12 @@ async function loadSiteData() {
     return window.EMBEDDED_SITE_DATA || null;
 }
 
-// KOD-4: img tag kullanlyor (div+backgroundImage kaldrld)  eriilebilir ve SEO dostu.
 function initDynamicHeroSlider(data) {
     const slides = data.heroSlider;
     if (!slides || !slides.length) return;
     const container = document.querySelector('.slider-container');
     if (!container) return;
 
-    // Mevcut slaytlar kaldr
     container.querySelectorAll('.slide').forEach(s => s.remove());
 
     slides
@@ -829,7 +817,6 @@ function initDynamicHeroSlider(data) {
             container.appendChild(img);
         });
 
-    // PERF-3: Yeni slaytlarla tek bir interval balat
     startHeroSlider(container.querySelectorAll('.slide'));
 }
 
@@ -870,14 +857,12 @@ function initDynamicProjectsList(data) {
         `;
     }).join('');
 
-    // Animasyon observera kaydet
     const newItems = listContainer.querySelectorAll('.scroll-anim');
     if (window._scrollObserver) {
         newItems.forEach(item => window._scrollObserver.observe(item));
     }
 }
 
-// UIUX-2: Fallback resmi Yakindabos.webp (yoksa yeil placeholder).
 function initDynamicSocialFeed(data) {
     if (!data || !data.socialFeed || !data.socialFeed.posts || !data.socialFeed.posts.length) return;
     const smSlider = document.getElementById('smSlider');
@@ -903,7 +888,6 @@ function initDynamicSocialFeed(data) {
         const pKey = (p.platform || 'youtube').toLowerCase();
         const iconSvg = SVG_ICONS[pKey] || SVG_ICONS.youtube;
         const badgeCls = BADGE_CLASSES[pKey] || 'sm-badge-youtube';
-        // UIUX-2: Resim yoksa Yakindabos.webp gster
         const fallbackSrc = 'resimler/Yakindabos.webp';
         return `
             <div class="sm-slide">
@@ -945,7 +929,6 @@ function initDynamicFaq(data) {
 
     const lang = localStorage.getItem('avs_lang') || 'tr';
 
-    // Mevcut SSS gruplarn ve balklarn temizle
     main.querySelectorAll('.faq-section-title, .faq-list-group, .faq-cta-card').forEach(el => el.remove());
 
     faq.forEach(cat => {
@@ -978,7 +961,6 @@ function initDynamicFaq(data) {
         main.appendChild(list);
     });
 
-    // CTA kartn EN SONA ekle
     const cta = document.createElement('section');
     cta.className = 'pd-content-card faq-cta-card';
     const ctaTitle = lang === 'en' ? 'Did you not find what you were looking for?' : 'Aradığınız cevabı bulamadınız mı?';
@@ -998,7 +980,7 @@ function initDynamicLegal(data) {
 
     const lang = localStorage.getItem('avs_lang') || 'tr';
 
-    // Cta Kart HTML ablonu
+
     const ctaTitle = lang === 'en' ? 'Have Questions or Legal Inquiries?' : 'Yasal Konularda Sorunuz mu Var?';
     const ctaSub = lang === 'en' ? 'For data privacy requests or detailed inquiries, you can contact the developer directly.' : 'Kişisel veri talepleriniz veya detaylı yasal sorularınız için doğrudan iletişime geçebilirsiniz.';
     const ctaBtn = lang === 'en' ? 'Contact Directly →' : 'Doğrudan İletişime Geçin →';
@@ -1020,7 +1002,6 @@ function initDynamicLegal(data) {
                 <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>
                 <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>`).join('');
 
-            // Eski CTA varsa kaldr, yenisini ekle
             privSec.querySelectorAll('.faq-cta-card').forEach(el => el.remove());
             privSec.insertAdjacentHTML('beforeend', ctaHtml);
         }
@@ -1037,7 +1018,7 @@ function initDynamicLegal(data) {
                 <h3>${sanitize((lang === 'en' && sec.headingEN) ? sec.headingEN : sec.heading)}</h3>
                 <p>${(lang === 'en' && sec.textEN) ? sec.textEN : sec.text}</p>`).join('');
 
-            // Eski CTA varsa kaldr, yenisini ekle
+
             termsSec.querySelectorAll('.faq-cta-card').forEach(el => el.remove());
             termsSec.insertAdjacentHTML('beforeend', ctaHtml);
         }
@@ -1097,7 +1078,6 @@ function toggleLang() {
     applyLang(current === 'tr' ? 'en' : 'tr');
 }
 
-// Tercihleri annda balat (HTML render aamasnda renk yanp snmesin)
 (function () {
     const savedTheme = localStorage.getItem('avs_theme') || 'dark';
     const savedLang = localStorage.getItem('avs_lang') || 'tr';
@@ -1105,12 +1085,10 @@ function toggleLang() {
     applyLang(savedLang);
 })();
 
-// --- DOM HAZIR OLUNCA ALIACAK TM DNLEYCLER ---
+
 function initApp() {
     loadTranslations(); // TRANSLATIONS'i yükle
-    // --- DNAMK VER YKLEME (site-data.json) -------------------------------
-    // Admin panelinden yaplan deiiklikler burada okunur ve sayfalar gncellenir.
-    // Admin paneli sayfasnda bu blok almaz (data-admin-page kontrol).
+
     if (!document.documentElement.hasAttribute('data-admin-page')) {
         const isIndex = !!document.querySelector('.slider-container');
         if (isIndex) {
@@ -1124,10 +1102,10 @@ function initApp() {
             }
         }
         loadSiteData().then(data => {
-            if (!data) return; // JSON yoksa statik HTML'e devam et
+            if (!data) return;
             window.CURRENT_SITE_DATA = data;
 
-            // Hangi sayfada olduumuzu anla
+
             const isIndex = !!document.querySelector('.slider-container');
             const isFaq = !!document.querySelector('.faq-list');
             const isLegal = !!document.getElementById('panel-privacy');
@@ -1149,7 +1127,7 @@ function initApp() {
                     return;
                 }
                 const proj = data.projects.find(p => p.slug === projKey || p.id === projKey);
-                
+
                 if (!proj) {
                     window.location.href = 'index.html';
                     return;
@@ -1160,13 +1138,10 @@ function initApp() {
         });
     }
 
-    // --- Butonlara Tema/Dil Dinleyicisi ---
+
     const themeToggleBtn = document.getElementById('themeToggle');
     const langToggleBtn = document.getElementById('langToggle');
-    // if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme); // Handled by global listener at EOF
-    // if (langToggleBtn) langToggleBtn.addEventListener('click', toggleLang); // Handled by global listener at EOF
 
-    // --- erez Banner ---
     const banner = document.getElementById('cookieBanner');
     const acceptBtn = document.getElementById('cookieAccept');
     if (banner && localStorage.getItem('avs_cookie_accepted') !== 'true') {
@@ -1179,10 +1154,10 @@ function initApp() {
         }
     }
 
-    // --- Ana Sayfa Hero Slayt (Statik HTML fallback) ---
+
     const staticSlides = document.querySelectorAll('.slide');
     if (staticSlides.length > 0) {
-        // PERF-3: startHeroSlider ile tek interval  JSON gelince zaten override edilir.
+
         startHeroSlider(staticSlides);
 
         document.addEventListener('visibilitychange', () => {
@@ -1232,11 +1207,11 @@ function initApp() {
         });
     }, { root: null, rootMargin: '-50px', threshold: 0.15 });
 
-    // KOD-2: Global kaydedildi  dinamik eklenen kartlar da observe edilebilsin
+
     window._scrollObserver = observer;
     document.querySelectorAll('.scroll-anim').forEach(el => observer.observe(el));
 
-    // --- NAV AKTF SEKSYON TAKB ---
+
     const sections = document.querySelectorAll('section[id]');
     const navAnchors = document.querySelectorAll('.nav-links a');
     if (sections.length && navAnchors.length) {
@@ -1306,7 +1281,7 @@ function initApp() {
     if (contactEmailInput) contactEmailInput.addEventListener('input', validateEmail);
     if (contactMessageInput) contactMessageInput.addEventListener('input', validateMessage);
 
-    // --- DRY MATEMATK CAPTCHA YARDIMCISI ---
+
     function setupMathCaptcha({ questionEl, inputEl, iconEl, statusEl, onVerifySuccess }) {
         let correctAnswer = null;
         let isVerified = false;
@@ -1355,7 +1330,7 @@ function initApp() {
         };
     }
 
-    // --- LETM FORMU & MATEMATK CAPTCHA ---
+
     const contactButton = document.getElementById('contactButton');
     const verificationModal = document.getElementById('verificationModal');
     const verifyButton = document.getElementById('verifyButton');
@@ -1413,12 +1388,12 @@ function initApp() {
         const email = contactEmailInput ? contactEmailInput.value.trim() : '';
         const message = contactMessageInput ? contactMessageInput.value.trim() : '';
         const rawEmail = atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==');
-        const subject = encodeURIComponent(`Portfolyo İletişim - ${name}`);
-        const body = encodeURIComponent(`Merhaba,\n\nAdım: ${name}\nE-postam: ${email}\n\nMesajım:\n${message}`);
+        const subject = encodeURIComponent(`Portfolyo Iletisim - ${name}`);
+        const body = encodeURIComponent(`Merhaba,\n\nAdim: ${name}\nE-postam: ${email}\n\nMesajim:\n${message}`);
         const mailtoUrl = `mailto:${rawEmail}?subject=${subject}&body=${body}`;
 
         if (contactStatus) {
-            // KOD-3: innerHTML kullan ama onclick YOK  aada addEventListener ile balan
+
             contactStatus.innerHTML = `
                 <div class="mail-success-card">
                     <p class="mail-success-title">✅ Güvenlik Doğrulaması Başarılı!</p>
@@ -1429,7 +1404,7 @@ function initApp() {
                     </div>
                 </div>
             `;
-            // KOD-3: CSP uyumlu event listener  onclick attribute yok
+
             const copyBtn = document.getElementById('mailCopyBtn');
             if (copyBtn) {
                 copyBtn.addEventListener('click', () => {
@@ -1437,7 +1412,7 @@ function initApp() {
                         copyBtn.textContent = '✓ Kopyalandı!';
                         setTimeout(() => { copyBtn.textContent = '📋 Adresi Kopyala'; }, 2000);
                     }).catch(() => {
-                        copyBtn.textContent = rawEmail; // Fallback: metni göster
+                        copyBtn.textContent = rawEmail;
                     });
                 });
             }
@@ -1476,7 +1451,6 @@ function initApp() {
         });
     }
 
-    // --- BENTO KART TIKLAMALARI VE KLAVYE ERLEBLRL ---
     document.addEventListener('click', e => {
         const card = e.target.closest('.bento-card[data-href]');
         if (card) {
@@ -1602,16 +1576,16 @@ function initApp() {
         const name = lang === 'en' ? (proj.nameEN || proj.name || 'Project Details') : (proj.name || 'Proje Detayları');
         const desc = lang === 'en' ? (proj.shortDescEN || proj.shortDesc || '') : (proj.shortDesc || '');
 
-        // Title & Breadcrumb
+
         document.title = `${name} | AVS&V9`;
         const bc = document.getElementById('pdBreadcrumbName');
         if (bc) bc.textContent = name;
 
-        // Header Name
+
         const pdTitle = document.getElementById('pdAppName');
         if (pdTitle) pdTitle.textContent = name;
 
-        // Logo
+
         const logoEl = document.getElementById('pdAppLogo');
         if (logoEl) {
             logoEl.src = detail.logo || proj.logo || 'resimler/uygulama_logo.webp';
@@ -1628,12 +1602,12 @@ function initApp() {
         const ageEl = document.getElementById('pdAgeRating');
         if (ageEl) ageEl.textContent = detail.ageRating || detail.age || '3+';
 
-        // Android & Play Store Visibility
+
         const isAndroid = detail.isAndroid === true;
         const isPlayStoreEnabled = detail.playStoreEnabled === true;
         const showAndroidReqs = isAndroid && isPlayStoreEnabled;
 
-        // Status Badges
+
         const badgeContainer = document.getElementById('pdStatusBadgeContainer');
         if (badgeContainer) {
             let statuses = proj.statuses || (proj.status ? [proj.status] : []);
@@ -1667,7 +1641,6 @@ function initApp() {
             }
         }
 
-        // Store Stats Bar (Hide if not Android & no downloads)
         const storeStats = document.querySelector('.pd-store-stats');
         if (storeStats) {
             if (!showAndroidReqs) {
@@ -1677,7 +1650,7 @@ function initApp() {
             }
         }
 
-        // System Requirements & Permissions Grid
+
         const reqGrid = document.querySelector('.pd-req-grid');
         const reqBoxes = document.querySelectorAll('.pd-req-box');
         if (showAndroidReqs) {
@@ -1695,8 +1668,8 @@ function initApp() {
                 reqGrid.innerHTML = ''; // Aggressive clear to prevent DOM leaks
             }
             reqBoxes.forEach(b => b.style.display = 'none');
-            
-            // Fallback for older DOM structures
+
+
             const fallbackReq = document.getElementById('pdReqList');
             if (fallbackReq && fallbackReq.parentElement) fallbackReq.parentElement.style.display = 'none';
             const fallbackPerm = document.getElementById('pdPermList');
@@ -1719,7 +1692,7 @@ function initApp() {
             }
         }
 
-        // Description (Hakknda)
+
         const descEl = document.getElementById('pdDescription');
         let rawDesc = (lang === 'en' && detail.descriptionEN && detail.descriptionEN.length) ? detail.descriptionEN : (detail.description && detail.description.length ? detail.description : desc);
         if (typeof rawDesc === 'string') {
@@ -1731,7 +1704,7 @@ function initApp() {
             } else if (desc) {
                 descEl.innerHTML = `<p>${escapeHTML(desc)}</p>`;
             } else {
-                descEl.innerHTML = ''; // Clear placeholder
+                descEl.innerHTML = '';
             }
         }
 
@@ -1746,7 +1719,7 @@ function initApp() {
                     const fixes = lang === 'en' && c.fixesEN ? c.fixesEN : (c.fixes || []);
                     const featStr = features.length ? `<p class="cl-subtitle">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
                     const bugStr = fixes.length ? `<p class="cl-subtitle">🐛 ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
-                    
+
                     const typeMap = {
                         major: { tr: '🔴 Büyük Güncelleme', en: '🔴 Major Update', color: '#ff4757' },
                         minor: { tr: '🔵 Küçük Güncelleme', en: '🔵 Minor Update', color: '#3742fa' },
@@ -1788,8 +1761,8 @@ function initApp() {
                  </div>`
                 ).join('');
             } else {
-                pdAppSlider.innerHTML = ''; // Clear hardcoded placeholder
-                // Hide the slider section if no images
+                pdAppSlider.innerHTML = '';
+
                 const sliderSection = pdAppSlider.closest('.pd-section');
                 if (sliderSection) sliderSection.style.display = 'none';
             }
@@ -1921,7 +1894,7 @@ document.addEventListener('click', e => {
 
 // --- RECOVERED FUNCTIONS ---
 
-// Ana sayfa kaydırma okuna tıklama (.scroll-indicator)
+
 document.addEventListener('click', e => {
     const scrollInd = e.target.closest('.scroll-indicator');
     if (scrollInd) {
@@ -1933,7 +1906,7 @@ document.addEventListener('click', e => {
     }
 });
 
-// Anchor linkler (navigasyon menüsü vb.) için smooth scroll
+
 document.addEventListener('click', e => {
     const anchor = e.target.closest('a[href^="#"]');
     if (anchor && anchor.getAttribute('href').length > 1) {
@@ -1942,8 +1915,8 @@ document.addEventListener('click', e => {
         if (targetSection) {
             e.preventDefault();
             targetSection.scrollIntoView({ behavior: 'smooth' });
-            
-            // Menüyü de kapat (mobildeyse)
+
+
             const nav = anchor.closest('.nav-links');
             if (nav) {
                 nav.classList.remove('active');
@@ -1957,7 +1930,7 @@ document.addEventListener('click', e => {
     }
 });
 
-// href="#" olan sm-card linklerine tıklanınca sayfanın yukarı zıplamasını engelle
+
 document.addEventListener('click', e => {
     const smCard = e.target.closest('.sm-card[href="#"]');
     if (smCard) {
