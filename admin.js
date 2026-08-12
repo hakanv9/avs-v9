@@ -1,4 +1,4 @@
-﻿
+
 'use strict';
 
 function escapeHTML(str) {
@@ -248,6 +248,7 @@ let currentProjectId = null;
 let editingChangelogId = null;
 let editingFaqCatId = null;
 let editingFaqItemId = null;
+const PREVIEW_MAP = {};
 let editingLegalId = null;
 
 let _sliderSortable = null;
@@ -489,7 +490,7 @@ function renderSliderSection() {
     const slides = siteData.heroSlider || [];
     grid.innerHTML = slides.map((s, i) => `
         <div class="slider-img-item" data-id="${s.id}">
-            <img src="${s.src}" alt="${s.alt}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'160\\' height=\\'90\\'><rect width=\\'160\\' height=\\'90\\' fill=\\'%23222\\'/>><text x=\\'50%\\' y=\\'50%\\' fill=\\'%23666\\' text-anchor=\\'middle\\' dy=\\'.3em\\'>?</text></svg>'">
+            <img src="${PREVIEW_MAP[s.src] || s.src}" alt="${s.alt}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'160\\' height=\\'90\\'><rect width=\\'160\\' height=\\'90\\' fill=\\'%23222\\'/>><text x=\\'50%\\' y=\\'50%\\' fill=\\'%23666\\' text-anchor=\\'middle\\' dy=\\'.3em\\'>?</text></svg>'">
             <div class="img-order-controls" style="position:absolute; top:4px; left:4px; display:flex; flex-direction:column; gap:4px; z-index:10;"><button class="order-btn" onclick="moveSliderImage(${i}, -1)" ${i === 0 ? 'disabled' : ''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9650;</button><span class="img-order-badge" style="position:static; margin:0; text-align:center;">${i + 1}</span><button class="order-btn" onclick="moveSliderImage(${i}, 1)" ${i === slides.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9660;</button></div>
             <button class="img-delete-btn" data-id="${s.id}" title="Sil">✕</button>
         </div>
@@ -535,6 +536,7 @@ async function handleSliderUpload(files) {
             const base64 = await fileToBase64(file);
             const filename = `hero-${Date.now()}-${file.name.replace(/\s/g, '_')}`;
             const path = await ghAPI.uploadImage(filename, base64);
+            PREVIEW_MAP[path] = base64;
             siteData.heroSlider.push({ id: generateId('slide'), src: path, alt: file.name.split('.')[0], order: siteData.heroSlider.length + 1 });
         }
         markDirty();
@@ -577,7 +579,7 @@ function renderProjectList() {
 
     list.innerHTML = projects.map((p, index) => `
         <div class="admin-project-item" data-id="${p.id}">
-            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px;"><button class="order-btn" onclick="moveProject('${p.id}', -1)" ${index === 0 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9650;</button><button class="order-btn" onclick="moveProject('${p.id}', 1)" ${index === projects.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9660;</button></div><img src="${p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
+            <div style="display:flex; flex-direction:column; gap:4px; margin-right:12px;"><button class="order-btn" onclick="moveProject('${p.id}', -1)" ${index === 0 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9650;</button><button class="order-btn" onclick="moveProject('${p.id}', 1)" ${index === projects.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:var(--surface-color); color:var(--text-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:4px;">&#9660;</button></div><img src="${PREVIEW_MAP[p.thumbnail] || p.thumbnail}" alt="${p.name}" class="admin-project-thumb"
                 onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'72\\' height=\\'48\\'><rect width=\\'72\\' height=\\'48\\' fill=\\'%23222\\'/></svg>'">
             <div class="admin-project-info">
                 <div class="admin-project-name">${p.name}</div>
@@ -750,6 +752,7 @@ async function saveProjectModal() {
             const safeSlug = slug.replace(/[^a-zA-Z0-9\-]/g, '_');
             const filename = `thumb-${safeSlug}-${Date.now()}.${thumbFile.name.split('.').pop()}`;
             thumbnail = await ghAPI.uploadImage(filename, base64);
+            PREVIEW_MAP[thumbnail] = base64;
         } catch (err) {
             adminToast(`Kapak görseli yüklenemedi: ${err.message}`, 'error');
             adminLoading(false);
@@ -896,10 +899,10 @@ function renderScreenshots(screenshots) {
     if (!grid) return;
     grid.innerHTML = screenshots.map((src, i) => `
     < div class= "screenshot-item" data - idx="${i}" >
-<img src="${src}" alt="Görsel ${i + 1}"
+<img src="${PREVIEW_MAP[src] || src}" alt="Görsel ${i + 1}"
     onerror="this.parentElement.style.display='none'"
     onload="this.parentElement.className = 'screenshot-item ' + (this.naturalWidth > this.naturalHeight ? 'landscape' : this.naturalWidth === this.naturalHeight ? 'square' : '');"
-    style="cursor:zoom-in;" onclick="openLightbox('${src}')"
+    style="cursor:zoom-in;" onclick="openLightbox('${PREVIEW_MAP[src] || src}')"
 >
     <button class="ss-del-btn" data-idx="${i}" title="Sil">✖</button>
 </div>
@@ -930,6 +933,7 @@ async function handleScreenshotUpload(files) {
             const safeExt = file.name.split('.').pop().replace(/[^a-zA-Z0-9]/g, '') || 'webp';
             const filename = `ss_${safeSlug}_${Date.now()}.${safeExt}`;
             const path = await ghAPI.uploadImage(filename, base64);
+            PREVIEW_MAP[path] = base64;
             proj.detail.screenshots.push(path);
         }
         markDirty();

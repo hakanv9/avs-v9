@@ -3077,9 +3077,6 @@ body.modal-open {
     }
 }
 
-/* =============================================
-   === TASARIM-05: LIGHT MODE KONTRAST İYİLEŞTİRMESİ ===
-   ============================================= */
 [data-theme="light"] {
     --bg-color: #f8fafc;
     --surface-color: #ffffff;

@@ -1,4 +1,4 @@
-﻿function escapeHTML(str) {
+function escapeHTML(str) {
     if (typeof str !== 'string') return str;
     return str.replace(/[&<>'"]/g,
         tag => ({
@@ -1588,7 +1588,7 @@ function initApp() {
 
         const logoEl = document.getElementById('pdAppLogo');
         if (logoEl) {
-            logoEl.src = detail.logo || proj.logo || 'resimler/uygulama_logo.webp';
+            logoEl.src = detail.logo || proj.logo || proj.thumbnail || 'resimler/uygulama_logo.webp';
             logoEl.alt = name;
         }
 
@@ -1752,7 +1752,10 @@ function initApp() {
 
         // Screenshots / Slider
         const pdAppSlider = document.getElementById('pdAppSlider');
-        const slides = detail.screenshots || proj.slides || [];
+        let slides = detail.screenshots || proj.slides || [];
+        if (slides.length === 0 && proj.thumbnail) {
+            slides = [proj.thumbnail];
+        }
         if (pdAppSlider) {
             if (slides && slides.length > 0) {
                 pdAppSlider.innerHTML = slides.map((src, i) =>
