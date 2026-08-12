@@ -10,34 +10,22 @@
   },
   "heroSlider": [
     {
-      "id": "slide-1",
-      "src": "resimler/anasayfa-hosgeldin-resmi1.jpg",
-      "alt": "Hoşgeldin 1",
-      "order": 1
-    },
-    {
-      "id": "slide-2",
-      "src": "resimler/anasayfa-hosgeldin-resmi2.jpg",
-      "alt": "Hoşgeldin 2",
-      "order": 2
-    },
-    {
-      "id": "slide-3",
-      "src": "resimler/anasayfa-hosgeldin-resmi3.jpg",
-      "alt": "Hoşgeldin 3",
-      "order": 3
-    },
-    {
-      "id": "slide-4",
-      "src": "resimler/anasayfa-hosgeldin-resmi4.jpg",
-      "alt": "Hoşgeldin 4",
-      "order": 4
-    },
-    {
       "id": "slide-1786561644135-ozsg7",
       "src": "resimler/hero-1786561639332-Yakindabos.webp",
       "alt": "Yakindabos",
-      "order": 5
+      "order": 1
+    },
+    {
+      "id": "slide-1786564184098-qg2k9",
+      "src": "resimler/hero-1786564164886-anasayfa-hosgeldin-resmi1.webp",
+      "alt": "anasayfa-hosgeldin-resmi1",
+      "order": 2
+    },
+    {
+      "id": "slide-1786564189253-nwzdf",
+      "src": "resimler/hero-1786564184113-anasayfa-hosgeldin-resmi2.webp",
+      "alt": "anasayfa-hosgeldin-resmi2",
+      "order": 3
     }
   ],
   "projects": [
