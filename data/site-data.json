@@ -32,6 +32,12 @@
       "src": "resimler/anasayfa-hosgeldin-resmi4.jpg",
       "alt": "Hoşgeldin 4",
       "order": 4
+    },
+    {
+      "id": "slide-1786561644135-ozsg7",
+      "src": "resimler/hero-1786561639332-Yakindabos.webp",
+      "alt": "Yakindabos",
+      "order": 5
     }
   ],
   "projects": [
