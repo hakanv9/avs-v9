@@ -26,6 +26,18 @@
       "src": "resimler/hero-1786564184113-anasayfa-hosgeldin-resmi2.webp",
       "alt": "anasayfa-hosgeldin-resmi2",
       "order": 3
+    },
+    {
+      "id": "slide-1786564217276-yqbyp",
+      "src": "resimler/hero-1786564212744-anasayfa-hosgeldin-resmi3.webp",
+      "alt": "anasayfa-hosgeldin-resmi3",
+      "order": 4
+    },
+    {
+      "id": "slide-1786564223073-x2u4f",
+      "src": "resimler/hero-1786564217293-anasayfa-hosgeldin-resmi4.webp",
+      "alt": "anasayfa-hosgeldin-resmi4",
+      "order": 5
     }
   ],
   "projects": [
