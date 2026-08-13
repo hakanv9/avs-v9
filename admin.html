@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr" data-theme="dark" data-admin-page>
 
 <head>
@@ -22,7 +22,7 @@
     <!-- ======= YÜKLEME OVERLAY ======= -->
     <div class="admin-loading" id="adminLoading">
         <div class="admin-loading-spinner"></div>
-        <div class="admin-loading-text" id="adminLoadingText">Kaydediliyor...</div>
+        <div class="admin-loading-text" id="adminLoadingText">GitHub'a kaydediliyor...</div>
     </div>
 
     <!-- ======= TOAST MESAJLARI ======= -->
@@ -37,8 +37,8 @@
 
             <div class="admin-field">
                 <label for="adminGithubToken">GitHub Erişim Anahtarı (Token)</label>
-                <input type="password" id="adminGithubToken" placeholder="•••••••••••••••••••••"
-                    autocomplete="off" spellcheck="false">
+                <input type="password" id="adminGithubToken" placeholder="•••••••••••••••••••••" autocomplete="off"
+                    spellcheck="false">
             </div>
             <div class="admin-field">
                 <label for="adminRepoOwner">GitHub Kullanıcı Adı</label>
@@ -72,7 +72,8 @@
                 <button class="admin-nav-btn" id="adminLangToggle" title="Dili Değiştir">
                     🌐 <span id="adminLangLabel">TR</span>
                 </button>
-                <button class="admin-nav-btn" id="adminAutoTranslateBtn" title="Boş İngilizce alanları otomatik çevir (Google Translate)">
+                <button class="admin-nav-btn" id="adminAutoTranslateBtn"
+                    title="Boş İngilizce alanları otomatik çevir (Google Translate)">
                     🤖 Otomatik Çevir
                 </button>
                 <button class="admin-nav-btn admin-logout-btn" id="adminLogoutBtn">
@@ -87,7 +88,8 @@
 
                 <div class="admin-page-header">
                     <h1 class="admin-page-title">⚙️ Site Kontrol Merkezi</h1>
-                    <p class="admin-page-sub">Tüm değişiklikler otomatik olarak GitHub'a kaydedilir ve site 15 saniyede güncellenir.</p>
+                    <p class="admin-page-sub">Tüm değişiklikler otomatik olarak GitHub'a kaydedilir ve site 15 saniyede
+                        güncellenir.</p>
                 </div>
 
                 <!-- SEKMELER -->
@@ -173,7 +175,8 @@
                         <div class="admin-card">
                             <div class="admin-card-header">
                                 <h2 class="admin-card-title"><span>📸</span> Proje Görselleri</h2>
-                                <span style="font-size:0.75rem;color:var(--text-secondary)">Dikey → portre modunda, Yatay → tam genişlik açılır</span>
+                                <span style="font-size:0.75rem;color:var(--text-secondary)">Dikey → portre modunda,
+                                    Yatay → tam genişlik açılır</span>
                             </div>
                             <div class="screenshot-grid" id="screenshotGrid"></div>
                             <label class="admin-upload-area" for="screenshotFileInput">
@@ -213,10 +216,11 @@
                                     <input type="text" id="detailAgeRating" placeholder="3+">
                                 </div>
                             </div>
-                            
+
                             <div class="admin-form-group">
                                 <label>📱 Sistem Gereksinimleri (Her satıra bir gereksinim)</label>
-                                <textarea id="detailRequirements" rows="3" placeholder="📱 Min. Android 8.0&#10;💾 2GB RAM"></textarea>
+                                <textarea id="detailRequirements" rows="3"
+                                    placeholder="📱 Min. Android 8.0&#10;💾 2GB RAM"></textarea>
                             </div>
 
                             <div class="admin-form-group">
@@ -232,7 +236,8 @@
                             <div class="admin-toggle-row" id="androidToggleRow">
                                 <div>
                                     <div class="admin-toggle-label">🤖 Android / Play Store Entegrasyonu</div>
-                                    <div class="admin-toggle-desc">İndirme sayısı, puan, izinler ve Play Store butonu görünsün mü?</div>
+                                    <div class="admin-toggle-desc">İndirme sayısı, puan, izinler ve Play Store butonu
+                                        görünsün mü?</div>
                                 </div>
                                 <label class="admin-toggle">
                                     <input type="checkbox" id="detailIsAndroid">
@@ -241,8 +246,10 @@
                             </div>
 
                             <!-- Play Store Alanları (Android aktifse görünür) -->
-                            <div id="playStoreFields" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--admin-border);">
-                                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;">
+                            <div id="playStoreFields"
+                                style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--admin-border);">
+                                <div
+                                    style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;">
                                     <div class="admin-form-group">
                                         <label>İndirme Sayısı</label>
                                         <input type="text" id="detailDownloads" placeholder="10B+">
@@ -258,11 +265,13 @@
                                 </div>
                                 <div class="admin-form-group">
                                     <label>Play Store Linki</label>
-                                    <input type="url" id="detailPlayStoreUrl" placeholder="https://play.google.com/store/apps/details?id=...">
+                                    <input type="url" id="detailPlayStoreUrl"
+                                        placeholder="https://play.google.com/store/apps/details?id=...">
                                 </div>
                                 <div class="admin-form-group">
                                     <label>Gerekli İzinler (Her satıra bir izin)</label>
-                                    <textarea id="detailPermissions" rows="4" placeholder="📍 Konum (Ön plan & Arka plan)&#10;🔔 Bildirimler&#10;📶 İnternet Erişimi"></textarea>
+                                    <textarea id="detailPermissions" rows="4"
+                                        placeholder="📍 Konum (Ön plan & Arka plan)&#10;🔔 Bildirimler&#10;📶 İnternet Erişimi"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -274,11 +283,13 @@
                             </div>
                             <div class="admin-form-group">
                                 <label>Açıklama (TR) — Her paragraf ayrı satır</label>
-                                <textarea id="detailDescTR" rows="5" placeholder="V9 uygulaması...&#10;&#10;Özellik açıklamaları...&#10;&#10;🚀 Özellik 1 | 💡 Özellik 2"></textarea>
+                                <textarea id="detailDescTR" rows="5"
+                                    placeholder="V9 uygulaması...&#10;&#10;Özellik açıklamaları...&#10;&#10;🚀 Özellik 1 | 💡 Özellik 2"></textarea>
                             </div>
                             <div class="admin-form-group">
                                 <label>Açıklama (EN) — Her paragraf ayrı satır</label>
-                                <textarea id="detailDescEN" rows="5" placeholder="V9 app...&#10;&#10;Feature descriptions...&#10;&#10;🚀 Feature 1 | 💡 Feature 2"></textarea>
+                                <textarea id="detailDescEN" rows="5"
+                                    placeholder="V9 app...&#10;&#10;Feature descriptions...&#10;&#10;🚀 Feature 1 | 💡 Feature 2"></textarea>
                             </div>
                         </div>
 
@@ -380,17 +391,22 @@
                             </button>
                         </div>
 
-                        <div style="padding:12px 16px;background:rgba(255,71,87,0.06);border:1px solid var(--admin-border);border-radius:12px;margin-bottom:20px;font-size:0.82rem;color:var(--text-secondary);">
-                            💡 <strong>Overwriting Kuralı:</strong> Her yenilemede yeni gönderiler eskilerinin üzerine yazılır. Böylece sunucuda gereksiz dosya veya içerik birikmesi tamamen önlenir. Videoların sadece kapak görselleri çekilir.
+                        <div
+                            style="padding:12px 16px;background:rgba(255,71,87,0.06);border:1px solid var(--admin-border);border-radius:12px;margin-bottom:20px;font-size:0.82rem;color:var(--text-secondary);">
+                            💡 <strong>Overwriting Kuralı:</strong> Her yenilemede yeni gönderiler eskilerinin üzerine
+                            yazılır. Böylece sunucuda gereksiz dosya veya içerik birikmesi tamamen önlenir. Videoların
+                            sadece kapak görselleri çekilir.
                         </div>
 
                         <div class="admin-card-header" style="margin-bottom:12px;">
-                            <span style="font-size:0.85rem;font-weight:700;color:var(--admin-accent);" id="socialLastUpdatedLabel">
+                            <span style="font-size:0.85rem;font-weight:700;color:var(--admin-accent);"
+                                id="socialLastUpdatedLabel">
                                 Son Güncelleme: -
                             </span>
                         </div>
 
-                        <div class="slider-img-grid" id="socialAdminList" style="grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));">
+                        <div class="slider-img-grid" id="socialAdminList"
+                            style="grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));">
                             <!-- JS tarafından doldurulacak -->
                         </div>
                     </div>
@@ -414,7 +430,8 @@
 
     <!-- Proje Ekle/Düzenle Modal -->
     <div class="verification-modal" id="projectModal" aria-hidden="true" inert>
-        <div class="verification-card" role="dialog" style="max-width:520px;width:95%;border:1.5px solid var(--admin-border);max-height: 90vh;overflow-y: auto;">
+        <div class="verification-card" role="dialog"
+            style="max-width:520px;width:95%;border:1.5px solid var(--admin-border);max-height: 90vh;overflow-y: auto;">
             <h3 id="projectModalTitle" style="color:var(--admin-accent);margin:0 0 20px;">Proje Ekle</h3>
             <div style="display:grid;gap:12px;">
                 <div class="admin-form-group">
@@ -436,7 +453,8 @@
                 <div class="admin-form-group">
                     <label>Durum</label>
                     <div id="pmStatusContainer" style="display:flex; flex-direction:column; gap:8px;"></div>
-                    <button type="button" class="admin-btn admin-btn-sm" id="pmAddStatusBtn" style="margin-top:8px;">➕ Yeni Durum Ekle</button>
+                    <button type="button" class="admin-btn admin-btn-sm" id="pmAddStatusBtn" style="margin-top:8px;">➕
+                        Yeni Durum Ekle</button>
                 </div>
                 <div class="admin-form-group">
                     <label>Etiketler (virgülle ayrılmış)</label>
@@ -456,7 +474,8 @@
                 </div>
             </div>
             <div class="verification-actions" style="margin-top:20px;">
-                <button class="verify-btn" id="projectModalSave" style="background:var(--admin-accent);">💾 Kaydet</button>
+                <button class="verify-btn" id="projectModalSave" style="background:var(--admin-accent);">💾
+                    Kaydet</button>
                 <button class="cancel-btn" id="projectModalCancel">İptal</button>
             </div>
         </div>
@@ -464,7 +483,8 @@
 
     <!-- Sürüm Ekle/Düzenle Modal -->
     <div class="verification-modal" id="changelogModal" aria-hidden="true" inert>
-        <div class="verification-card" role="dialog" style="max-width:480px;width:95%;border:1.5px solid var(--admin-border);">
+        <div class="verification-card" role="dialog"
+            style="max-width:480px;width:95%;border:1.5px solid var(--admin-border);">
             <h3 id="changelogModalTitle" style="color:var(--admin-accent);margin:0 0 20px;">Sürüm Ekle</h3>
             <div style="display:grid;gap:12px;">
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
@@ -489,11 +509,13 @@
                 </div>
                 <div class="admin-form-group">
                     <label>Değişiklikler (Her satıra bir madde)</label>
-                    <textarea id="clNotes" rows="5" placeholder="Yeni özellik eklendi&#10;Hata düzeltildi&#10;Performans iyileştirildi"></textarea>
+                    <textarea id="clNotes" rows="5"
+                        placeholder="Yeni özellik eklendi&#10;Hata düzeltildi&#10;Performans iyileştirildi"></textarea>
                 </div>
             </div>
             <div class="verification-actions" style="margin-top:20px;">
-                <button class="verify-btn" id="changelogModalSave" style="background:var(--admin-accent);">💾 Kaydet</button>
+                <button class="verify-btn" id="changelogModalSave" style="background:var(--admin-accent);">💾
+                    Kaydet</button>
                 <button class="cancel-btn" id="changelogModalCancel">İptal</button>
             </div>
         </div>
@@ -501,7 +523,8 @@
 
     <!-- SSS Madde Ekle Modal -->
     <div class="verification-modal" id="faqItemModal" aria-hidden="true" inert>
-        <div class="verification-card" role="dialog" style="max-width:480px;width:95%;border:1.5px solid var(--admin-border);">
+        <div class="verification-card" role="dialog"
+            style="max-width:480px;width:95%;border:1.5px solid var(--admin-border);">
             <h3 id="faqItemModalTitle" style="color:var(--admin-accent);margin:0 0 20px;">SSS Madde Ekle</h3>
             <div style="display:grid;gap:12px;">
                 <div class="admin-form-group">
