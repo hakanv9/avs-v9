@@ -196,9 +196,9 @@
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "",
-        "downloads": "-5",
-        "rating": "5",
-        "ageRating": "30+",
+        "downloads": "~5+",
+        "rating": "4.5/5",
+        "ageRating": "13+",
         "appSize": "-150",
         "minAndroid": "8",
         "description": [
