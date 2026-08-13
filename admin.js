@@ -678,7 +678,7 @@ function initModals() {
     document.getElementById('addFaqCatBtn')?.addEventListener('click', addFaqCategory);
 
     // Detay Kaydet
-    document.getElementById('saveDetailBtn')?.addEventListener('click', saveProjectDetail);
+    document.getElementById('saveDetailBtn')?.addEventListener('click', () => { saveProjectDetail(true); saveAllToGitHub(); });
     document.getElementById('saveFaqBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('saveLegalBtn')?.addEventListener('click', saveAllToGitHub);
     document.getElementById('fetchSocialFeedBtn')?.addEventListener('click', fetchRandomSocialPosts);
