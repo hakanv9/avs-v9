@@ -1690,6 +1690,16 @@ function initApp() {
             }
         }
 
+        const reqEl = document.getElementById('pdReqList');
+        const reqsArr = detail.requirements || [];
+        if (reqEl) {
+            if (reqsArr.length > 0) {
+                reqEl.innerHTML = reqsArr.map(r => `<span class="pd-tag">${escapeHTML(r)}</span>`).join('');
+            } else {
+                reqEl.innerHTML = `<span class="pd-tag">${lang === 'en' ? 'Standard requirements' : 'Standart gereksinimler'}</span>`;
+            }
+        }
+
 
         const descEl = document.getElementById('pdDescription');
         let rawDesc = (lang === 'en' && detail.descriptionEN && detail.descriptionEN.length) ? detail.descriptionEN : (detail.description && detail.description.length ? detail.description : desc);

@@ -233,10 +233,31 @@ function createStatusSelect(containerId, selectedValue = 'development') {
 // YARDIMCI FONKSİYONLAR
 function fileToBase64(file) {
     return new Promise((resolve, reject) => {
+        if (!file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+            return;
+        }
+
+        const img = new Image();
         const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
+        reader.onload = (e) => {
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                const webpBase64 = canvas.toDataURL('image/webp', 0.85); // 85% quality
+                resolve(webpBase64);
+            };
+            img.onerror = () => reject(new Error('Görsel işlenemedi.'));
+            img.src = e.target.result;
+        };
         reader.onerror = error => reject(error);
+        reader.readAsDataURL(file);
     });
 }
 
@@ -883,6 +904,7 @@ function saveProjectDetail(silent = false) {
     d.minAndroid = document.getElementById('detailMinAndroid').value.trim();
     d.playStoreUrl = document.getElementById('detailPlayStoreUrl').value.trim();
     d.permissions = document.getElementById('detailPermissions').value.split('\n').map(s => s.trim()).filter(Boolean);
+    d.requirements = document.getElementById('detailRequirements').value.split('\n').map(s => s.trim()).filter(Boolean);
     d.description = document.getElementById('detailDescTR').value.split('\n').map(s => s.trim()).filter(Boolean);
     d.descriptionEN = document.getElementById('detailDescEN').value.split('\n').map(s => s.trim()).filter(Boolean);
 
@@ -953,6 +975,7 @@ async function handleScreenshotUpload(files) {
     adminLoading(true, 'Görseller yükleniyor...');
     try {
         for (const file of Array.from(files)) {
+            if (file.size > 15 * 1024 * 1024) { adminToast(`${file.name} 15MB sınırını aşıyor.`, 'error'); continue; }
             const base64 = await fileToBase64(file);
             const safeSlug = (proj.slug || proj.id).replace(/[^a-zA-Z0-9\-]/g, '_');
             const safeExt = file.name.split('.').pop().replace(/[^a-zA-Z0-9]/g, '') || 'webp';
@@ -1001,6 +1024,7 @@ function loadProjectDetails(id) {
     document.getElementById('detailMinAndroid').value = d.minAndroid || '';
     document.getElementById('detailPlayStoreUrl').value = d.playStoreUrl || '';
     document.getElementById('detailPermissions').value = (d.permissions || []).join('\n');
+    document.getElementById('detailRequirements').value = (d.requirements || []).join('\n');
     document.getElementById('detailDescTR').value = (d.description || []).join('\n\n');
     document.getElementById('detailDescEN').value = (d.descriptionEN || []).join('\n\n');
 
