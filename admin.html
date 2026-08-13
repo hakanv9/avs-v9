@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr" data-theme="dark" data-admin-page>
 
 <head>
@@ -113,7 +113,6 @@
                      ============================================================ -->
                 <div class="admin-tab-content active" id="tab-anasayfa">
 
-                    <!-- 1A: Hero Slider Görselleri -->
                     <div class="admin-card">
                         <div class="admin-card-header">
                             <h2 class="admin-card-title">
@@ -123,7 +122,6 @@
                         </div>
 
                         <div class="slider-img-grid" id="sliderImgGrid">
-                            <!-- JS tarafından doldurulacak -->
                         </div>
 
                         <label class="admin-upload-area" id="sliderUploadArea" for="sliderFileInput">
@@ -148,30 +146,28 @@
                         </div>
 
                         <div class="admin-project-list" id="adminProjectList">
-                            <!-- JS tarafından doldurulacak -->
+
                         </div>
                     </div>
                 </div>
 
                 <!-- ============================================================
-                     SEKME 2: PROJE DETAY YÖNETİMİ
+                     : PROJE DETAY YÖNETİMİ
                      ============================================================ -->
                 <div class="admin-tab-content" id="tab-detay">
 
-                    <!-- Proje Seçici -->
                     <div class="admin-card">
                         <div class="admin-card-header">
                             <h2 class="admin-card-title"><span>📱</span> Proje Seç</h2>
                         </div>
                         <div class="admin-project-selector" id="detailProjectSelector">
-                            <!-- JS tarafından doldurulacak -->
+
                         </div>
                     </div>
 
-                    <!-- Detay Editör (Proje seçilince açılır) -->
+
                     <div id="detailEditorWrap" style="display:none;">
 
-                        <!-- 2A: Proje Görselleri -->
                         <div class="admin-card">
                             <div class="admin-card-header">
                                 <h2 class="admin-card-title"><span>📸</span> Proje Görselleri</h2>
@@ -189,7 +185,6 @@
                             </label>
                         </div>
 
-                        <!-- 2B: Proje Kimliği -->
                         <div class="admin-card">
                             <div class="admin-card-header">
                                 <h2 class="admin-card-title"><span>🏷️</span> Proje Kimlik Bilgileri</h2>
@@ -216,10 +211,11 @@
                                     <input type="text" id="detailAgeRating" placeholder="3+">
                                 </div>
                             </div>
-                            
+
                             <div class="admin-form-group">
                                 <label>📱 Sistem Gereksinimleri (Her satıra bir gereksinim)</label>
-                                <textarea id="detailRequirements" rows="3" placeholder="📱 Min. Android 8.0&#10;💾 2GB RAM"></textarea>
+                                <textarea id="detailRequirements" rows="3"
+                                    placeholder="📱 Min. Android 8.0&#10;💾 2GB RAM"></textarea>
                             </div>
 
                             <div class="admin-form-group">
@@ -244,7 +240,7 @@
                                 </label>
                             </div>
 
-                            <!-- Play Store Alanları (Android aktifse görünür) -->
+                            <!-- Play Store Alanları -->
                             <div id="playStoreFields"
                                 style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--admin-border);">
                                 <div
@@ -275,7 +271,7 @@
                             </div>
                         </div>
 
-                        <!-- 2C: Uygulama Hakkında -->
+                        <!-- : Uygulama Hakkında -->
                         <div class="admin-card">
                             <div class="admin-card-header">
                                 <h2 class="admin-card-title"><span>📋</span> Uygulama Hakkında</h2>
@@ -292,7 +288,7 @@
                             </div>
                         </div>
 
-                        <!-- 2D: Sürüm Geçmişi -->
+                        <!-- : Sürüm Geçmişi -->
                         <div class="admin-card">
                             <div class="admin-card-header">
                                 <h2 class="admin-card-title"><span>📝</span> Sürüm Geçmişi</h2>
@@ -303,7 +299,7 @@
                             <div class="changelog-list" id="changelogList"></div>
                         </div>
 
-                        <!-- Detay Kaydet -->
+
                         <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:4px;">
                             <button class="admin-btn admin-btn-primary admin-btn-lg" id="saveDetailBtn">
                                 💾 Değişiklikleri Kaydet
@@ -317,7 +313,7 @@
                      ============================================================ -->
                 <div class="admin-tab-content" id="tab-sayfalar">
 
-                    <!-- 3A: SSS Yönetimi -->
+
                     <div class="admin-card">
                         <div class="admin-card-header">
                             <h2 class="admin-card-title"><span>❓</span> SSS Yönetimi</h2>
@@ -335,7 +331,7 @@
                         </button>
                     </div>
 
-                    <!-- 3B: Gizlilik Politikası -->
+                    <!-- : Gizlilik Politikası -->
                     <div class="admin-card">
                         <div class="admin-card-header">
                             <h2 class="admin-card-title"><span>🔏</span> Gizlilik Politikası</h2>
@@ -349,7 +345,7 @@
                         <div id="privacyAdminList"></div>
                     </div>
 
-                    <!-- 3C: Kullanım Koşulları -->
+                    <!-- : Kullanım Koşulları -->
                     <div class="admin-card">
                         <div class="admin-card-header">
                             <h2 class="admin-card-title"><span>📃</span> Kullanım Koşulları</h2>
@@ -410,10 +406,10 @@
                     </div>
                 </div>
 
-            </div><!-- /admin-container -->
-        </div><!-- /admin-page -->
+            </div>
+        </div>
 
-        <!-- KAYDET BARRI (Alt) -->
+
         <div class="admin-save-bar" id="adminSaveBar">
             <div class="admin-save-bar-text">Kaydedilmemiş değişiklikler var</div>
             <div class="admin-save-actions">
@@ -422,11 +418,11 @@
             </div>
         </div>
 
-    </div><!-- /adminPanel -->
+    </div>
 
     <!-- ======= MODALLER ======= -->
 
-    <!-- Proje Ekle/Düzenle Modal -->
+
     <div class="verification-modal" id="projectModal" aria-hidden="true" inert>
         <div class="verification-card" role="dialog"
             style="max-width:520px;width:95%;border:1.5px solid var(--admin-border);max-height: 90vh;overflow-y: auto;">
@@ -479,7 +475,6 @@
         </div>
     </div>
 
-    <!-- Sürüm Ekle/Düzenle Modal -->
     <div class="verification-modal" id="changelogModal" aria-hidden="true" inert>
         <div class="verification-card" role="dialog"
             style="max-width:480px;width:95%;border:1.5px solid var(--admin-border);">
@@ -541,7 +536,6 @@
         </div>
     </div>
 
-    <!-- SortableJS -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="script.js" defer></script>
     <script src="admin.js?v=1.2" defer></script>

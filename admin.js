@@ -291,8 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initLoginScreen();
     initTabSystem();
     initThemeToggle();
-
-    // Attach markDirty to all detail inputs dynamically
     document.querySelectorAll('#detailEditorWrap input, #detailEditorWrap textarea').forEach(el => {
         el.addEventListener('input', markDirty);
         el.addEventListener('change', markDirty);
@@ -301,7 +299,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initModals();
     initLightbox();
 
-    // Event Delegation for dynamically generated or late-bound elements
     document.addEventListener('click', (e) => {
         if (e.target && e.target.closest('#pmAddStatusBtn')) {
             if (typeof createStatusSelect === 'function') {
@@ -832,7 +829,6 @@ async function saveProjectModal() {
         }
         return;
     } else {
-        // Edit mode - also enforce unique slug
         let finalSlug = slug;
         let counter = 1;
         const editId = btn.dataset.editId;
@@ -919,20 +915,27 @@ function saveProjectDetail(silent = false) {
 function renderScreenshots(screenshots) {
     const grid = document.getElementById('screenshotGrid');
     if (!grid) return;
-    grid.innerHTML = screenshots.map((src, i) => `
-    <div class="screenshot-item" data-idx="${i}">
-        <img src="${PREVIEW_MAP[src] || src}" alt="Görsel ${i + 1}"
+
+    const normalized = screenshots.map((ss, i) => {
+        if (typeof ss === 'string') return { id: generateId('ss'), src: ss, alt: 'Görsel ' + (i + 1), order: i + 1 };
+        return ss;
+    });
+
+    grid.innerHTML = normalized.map((ss, i) => `
+    <div class="screenshot-item" data-id="${ss.id}" data-idx="${i}">
+        <img src="${PREVIEW_MAP[ss.src] || ss.src}" alt="${ss.alt || 'Görsel ' + (i + 1)}"
             onerror="this.parentElement.style.display='none'"
             onload="this.parentElement.className = 'screenshot-item ' + (this.naturalWidth > this.naturalHeight ? 'landscape' : this.naturalWidth === this.naturalHeight ? 'square' : '');"
-            style="cursor:zoom-in;" onclick="openLightbox('${PREVIEW_MAP[src] || src}')"
+            style="cursor:zoom-in;" onclick="openPdLightbox('${PREVIEW_MAP[ss.src] || ss.src}')"
         >
         <div class="ss-actions">
             <button class="order-btn" title="Geriye Taşı" onclick="moveScreenshot(${i}, -1)" ${i === 0 ? 'disabled' : ''}>◀</button>
             <button class="ss-del-btn" data-idx="${i}" title="Sil">✖</button>
-            <button class="order-btn" title="İleriye Taşı" onclick="moveScreenshot(${i}, 1)" ${i === screenshots.length - 1 ? 'disabled' : ''}>▶</button>
+            <button class="order-btn" title="İleriye Taşı" onclick="moveScreenshot(${i}, 1)" ${i === normalized.length - 1 ? 'disabled' : ''}>▶</button>
         </div>
     </div>
 `).join('');
+
     grid.querySelectorAll('.ss-del-btn').forEach(btn => {
         btn.addEventListener('click', (e) => { e.stopPropagation(); deleteScreenshot(parseInt(btn.dataset.idx)); });
     });
@@ -942,7 +945,7 @@ window.moveScreenshot = function (idx, dir) {
     if (!currentProjectId) return;
     const proj = siteData.projects.find(p => p.id === currentProjectId);
     if (!proj || !proj.detail || !proj.detail.screenshots) return;
-    
+
     const arr = proj.detail.screenshots;
     if (dir === -1 && idx > 0) {
         const tmp = arr[idx];
@@ -977,15 +980,19 @@ async function handleScreenshotUpload(files) {
         for (const file of Array.from(files)) {
             if (file.size > 15 * 1024 * 1024) { adminToast(`${file.name} 15MB sınırını aşıyor.`, 'error'); continue; }
             const base64 = await fileToBase64(file);
-            const safeSlug = (proj.slug || proj.id).replace(/[^a-zA-Z0-9\-]/g, '_');
-            const safeExt = file.name.split('.').pop().replace(/[^a-zA-Z0-9]/g, '') || 'webp';
-            const filename = `ss_${safeSlug}_${Date.now()}.${safeExt}`;
+            const filename = `ss-${Date.now()}-${file.name.replace(/\s/g, '_')}`;
             const path = await ghAPI.uploadImage(filename, base64);
             PREVIEW_MAP[path] = base64;
-            
+
             if (!proj.detail) proj.detail = {};
             if (!proj.detail.screenshots) proj.detail.screenshots = [];
-            proj.detail.screenshots.push(path);
+
+            proj.detail.screenshots.push({
+                id: generateId('ss'),
+                src: path,
+                alt: file.name.split('.')[0],
+                order: proj.detail.screenshots.length + 1
+            });
         }
         markDirty();
         renderScreenshots(proj.detail.screenshots);
@@ -1047,7 +1054,6 @@ function loadProjectDetails(id) {
 window.moveProject = function (id, dir) {
     if (!siteData || !siteData.projects) return;
 
-    // Ensure all items have an order first
     siteData.projects.forEach((p, i) => { if (typeof p.order !== 'number') p.order = i + 1; });
     siteData.projects.sort((a, b) => (a.order || 0) - (b.order || 0));
 
@@ -1122,7 +1128,6 @@ window.moveSliderImage = function (idx, dir) {
     if (!siteData || !siteData.heroSlider) return;
     const arr = siteData.heroSlider;
 
-    // Ensure all items have an order
     arr.forEach((s, i) => { if (typeof s.order !== 'number') s.order = i + 1; });
     arr.sort((a, b) => (a.order || 0) - (b.order || 0));
 

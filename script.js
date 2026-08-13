@@ -1967,3 +1967,41 @@ document.addEventListener('click', e => {
     }
 });
 
+// Lightbox logic for Proje Detay
+window.openPdLightbox = function (src) {
+    const modal = document.getElementById('pdLightboxModal');
+    const img = document.getElementById('pdLightboxImg');
+    if (!modal || !img) return;
+
+    img.onload = function () {
+        if (this.naturalHeight > this.naturalWidth) {
+            img.style.width = 'auto';
+            img.style.height = '90vh';
+            img.style.maxWidth = '100%';
+        } else {
+            img.style.width = '90vw';
+            img.style.height = 'auto';
+            img.style.maxHeight = '90vh';
+        }
+    };
+    img.src = src;
+
+    modal.style.display = 'flex';
+    modal.removeAttribute('inert');
+    modal.setAttribute('aria-hidden', 'false');
+};
+
+window.closePdLightbox = function () {
+    const modal = document.getElementById('pdLightboxModal');
+    if (!modal) return;
+    modal.style.display = 'none';
+    modal.setAttribute('inert', '');
+    modal.setAttribute('aria-hidden', 'true');
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('pdLightboxClose')?.addEventListener('click', closePdLightbox);
+    document.getElementById('pdLightboxModal')?.addEventListener('click', function (e) {
+        if (e.target === this || e.target.classList.contains('pgallery-box') || e.target.classList.contains('pgallery-img-container')) closePdLightbox();
+    });
+});
