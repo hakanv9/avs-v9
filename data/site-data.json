@@ -42,68 +42,6 @@
   ],
   "projects": [
     {
-      "id": "test-msn4a9g2",
-      "slug": "test",
-      "name": "test",
-      "nameEN": "test",
-      "shortDesc": "test kısa",
-      "shortDescEN": "test kısa",
-      "thumbnail": "resimler/projeler-resmi1.jpg",
-      "tags": [],
-      "status": "completed",
-      "statuses": [
-        "completed"
-      ],
-      "order": 1,
-      "visible": true,
-      "detail": {
-        "isAndroid": false,
-        "playStoreEnabled": false,
-        "playStoreUrl": "#",
-        "logo": "",
-        "downloads": "-",
-        "rating": "-",
-        "ageRating": "3+",
-        "appSize": "-",
-        "minAndroid": "-",
-        "description": [
-          "test kısa"
-        ],
-        "descriptionEN": [
-          "test kısa"
-        ],
-        "permissions": [],
-        "screenshots": [],
-        "changelog": [
-          {
-            "version": "123",
-            "date": "2026-08-10",
-            "type": "fix",
-            "features": [],
-            "fixes": [
-              "test"
-            ]
-          },
-          {
-            "version": "v0.01",
-            "date": "2026-08-10",
-            "type": "minor",
-            "features": [],
-            "fixes": []
-          },
-          {
-            "version": "v0.01",
-            "date": "2026-08-10",
-            "type": "minor",
-            "features": [
-              "test123"
-            ],
-            "fixes": []
-          }
-        ]
-      }
-    },
-    {
       "id": "v9-site-projemiz-msnisj4d",
       "slug": "v9-site-projemiz",
       "name": "AVS&V9 Web Site Projemiz",
@@ -120,7 +58,7 @@
         "bugfix",
         "rnd"
       ],
-      "order": 3,
+      "order": 1,
       "visible": true,
       "detail": {
         "isAndroid": false,
@@ -221,6 +159,68 @@
               "Web sitesi için çalışmalara başlandı.",
               "Alt yapı araştırması(Depolama ve Hosting arayışı).",
               "Kod yapısı çalışmaları."
+            ],
+            "fixes": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "test-msn4a9g2",
+      "slug": "test",
+      "name": "test",
+      "nameEN": "test",
+      "shortDesc": "test kısa",
+      "shortDescEN": "test kısa",
+      "thumbnail": "resimler/projeler-resmi1.jpg",
+      "tags": [],
+      "status": "completed",
+      "statuses": [
+        "completed"
+      ],
+      "order": 3,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "test kısa"
+        ],
+        "descriptionEN": [
+          "test kısa"
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": [
+          {
+            "version": "123",
+            "date": "2026-08-10",
+            "type": "fix",
+            "features": [],
+            "fixes": [
+              "test"
+            ]
+          },
+          {
+            "version": "v0.01",
+            "date": "2026-08-10",
+            "type": "minor",
+            "features": [],
+            "fixes": []
+          },
+          {
+            "version": "v0.01",
+            "date": "2026-08-10",
+            "type": "minor",
+            "features": [
+              "test123"
             ],
             "fixes": []
           }
