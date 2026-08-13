@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark" data-admin-page>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetim Paneli | AVS&V9</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="resimler/site-ikonu.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <!-- ======= YÜKLEME OVERLAY ======= -->
+    <div class="admin-loading" id="adminLoading">
+        <div class="admin-loading-spinner"></div>
+        <div class="admin-loading-text" id="adminLoadingText">Kaydediliyor...</div>
+    </div>
+
+    <!-- ======= TOAST MESAJLARI ======= -->
+    <div class="admin-toast-wrap" id="adminToastWrap"></div>
+
+    <!-- ======= GİRİŞ EKRANI ======= -->
+    <div id="adminLoginScreen" class="admin-login-wrap" style="display:none;">
+        <div class="admin-login-card">
+            <div class="admin-login-logo">🔐</div>
+            <h1 class="admin-login-title">Yönetim Paneli</h1>
+            <p class="admin-login-sub">AVS&V9 — Yetkili Giriş</p>
+
+            <div class="admin-field">
+                <label for="adminGithubToken">Erişim Anahtarı</label>
+                <input type="password" id="adminGithubToken" placeholder="•••••••••••••••••••••" autocomplete="off"
+                    spellcheck="false">
+            </div>
+            <div class="admin-field">
+                <label for="adminRepoOwner">Kullanıcı Adı</label>
+                <input type="text" id="adminRepoOwner" placeholder="kullanıcı adınız" autocomplete="off">
+            </div>
+            <div class="admin-field">
+                <label for="adminRepoName">Depo Adı</label>
+                <input type="text" id="adminRepoName" placeholder="repo adınız" autocomplete="off">
+            </div>
+
+            <button class="admin-login-btn" id="adminLoginBtn">
+                🔓 Giriş Yap
+            </button>
+            <div class="admin-login-error" id="adminLoginError"></div>
+        </div>
+    </div>
+
+    <!-- ======= ANA PANEL======= -->
+    <div id="adminPanel" style="display:none;">
+
+        <!-- NAVBAR -->
+        <nav class="admin-navbar">
+            <div class="admin-nav-brand">
+                <span class="admin-nav-logo">🛡️ AVS&V9</span>
+                <span class="admin-nav-badge">YÖNETİM PANELİ</span>
+            </div>
+            <div class="admin-nav-controls">
+                <button class="admin-nav-btn" id="adminThemeToggle" title="Temayı Değiştir">
+                    <span id="adminThemeIcon">🌙</span>
+                </button>
+                <button class="admin-nav-btn" id="adminLangToggle" title="Dili Değiştir">
+                    🌐 <span id="adminLangLabel">TR</span>
+                </button>
+                <button class="admin-nav-btn" id="adminAutoTranslateBtn"
+                    title="Boş İngilizce alanları otomatik çevir (Google Translate)">
+                    🤖 Otomatik Çevir
+                </button>
+                <button class="admin-nav-btn admin-logout-btn" id="adminLogoutBtn">
+                    🔒 Çıkış Yap
+                </button>
+            </div>
+        </nav>
+
+        <!-- PANEL İÇERİĞİ -->
+        <div class="admin-page">
+            <div class="admin-container">
+
+                <div class="admin-page-header">
+                    <h1 class="admin-page-title">⚙️ Site Kontrol Merkezi</h1>
+                    <p class="admin-page-sub">Tüm değişiklikler otomatik olarak kaydedilir ve site 15 saniyede
+                        güncellenir.</p>
+                </div>
+
+                <!-- SEKMELER -->
+                <div class="admin-tabs" role="tablist">
+                    <button class="admin-tab-btn active" data-tab="tab-anasayfa" role="tab">
+                        🏠 Anasayfa
+                    </button>
+                    <button class="admin-tab-btn" data-tab="tab-detay" role="tab">
+                        📱 Proje Detayları
+                    </button>
+                    <button class="admin-tab-btn" data-tab="tab-sayfalar" role="tab">
+                        📄 SSS &amp; Yasal
+                    </button>
+                    <button class="admin-tab-btn" data-tab="tab-sosyal" role="tab">
+                        📲 Sosyal Medya
+                    </button>
+                </div>
+
+                <!-- ============================================================
+                     SEKME 1: ANASAYFA YÖNETİMİ
+                     ============================================================ -->
+                <div class="admin-tab-content active" id="tab-anasayfa">
+
+                    <!-- 1A: Hero Slider Görselleri -->
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h2 class="admin-card-title">
+                                <span>🖼️</span> Hero Carousel Görselleri
+                            </h2>
+                            <span style="font-size:0.78rem;color:var(--text-secondary)">10 saniyede bir geçiş</span>
+                        </div>
+
+                        <div class="slider-img-grid" id="sliderImgGrid">
+                            <!-- JS tarafından doldurulacak -->
+                        </div>
+
+                        <label class="admin-upload-area" id="sliderUploadArea" for="sliderFileInput">
+                            <div class="upload-icon">📤</div>
+                            <div class="upload-text">
+                                <strong>Tıkla veya sürükle-bırak</strong><br>
+                                PNG, JPG, GIF, WebP — Max 5MB
+                            </div>
+                            <input type="file" id="sliderFileInput" accept="image/*,image/gif" multiple>
+                        </label>
+                    </div>
+
+                    <!-- 1B: Projelerim Listesi -->
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h2 class="admin-card-title">
+                                <span>📦</span> Projelerim Listesi
+                            </h2>
+                            <button class="admin-btn admin-btn-primary admin-btn-sm" id="addProjectBtn">
+                                ＋ Yeni Proje
+                            </button>
+                        </div>
+
+                        <div class="admin-project-list" id="adminProjectList">
+                            <!-- JS tarafından doldurulacak -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================================
+                     SEKME 2: PROJE DETAY YÖNETİMİ
+                     ============================================================ -->
+                <div class="admin-tab-content" id="tab-detay">
+
+                    <!-- Proje Seçici -->
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h2 class="admin-card-title"><span>📱</span> Proje Seç</h2>
+                        </div>
+                        <div class="admin-project-selector" id="detailProjectSelector">
+                            <!-- JS tarafından doldurulacak -->
+                        </div>
+                    </div>
+
+                    <!-- Detay Editör (Proje seçilince açılır) -->
+                    <div id="detailEditorWrap" style="display:none;">
+
+                        <!-- 2A: Proje Görselleri -->
+                        <div class="admin-card">
+                            <div class="admin-card-header">
+                                <h2 class="admin-card-title"><span>📸</span> Proje Görselleri</h2>
+                                <span style="font-size:0.75rem;color:var(--text-secondary)">Dikey → portre modunda,
+                                    Yatay → tam genişlik açılır</span>
+                            </div>
+                            <div class="screenshot-grid" id="screenshotGrid"></div>
+                            <label class="admin-upload-area" for="screenshotFileInput">
+                                <div class="upload-icon">📤</div>
+                                <div class="upload-text">
+                                    <strong>Görsel ekle</strong><br>
+                                    PNG, JPG, WebP — Dikey veya Yatay olabilir
+                                </div>
+                                <input type="file" id="screenshotFileInput" accept="image/*" multiple>
+                            </label>
+                        </div>
+
+                        <!-- 2B: Proje Kimliği -->
+                        <div class="admin-card">
+                            <div class="admin-card-header">
+                                <h2 class="admin-card-title"><span>🏷️</span> Proje Kimlik Bilgileri</h2>
+                            </div>
+
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                                <div class="admin-form-group">
+                                    <label>Proje Adı (TR)</label>
+                                    <input type="text" id="detailName">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Proje Adı (EN)</label>
+                                    <input type="text" id="detailNameEN">
+                                </div>
+                            </div>
+
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+                                <div class="admin-form-group">
+                                    <label>Uygulama Boyutu</label>
+                                    <input type="text" id="detailSize" placeholder="~15 MB">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Yaş Sınırı</label>
+                                    <input type="text" id="detailAgeRating" placeholder="3+">
+                                </div>
+                            </div>
+                            
+                            <div class="admin-form-group">
+                                <label>📱 Sistem Gereksinimleri (Her satıra bir gereksinim)</label>
+                                <textarea id="detailRequirements" rows="3" placeholder="📱 Min. Android 8.0&#10;💾 2GB RAM"></textarea>
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label>Uygulama Logosu (Dosya yolu veya URL)</label>
+                                <input type="text" id="detailLogo" placeholder="resimler/uygulama_logo.webp">
+                            </div>
+                            <div class="admin-form-group">
+                                <label>Kapak Görseli (Proje listesi için)</label>
+                                <input type="text" id="detailThumbnail" placeholder="resimler/projeler-resmi1.webp">
+                            </div>
+
+                            <!-- Android / Play Store Toggle -->
+                            <div class="admin-toggle-row" id="androidToggleRow">
+                                <div>
+                                    <div class="admin-toggle-label">🤖 Android / Play Store Entegrasyonu</div>
+                                    <div class="admin-toggle-desc">İndirme sayısı, puan, izinler ve Play Store butonu
+                                        görünsün mü?</div>
+                                </div>
+                                <label class="admin-toggle">
+                                    <input type="checkbox" id="detailIsAndroid">
+                                    <span class="admin-toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <!-- Play Store Alanları (Android aktifse görünür) -->
+                            <div id="playStoreFields"
+                                style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--admin-border);">
+                                <div
+                                    style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;">
+                                    <div class="admin-form-group">
+                                        <label>İndirme Sayısı</label>
+                                        <input type="text" id="detailDownloads" placeholder="10B+">
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label>Puan</label>
+                                        <input type="text" id="detailRating" placeholder="4.8 ★">
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label>Min. Android</label>
+                                        <input type="text" id="detailMinAndroid" placeholder="Android 8.0 / API 26">
+                                    </div>
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Play Store Linki</label>
+                                    <input type="url" id="detailPlayStoreUrl"
+                                        placeholder="https://play.google.com/store/apps/details?id=...">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Gerekli İzinler (Her satıra bir izin)</label>
+                                    <textarea id="detailPermissions" rows="4"
+                                        placeholder="📍 Konum (Ön plan & Arka plan)&#10;🔔 Bildirimler&#10;📶 İnternet Erişimi"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2C: Uygulama Hakkında -->
+                        <div class="admin-card">
+                            <div class="admin-card-header">
+                                <h2 class="admin-card-title"><span>📋</span> Uygulama Hakkında</h2>
+                            </div>
+                            <div class="admin-form-group">
+                                <label>Açıklama (TR) — Her paragraf ayrı satır</label>
+                                <textarea id="detailDescTR" rows="5"
+                                    placeholder="V9 uygulaması...&#10;&#10;Özellik açıklamaları...&#10;&#10;🚀 Özellik 1 | 💡 Özellik 2"></textarea>
+                            </div>
+                            <div class="admin-form-group">
+                                <label>Açıklama (EN) — Her paragraf ayrı satır</label>
+                                <textarea id="detailDescEN" rows="5"
+                                    placeholder="V9 app...&#10;&#10;Feature descriptions...&#10;&#10;🚀 Feature 1 | 💡 Feature 2"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 2D: Sürüm Geçmişi -->
+                        <div class="admin-card">
+                            <div class="admin-card-header">
+                                <h2 class="admin-card-title"><span>📝</span> Sürüm Geçmişi</h2>
+                                <button class="admin-btn admin-btn-primary admin-btn-sm" id="addChangelogBtn">
+                                    ＋ Yeni Sürüm
+                                </button>
+                            </div>
+                            <div class="changelog-list" id="changelogList"></div>
+                        </div>
+
+                        <!-- Detay Kaydet -->
+                        <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:4px;">
+                            <button class="admin-btn admin-btn-primary admin-btn-lg" id="saveDetailBtn">
+                                💾 Değişiklikleri Kaydet
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================================
+                     SEKME 3: SSS & YASAL SAYFALAR
+                     ============================================================ -->
+                <div class="admin-tab-content" id="tab-sayfalar">
+
+                    <!-- 3A: SSS Yönetimi -->
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h2 class="admin-card-title"><span>❓</span> SSS Yönetimi</h2>
+                            <button class="admin-btn admin-btn-primary admin-btn-sm" id="addFaqCatBtn">
+                                ＋ Kategori Ekle
+                            </button>
+                        </div>
+                        <div id="faqAdminList"></div>
+                    </div>
+
+                    <!-- SSS Kaydet -->
+                    <div style="display:flex;justify-content:flex-end;margin-bottom:24px;">
+                        <button class="admin-btn admin-btn-primary admin-btn-lg" id="saveFaqBtn">
+                            💾 SSS Kaydet
+                        </button>
+                    </div>
+
+                    <!-- 3B: Gizlilik Politikası -->
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h2 class="admin-card-title"><span>🔏</span> Gizlilik Politikası</h2>
+                            <button class="admin-btn admin-btn-sm" id="addPrivacySecBtn">＋ Bölüm Ekle</button>
+                        </div>
+                        <div class="legal-date-row">
+                            <label>Son Güncelleme:</label>
+                            <input type="date" id="privacyDate">
+                            <button class="admin-btn admin-btn-sm" id="setPrivacyTodayBtn">📅 Bugün</button>
+                        </div>
+                        <div id="privacyAdminList"></div>
+                    </div>
+
+                    <!-- 3C: Kullanım Koşulları -->
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h2 class="admin-card-title"><span>📃</span> Kullanım Koşulları</h2>
+                            <button class="admin-btn admin-btn-sm" id="addTermsSecBtn">＋ Bölüm Ekle</button>
+                        </div>
+                        <div class="legal-date-row">
+                            <label>Son Güncelleme:</label>
+                            <input type="date" id="termsDate">
+                            <button class="admin-btn admin-btn-sm" id="setTermsTodayBtn">📅 Bugün</button>
+                        </div>
+                        <div id="termsAdminList"></div>
+                    </div>
+
+                    <!-- Yasal Kaydet -->
+                    <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:4px;">
+                        <button class="admin-btn admin-btn-primary admin-btn-lg" id="saveLegalBtn">
+                            💾 Yasal Sayfaları Kaydet
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ============================================================
+                     SEKME 4: SOSYAL MEDYA YÖNETİMİ
+                     ============================================================ -->
+                <div class="admin-tab-content" id="tab-sosyal">
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <div>
+                                <h2 class="admin-card-title">
+                                    <span>📲</span> Sosyal Medya Akış Yönetimi
+                                </h2>
+                                <p style="font-size:0.8rem;color:var(--text-secondary);margin:4px 0 0;">
+                                    Instagram, TikTok, YouTube ve X (Twitter) hesaplarından güncel paylaşımlar.
+                                </p>
+                            </div>
+                            <button class="admin-btn admin-btn-primary admin-btn-lg" id="fetchSocialFeedBtn">
+                                🔄 Rastgele Gönderi Çek / Yenile
+                            </button>
+                        </div>
+
+                        <div
+                            style="padding:12px 16px;background:rgba(255,71,87,0.06);border:1px solid var(--admin-border);border-radius:12px;margin-bottom:20px;font-size:0.82rem;color:var(--text-secondary);">
+                            💡 <strong>Overwriting Kuralı:</strong> Her yenilemede yeni gönderiler eskilerinin üzerine
+                            yazılır. Böylece sunucuda gereksiz dosya veya içerik birikmesi tamamen önlenir. Videoların
+                            sadece kapak görselleri çekilir.
+                        </div>
+
+                        <div class="admin-card-header" style="margin-bottom:12px;">
+                            <span style="font-size:0.85rem;font-weight:700;color:var(--admin-accent);"
+                                id="socialLastUpdatedLabel">
+                                Son Güncelleme: -
+                            </span>
+                        </div>
+
+                        <div class="slider-img-grid" id="socialAdminList"
+                            style="grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));">
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /admin-container -->
+        </div><!-- /admin-page -->
+
+        <!-- KAYDET BARRI (Alt) -->
+        <div class="admin-save-bar" id="adminSaveBar">
+            <div class="admin-save-bar-text">Kaydedilmemiş değişiklikler var</div>
+            <div class="admin-save-actions">
+                <button class="admin-btn admin-btn-sm" id="discardChangesBtn">İptal</button>
+                <button class="admin-btn admin-btn-primary admin-btn-sm" id="saveAllBtn">💾 Hepsini Kaydet</button>
+            </div>
+        </div>
+
+    </div><!-- /adminPanel -->
+
+    <!-- ======= MODALLER ======= -->
+
+    <!-- Proje Ekle/Düzenle Modal -->
+    <div class="verification-modal" id="projectModal" aria-hidden="true" inert>
+        <div class="verification-card" role="dialog"
+            style="max-width:520px;width:95%;border:1.5px solid var(--admin-border);max-height: 90vh;overflow-y: auto;">
+            <h3 id="projectModalTitle" style="color:var(--admin-accent);margin:0 0 20px;">Proje Ekle</h3>
+            <div style="display:grid;gap:12px;">
+                <div class="admin-form-group">
+                    <label>Proje Adı (TR)</label>
+                    <input type="text" id="pmName" placeholder="V9 Uygulama Adı">
+                </div>
+                <div class="admin-form-group">
+                    <label>Proje Adı (EN)</label>
+                    <input type="text" id="pmNameEN" placeholder="V9 App Name">
+                </div>
+                <div class="admin-form-group">
+                    <label>Kısa Açıklama (TR)</label>
+                    <textarea id="pmDesc" rows="2" placeholder="Kısa açıklama..."></textarea>
+                </div>
+                <div class="admin-form-group">
+                    <label>Slug (URL kısmı)</label>
+                    <input type="text" id="pmSlug" placeholder="yeni-proje">
+                </div>
+                <div class="admin-form-group">
+                    <label>Durum</label>
+                    <div id="pmStatusContainer" style="display:flex; flex-direction:column; gap:8px;"></div>
+                    <button type="button" class="admin-btn admin-btn-sm" id="pmAddStatusBtn" style="margin-top:8px;">➕
+                        Yeni Durum Ekle</button>
+                </div>
+                <div class="admin-form-group">
+                    <label>Etiketler (virgülle ayrılmış)</label>
+                    <input type="text" id="pmTags" placeholder="📱 Mobil, 🗺️ Harita">
+                </div>
+                <div class="admin-form-group">
+                    <label>Kapak Görseli URL veya Dosya Yolu</label>
+                    <input type="text" id="pmThumbnail" placeholder="resimler/proje-kapak.webp">
+                </div>
+                <div class="admin-form-group" style="margin-top:-8px;">
+                    <label>veya Dosyadan Yükle</label>
+                    <label class="admin-upload-area" for="pmThumbnailFile" style="padding:16px 20px;">
+                        <div class="upload-icon" style="font-size:1.6rem;margin-bottom:4px;">📤</div>
+                        <div class="upload-text" style="font-size:0.78rem;">Kapak görseli seç (16:9 önerilen)</div>
+                        <input type="file" id="pmThumbnailFile" accept="image/*">
+                    </label>
+                </div>
+            </div>
+            <div class="verification-actions" style="margin-top:20px;">
+                <button class="verify-btn" id="projectModalSave" style="background:var(--admin-accent);">💾
+                    Kaydet</button>
+                <button class="cancel-btn" id="projectModalCancel">İptal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sürüm Ekle/Düzenle Modal -->
+    <div class="verification-modal" id="changelogModal" aria-hidden="true" inert>
+        <div class="verification-card" role="dialog"
+            style="max-width:480px;width:95%;border:1.5px solid var(--admin-border);">
+            <h3 id="changelogModalTitle" style="color:var(--admin-accent);margin:0 0 20px;">Sürüm Ekle</h3>
+            <div style="display:grid;gap:12px;">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div class="admin-form-group">
+                        <label>Versiyon No</label>
+                        <input type="text" id="clVersion" placeholder="v1.0.2">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Tarih</label>
+                        <input type="date" id="clDate">
+                    </div>
+                </div>
+                <div class="admin-form-group">
+                    <label>Sürüm Türü</label>
+                    <select id="clType">
+                        <option value="major">🔴 Major (Büyük Güncelleme)</option>
+                        <option value="minor">🔵 Minor (Küçük Güncelleme)</option>
+                        <option value="fix">🟢 Fix (Hata Düzeltme)</option>
+                        <option value="feature">🟣 Özellik Eklemesi</option>
+                        <option value="initial">🟡 İlk Sürüm</option>
+                    </select>
+                </div>
+                <div class="admin-form-group">
+                    <label>Değişiklikler (Her satıra bir madde)</label>
+                    <textarea id="clNotes" rows="5"
+                        placeholder="Yeni özellik eklendi&#10;Hata düzeltildi&#10;Performans iyileştirildi"></textarea>
+                </div>
+            </div>
+            <div class="verification-actions" style="margin-top:20px;">
+                <button class="verify-btn" id="changelogModalSave" style="background:var(--admin-accent);">💾
+                    Kaydet</button>
+                <button class="cancel-btn" id="changelogModalCancel">İptal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SSS Madde Ekle Modal -->
+    <div class="verification-modal" id="faqItemModal" aria-hidden="true" inert>
+        <div class="verification-card" role="dialog"
+            style="max-width:480px;width:95%;border:1.5px solid var(--admin-border);">
+            <h3 id="faqItemModalTitle" style="color:var(--admin-accent);margin:0 0 20px;">SSS Madde Ekle</h3>
+            <div style="display:grid;gap:12px;">
+                <div class="admin-form-group">
+                    <label>Soru</label>
+                    <input type="text" id="faqQ" placeholder="Uygulama neden...?">
+                </div>
+                <div class="admin-form-group">
+                    <label>Cevap</label>
+                    <textarea id="faqA" rows="4" placeholder="Açıklama metni..."></textarea>
+                </div>
+            </div>
+            <div class="verification-actions" style="margin-top:20px;">
+                <button class="verify-btn" id="faqItemSave" style="background:var(--admin-accent);">💾 Kaydet</button>
+                <button class="cancel-btn" id="faqItemCancel">İptal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SortableJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="script.js" defer></script>
+    <script src="admin.js?v=1.2" defer></script>
+
+    <!-- LiGHTBOX -->
+    <div class="admin-lightbox" id="adminLightbox">
+        <img id="adminLightboxImg" src="" alt="">
+        <button class="admin-lightbox-close" id="adminLightboxClose">×</button>
+    </div>
+
+</body>
+
+</html>
