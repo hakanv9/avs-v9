@@ -196,18 +196,21 @@
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "",
-        "downloads": "-",
-        "rating": "-",
+        "downloads": "-5",
+        "rating": "5",
         "ageRating": "3+",
         "appSize": "-",
-        "minAndroid": "-",
+        "minAndroid": "8",
         "description": [
           "test kısa"
         ],
         "descriptionEN": [
           "test kısa"
         ],
-        "permissions": [],
+        "permissions": [
+          "🏆test",
+          "⏳test2"
+        ],
         "screenshots": [],
         "changelog": [
           {
