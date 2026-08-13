@@ -85,6 +85,15 @@
         "screenshots": [],
         "changelog": [
           {
+            "version": "v5",
+            "date": "2026-08-13",
+            "type": "major",
+            "features": [
+              "test"
+            ],
+            "fixes": []
+          },
+          {
             "version": "v0.2.6",
             "date": "2026-08-03",
             "type": "feature",
