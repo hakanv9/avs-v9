@@ -192,7 +192,7 @@
       "order": 3,
       "visible": true,
       "detail": {
-        "isAndroid": false,
+        "isAndroid": true,
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "",
