@@ -552,7 +552,7 @@ async function handleSliderUpload(files) {
         for (const file of Array.from(files)) {
             if (file.size > 5 * 1024 * 1024) { adminToast(`${file.name} 5MB sınırını aşıyor.`, 'error'); continue; }
             const base64 = await fileToBase64(file);
-            const filename = `slide-${Date.now()}-${Math.floor(Math.random()*1000)}-${file.name.replace(/\s/g, '_')}`;
+            const filename = file.name.replace(/\s/g, '_');
             const path = await ghAPI.uploadImage(filename, base64);
             PREVIEW_MAP[path] = base64;
             siteData.heroSlider.push({ id: generateId('slide'), src: path, alt: file.name.split('.')[0], order: siteData.heroSlider.length + 1 });
@@ -980,7 +980,7 @@ async function handleScreenshotUpload(files) {
         for (const file of Array.from(files)) {
             if (file.size > 15 * 1024 * 1024) { adminToast(`${file.name} 15MB sınırını aşıyor.`, 'error'); continue; }
             const base64 = await fileToBase64(file);
-            const filename = `ss-${Date.now()}-${Math.floor(Math.random()*1000)}-${file.name.replace(/\s/g, '_')}`;
+            const filename = file.name.replace(/\s/g, '_');
             const path = await ghAPI.uploadImage(filename, base64);
             PREVIEW_MAP[path] = base64;
 

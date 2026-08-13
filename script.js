@@ -1773,7 +1773,7 @@ function initApp() {
             if (slides && slides.length > 0) {
                 pdAppSlider.innerHTML = slides.map((src, i) =>
                     `<div class="pd-app-slide${i === 0 ? ' active' : ''}">
-                   <img src="${src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}" style="cursor:zoom-in;" onclick="openPdLightbox('${src}')">
+                   <img src="${typeof src === 'object' ? src.src : src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}" style="cursor:zoom-in;" onclick="openPdLightbox('${typeof src === 'object' ? src.src : src}')">
                  </div>`
                 ).join('');
 
