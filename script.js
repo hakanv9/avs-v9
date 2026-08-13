@@ -409,7 +409,7 @@ window.EMBEDDED_SITE_DATA = {
                     "id": "privacy-sec-1",
                     "heading": "1. Veri Sorumlusu ve Kapsam",
                     "headingEN": "1. Data Controller and Scope",
-                    "text": "Bu Gizlilik Politikasıı, AVS&V9 bünyesinde geliştirilen ve yayınlanan tüm web siteleri, mobil uygulamalar (Android & iOS platformları) ve bağımsız dijital projeler için geçerlidir. Geliştirici olarak temel ilkemiz, kullanıcılarımızın kişisel verilerinin gizliliğini korumak, şeffaflık sağlamak ve uluslararası veri güvenliği standartlarına tam uyum göstermektir.",
+                    "text": "Bu Gizlilik Politikası, AVS&V9 bünyesinde geliştirilen ve yayınlanan tüm web siteleri, mobil uygulamalar (Android & iOS platformları) ve bağımsız dijital projeler için geçerlidir. Geliştirici olarak temel ilkemiz, kullanıcılarımızın kişisel verilerinin gizliliğini korumak, şeffaflık sağlamak ve uluslararası veri güvenliği standartlarına tam uyum göstermektir.",
                     "textEN": "This Privacy Policy applies to all websites, mobile applications (Android & iOS platforms), and independent digital projects developed and published under AVS&V9. As a developer, our core principle is to protect the privacy of user data, ensure transparency, and comply fully with international data security standards."
                 },
                 {
@@ -421,9 +421,9 @@ window.EMBEDDED_SITE_DATA = {
                 },
                 {
                     "id": "privacy-sec-3",
-                    "heading": "3. Üçüncü Taraf Hizmetler ve Google Gizlilik Politikasıı",
+                    "heading": "3. Üçüncü Taraf Hizmetler ve Google Gizlilik Politikası",
                     "headingEN": "3. Third-Party Services & Google Privacy Policy",
-                    "text": "Projelerimiz; Google Play Hizmetleri (Google Play Services), Firebase (Crashlytics ve Performans İzleme) ile harita servislerini (Google Maps / Mapbox) kullanabilir. Bu entegrasyonlar, servis sağlayıcıların kendi gizlilik standartlarına tabidir. Google hizmetlerinin verileri nasıl topladığı ve işlediği hakkında daha fazla bilgi edinmek için resmi <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"legal-link\">Google Gizlilik Politikasıı (Google Privacy Policy)</a> sayfasını ziyaret edebilirsiniz.",
+                    "text": "Projelerimiz; Google Play Hizmetleri (Google Play Services), Firebase (Crashlytics ve Performans İzleme) ile harita servislerini (Google Maps / Mapbox) kullanabilir. Bu entegrasyonlar, servis sağlayıcıların kendi gizlilik standartlarına tabidir. Google hizmetlerinin verileri nasıl topladığı ve işlediği hakkında daha fazla bilgi edinmek için resmi <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"legal-link\">Google Gizlilik Politikası (Google Privacy Policy)</a> sayfasını ziyaret edebilirsiniz.",
                     "textEN": "Our projects may utilize Google Play Services, Firebase (Crashlytics & Performance Monitoring), and mapping APIs (Google Maps / Mapbox). These integrations are subject to their respective providers' privacy policies. To learn more about how Google handles user data, please visit the official <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"legal-link\">Google Privacy Policy</a> page."
                 },
                 {
@@ -607,7 +607,7 @@ window.EMBEDDED_TRANSLATIONS = {
         "faq.page.sub": "Uygulamalar hakkında merak edilen tüm sorular burada.",
         "legal.page.title": "Yasal Bilgiler",
         "legal.page.sub": "Gizlilik Politikamız ve Kullanım Koşullarımız.",
-        "legal.tab.privacy": "Gizlilik Politikasıı",
+        "legal.tab.privacy": "Gizlilik Politikası",
         "legal.tab.terms": "Kullanım Koşulları"
     },
     "en": {
@@ -1603,10 +1603,8 @@ function initApp() {
         if (ageEl) ageEl.textContent = detail.ageRating || detail.age || '3+';
 
 
-        const isAndroid = detail.isAndroid === true;
-        const isPlayStoreEnabled = detail.playStoreEnabled === true;
-        const showAndroidReqs = isAndroid && isPlayStoreEnabled;
-
+        const isAndroid = detail.isAndroid !== false; // Default true unless explicitly false
+        const showAndroidReqs = isAndroid;
 
         const badgeContainer = document.getElementById('pdStatusBadgeContainer');
         if (badgeContainer) {
@@ -1717,7 +1715,12 @@ function initApp() {
                     const cTitle = lang === 'en' && c.titleEN ? c.titleEN : (c.title || '');
                     const features = lang === 'en' && c.featuresEN ? c.featuresEN : (c.features || c.notes || []);
                     const fixes = lang === 'en' && c.fixesEN ? c.fixesEN : (c.fixes || []);
-                    const featStr = features.length ? `<p class="cl-subtitle">✨ ${lang === 'en' ? 'New Features' : 'Yeni Özellikler'}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
+                    let featTitle = lang === 'en' ? 'New Features' : 'Yeni Özellikler';
+                    let featIcon = '✨';
+                    if (c.type === 'major') { featTitle = lang === 'en' ? 'Major Changes' : 'Önemli Değişiklikler'; featIcon = '🚀'; }
+                    else if (c.type === 'minor') { featTitle = lang === 'en' ? 'Improvements' : 'Geliştirmeler'; featIcon = '⚡'; }
+                    else if (c.type === 'initial') { featTitle = lang === 'en' ? 'Initial Release' : 'İlk Sürüm Notları'; featIcon = '🎉'; }
+                    const featStr = features.length ? `<p class="cl-subtitle">${featIcon} ${featTitle}</p><ul>${features.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
                     const bugStr = fixes.length ? `<p class="cl-subtitle">🐛 ${lang === 'en' ? 'Bug Fixes' : 'Hata Düzeltmeleri'}</p><ul>${fixes.map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : '';
 
                     const typeMap = {
@@ -1760,12 +1763,25 @@ function initApp() {
             if (slides && slides.length > 0) {
                 pdAppSlider.innerHTML = slides.map((src, i) =>
                     `<div class="pd-app-slide${i === 0 ? ' active' : ''}">
-                   <img src="${src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}">
+                   <img src="${src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}" style="cursor:zoom-in;" onclick="openPdLightbox('${src}')">
                  </div>`
                 ).join('');
+
+                if (slides.length > 1) {
+                    pdAppSlider.innerHTML += `
+                        <button class="pd-arrow pd-prev" onclick="movePdSlide(-1)">❮</button>
+                        <button class="pd-arrow pd-next" onclick="movePdSlide(1)">❯</button>
+                    `;
+                }
+
+                if (window.pdSlideInterval) clearInterval(window.pdSlideInterval);
+                window.pdSlideIndex = 0;
+                if (slides.length > 1) {
+                    window.pdSlideInterval = setInterval(() => { window.movePdSlide(1); }, 10000);
+                }
+
             } else {
                 pdAppSlider.innerHTML = '';
-
                 const sliderSection = pdAppSlider.closest('.pd-section');
                 if (sliderSection) sliderSection.style.display = 'none';
             }
@@ -1807,7 +1823,7 @@ function initApp() {
         const subj = document.getElementById('pdSubject')?.value || 'diğer';
         const msg = document.getElementById('pdMessage')?.value.trim() || '';
 
-        const mailtoUrl = `mailto:${atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==')}?subject=${encodeURIComponent(`[AVS&V9 - ${subj.toUpperCase()}] ${name}`)}&body=${encodeURIComponent(`Gönderen: ${name}\nE-posta: ${email}\n\nMesaj:\n${msg}`)}`;
+        const mailtoUrl = `mailto:${atob('YWd2cnNwLnY5QGdtYWlsLmNvbQ==')}?subject=${encodeURIComponent(`[AVS&V9 - ${subj.toUpperCase()}] ${name}`)}&body=${encodeURIComponent(`Gonderen: ${name}\nE-posta: ${email}\n\nMesaj:\n${msg}`)}`;
         window.location.href = mailtoUrl;
 
         if (pdStatus) {

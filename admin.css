@@ -1197,27 +1197,42 @@ select.admin-status-select {
     display: block;
 }
 
-.screenshot-item .ss-del-btn {
+.ss-actions {
     position: absolute;
     top: 5px;
     right: 5px;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: var(--admin-transition);
+}
+
+.screenshot-item:hover .ss-actions {
+    opacity: 1;
+}
+
+.ss-actions button {
     width: 26px;
     height: 26px;
-    background: rgba(231, 76, 60, 0.9);
+    background: rgba(0, 0, 0, 0.7);
     border: none;
-    border-radius: 50%;
+    border-radius: 4px;
     color: #fff;
     font-size: 0.75rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
     transition: var(--admin-transition);
 }
 
-.screenshot-item:hover .ss-del-btn {
-    opacity: 1;
+.ss-actions button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.ss-actions .ss-del-btn {
+    background: rgba(231, 76, 60, 0.9);
 }
 
 /* ========== LİGHTBOX ========== */

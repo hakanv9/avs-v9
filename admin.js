@@ -898,18 +898,43 @@ function renderScreenshots(screenshots) {
     const grid = document.getElementById('screenshotGrid');
     if (!grid) return;
     grid.innerHTML = screenshots.map((src, i) => `
-    < div class= "screenshot-item" data - idx="${i}" >
-<img src="${PREVIEW_MAP[src] || src}" alt="Görsel ${i + 1}"
-    onerror="this.parentElement.style.display='none'"
-    onload="this.parentElement.className = 'screenshot-item ' + (this.naturalWidth > this.naturalHeight ? 'landscape' : this.naturalWidth === this.naturalHeight ? 'square' : '');"
-    style="cursor:zoom-in;" onclick="openLightbox('${PREVIEW_MAP[src] || src}')"
->
-    <button class="ss-del-btn" data-idx="${i}" title="Sil">✖</button>
-</div>
+    <div class="screenshot-item" data-idx="${i}">
+        <img src="${PREVIEW_MAP[src] || src}" alt="Görsel ${i + 1}"
+            onerror="this.parentElement.style.display='none'"
+            onload="this.parentElement.className = 'screenshot-item ' + (this.naturalWidth > this.naturalHeight ? 'landscape' : this.naturalWidth === this.naturalHeight ? 'square' : '');"
+            style="cursor:zoom-in;" onclick="openLightbox('${PREVIEW_MAP[src] || src}')"
+        >
+        <div class="ss-actions">
+            <button class="order-btn" title="Geriye Taşı" onclick="moveScreenshot(${i}, -1)" ${i === 0 ? 'disabled' : ''}>◀</button>
+            <button class="ss-del-btn" data-idx="${i}" title="Sil">✖</button>
+            <button class="order-btn" title="İleriye Taşı" onclick="moveScreenshot(${i}, 1)" ${i === screenshots.length - 1 ? 'disabled' : ''}>▶</button>
+        </div>
+    </div>
 `).join('');
     grid.querySelectorAll('.ss-del-btn').forEach(btn => {
         btn.addEventListener('click', (e) => { e.stopPropagation(); deleteScreenshot(parseInt(btn.dataset.idx)); });
     });
+}
+
+window.moveScreenshot = function (idx, dir) {
+    if (!currentProjectId) return;
+    const proj = siteData.projects.find(p => p.id === currentProjectId);
+    if (!proj || !proj.detail || !proj.detail.screenshots) return;
+    
+    const arr = proj.detail.screenshots;
+    if (dir === -1 && idx > 0) {
+        const tmp = arr[idx];
+        arr[idx] = arr[idx - 1];
+        arr[idx - 1] = tmp;
+        markDirty();
+        renderScreenshots(arr);
+    } else if (dir === 1 && idx < arr.length - 1) {
+        const tmp = arr[idx];
+        arr[idx] = arr[idx + 1];
+        arr[idx + 1] = tmp;
+        markDirty();
+        renderScreenshots(arr);
+    }
 }
 
 function deleteScreenshot(idx) {
@@ -934,6 +959,9 @@ async function handleScreenshotUpload(files) {
             const filename = `ss_${safeSlug}_${Date.now()}.${safeExt}`;
             const path = await ghAPI.uploadImage(filename, base64);
             PREVIEW_MAP[path] = base64;
+            
+            if (!proj.detail) proj.detail = {};
+            if (!proj.detail.screenshots) proj.detail.screenshots = [];
             proj.detail.screenshots.push(path);
         }
         markDirty();
