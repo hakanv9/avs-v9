@@ -238,6 +238,9 @@
             ],
             "fixes": []
           }
+        ],
+        "requirements": [
+          "2gb"
         ]
       }
     }
