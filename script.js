@@ -849,7 +849,7 @@ function initDynamicProjectsList(data) {
                 <div class="project-oval-desc">${sanitize(desc)}</div>
                 <div class="project-oval-tags">
                     ${statusHTML}
-                    ${extraTags.map(t => `<span class="tag">📌 ${sanitize(t)}</span>`).join('')}
+                    ${extraTags.map(t => `<span class="tag">${sanitize(t)}</span>`).join('')}
                 </div>
             </div>
             <div class="project-oval-btn">${sanitize(detailLabel)}</div>
@@ -1684,7 +1684,7 @@ function initApp() {
         const permsArr = detail.permissions || proj.perms || [];
         if (permEl) {
             if (permsArr.length > 0) {
-                permEl.innerHTML = permsArr.map(p => `<span class="pd-tag">📌 ${escapeHTML(p)}</span>`).join('');
+                permEl.innerHTML = permsArr.map(p => `<span class="pd-tag">${escapeHTML(p)}</span>`).join('');
             } else {
                 permEl.innerHTML = `<span class="pd-tag">${lang === 'en' ? 'No special permissions required' : 'Özel izin gerektirmez'}</span>`;
             }
