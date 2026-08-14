@@ -406,9 +406,11 @@
           }
         ],
         "requirements": [
-          "📱 Minimum  Android 8.0  veya Ios 18.0 ve üstü",
-          "🧩 Minimum bellek miktarı  2GB",
-          "📁 Minimum 200mb boş yer gereklidir .(kullanıcı verileri için)"
+          "📱 Minimum Android 8.0 veya Ios 18.0 ve üstü",
+          "📶 Bağlantı: Aktif İnternet Bağlantısı (3G, 4G, 5G veya Wi-Fi)",
+          "🧩 Minimum bellek miktarı 2GB",
+          "🛰️ Donanım: Dahili GPS / Konum Sensörü",
+          "📁 Minimum 100mb boş yer gereklidir .(kullanıcı verileri için)"
         ]
       }
     },
