@@ -214,22 +214,16 @@
         ],
         "screenshots": [
           {
-            "id": "ss-1786729628872-1knxj",
-            "src": "resimler/123kurye_2_.webp",
-            "alt": "123kurye (2)",
+            "id": "ss-1786730964670-860i5",
+            "src": "resimler/v9-avs-logo-beyaz.webp",
+            "alt": "v9-avs-logo-beyaz",
             "order": 1
           },
           {
-            "id": "ss-1786729566576-pp7bp",
-            "src": "resimler/test123bny_6_.webp",
-            "alt": "test123bny (6)",
+            "id": "ss-1786730966919-xsbhb",
+            "src": "resimler/Yakindabos.webp",
+            "alt": "Yakindabos",
             "order": 2
-          },
-          {
-            "id": "ss-1786730815325-nj129",
-            "src": "resimler/anasayfa-hosgeldin-resmi4.webp",
-            "alt": "anasayfa-hosgeldin-resmi4",
-            "order": 3
           }
         ],
         "changelog": [
