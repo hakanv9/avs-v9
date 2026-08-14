@@ -85,7 +85,120 @@
         ],
         "permissions": [],
         "screenshots": [],
-        "changelog": [],
+        "changelog": [
+          {
+            "version": "v0.3.1",
+            "date": "2026-08-13",
+            "type": "feature",
+            "features": [
+              "Bu özellikler kademeli olarak aktif edilecek.",
+              "Anasayfa'da yer alan sosyal medya bölümü için çalışmalar devam ediyor  , en yakında zamanda bütün hesaplar aktif edilip görseller ilgili alanlarda görüntülenebilecek ve bağlantı linkleri aktif edilecek.",
+              "Dil özelliği için çalışmalar devam ediyor ."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.3.0",
+            "date": "2026-08-10",
+            "type": "fix",
+            "features": [],
+            "fixes": [
+              "Çeşitli hatalar ve performans sorunları giderildi.",
+              "Proje detay sayfasında sürüm geçmişi görüntülenmeme sorunu giderildi.",
+              "S.S.S ve Yasal sayfalarında metin içeriklerin görüntülenmemesi ve açılmaması sorunu giderildi.",
+              "İletişim alanındaki E-Posta yönledirme sorunu giderildi.",
+              "Sosyal medya alanında tıklama ve bağlantıya gitmeme sorunu giderildi."
+            ]
+          },
+          {
+            "version": "v0.2.9",
+            "date": "2026-08-01",
+            "type": "major",
+            "features": [
+              "Proje detay sayfası eklendi , kullanıcılar bu sayfadan projeler hakkında detaylı bilgilere ulaşabilecek.",
+              "Proje detay sayfasına görsel / hakkında / proje aşamaları ve sürüm geçmiş alanları eklendi.",
+              "Dil değiştirme butonu eklendi [🌐](Dil çalışmaları devam ediyor.)",
+              "Anasayfa'ya sosyal medya görselleri alanı eklendi , kullanıcılar sosyal medya'dan örnek görüntüler görebilecek."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.2.3",
+            "date": "2026-07-20",
+            "type": "minor",
+            "features": [
+              "Cihazın temasına göre değişen veye isteğe bağlı (sağ üstten tuş yardımı ile) [🌙]Karanlık ve [☀️}Aydınlık tema özelliği eklendi.",
+              "Web sitesi için ikincil desteği (Eng) için çalışmalara başlandı."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.2.0",
+            "date": "2026-07-13",
+            "type": "feature",
+            "features": [
+              "Yeni özellikler eklendi.",
+              "Sıkça Sorulan Sorular (S.S.S.) sayfası eklendi.",
+              "Yasal Bilgiler ( Gizlilik Politikası ve Kullanım Koşulları) sayfası eklendi."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.1.7",
+            "date": "2026-06-29",
+            "type": "feature",
+            "features": [
+              "Yeni özellikler eklendi.",
+              "Robot doğrulamalı İletişim bölümü eklendi.",
+              "Beceriler & Uzmanlık Alanları bölümü eklendi."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.1.3",
+            "date": "2026-06-20",
+            "type": "fix",
+            "features": [],
+            "fixes": [
+              "Çeşitli hatalar ve performans iyileştirmeleri yapıldı.",
+              "Genel olarak gereksiz ve bağlamsız kodlar kaldırıldı.",
+              "Anasayfa'da görüntüleme sorunları giderildi."
+            ]
+          },
+          {
+            "version": "v0.1.0",
+            "date": "2026-06-11",
+            "type": "minor",
+            "features": [
+              "Yeni özellikler eklendi.",
+              "Anasayfa'dan Projeler hakkında bilgi alanı.",
+              "Hakkında alanı açıldı."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "V0.0.5",
+            "date": "2026-05-31",
+            "type": "feature",
+            "features": [
+              "Web sitesi için altyapı kuruldu , özellikler yakında aktif edilecek.",
+              "Yeni özellik ve  ihtiyaca göre altyapı kurulumu araştırması.",
+              "Geciçi süreli depolama ve hosting hizmeti bulundu.(vercel)"
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.0.1",
+            "date": "2026-05-20",
+            "type": "initial",
+            "features": [
+              "Web sitesi için çalışmalara başlandı.",
+              "Gereklilik araştırması.",
+              "Depolama ve Hosting arayışı."
+            ],
+            "fixes": []
+          }
+        ],
         "requirements": []
       }
     },
