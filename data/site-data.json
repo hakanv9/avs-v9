@@ -291,12 +291,12 @@
         "📍Konum",
         "⚡Hızlı ve güvenli"
       ],
-      "status": "development",
+      "status": "completed",
       "statuses": [
-        "development",
-        "research",
-        "bugfix",
-        "rnd"
+        "completed",
+        "discontinued",
+        "paused",
+        "waiting"
       ],
       "order": 3,
       "visible": true,
