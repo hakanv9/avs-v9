@@ -659,7 +659,13 @@
         "permissions": [],
         "screenshots": [],
         "changelog": [],
-        "requirements": []
+        "requirements": [
+          "📱 Minimum Android 8.0 veya Ios 18.0 ve üstü",
+          "📶 Bağlantı: Aktif İnternet Bağlantısı (3G, 4G, 5G veya Wi-Fi)",
+          "🧩 Minimum bellek miktarı 3GB",
+          "🛰️ Donanım: Dahili GPS / Konum Sensörü",
+          "📁 Minimum 150mb boş yer gereklidir .(kullanıcı verileri için)"
+        ]
       }
     }
   ],
