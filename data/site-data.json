@@ -203,6 +203,47 @@
       }
     },
     {
+      "id": "kurye-mstaxiq5",
+      "slug": "kurye",
+      "name": "V9 Kurye Uygulaması",
+      "nameEN": "V9 Courier App",
+      "shortDesc": "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli.",
+      "shortDescEN": "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli.",
+      "thumbnail": "resimler/thumb-kurye-1786733392540.webp",
+      "tags": [
+        "📦 Kurye",
+        "📱 Mobil",
+        "📍Konum"
+      ],
+      "status": "development",
+      "statuses": [
+        "development"
+      ],
+      "order": 2,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli."
+        ],
+        "descriptionEN": [
+          "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli."
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": [],
+        "requirements": []
+      }
+    },
+    {
       "id": "test-msn4a9g2",
       "slug": "test",
       "name": "Web sitesi  test uygulaması",
@@ -291,47 +332,6 @@
         "requirements": [
           "test uygulaması"
         ]
-      }
-    },
-    {
-      "id": "kurye-mstaxiq5",
-      "slug": "kurye",
-      "name": "V9 Kurye Uygulaması",
-      "nameEN": "V9 Courier App",
-      "shortDesc": "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli.",
-      "shortDescEN": "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli.",
-      "thumbnail": "resimler/thumb-kurye-1786733392540.webp",
-      "tags": [
-        "📦 Kurye",
-        "📱 Mobil",
-        "📍Konum"
-      ],
-      "status": "development",
-      "statuses": [
-        "development"
-      ],
-      "order": 3,
-      "visible": true,
-      "detail": {
-        "isAndroid": false,
-        "playStoreEnabled": false,
-        "playStoreUrl": "#",
-        "logo": "",
-        "downloads": "-",
-        "rating": "-",
-        "ageRating": "3+",
-        "appSize": "-",
-        "minAndroid": "-",
-        "description": [
-          "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli."
-        ],
-        "descriptionEN": [
-          "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli."
-        ],
-        "permissions": [],
-        "screenshots": [],
-        "changelog": [],
-        "requirements": []
       }
     }
   ],
