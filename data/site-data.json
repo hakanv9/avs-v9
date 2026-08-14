@@ -242,7 +242,12 @@
         "descriptionEN": [
           "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli."
         ],
-        "permissions": [],
+        "permissions": [
+          "🌐İnternet erişimi",
+          "📍Konum takibi  için GPS(konum) özelliği",
+          "🔐Giriş için mail veya telefon numarası",
+          "📁 Kullanıcı verileri saklamak için depolama izni"
+        ],
         "screenshots": [],
         "changelog": [
           {
