@@ -641,11 +641,11 @@
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "",
-        "downloads": "-",
-        "rating": "-",
+        "downloads": "-5(Sadece test kullanıcıları)",
+        "rating": "-0/5",
         "ageRating": "3+",
         "appSize": "-",
-        "minAndroid": "-",
+        "minAndroid": "-8",
         "description": [
           "V9 Grup Konum Paylaşımı (v2.0), ilk sürümün tüm deneyimini temel alarak baştan sona yeniden kodlanmış, performans ve güvenlik odaklı yeni nesil bir ortak yaşam ve takip platformudur.",
           "🚀 Sıfır Gecikmeli Canlı Konum (Low-Latency): Yenilenen soket mimarisi sayesinde grup üyelerinin her adımı haritada anlık, pürüzsüz ve gerçek zamanlı 60 FPS olarak akar.",
@@ -663,7 +663,14 @@
           "🏃 Fiziksel Aktivite İzni: Yürüyüş ve araç hareketini algılayarak pil tasarrufu sağlamak için.",
           "🔋 Pil Optimizasyonu Muafiyeti: Sistem temizleyicilerin arka plan takibini sonlandırmasını önlemek için."
         ],
-        "screenshots": [],
+        "screenshots": [
+          {
+            "id": "ss-1786744582808-l01cp",
+            "src": "resimler/projeler-resmi3.webp",
+            "alt": "projeler-resmi3",
+            "order": 1
+          }
+        ],
         "changelog": [
           {
             "version": "v0.0.1",
