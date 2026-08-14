@@ -203,6 +203,82 @@
       }
     },
     {
+      "id": "bgnyprz-msthbcks",
+      "slug": "bgnyprz",
+      "name": "V9 Grup konum paylaşma uygulaması V2",
+      "nameEN": "V9 Group location sharing application V2",
+      "shortDesc": "⚡ Baştan tasarlanan ultra düşük gecikmeli harita motoru, entegre sesli telsiz/sohbet sistemi ve gelişmiş akıllı güvenli bölge (Geofence) altyapısına sahip yeni nesil grup takip uygulaması.",
+      "shortDescEN": "⚡ Baştan tasarlanan ultra düşük gecikmeli harita motoru, entegre sesli telsiz/sohbet sistemi ve gelişmiş akıllı güvenli bölge (Geofence) altyapısına sahip yeni nesil grup takip uygulaması.",
+      "thumbnail": "resimler/thumb-bgnyprz-1786744115550.webp",
+      "tags": [
+        "📱 Mobil",
+        "📍Konum"
+      ],
+      "status": "development",
+      "statuses": [
+        "development"
+      ],
+      "order": 2,
+      "visible": true,
+      "detail": {
+        "isAndroid": true,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-5(Sadece test kullanıcıları)",
+        "rating": "-0/5",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-8",
+        "description": [
+          "V9 Grup Konum Paylaşımı (v2.0), ilk sürümün tüm deneyimini temel alarak baştan sona yeniden kodlanmış, performans ve güvenlik odaklı yeni nesil bir ortak yaşam ve takip platformudur.",
+          "🚀 Sıfır Gecikmeli Canlı Konum (Low-Latency): Yenilenen soket mimarisi sayesinde grup üyelerinin her adımı haritada anlık, pürüzsüz ve gerçek zamanlı 60 FPS olarak akar.",
+          "🎙️ Uygulama İçi  Sohbet odaları : Haritadan çıkmadan tek tuşla gruba mesaj gönderin",
+          "🔋 Daha optimize pil performansı.",
+          "📈Hızlı ve güvenli rota oluşturma imkanı ile sorunsuz yolculuk."
+        ],
+        "descriptionEN": [
+          "⚡ Baştan tasarlanan ultra düşük gecikmeli harita motoru, entegre sesli telsiz/sohbet sistemi ve gelişmiş akıllı güvenli bölge (Geofence) altyapısına sahip yeni nesil grup takip uygulaması."
+        ],
+        "permissions": [
+          "📍 Hassas Konum İzni (Tam GPS): Harita üzerinde milimetrik ve anlık yer tespiti için.",
+          "🛰️ Arka Plan Konum İzni (Her Zaman İzin Ver): Ekran kapalıyken bile güvenli bölge giriş/çıkış bildirimlerinin çalışması için.",
+          "🔔 Bildirim İzni: Güvenli bölge alarmları, acil durum uyarıları ve gelen sesli mesajlar için.",
+          "🏃 Fiziksel Aktivite İzni: Yürüyüş ve araç hareketini algılayarak pil tasarrufu sağlamak için.",
+          "🔋 Pil Optimizasyonu Muafiyeti: Sistem temizleyicilerin arka plan takibini sonlandırmasını önlemek için."
+        ],
+        "screenshots": [
+          {
+            "id": "ss-1786744582808-l01cp",
+            "src": "resimler/projeler-resmi3.webp",
+            "alt": "projeler-resmi3",
+            "order": 1
+          }
+        ],
+        "changelog": [
+          {
+            "version": "v0.0.1",
+            "date": "2026-07-06",
+            "type": "initial",
+            "features": [
+              "Yeni uygulama için çalışmalar başlandı.",
+              "Gereklilik ve diğer Ar-Ge işlemleri.",
+              "Eski uygulamadan yeni uygulamaya geçişti geniş optimizasyon işlemleri.",
+              "Dahili Sohbet için sunucu desteği altyapısı araştırması."
+            ],
+            "fixes": []
+          }
+        ],
+        "requirements": [
+          "📱 Minimum Android 8.0 veya Ios 18.0 ve üstü",
+          "📶 Bağlantı: Aktif İnternet Bağlantısı (3G, 4G, 5G veya Wi-Fi)",
+          "🧩 Minimum bellek miktarı 3GB",
+          "🛰️ Donanım: Dahili GPS / Konum Sensörü",
+          "📁 Minimum 150mb boş yer gereklidir .(kullanıcı verileri için)"
+        ]
+      }
+    },
+    {
       "id": "grupkonum-mstgleo3",
       "slug": "grupkonum",
       "name": "V9 Grup Konum Paylaşımı uygulaması",
@@ -215,14 +291,14 @@
         "📍Konum",
         "⚡Hızlı ve güvenli"
       ],
-      "status": "completed",
+      "status": "development",
       "statuses": [
-        "completed",
-        "discontinued",
-        "paused",
-        "waiting"
+        "development",
+        "research",
+        "bugfix",
+        "rnd"
       ],
-      "order": 2,
+      "order": 3,
       "visible": true,
       "detail": {
         "isAndroid": true,
@@ -393,7 +469,7 @@
         "discontinued",
         "waiting"
       ],
-      "order": 3,
+      "order": 4,
       "visible": true,
       "detail": {
         "isAndroid": true,
@@ -545,7 +621,7 @@
         "special",
         "rnd"
       ],
-      "order": 4,
+      "order": 5,
       "visible": true,
       "detail": {
         "isAndroid": true,
@@ -615,82 +691,6 @@
         ],
         "requirements": [
           "test uygulaması"
-        ]
-      }
-    },
-    {
-      "id": "bgnyprz-msthbcks",
-      "slug": "bgnyprz",
-      "name": "V9 Grup konum paylaşma uygulaması V2",
-      "nameEN": "V9 Group location sharing application V2",
-      "shortDesc": "⚡ Baştan tasarlanan ultra düşük gecikmeli harita motoru, entegre sesli telsiz/sohbet sistemi ve gelişmiş akıllı güvenli bölge (Geofence) altyapısına sahip yeni nesil grup takip uygulaması.",
-      "shortDescEN": "⚡ Baştan tasarlanan ultra düşük gecikmeli harita motoru, entegre sesli telsiz/sohbet sistemi ve gelişmiş akıllı güvenli bölge (Geofence) altyapısına sahip yeni nesil grup takip uygulaması.",
-      "thumbnail": "resimler/thumb-bgnyprz-1786744115550.webp",
-      "tags": [
-        "📱 Mobil",
-        "📍Konum"
-      ],
-      "status": "development",
-      "statuses": [
-        "development"
-      ],
-      "order": 5,
-      "visible": true,
-      "detail": {
-        "isAndroid": true,
-        "playStoreEnabled": false,
-        "playStoreUrl": "#",
-        "logo": "",
-        "downloads": "-5(Sadece test kullanıcıları)",
-        "rating": "-0/5",
-        "ageRating": "3+",
-        "appSize": "-",
-        "minAndroid": "-8",
-        "description": [
-          "V9 Grup Konum Paylaşımı (v2.0), ilk sürümün tüm deneyimini temel alarak baştan sona yeniden kodlanmış, performans ve güvenlik odaklı yeni nesil bir ortak yaşam ve takip platformudur.",
-          "🚀 Sıfır Gecikmeli Canlı Konum (Low-Latency): Yenilenen soket mimarisi sayesinde grup üyelerinin her adımı haritada anlık, pürüzsüz ve gerçek zamanlı 60 FPS olarak akar.",
-          "🎙️ Uygulama İçi  Sohbet odaları : Haritadan çıkmadan tek tuşla gruba mesaj gönderin",
-          "🔋 Daha optimize pil performansı.",
-          "📈Hızlı ve güvenli rota oluşturma imkanı ile sorunsuz yolculuk."
-        ],
-        "descriptionEN": [
-          "⚡ Baştan tasarlanan ultra düşük gecikmeli harita motoru, entegre sesli telsiz/sohbet sistemi ve gelişmiş akıllı güvenli bölge (Geofence) altyapısına sahip yeni nesil grup takip uygulaması."
-        ],
-        "permissions": [
-          "📍 Hassas Konum İzni (Tam GPS): Harita üzerinde milimetrik ve anlık yer tespiti için.",
-          "🛰️ Arka Plan Konum İzni (Her Zaman İzin Ver): Ekran kapalıyken bile güvenli bölge giriş/çıkış bildirimlerinin çalışması için.",
-          "🔔 Bildirim İzni: Güvenli bölge alarmları, acil durum uyarıları ve gelen sesli mesajlar için.",
-          "🏃 Fiziksel Aktivite İzni: Yürüyüş ve araç hareketini algılayarak pil tasarrufu sağlamak için.",
-          "🔋 Pil Optimizasyonu Muafiyeti: Sistem temizleyicilerin arka plan takibini sonlandırmasını önlemek için."
-        ],
-        "screenshots": [
-          {
-            "id": "ss-1786744582808-l01cp",
-            "src": "resimler/projeler-resmi3.webp",
-            "alt": "projeler-resmi3",
-            "order": 1
-          }
-        ],
-        "changelog": [
-          {
-            "version": "v0.0.1",
-            "date": "2026-07-06",
-            "type": "initial",
-            "features": [
-              "Yeni uygulama için çalışmalar başlandı.",
-              "Gereklilik ve diğer Ar-Ge işlemleri.",
-              "Eski uygulamadan yeni uygulamaya geçişti geniş optimizasyon işlemleri.",
-              "Dahili Sohbet için sunucu desteği altyapısı araştırması."
-            ],
-            "fixes": []
-          }
-        ],
-        "requirements": [
-          "📱 Minimum Android 8.0 veya Ios 18.0 ve üstü",
-          "📶 Bağlantı: Aktif İnternet Bağlantısı (3G, 4G, 5G veya Wi-Fi)",
-          "🧩 Minimum bellek miktarı 3GB",
-          "🛰️ Donanım: Dahili GPS / Konum Sensörü",
-          "📁 Minimum 150mb boş yer gereklidir .(kullanıcı verileri için)"
         ]
       }
     }
