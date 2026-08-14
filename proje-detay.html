@@ -26,8 +26,8 @@
     <!-- PERF-6: 3 temel font ağırlığı -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js?v=4.2" defer></script>
+    <link rel="stylesheet" href="style.css?v=4.3">
+    <script src="script.js?v=4.3" defer></script>
 </head>
 
 <body class="subpage-body">
@@ -377,13 +377,16 @@
         </div>
     </div>
 
-    <!-- Lightbox Görsel Zoom Modalı (T11) -->
+    <!-- Lightbox Görsel Zoom & Slider Modalı -->
     <div class="pgallery-overlay" id="pdLightboxModal" aria-hidden="true" inert role="dialog" aria-modal="true">
-        <div class="pgallery-box">
+        <div class="pgallery-box" id="pdLightboxBox">
             <button class="pgallery-close" id="pdLightboxClose" aria-label="Kapat">✕</button>
-            <div class="pgallery-img-container">
+            <button class="pgallery-nav pgallery-prev" id="pdLightboxPrev" aria-label="Önceki Görsel">❮</button>
+            <button class="pgallery-nav pgallery-next" id="pdLightboxNext" aria-label="Sonraki Görsel">❯</button>
+            <div class="pgallery-img-container" id="pdLightboxImgWrap">
                 <img id="pdLightboxImg" src="" alt="Büyütülmüş Görsel">
             </div>
+            <div class="pgallery-counter" id="pdLightboxCounter">1 / 1</div>
         </div>
     </div>
 

@@ -1777,6 +1777,9 @@ function initApp() {
             return ordA - ordB;
         });
 
+        // Lightbox listesini güncelle
+        window.pdLightboxImages = slides.map(s => typeof s === 'object' ? (s.src || '') : s).filter(Boolean);
+
         window.movePdSlide = function (dir) {
             const slider = document.getElementById('pdAppSlider');
             if (!slider) return;
@@ -1797,7 +1800,7 @@ function initApp() {
             if (slides && slides.length > 0) {
                 pdAppSlider.innerHTML = slides.map((src, i) =>
                     `<div class="pd-app-slide${i === 0 ? ' active' : ''}">
-                   <img src="${typeof src === 'object' ? src.src : src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}" style="cursor:zoom-in;" onclick="openPdLightbox('${typeof src === 'object' ? src.src : src}')">
+                   <img src="${typeof src === 'object' ? src.src : src}" alt="${escapeHTML(name)} Screen ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}" title="${lang === 'en' ? 'Click to zoom' : 'Büyütmek için tıklayın'}" style="cursor:zoom-in;" onclick="openPdLightbox(${i})">
                  </div>`
                 ).join('');
 
@@ -1991,41 +1994,195 @@ document.addEventListener('click', e => {
     }
 });
 
-// Lightbox logic for Proje Detay
-window.openPdLightbox = function (src) {
+// --- LIGHTBOX POPUP & SLIDER ENGINE (PROJE DETAY) ---
+window.pdLightboxImages = window.pdLightboxImages || [];
+window.pdLightboxIndex = 0;
+
+window.openPdLightbox = function (srcOrIdx, idx) {
     const modal = document.getElementById('pdLightboxModal');
     const img = document.getElementById('pdLightboxImg');
     if (!modal || !img) return;
 
-    img.onload = function () {
-        if (this.naturalHeight > this.naturalWidth) {
-            img.style.width = 'auto';
-            img.style.height = '90vh';
-            img.style.maxWidth = '100%';
+    if (typeof idx === 'number') {
+        window.pdLightboxIndex = idx;
+    } else if (typeof srcOrIdx === 'number') {
+        window.pdLightboxIndex = srcOrIdx;
+    } else if (typeof srcOrIdx === 'string') {
+        const found = window.pdLightboxImages.indexOf(srcOrIdx);
+        if (found !== -1) {
+            window.pdLightboxIndex = found;
         } else {
-            img.style.width = '90vw';
-            img.style.height = 'auto';
-            img.style.maxHeight = '90vh';
+            if (!window.pdLightboxImages.includes(srcOrIdx)) {
+                window.pdLightboxImages.push(srcOrIdx);
+            }
+            window.pdLightboxIndex = window.pdLightboxImages.indexOf(srcOrIdx);
         }
-    };
-    img.src = src;
+    }
 
     modal.style.display = 'flex';
+    modal.classList.add('open');
     modal.removeAttribute('inert');
     modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+
+    updatePdLightboxView();
 };
 
 window.closePdLightbox = function () {
     const modal = document.getElementById('pdLightboxModal');
     if (!modal) return;
+    modal.classList.remove('open');
     modal.style.display = 'none';
     modal.setAttribute('inert', '');
     modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
 };
 
+window.changePdLightboxSlide = function (dir) {
+    if (!window.pdLightboxImages || window.pdLightboxImages.length <= 1) return;
+    const len = window.pdLightboxImages.length;
+    window.pdLightboxIndex = (window.pdLightboxIndex + dir + len) % len;
+    updatePdLightboxView();
+};
+
+function updatePdLightboxView() {
+    const img = document.getElementById('pdLightboxImg');
+    const box = document.getElementById('pdLightboxBox');
+    const counter = document.getElementById('pdLightboxCounter');
+    const prevBtn = document.getElementById('pdLightboxPrev');
+    const nextBtn = document.getElementById('pdLightboxNext');
+    if (!img || !window.pdLightboxImages || window.pdLightboxImages.length === 0) return;
+
+    const currentSrc = window.pdLightboxImages[window.pdLightboxIndex] || '';
+    const total = window.pdLightboxImages.length;
+
+    // Fade geçiş animasyonu
+    img.classList.add('fading');
+
+    const tempImg = new Image();
+    tempImg.onload = function () {
+        img.src = currentSrc;
+        img.classList.remove('fading');
+
+        if (box) {
+            box.classList.remove('is-landscape', 'is-portrait', 'is-square');
+            const ratio = this.naturalWidth / this.naturalHeight;
+            if (ratio >= 1.15) {
+                // 16:9 / Yatay Görsel
+                box.classList.add('is-landscape');
+            } else if (ratio <= 0.85) {
+                // 9:16 / Dikey Görsel
+                box.classList.add('is-portrait');
+            } else {
+                // Kare / Standart
+                box.classList.add('is-square');
+            }
+        }
+    };
+    tempImg.src = currentSrc;
+
+    // Sayaç güncelleme (Örn: 1 / 4)
+    if (counter) {
+        if (total > 1) {
+            counter.style.display = 'block';
+            counter.textContent = `${window.pdLightboxIndex + 1} / ${total}`;
+        } else {
+            counter.style.display = 'none';
+        }
+    }
+
+    // Gezinme butonları görünürlüğü
+    if (prevBtn && nextBtn) {
+        if (total > 1) {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+        } else {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('pdLightboxClose')?.addEventListener('click', closePdLightbox);
-    document.getElementById('pdLightboxModal')?.addEventListener('click', function (e) {
-        if (e.target === this || e.target.classList.contains('pgallery-box') || e.target.classList.contains('pgallery-img-container')) closePdLightbox();
+    const modal = document.getElementById('pdLightboxModal');
+    const prevBtn = document.getElementById('pdLightboxPrev');
+    const nextBtn = document.getElementById('pdLightboxNext');
+    const closeBtn = document.getElementById('pdLightboxClose');
+
+    closeBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closePdLightbox();
+    });
+
+    prevBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        changePdLightboxSlide(-1);
+    });
+
+    nextBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        changePdLightboxSlide(1);
+    });
+
+    modal?.addEventListener('click', function (e) {
+        if (e.target === this || e.target.classList.contains('pgallery-img-container')) {
+            closePdLightbox();
+        }
+    });
+
+    // Klavye ile Gezinme (Sol Ok, Sağ Ok, ESC)
+    document.addEventListener('keydown', (e) => {
+        if (!modal || !modal.classList.contains('open')) return;
+        if (e.key === 'ArrowLeft') {
+            changePdLightboxSlide(-1);
+        } else if (e.key === 'ArrowRight') {
+            changePdLightboxSlide(1);
+        } else if (e.key === 'Escape') {
+            closePdLightbox();
+        }
+    });
+
+    // Mobil Dokunmatik Kaydırma (Touch / Swipe Desteği)
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    modal?.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length > 0) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchEndX = touchStartX;
+            touchEndY = touchStartY;
+        }
+    }, { passive: true });
+
+    modal?.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches.length > 0) {
+            touchEndX = e.touches[0].clientX;
+            touchEndY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    modal?.addEventListener('touchend', () => {
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+        const absX = Math.abs(deltaX);
+        const absY = Math.abs(deltaY);
+
+        // Yatay kaydırma
+        if (absX > 40 && absX > absY) {
+            if (deltaX < 0) {
+                // Sola kaydırınca -> Sonraki resim
+                changePdLightboxSlide(1);
+            } else {
+                // Sağa kaydırınca -> Önceki resim
+                changePdLightboxSlide(-1);
+            }
+        }
+        // Dikey aşağı kaydırma -> Kapat
+        else if (deltaY > 80 && absY > absX) {
+            closePdLightbox();
+        }
     });
 });

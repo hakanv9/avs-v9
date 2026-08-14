@@ -3569,7 +3569,7 @@ body.modal-open {
 }
 
 /* =============================================
-   === LIGHTBOX GÖRSEL ZOOM MODALI (T11) ===
+   === LIGHTBOX GÖRSEL ZOOM & SLIDER MODALI (T11) ===
    ============================================= */
 .pgallery-overlay {
     position: fixed;
@@ -3577,19 +3577,22 @@ body.modal-open {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    display: flex;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(10px);
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 99999;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .pgallery-overlay.open {
+    display: flex;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -3597,64 +3600,174 @@ body.modal-open {
 
 .pgallery-box {
     position: relative;
-    width: fit-content;
-    max-width: 94vw;
-    padding: 18px;
-    background: var(--surface-color);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-    transform: scale(0.92);
-    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: rgba(18, 20, 29, 0.96);
+    border: 1.5px solid var(--border-color, rgba(255, 255, 255, 0.14));
+    border-radius: 22px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    transform: scale(0.94);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s ease, height 0.3s ease;
+    max-width: 95vw;
+    max-height: 92vh;
 }
 
 .pgallery-overlay.open .pgallery-box {
     transform: scale(1);
 }
 
-.pgallery-close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: background 0.2s ease, transform 0.2s ease;
+/* Yatay (16:9) Görseller İçin Ölçekleme */
+.pgallery-box.is-landscape {
+    width: min(92vw, 1100px);
 }
 
-.pgallery-close:hover {
-    background: rgba(231, 76, 60, 0.85);
-    color: #ffffff;
-    transform: scale(1.1);
+.pgallery-box.is-landscape .pgallery-img-container {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    max-height: 82vh;
+}
+
+/* Dikey (9:16) Görseller İçin Ölçekleme */
+.pgallery-box.is-portrait {
+    width: min(90vw, 480px);
+}
+
+.pgallery-box.is-portrait .pgallery-img-container {
+    aspect-ratio: 9 / 16;
+    width: 100%;
+    max-height: 84vh;
+}
+
+/* Standart / Diğer Oranlar */
+.pgallery-box.is-square {
+    width: min(90vw, 680px);
+}
+
+.pgallery-box.is-square .pgallery-img-container {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-height: 80vh;
 }
 
 .pgallery-img-container {
+    position: relative;
     width: 100%;
-    max-height: 78vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000;
+    background: #090a0f;
     border-radius: 14px;
     overflow: hidden;
 }
 
 .pgallery-img-container img {
     max-width: 100%;
-    max-height: 78vh;
-    width: auto;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 12px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.pgallery-img-container img.fading {
+    opacity: 0.2;
+    transform: scale(0.97);
+}
+
+/* Gezinme Butonları (Prev / Next) */
+.pgallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 25;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.pgallery-nav:hover {
+    background: var(--admin-accent, #ff4757);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.pgallery-prev {
+    left: -22px;
+}
+
+.pgallery-next {
+    right: -22px;
+}
+
+@media (max-width: 768px) {
+    .pgallery-prev { left: 8px; }
+    .pgallery-next { right: 8px; }
+}
+
+/* Sayaç Rozeti */
+.pgallery-counter {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: 15;
+}
+
+/* Kapatma Butonu */
+.pgallery-close {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(26, 28, 38, 0.95);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.pgallery-close:hover {
+    background: #e74c3c;
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .pgallery-close {
+        top: 10px;
+        right: 10px;
+    }
 }
 
 
