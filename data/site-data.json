@@ -204,7 +204,8 @@
         "description": [
           "~Test Sayfası~",
           "Bu  sayfa yapılan veya  yapılacak test aşamaları için açılmış sayfadır.",
-          "Test için gereksiz açıklama veya resim yüklenebilir  dikkate almayınız.",
+          "Bu sayfadaki bilgiler gerçeği yansıtmamaktadır  tamamen deneme içindir.",
+          "Test için açıklama veya resim yüklenebilir.",
           "~Test Sayfası~"
         ],
         "descriptionEN": [
