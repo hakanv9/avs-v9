@@ -218,6 +218,12 @@
             "src": "resimler/test123bny_6_.webp",
             "alt": "test123bny (6)",
             "order": 1
+          },
+          {
+            "id": "ss-1786729628872-1knxj",
+            "src": "resimler/123kurye_2_.webp",
+            "alt": "123kurye (2)",
+            "order": 2
           }
         ],
         "changelog": [
