@@ -443,6 +443,47 @@
           "test uygulaması"
         ]
       }
+    },
+    {
+      "id": "grupkonum-mstgleo3",
+      "slug": "grupkonum",
+      "name": "V9 Grup Konum Paylaşımı",
+      "nameEN": "V9 Group Location Sharing app",
+      "shortDesc": "👥 Aileniz, arkadaşlarınız veya gezi grubunuzla canlı harita üzerinden anlık konum paylaşımı yapabileceğiniz, güvenli ve pil dostu grup takip uygulaması.",
+      "shortDescEN": "👥 Aileniz, arkadaşlarınız veya gezi grubunuzla canlı harita üzerinden anlık konum paylaşımı yapabileceğiniz, güvenli ve pil dostu grup takip uygulaması.",
+      "thumbnail": "resimler/projeler-resmi1.webp",
+      "tags": [
+        "📱 Mobil",
+        "📍Konum",
+        "⚡Hızlı ve güvenli"
+      ],
+      "status": "development",
+      "statuses": [
+        "development"
+      ],
+      "order": 4,
+      "visible": true,
+      "detail": {
+        "isAndroid": false,
+        "playStoreEnabled": false,
+        "playStoreUrl": "#",
+        "logo": "",
+        "downloads": "-",
+        "rating": "-",
+        "ageRating": "3+",
+        "appSize": "-",
+        "minAndroid": "-",
+        "description": [
+          "👥 Aileniz, arkadaşlarınız veya gezi grubunuzla canlı harita üzerinden anlık konum paylaşımı yapabileceğiniz, güvenli ve pil dostu grup takip uygulaması."
+        ],
+        "descriptionEN": [
+          "👥 Aileniz, arkadaşlarınız veya gezi grubunuzla canlı harita üzerinden anlık konum paylaşımı yapabileceğiniz, güvenli ve pil dostu grup takip uygulaması."
+        ],
+        "permissions": [],
+        "screenshots": [],
+        "changelog": [],
+        "requirements": []
+      }
     }
   ],
   "faq": [
