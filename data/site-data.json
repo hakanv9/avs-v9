@@ -212,7 +212,14 @@
           "⏳test2",
           "test3"
         ],
-        "screenshots": [],
+        "screenshots": [
+          {
+            "id": "ss-1786729566576-pp7bp",
+            "src": "resimler/test123bny_6_.webp",
+            "alt": "test123bny (6)",
+            "order": 1
+          }
+        ],
         "changelog": [
           {
             "version": "123",
