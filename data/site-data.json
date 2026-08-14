@@ -225,17 +225,21 @@
       "order": 2,
       "visible": true,
       "detail": {
-        "isAndroid": false,
+        "isAndroid": true,
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "",
         "downloads": "-",
         "rating": "-",
-        "ageRating": "3+",
-        "appSize": "-",
+        "ageRating": "13+",
+        "appSize": "-10",
         "minAndroid": "-",
         "description": [
-          "👥 Aileniz, arkadaşlarınız veya gezi grubunuzla canlı harita üzerinden anlık konum paylaşımı yapabileceğiniz, güvenli ve pil dostu grup takip uygulaması."
+          "📍 Canlı ve Eşzamanlı Takip: Harita üzerinde odadaki tüm üyelerin konumunu, anlık durumunu gecikmesiz görüntüleyin.",
+          "🚪 Hızlı Oda & Davet Kodu: Saniyeler içinde özel bir grup oluşturun; bağlantıyı paylaşarak arkadaşlarınızı kolayca odaya dahil edin.",
+          "🎯 Akıllı Buluşma Noktası: Gruptaki herkesin bulunduğu konumu hesaplayarak herkese en uygun ortak buluşma noktasını harita üzerinde belirleyin.",
+          "🔋 Düşük Pil ve Veri Tüketimi: Gelişmiş konum algoritmaları sayesinde telefonunuzun şarjını tüketmeden gün boyu arka planda sorunsuz çalışır.",
+          "🛡️ Uçtan Uca Gizlilik: Konumunuz yalnızca odaya katılan kişilerle paylaşılır. İstediğiniz an tek dokunuşla konum paylaşımını duraklatabilirsiniz."
         ],
         "descriptionEN": [
           "👥 Aileniz, arkadaşlarınız veya gezi grubunuzla canlı harita üzerinden anlık konum paylaşımı yapabileceğiniz, güvenli ve pil dostu grup takip uygulaması."
@@ -243,7 +247,13 @@
         "permissions": [],
         "screenshots": [],
         "changelog": [],
-        "requirements": []
+        "requirements": [
+          "📱 Minimum Android 8.0 veya Ios 18.0 ve üstü",
+          "📶 Bağlantı: Aktif İnternet Bağlantısı (3G, 4G, 5G veya Wi-Fi)",
+          "🧩 Minimum bellek miktarı 2GB",
+          "🛰️ Donanım: Dahili GPS / Konum Sensörü",
+          "📁 Minimum 150mb boş yer gereklidir .(kullanıcı verileri için)"
+        ]
       }
     },
     {
