@@ -202,7 +202,10 @@
         "appSize": "-150",
         "minAndroid": "8",
         "description": [
-          "test kısa"
+          "~Test Sayfası~",
+          "Bu  sayfa yapılan veya  yapılacak test aşamaları için açılmış sayfadır.",
+          "Test için gereksiz açıklama veya resim yüklenebilir  dikkate almayınız.",
+          "~Test Sayfası~"
         ],
         "descriptionEN": [
           "test kısa"
@@ -254,7 +257,7 @@
           }
         ],
         "requirements": [
-          "2gb"
+          "test uygulaması"
         ]
       }
     }
