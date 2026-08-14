@@ -205,15 +205,15 @@
     {
       "id": "test-msn4a9g2",
       "slug": "test",
-      "name": "test",
+      "name": "Web sitesi  test uygulaması",
       "nameEN": "test",
-      "shortDesc": "test kısa",
+      "shortDesc": "Web sitesinde veya başka alanlarda test yapılan sayfa.\nDikkate almayın.",
       "shortDescEN": "test kısa",
       "thumbnail": "resimler/projeler-resmi1.jpg",
       "tags": [],
-      "status": "completed",
+      "status": "special",
       "statuses": [
-        "completed"
+        "special"
       ],
       "order": 3,
       "visible": true,
