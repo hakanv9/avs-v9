@@ -244,7 +244,12 @@
         "descriptionEN": [
           "👥 Aileniz, arkadaşlarınız veya gezi grubunuzla canlı harita üzerinden anlık konum paylaşımı yapabileceğiniz, güvenli ve pil dostu grup takip uygulaması."
         ],
-        "permissions": [],
+        "permissions": [
+          "📍 Hassas Konum İzni (GPS): Harita üzerinde tam ve doğru yerinizi gruba gösterebilmek için.",
+          "🛰️ Arka Plan Konum İzni: Ekran kapalıyken veya başka uygulamadayken konumunuzun grupta güncel kalması için.",
+          "🔔 Bildirim İzni: Odaya yeni biri katıldığında veya acil durum bildirimleri geldiğinde haber vermek için.",
+          "📶 İnternet Erişimi İzni: Konum verilerini grup üyelerine anlık aktarmak ve haritayı yüklemek için."
+        ],
         "screenshots": [],
         "changelog": [],
         "requirements": [
