@@ -224,6 +224,12 @@
             "src": "resimler/test123bny_6_.webp",
             "alt": "test123bny (6)",
             "order": 2
+          },
+          {
+            "id": "ss-1786730815325-nj129",
+            "src": "resimler/anasayfa-hosgeldin-resmi4.webp",
+            "alt": "anasayfa-hosgeldin-resmi4",
+            "order": 3
           }
         ],
         "changelog": [
