@@ -310,7 +310,7 @@
           }
         ],
         "requirements": [
-          "📱 Minimum  Android 8.0  veya Ios 18.0",
+          "📱 Minimum  Android 8.0  veya Ios 18.0 ve üstü",
           "🧩 Minimum bellek miktarı  2GB",
           "📁 Minimum 200mb boş yer gereklidir (kullanıcı verileri için)."
         ]
