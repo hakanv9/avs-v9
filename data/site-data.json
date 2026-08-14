@@ -216,7 +216,10 @@
       ],
       "status": "development",
       "statuses": [
-        "development"
+        "development",
+        "research",
+        "bugfix",
+        "rnd"
       ],
       "order": 2,
       "visible": true,
