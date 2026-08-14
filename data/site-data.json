@@ -215,9 +215,11 @@
         "📱 Mobil",
         "📍Konum"
       ],
-      "status": "development",
+      "status": "completed",
       "statuses": [
-        "development"
+        "completed",
+        "discontinued",
+        "waiting"
       ],
       "order": 2,
       "visible": true,
