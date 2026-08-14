@@ -211,9 +211,14 @@
       "shortDescEN": "test kısa",
       "thumbnail": "resimler/projeler-resmi1.jpg",
       "tags": [],
-      "status": "special",
+      "status": "development",
       "statuses": [
-        "special"
+        "development",
+        "research",
+        "bugfix",
+        "waiting",
+        "special",
+        "rnd"
       ],
       "order": 3,
       "visible": true,
