@@ -224,25 +224,91 @@
       "order": 2,
       "visible": true,
       "detail": {
-        "isAndroid": false,
+        "isAndroid": true,
         "playStoreEnabled": false,
         "playStoreUrl": "#",
         "logo": "",
         "downloads": "-",
         "rating": "-",
-        "ageRating": "3+",
-        "appSize": "-",
+        "ageRating": "13+",
+        "appSize": "-78",
         "minAndroid": "-",
         "description": [
-          "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli."
+          "📍 Canlı Harita & Akıllı Rota: Birden fazla paketi teslim ederken trafik yoğunluğunu ve mesafeyi hesaplayarak kuryeye en hızlı ve en az yakıt tüketen rotayı çizer.",
+          "⚡Rota hesaplama : Bu özellik sayesinde hem kurye'ye hem müşteri'ye tahmini süreyi hesaplayıp sunulur.",
+          "🔋 Pil & Veri Dostu Çalışma: Arka planda GPS çalışırken cihazın şarjını ve internet kotasını minimum seviyede tüketecek şekilde optimize edilmiştir.",
+          "📊 Kazanç & Performans Takibi: Günlük, haftalık teslimat adetlerini ve hak edilen kazancı şeffaf şekilde listeler."
         ],
         "descriptionEN": [
           "Basit ama etkili kurye uygulaması .Harita ve konum takip destekli."
         ],
         "permissions": [],
         "screenshots": [],
-        "changelog": [],
-        "requirements": []
+        "changelog": [
+          {
+            "version": "v0.1.9",
+            "date": "2026-05-09",
+            "type": "major",
+            "features": [
+              "Temel harita ve rota çizim altyapısı kuruldu.",
+              "Tahmini süre hesaplama algoritması iyileştirildi.",
+              "Anlık kurye takibi özelliği eklendi.",
+              "Çeşitli iyileştirmeler yapıldı."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.1.4",
+            "date": "2026-04-30",
+            "type": "fix",
+            "features": [],
+            "fixes": [
+              "Çeşitli hatalar ve performans sorunları giderildi.",
+              "Uygulama açılış süreleri hızlandırıldı.",
+              "Giriş ekranında uzun bekleme süresi sorunu giderildi.",
+              "Kurye ekranından harita uygulaması atma sorunu giderildi."
+            ]
+          },
+          {
+            "version": "v0.1.0",
+            "date": "2026-04-11",
+            "type": "minor",
+            "features": [
+              "Yeni özellikler eklendi.",
+              "Google tabanlı harita uygulaması ve canlı konum görünüm eklendi.",
+              "Kullanıcıya göre bildirim özelliği eklendi.",
+              "Akıllı mesafe ölçme özelliği eklendi : Kurye hedefe en kısa ve ne kadar sürede gittiğini bildiren , müşteri kuryenin siparişi ne sürede (tahmini süresi takibi ile) görebilmesi özelliği."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.0.6",
+            "date": "2026-03-19",
+            "type": "feature",
+            "features": [
+              "Giriş (Login) ekranı eklendi: Mail ve Telefon.",
+              "Kullanıcı tanımlı ekrana yönlendirme özelliği eklendi.",
+              "Kurye ekranı eklendi.",
+              "Müşteri ekranı eklendi."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.0.1",
+            "date": "2026-02-20",
+            "type": "initial",
+            "features": [
+              "Kurye uygulaması için çalışmalara başlandı.",
+              "Altyapı ve özellik araştırması."
+            ],
+            "fixes": []
+          }
+        ],
+        "requirements": [
+          "📱 Minimum  Android 8.0  veya Ios 18.0",
+          "🧩 Minimum bellek miktarı  2GB",
+          "📁 Minimum 200mb boş yer gereklidir (kullanıcı verileri için)."
+        ]
       }
     },
     {
