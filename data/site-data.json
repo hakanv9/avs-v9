@@ -250,7 +250,14 @@
           "🔔 Bildirim İzni: Odaya yeni biri katıldığında veya acil durum bildirimleri geldiğinde haber vermek için.",
           "📶 İnternet Erişimi İzni: Konum verilerini grup üyelerine anlık aktarmak ve haritayı yüklemek için."
         ],
-        "screenshots": [],
+        "screenshots": [
+          {
+            "id": "ss-1786743892197-edzar",
+            "src": "resimler/test123projeler-resmi2.webp",
+            "alt": "test123projeler-resmi2",
+            "order": 1
+          }
+        ],
         "changelog": [
           {
             "version": "v0.2.3",
