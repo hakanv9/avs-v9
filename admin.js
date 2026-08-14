@@ -704,15 +704,6 @@ function initModals() {
         const fields = document.getElementById('playStoreFields');
         if (fields) fields.style.display = e.target.checked ? 'block' : 'none';
     });
-
-    // Ekran görüntüsü yükleme
-    document.getElementById('screenshotFileInput')?.addEventListener('change', e => handleScreenshotUpload(e.target.files));
-    const ssUploadArea = document.getElementById('screenshotUploadArea');
-    if (ssUploadArea) {
-        ssUploadArea.addEventListener('dragover', e => { e.preventDefault(); ssUploadArea.classList.add('dragover'); });
-        ssUploadArea.addEventListener('dragleave', () => ssUploadArea.classList.remove('dragover'));
-        ssUploadArea.addEventListener('drop', e => { e.preventDefault(); ssUploadArea.classList.remove('dragover'); handleScreenshotUpload(e.dataTransfer.files); });
-    }
 }
 
 function openAddProjectModal() {
@@ -916,82 +907,129 @@ function saveProjectDetail(silent = false) {
     if (!isSilent) adminToast('Proje detayları güncellendi. Kaydetmeyi unutmayın.', 'success');
 }
 
-//ekran goruntuleri 
+// EKRAN GÖRÜNTÜLERİ (PROJE GÖRSELLERİ)
 
 function renderScreenshots(screenshots) {
     const grid = document.getElementById('screenshotGrid');
-    if (!grid) return;
+    if (!grid || !currentProjectId || !siteData) return;
+    const proj = siteData.projects.find(p => p.id === currentProjectId);
+    if (!proj) return;
 
-    const normalized = screenshots.map((ss, i) => {
+    if (!proj.detail) proj.detail = {};
+    if (!proj.detail.screenshots) proj.detail.screenshots = [];
+
+    // Normalize to objects if string
+    proj.detail.screenshots = proj.detail.screenshots.map((ss, i) => {
         if (typeof ss === 'string') return { id: generateId('ss'), src: ss, alt: 'Görsel ' + (i + 1), order: i + 1 };
+        if (typeof ss === 'object' && !ss.id) ss.id = generateId('ss');
+        if (typeof ss === 'object' && typeof ss.order !== 'number') ss.order = i + 1;
         return ss;
     });
 
-    grid.innerHTML = normalized.map((ss, i) => `
-    <div class="screenshot-item" data-id="${ss.id}" data-idx="${i}">
-        <img src="${PREVIEW_MAP[ss.src] || ss.src}" alt="${ss.alt || 'Görsel ' + (i + 1)}"
-            onerror="this.parentElement.style.display='none'"
-            onload="this.parentElement.className = 'screenshot-item ' + (this.naturalWidth > this.naturalHeight ? 'landscape' : this.naturalWidth === this.naturalHeight ? 'square' : '');"
-            style="cursor:zoom-in;" onclick="openPdLightbox('${PREVIEW_MAP[ss.src] || ss.src}')"
-        >
-        <div class="ss-actions">
-            <button class="order-btn" title="Geriye Taşı" onclick="moveScreenshot(${i}, -1)" ${i === 0 ? 'disabled' : ''}>◀</button>
-            <button class="ss-del-btn" data-idx="${i}" title="Sil">✖</button>
-            <button class="order-btn" title="İleriye Taşı" onclick="moveScreenshot(${i}, 1)" ${i === normalized.length - 1 ? 'disabled' : ''}>▶</button>
-        </div>
-    </div>
-`).join('');
+    proj.detail.screenshots.sort((a, b) => (a.order || 0) - (b.order || 0));
+    const list = proj.detail.screenshots;
 
-    grid.querySelectorAll('.ss-del-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => { e.stopPropagation(); deleteScreenshot(parseInt(btn.dataset.idx)); });
+    grid.innerHTML = list.map((s, i) => `
+        <div class="slider-img-item" data-id="${s.id}">
+            <img src="${PREVIEW_MAP[s.src] || s.src}" alt="${s.alt || 'Görsel ' + (i + 1)}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'160\\' height=\\'90\\'><rect width=\\'160\\' height=\\'90\\' fill=\\'%23222\\'/><text x=\\'50%\\' y=\\'50%\\' fill=\\'%23666\\' text-anchor=\\'middle\\' dy=\\'.3em\\'>🖼️</text></svg>'">
+            <div class="img-order-controls" style="position:absolute; top:4px; left:4px; display:flex; flex-direction:column; gap:4px; z-index:10;">
+                <button class="order-btn" onclick="moveScreenshot(${i}, -1)" ${i === 0 ? 'disabled' : ''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9650;</button>
+                <span class="img-order-badge" style="position:static; margin:0; text-align:center;">${i + 1}</span>
+                <button class="order-btn" onclick="moveScreenshot(${i}, 1)" ${i === list.length - 1 ? 'disabled' : ''} style="cursor:pointer; background:rgba(0,0,0,0.7); color:white; border:none; padding:2px 6px; border-radius:4px;">&#9660;</button>
+            </div>
+            <button class="img-delete-btn" data-id="${s.id}" title="Sil">✕</button>
+        </div>
+    `).join('');
+
+    grid.querySelectorAll('.img-delete-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            deleteScreenshot(btn.dataset.id);
+        });
     });
+
+    // Yükleme Olayları
+    const fileInput = document.getElementById('screenshotFileInput');
+    const uploadArea = document.getElementById('screenshotUploadArea');
+    if (fileInput) {
+        fileInput.onchange = e => handleScreenshotUpload(e.target.files);
+    }
+    if (uploadArea) {
+        uploadArea.ondragover = e => { e.preventDefault(); uploadArea.classList.add('dragover'); };
+        uploadArea.ondragleave = () => uploadArea.classList.remove('dragover');
+        uploadArea.ondrop = e => { e.preventDefault(); uploadArea.classList.remove('dragover'); handleScreenshotUpload(e.dataTransfer.files); };
+    }
+
+    if (typeof Sortable !== 'undefined') {
+        Sortable.create(grid, {
+            animation: 150,
+            onEnd: function () {
+                const items = Array.from(grid.children);
+                items.forEach((item, index) => {
+                    const ss = proj.detail.screenshots.find(s => s.id === item.dataset.id);
+                    if (ss) ss.order = index + 1;
+                });
+                proj.detail.screenshots.sort((a, b) => (a.order || 0) - (b.order || 0));
+                markDirty();
+                renderScreenshots(proj.detail.screenshots);
+            }
+        });
+    }
 }
 
-window.moveScreenshot = function (idx, dir) {
+window.moveScreenshot = function (i, dir) {
     if (!currentProjectId) return;
     const proj = siteData.projects.find(p => p.id === currentProjectId);
     if (!proj || !proj.detail || !proj.detail.screenshots) return;
 
     const arr = proj.detail.screenshots;
-    if (dir === -1 && idx > 0) {
-        const tmp = arr[idx];
-        arr[idx] = arr[idx - 1];
-        arr[idx - 1] = tmp;
+    if (dir === -1 && i > 0) {
+        const tmp = arr[i].order;
+        arr[i].order = arr[i - 1].order;
+        arr[i - 1].order = tmp;
+        arr.sort((a, b) => (a.order || 0) - (b.order || 0));
         markDirty();
         renderScreenshots(arr);
-    } else if (dir === 1 && idx < arr.length - 1) {
-        const tmp = arr[idx];
-        arr[idx] = arr[idx + 1];
-        arr[idx + 1] = tmp;
+    } else if (dir === 1 && i < arr.length - 1) {
+        const tmp = arr[i].order;
+        arr[i].order = arr[i + 1].order;
+        arr[i + 1].order = tmp;
+        arr.sort((a, b) => (a.order || 0) - (b.order || 0));
         markDirty();
         renderScreenshots(arr);
     }
-}
+};
 
-function deleteScreenshot(idx) {
+function deleteScreenshot(id) {
     if (!currentProjectId) return;
     const proj = siteData.projects.find(p => p.id === currentProjectId);
-    if (!proj) return;
+    if (!proj || !proj.detail || !proj.detail.screenshots) return;
+    if (!confirm('Bu görsel silinsin mi?')) return;
+    const idx = proj.detail.screenshots.findIndex(s => s.id === id);
+    if (idx === -1) return;
     proj.detail.screenshots.splice(idx, 1);
+    proj.detail.screenshots.forEach((s, i) => s.order = i + 1);
     markDirty();
     renderScreenshots(proj.detail.screenshots);
+    adminToast('Görsel silindi.', 'success');
 }
 
 async function handleScreenshotUpload(files) {
+    if (!files || !files.length) return;
     if (!currentProjectId) { adminToast('Lütfen önce bir proje seçin.', 'warning'); return; }
     const proj = siteData.projects.find(p => p.id === currentProjectId);
-    if (!proj) return;
+    if (!proj) { adminToast('Seçili proje bulunamadı.', 'error'); return; }
     adminLoading(true, 'Görseller yükleniyor...');
     try {
+        if (!proj.detail) proj.detail = {};
+        if (!proj.detail.screenshots) proj.detail.screenshots = [];
+
         for (const file of Array.from(files)) {
             if (file.size > 15 * 1024 * 1024) { adminToast(`${file.name} 15MB sınırını aşıyor.`, 'error'); continue; }
             const base64 = await fileToBase64(file);
             const filename = file.name.replace(/\s/g, '_');
             const path = await ghAPI.uploadImage(filename, base64);
             PREVIEW_MAP[path] = base64;
-
-            if (!proj.detail) proj.detail = {};
-            if (!proj.detail.screenshots) proj.detail.screenshots = [];
 
             proj.detail.screenshots.push({
                 id: generateId('ss'),
@@ -1007,7 +1045,8 @@ async function handleScreenshotUpload(files) {
         adminToast(`Görsel yükleme hatası: ${err.message}`, 'error', 5000);
     } finally {
         adminLoading(false);
-        document.getElementById('screenshotFileInput').value = '';
+        const input = document.getElementById('screenshotFileInput');
+        if (input) input.value = '';
     }
 }
 

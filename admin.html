@@ -174,18 +174,19 @@
                         <!-- 2A: Proje Görselleri -->
                         <div class="admin-card">
                             <div class="admin-card-header">
-                                <h2 class="admin-card-title"><span>📸</span> Proje Görselleri</h2>
-                                <span style="font-size:0.75rem;color:var(--text-secondary)">Dikey → portre modunda,
-                                    Yatay → tam genişlik açılır</span>
+                                <h2 class="admin-card-title">
+                                    <span>📸</span> Proje Görselleri
+                                </h2>
+                                <span style="font-size:0.78rem;color:var(--text-secondary)">10 saniyede bir geçiş</span>
                             </div>
-                            <div class="screenshot-grid" id="screenshotGrid"></div>
+                            <div class="slider-img-grid" id="screenshotGrid"></div>
                             <label class="admin-upload-area" for="screenshotFileInput" id="screenshotUploadArea">
                                 <div class="upload-icon">📤</div>
                                 <div class="upload-text">
                                     <strong>Tıkla veya sürükle-bırak</strong><br>
-                                    PNG, JPG, WebP — Max 15MB
+                                    PNG, JPG, GIF, WebP — Max 15MB
                                 </div>
-                                <input type="file" id="screenshotFileInput" accept="image/*" multiple>
+                                <input type="file" id="screenshotFileInput" accept="image/*,image/gif" multiple>
                             </label>
                         </div>
 
@@ -546,7 +547,7 @@
     <!-- SortableJS (Drag & Drop Sıralama için) -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="script.js" defer></script>
-    <script src="admin.js?v=4.1" defer></script>
+    <script src="admin.js?v=4.2" defer></script>
 
     <!-- LiGHTBOX -->
     <div class="admin-lightbox" id="adminLightbox">

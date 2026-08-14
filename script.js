@@ -1769,6 +1769,30 @@ function initApp() {
         if (slides.length === 0 && proj.thumbnail) {
             slides = [proj.thumbnail];
         }
+
+        // Sıralama (order) kontrolü
+        slides = slides.slice().sort((a, b) => {
+            const ordA = typeof a === 'object' && a ? (a.order || 0) : 0;
+            const ordB = typeof b === 'object' && b ? (b.order || 0) : 0;
+            return ordA - ordB;
+        });
+
+        window.movePdSlide = function (dir) {
+            const slider = document.getElementById('pdAppSlider');
+            if (!slider) return;
+            const slideElements = Array.from(slider.querySelectorAll('.pd-app-slide'));
+            if (slideElements.length < 2) return;
+            let cur = slideElements.findIndex(s => s.classList.contains('active'));
+            if (cur < 0) cur = 0;
+            slideElements[cur].classList.remove('active');
+            cur = (cur + dir + slideElements.length) % slideElements.length;
+            slideElements[cur].classList.add('active');
+            if (window.pdSlideInterval) {
+                clearInterval(window.pdSlideInterval);
+                window.pdSlideInterval = setInterval(() => { window.movePdSlide(1); }, 10000);
+            }
+        };
+
         if (pdAppSlider) {
             if (slides && slides.length > 0) {
                 pdAppSlider.innerHTML = slides.map((src, i) =>
