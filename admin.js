@@ -705,8 +705,14 @@ function initModals() {
         if (fields) fields.style.display = e.target.checked ? 'block' : 'none';
     });
 
-    // Ekran grnts ykleme
+    // Ekran görüntüsü yükleme
     document.getElementById('screenshotFileInput')?.addEventListener('change', e => handleScreenshotUpload(e.target.files));
+    const ssUploadArea = document.getElementById('screenshotUploadArea');
+    if (ssUploadArea) {
+        ssUploadArea.addEventListener('dragover', e => { e.preventDefault(); ssUploadArea.classList.add('dragover'); });
+        ssUploadArea.addEventListener('dragleave', () => ssUploadArea.classList.remove('dragover'));
+        ssUploadArea.addEventListener('drop', e => { e.preventDefault(); ssUploadArea.classList.remove('dragover'); handleScreenshotUpload(e.dataTransfer.files); });
+    }
 }
 
 function openAddProjectModal() {
