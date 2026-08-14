@@ -251,7 +251,65 @@
           "📶 İnternet Erişimi İzni: Konum verilerini grup üyelerine anlık aktarmak ve haritayı yüklemek için."
         ],
         "screenshots": [],
-        "changelog": [],
+        "changelog": [
+          {
+            "version": "v0.2.3",
+            "date": "2026-06-28",
+            "type": "major",
+            "features": [
+              "🎯 Grup için \"Ortak Buluşma Noktası\" atama özelliği devreye alındı.",
+              "🎨 Basit kullanıcı arayüzü ve harita kontrol butonları geliştirildi.",
+              "Konum tahmini iyileştirildi.",
+              "Grup odaları geliştirildi."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.1.8",
+            "date": "2026-05-21",
+            "type": "minor",
+            "features": [
+              "Yeni özellikler eklendi.",
+              "Oda kurma ve oda arama özelliği eklendi.",
+              "Oda yetkileri eklendi: Oda'yı oluşturan kişi yönetici yetkisi ile oda'dan kişiyi atabiliyor.",
+              "Kullanıcılar oda ismini aratarak katılım sağlıyor.",
+              "Yönetici herkesin konumuna anlık takip edebiliyor."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "V0.1.3",
+            "date": "2026-04-30",
+            "type": "fix",
+            "features": [],
+            "fixes": [
+              "Çeşitli  hatalar ve performans sorunları giderildi.",
+              "📱 Ekran kapandığında konumun donma sorunu giderildi.",
+              "🔋 Aşırı şarj tüketen konum motoru optimize edilerek %35 pil tasarrufu sağlandı."
+            ]
+          },
+          {
+            "version": "v0.0.8",
+            "date": "2026-04-09",
+            "type": "feature",
+            "features": [
+              "Yeni özellikler eklendi.",
+              "🗺️ Temel harita altyapısı ve GPS konum okuma modülü kuruldu.",
+              "📍 Grup üyelerinin haritada özel simgelerle (avatarlarla) gösterimi sağlandı."
+            ],
+            "fixes": []
+          },
+          {
+            "version": "v0.0.1",
+            "date": "2026-03-22",
+            "type": "initial",
+            "features": [
+              "Grup konum paylaşma uygulaması için çalışmalara başlandı.",
+              "Altyapı ve özellik araştırması."
+            ],
+            "fixes": []
+          }
+        ],
         "requirements": [
           "📱 Minimum Android 8.0 veya Ios 18.0 ve üstü",
           "📶 Bağlantı: Aktif İnternet Bağlantısı (3G, 4G, 5G veya Wi-Fi)",
