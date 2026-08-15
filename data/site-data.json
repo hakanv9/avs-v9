@@ -664,7 +664,11 @@
           "~Test Sayfası~"
         ],
         "descriptionEN": [
-          "test kısa"
+          "~Test Sayfası~",
+          "Bu  sayfa yapılan veya  yapılacak test aşamaları için açılmış sayfadır.",
+          "Bu sayfadaki bilgiler gerçeği yansıtmamaktadır  tamamen deneme içindir.",
+          "Test için açıklama veya resim yüklenebilir.",
+          "~Test Sayfası~"
         ],
         "permissions": [
           "🏆test",
