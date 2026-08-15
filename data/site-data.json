@@ -334,7 +334,11 @@
           "🛡️ Uçtan Uca Gizlilik: Konumunuz yalnızca odaya katılan kişilerle paylaşılır. İstediğiniz an tek dokunuşla konum paylaşımını duraklatabilirsiniz."
         ],
         "descriptionEN": [
-          "👥 Aileniz, arkadaşlarınız veya gezi grubunuzla canlı harita üzerinden anlık konum paylaşımı yapabileceğiniz, güvenli ve pil dostu grup takip uygulaması."
+          "📍 Canlı ve Eşzamanlı Takip: Harita üzerinde odadaki tüm üyelerin konumunu, anlık durumunu gecikmesiz görüntüleyin.",
+          "🚪 Hızlı Oda & Davet Kodu: Saniyeler içinde özel bir grup oluşturun; bağlantıyı paylaşarak arkadaşlarınızı kolayca odaya dahil edin.",
+          "🎯 Akıllı Buluşma Noktası: Gruptaki herkesin bulunduğu konumu hesaplayarak herkese en uygun ortak buluşma noktasını harita üzerinde belirleyin.",
+          "🔋 Düşük Pil ve Veri Tüketimi: Gelişmiş konum algoritmaları sayesinde telefonunuzun şarjını tüketmeden gün boyu arka planda sorunsuz çalışır.",
+          "🛡️ Uçtan Uca Gizlilik: Konumunuz yalnızca odaya katılan kişilerle paylaşılır. İstediğiniz an tek dokunuşla konum paylaşımını duraklatabilirsiniz."
         ],
         "permissions": [
           "📍 Hassas Konum İzni (GPS): Harita üzerinde tam ve doğru yerinizi gruba gösterebilmek için.",
