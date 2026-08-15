@@ -250,7 +250,11 @@
           "📈Hızlı ve güvenli rota oluşturma imkanı ile sorunsuz yolculuk."
         ],
         "descriptionEN": [
-          "⚡ Baştan tasarlanan ultra düşük gecikmeli harita motoru, entegre sesli telsiz/sohbet sistemi ve gelişmiş akıllı güvenli bölge (Geofence) altyapısına sahip yeni nesil grup takip uygulaması."
+          "V9 Grup Konum Paylaşımı (v2.0), ilk sürümün tüm deneyimini temel alarak baştan sona yeniden kodlanmış, performans ve güvenlik odaklı yeni nesil bir ortak yaşam ve takip platformudur.",
+          "🚀 Sıfır Gecikmeli Canlı Konum (Low-Latency): Yenilenen soket mimarisi sayesinde grup üyelerinin her adımı haritada anlık, pürüzsüz ve gerçek zamanlı 60 FPS olarak akar.",
+          "🎙️ Uygulama İçi  Sohbet odaları : Haritadan çıkmadan tek tuşla gruba mesaj gönderin",
+          "🔋 Daha optimize pil performansı.",
+          "📈Hızlı ve güvenli rota oluşturma imkanı ile sorunsuz yolculuk."
         ],
         "permissions": [
           "📍 Hassas Konum İzni (Tam GPS): Harita üzerinde milimetrik ve anlık yer tespiti için.",
